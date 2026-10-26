@@ -11,15 +11,15 @@ export const STYLE = {
   ui: [165, 172, 178], uiHi: [238, 238, 234],
   font: "'JetBrains Mono'",
   ramp: RAMP, lattice: "·",
-  alpha: (b) => 0.03 + 0.97 * Math.pow(b, 2.4),
-  lattA: 0.14, edgeA: 0.30,
+  alpha: (b) => 0.12 + 0.88 * Math.pow(b, 1.2),
+  lattA: 0.20, edgeA: 0.22,
 };
 
 export function makeGrid(W, H, CW, CH) {
   const COLS = Math.floor(W / CW), ROWS = Math.floor(H / CH);
   return {
     W, H, CW, CH, COLS, ROWS,
-    best: new Float32Array(COLS * ROWS), occ: new Uint8Array(COLS * ROWS),
+    best: new Float32Array(COLS * ROWS), occ: new Uint8Array(COLS * ROWS), cnt: new Uint16Array(COLS * ROWS),
     over: new Array(COLS * ROWS).fill(null), big: [],
   };
 }
@@ -35,7 +35,7 @@ export function splat(G, pos, v, cam, fog = null) {
     const cx = Math.floor(p.x / G.CW), cy = Math.floor(p.y / G.CH);
     if (cx < 0 || cy < 0 || cx >= G.COLS || cy >= G.ROWS) continue;
     const i = cy * G.COLS + cx;
-    G.occ[i] = 1;
+    G.occ[i] = 1; G.cnt[i]++;
     const f = fog ? 1 - 0.45 * Math.min(1, Math.max(0, (p.z - fog[0]) / (fog[1] - fog[0]))) : 1;
     const w = v[k] * f;
     if (Math.abs(w) > Math.abs(G.best[i])) G.best[i] = w;
@@ -56,7 +56,8 @@ export function polyline(G, pts3, cam, alpha = STYLE.edgeA, color = STYLE.edge) 
       const cx = Math.floor(ax + ((bx - ax) * s) / steps), cy = Math.floor(ay + ((by - ay) * s) / steps);
       if (cx < 0 || cy < 0 || cx >= G.COLS || cy >= G.ROWS) continue;
       const i = cy * G.COLS + cx;
-      if (level(G.best[i]) < 2 && !G.over[i]) G.over[i] = { c: glyph, col: color, a: alpha };
+      const lvl = STYLE.ladder ? STYLE.ladder.levelOf(G.best[i], G.cnt[i]) * 2 : level(STYLE.correct ? STYLE.correct(G.best[i], G.cnt[i]) : G.best[i]);
+      if (lvl < 2 && !G.over[i]) G.over[i] = { c: glyph, col: color, a: alpha };
     }
   }
 }
@@ -93,8 +94,16 @@ export function draw(g, G, dpr) {
       continue;
     }
     if (!G.occ[i]) continue;
-    const val = G.best[i], lv = level(val);
+    const val = S.correct ? S.correct(G.best[i], G.cnt[i]) : G.best[i];
+    const lv = S.ladder ? S.ladder.levelOf(G.best[i], G.cnt[i]) : level(val);
     if (lv === 0) { g.font = `400 ${fs}px ${S.font}`; g.fillStyle = rgb(S.latt, S.lattA); g.fillText(S.lattice, x, y); continue; }
+    if (S.ladder) {
+      const top = S.ladder.ramp.length - 1, pos = G.best[i] > 0, b = S.ladder.bright[lv];
+      const col = lv >= top - 1 ? (pos ? S.posHi : S.negHi) : (pos ? S.pos : S.neg);
+      g.font = `${lv >= top - 1 ? 700 : 400} ${fs}px ${S.font}`; g.fillStyle = rgb(col, b); g.fillText(S.ladder.ramp[lv], x, y);
+      if (lv >= S.ladder.bloomFrom) { gg.font = g.font; gg.fillStyle = rgb(pos ? S.pos : S.neg, Math.min(1, b)); gg.fillText(S.ladder.ramp[lv], x, y); }
+      continue;
+    }
     const b = bright(val), pos = val > 0;
     const col = lv >= 7 ? (pos ? S.posHi : S.negHi) : (pos ? S.pos : S.neg);
     g.font = `${lv >= 7 ? 700 : 400} ${fs}px ${S.font}`; g.fillStyle = rgb(col, S.alpha(b)); g.fillText(S.ramp[lv], x, y);
@@ -110,4 +119,43 @@ export function draw(g, G, dpr) {
   bb.filter = `blur(${10 * dpr}px)`; bb.drawImage(glowC, 0, 0);
   bb.filter = `blur(${3 * dpr}px)`; bb.drawImage(glowC, 0, 0);
   g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalCompositeOperation = "lighter"; g.globalAlpha = 1; g.drawImage(blur, 0, 0); g.restore();
+}
+
+// Crowding correction. A cell holding k neurons shows its strongest one, discounted for k:
+// m' = F^-1(F(m)^k), where F is the CDF of |activation / p99| for one neuron. With one neuron per cell
+// nothing changes; a crowded cell only lights up if its best neuron is unusual for a group that size.
+export function crowdingCorrection(tokens, skipFirst = 1) {
+  const B = 800, lo = Math.log(1e-3), hi = Math.log(1e3), hist = new Float64Array(B);
+  let n = 0;
+  for (const tok of tokens.slice(skipFirst)) for (let j = 0; j < tok.r.length; j += 7) {
+    const a = Math.abs(tok.r[j]); if (!(a > 0)) continue;
+    const b = Math.min(B - 1, Math.max(0, Math.floor(((Math.log(a) - lo) / (hi - lo)) * B))); hist[b]++; n++;
+  }
+  const cdf = new Float64Array(B); let acc = 0;
+  for (let b = 0; b < B; b++) { acc += hist[b]; cdf[b] = acc / n; }
+  const F = (a) => { if (!(a > 0)) return 0; const b = Math.floor(((Math.log(a) - lo) / (hi - lo)) * B); return b < 0 ? 0 : b >= B ? 1 : cdf[b]; };
+  const Finv = (u) => { let l = 0, h = B - 1; while (l < h) { const m = (l + h) >> 1; if (cdf[m] < u) l = m + 1; else h = m; } return Math.exp(lo + ((l + 0.5) / B) * (hi - lo)); };
+  return (m, k) => (k <= 1 ? m : Math.sign(m) * Finv(Math.pow(F(Math.abs(m)), k)));
+}
+
+// Rarity ladder: a dot shows how rare this firing is for that neuron (its percentile), corrected for
+// crowding: a cell with k neurons uses u = F(max)^k. Thresholds are top 10%, 3%, 1%, 0.3%, 0.1%.
+export function rarityLadder(tokens, skipFirst = 1) {
+  const B = 800, lo = Math.log(1e-3), hi = Math.log(1e3), hist = new Float64Array(B);
+  let n = 0;
+  for (const tok of tokens.slice(skipFirst)) for (let j = 0; j < tok.r.length; j += 7) {
+    const a = Math.abs(tok.r[j]); if (!(a > 0)) continue;
+    const b = Math.min(B - 1, Math.max(0, Math.floor(((Math.log(a) - lo) / (hi - lo)) * B))); hist[b]++; n++;
+  }
+  const cdf = new Float64Array(B); let acc = 0;
+  for (let b = 0; b < B; b++) { acc += hist[b]; cdf[b] = acc / n; }
+  const F = (a) => { if (!(a > 0)) return 0; const b = Math.floor(((Math.log(a) - lo) / (hi - lo)) * B); return b < 0 ? 0 : b >= B ? 1 : cdf[b]; };
+  const TH = [0.90, 0.97, 0.99, 0.997, 0.999];
+  return {
+    F, TH,
+    ramp: ["·", "·", "∙", "•", "●", "◉"],
+    bright: [0.2, 0.30, 0.50, 0.80, 0.95, 1.0],
+    bloomFrom: 3,
+    levelOf(m, k) { const u = Math.pow(F(Math.abs(m)), Math.max(1, k)); let lv = 0; while (lv < TH.length && u >= TH[lv]) lv++; return lv; },
+  };
 }

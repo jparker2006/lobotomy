@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q4 trails</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+// Q4: afterglow. Four panels play the same real stream at board speed (6 tok/s); each uses a different
+// half-life for the afterglow: a neuron's brightness = max over past tokens of |a| x 0.5^(age / half-life).
+import { loadSession, userPrompt, L, N } from "../lib/data.js";
+import { camera } from "../lib/proj.js";
+import { SHAPES } from "../lib/shapes.js";
+import { STYLE, makeGrid, splat, polyline, put, draw, crowdingCorrection, rarityLadder } from "../lib/ascii.js";
+const q = new URLSearchParams(location.search);
+const S = q.get("s") || "ocean", TOKS = +(q.get("rate") || 6);
+const HLS = (q.get("hl") || "0,0.5,2,6").split(",").map(Number);
+const PW = 960, PH = 600, dpr = devicePixelRatio, W = PW * 2, H = PH * 2;
+const c = document.getElementById("c"); c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
+const g = c.getContext("2d");
+for (const f of ["400 12px 'JetBrains Mono'", "700 12px 'JetBrains Mono'"]) await document.fonts.load(f);
+STYLE.ramp = " ··∙∙••●●◉";
+const { tokens } = await loadSession(S);
+if (q.get('raw') !== '1') STYLE.ladder = rarityLadder(tokens);
+const sh = SHAPES.deck;
+const pos = new Float32Array(3 * L * N);
+for (let l = 0; l < L; l++) for (let n = 0; n < N; n++) { const p = sh.pos(l, n), k = 3 * (l * N + n); pos[k] = p[0]; pos[k + 1] = p[1]; pos[k + 2] = p[2]; }
+const cam = camera([-22.4, 8.6, 31.2], [0, -0.5, 0], +(q.get('fov') || 20), PW, PH, PW * 0.575, PH * 0.46);
+
+function glowAt(tf, hl) {
+  const i = Math.floor(tf), out = new Float32Array(L * N);
+  const depth = hl > 0 ? Math.ceil(hl * 6) : 0;
+  for (let k = Math.max(0, i - depth); k <= i; k++) {
+    const w = hl > 0 ? Math.pow(0.5, (tf - k) / hl) : 1, r = tokens[k].r;
+    for (let j = 0; j < out.length; j++) { const x = r[j] * w; if (Math.abs(x) > Math.abs(out[j])) out[j] = x; }
+  }
+  return out;
+}
+const off = document.createElement("canvas"); off.width = PW * dpr; off.height = PH * dpr;
+const og = off.getContext("2d");
+function panel(tf, hl) {
+  og.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const G = makeGrid(PW, PH, 7, 12), v = glowAt(tf, hl), U = STYLE;
+  splat(G, pos, v, cam);
+  for (let l = L - 1; l >= 0; l--) for (const line of sh.outline(l)) polyline(G, line, cam);
+  const label = hl === 0 ? "TRAIL: NONE (each word replaces the last)" : `TRAIL: HALF-LIFE ${hl} TOKEN${hl === 1 ? "" : "S"} (${(hl / TOKS).toFixed(2)} s AT ${TOKS} TOK/S)`;
+  put(G, 2, 1, label, U.uiHi, 0.9, true);
+  put(G, 2, 2, "· TOP 10%   ∙ TOP 3%   • TOP 1%   ● TOP 0.3%   ◉ TOP 0.1%   (FOR THAT NEURON)", U.ui, 0.5);
+  const i = Math.floor(tf);
+  let ans = ""; for (let k = 0; k <= i; k++) if (tokens[k].kind === "gen") ans += tokens[k].text;
+  const lines = []; let line = "";
+  for (const w of ans.split(/(?<=\s)/)) { if ((line + w).length > 110) { lines.push(line); line = w; } else line += w; }
+  lines.push(line);
+  const shown = lines.slice(-2), R0 = G.ROWS - 4;
+  shown.forEach((ln, j) => put(G, 2, R0 + j, ln, j === shown.length - 1 ? U.uiHi : U.ui, j === shown.length - 1 ? 0.9 : 0.5));
+  const lastLn = shown[shown.length - 1], cur = tokens[i].kind === "gen" ? tokens[i].text : "";
+  if (cur.trim()) { const at = lastLn.lastIndexOf(cur); put(G, 2 + at, R0 + shown.length - 1, cur, U.posHi, 1, true); }
+  put(G, 2 + lastLn.length, R0 + shown.length - 1, "█", U.pos, 0.85);
+  draw(og, G, dpr);
+}
+window.renderAt = (tf) => {
+  HLS.forEach((hl, j) => {
+    panel(tf, hl);
+    g.drawImage(off, (j % 2) * PW * dpr, Math.floor(j / 2) * PH * dpr);
+  });
+  g.fillStyle = "#222"; g.fillRect(PW * dpr - 1, 0, 2, H * dpr); g.fillRect(0, PH * dpr - 1, W * dpr, 2);
+};
+window.firstGen = tokens.findIndex((x) => x.kind === "gen");
+window.nTokens = tokens.length;
+window.renderAt(window.firstGen + 10);
+window.__ready = true;
+</script></body></html>

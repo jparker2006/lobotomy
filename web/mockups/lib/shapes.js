@@ -18,8 +18,10 @@ export const SHAPES = {
       return [(l - (L - 1) / 2) * gap, (23.5 - row) * pitch, (col - 31.5) * pitch];
     },
     outline(l, o = {}) {
+      // full frame for the first and last layer, a top rule for the rest
       const x = (l - (L - 1) / 2) * (o.gap ?? 0.8), hy = 1.2, hz = 1.6;
-      return [[[x, hy, -hz], [x, hy, hz], [x, -hy, hz], [x, -hy, -hz], [x, hy, -hz]]];
+      if (l === 0 || l === L - 1) return [[[x, hy, -hz], [x, hy, hz], [x, -hy, hz], [x, -hy, -hz], [x, hy, -hz]]];
+      return [[[x, hy, -hz], [x, hy, hz]]];
     },
     label(l, o = {}) { return [(l - (L - 1) / 2) * (o.gap ?? 0.8), 1.45, -1.6]; },
   },
