@@ -1,0 +1,9 @@
+target/
+.venv/
+__pycache__/
+models/
+*.vmfb
+*.onnx
+*.onnx.data
+*.safetensors
+.env
