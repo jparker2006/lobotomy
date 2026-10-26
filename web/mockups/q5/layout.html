@@ -1,0 +1,162 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q5 layout</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+// Q5: what's on screen besides the map. Same frame, four layouts, everything on one character grid.
+import { loadSession, userPrompt, L, N } from "../lib/data.js";
+import { camera } from "../lib/proj.js";
+import { SHAPES } from "../lib/shapes.js";
+import { STYLE, makeGrid, splat, polyline, put, putBig, draw, rarityLadder } from "../lib/ascii.js";
+const q = new URLSearchParams(location.search);
+const S = q.get("s") || "ocean", T = +(q.get("t") || 52), layout = q.get("layout") || "cinema", HL = 2;
+const W = 1440, H = 900, dpr = devicePixelRatio, CW = 9, CH = 16;
+const c = document.getElementById("c"); c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
+const g = c.getContext("2d"); g.scale(dpr, dpr);
+for (const f of ["400 14px 'JetBrains Mono'", "700 14px 'JetBrains Mono'", "300 28px 'JetBrains Mono'"]) await document.fonts.load(f);
+const { tokens } = await loadSession(S);
+const LAD = STYLE.ladder = rarityLadder(tokens);
+const t = Math.min(T, tokens.length - 1), U = STYLE;
+
+// afterglow (Q4: half-life 2 tokens)
+const v = new Float32Array(L * N);
+for (let k = Math.max(0, t - 12); k <= t; k++) {
+  const w = Math.pow(0.5, (t - k) / HL), r = tokens[k].r;
+  for (let j = 0; j < v.length; j++) { const x = r[j] * w; if (Math.abs(x) > Math.abs(v[j])) v[j] = x; }
+}
+// per token and layer: neurons in their top 1% (u >= 0.99)
+const top1 = tokens.map((tok) => { const c = new Uint16Array(L); for (let j = 0; j < L * N; j++) if (LAD.F(Math.abs(tok.r[j])) >= 0.99) c[Math.floor(j / N)]++; return c; });
+const top1Now = top1[t].reduce((a, b) => a + b, 0);
+
+const G = makeGrid(W, H, CW, CH);                       // UI text grid
+const MW = +(q.get("mw") || 5), MH = +(q.get("mh") || 8);
+const Gm = makeGrid(W, H, MW, MH);                        // fine dot grid for the map
+const sh = SHAPES.deck, pos = new Float32Array(3 * L * N);
+for (let l = 0; l < L; l++) for (let n = 0; n < N; n++) { const p = sh.pos(l, n), k = 3 * (l * N + n); pos[k] = p[0]; pos[k + 1] = p[1]; pos[k + 2] = p[2]; }
+// map viewport in cells: [c0, r0, c1, r1]
+const VP = { cinema: [0, 3, 160, 45], split: [52, 3, 160, 50], console: [42, 3, 122, 46], score: [0, 3, 160, 30] }[layout];
+const vw = (VP[2] - VP[0]) * CW, vh = (VP[3] - VP[1]) * CH;
+const fov = { cinema: 16, split: 19, console: 22, score: 15 }[layout];
+const cam = camera([-22.4, 8.6, 31.2], [0, -0.5, 0], fov, vw, vh, VP[0] * CW + vw * 0.56, VP[1] * CH + vh * 0.5);
+splat(Gm, pos, v, cam);
+for (let l = L - 1; l >= 0; l--) for (const line of sh.outline(l)) polyline(Gm, line, cam, 0.16);
+// clip the map to its viewport (in pixels)
+for (let r = 0; r < Gm.ROWS; r++) for (let cc = 0; cc < Gm.COLS; cc++) {
+  const x = cc * MW, y = r * MH;
+  if (x >= VP[0] * CW && x < VP[2] * CW && y >= VP[1] * CH && y < VP[3] * CH) continue;
+  const i = r * Gm.COLS + cc; Gm.occ[i] = 0; Gm.best[i] = 0; Gm.over[i] = null;
+}
+for (const l of [0, 9, 18, 27]) { const p = cam(sh.label(l)); put(G, Math.floor(p.x / CW), Math.floor(p.y / CH), `L${String(l).padStart(2, "0")}`, U.uiHi, 0.6); }
+
+// shared pieces
+const pad = (s, n) => String(s).padStart(n, "0");
+const answerUpTo = (k) => tokens.slice(0, k + 1).filter((x) => x.kind === "gen").map((x) => x.text).join("");
+const cur = tokens[t].text, answer = answerUpTo(t), prompt = userPrompt(tokens);
+function header() {
+  put(G, 2, 1, "LOBOTOMY", U.uiHi, 1, true);
+  put(G, 12, 1, "QWEN3-0.6B · BACKEND: CPU STAND-IN · 28 × 3,072 NEURONS", U.ui, 0.5);
+}
+function wrap(text, width) {
+  const out = []; let line = "";
+  for (const w of text.split(/(?<=\s)/)) { if ((line + w).length > width) { out.push(line); line = w.replace(/^\s+/, ""); } else line += w; }
+  out.push(line); return out;
+}
+function transcript(c0, r0, width, rows) {
+  const lines = wrap("> " + prompt, width);
+  lines.forEach((ln, j) => put(G, c0, r0 + j, ln, U.ui, 0.5));
+  let r = r0 + lines.length + 1;
+  const al = wrap(answer, width);
+  al.slice(-rows).forEach((ln, j) => {
+    const last = j === Math.min(rows, al.length) - 1;
+    put(G, c0, r + j, ln, U.uiHi, 0.88);
+    if (last) { const at = ln.lastIndexOf(cur.trim()); put(G, c0 + at, r + j, cur.trim(), U.posHi, 1, true); put(G, c0 + ln.length, r + j, "█", U.pos, 0.85); }
+  });
+  return r + Math.min(rows, al.length);
+}
+function tape(c0, r0, width) {
+  const bars = " ▁▂▃▄▅▆▇█", tot = top1.map((x) => x.reduce((a, b) => a + b, 0)), mx = Math.max(...tot.slice(1));
+  put(G, c0, r0, "TAPE", U.ui, 0.45);
+  tokens.forEach((tok, j) => { if (!j || 6 + j >= width) return; const kk = Math.max(1, Math.round((8 * tot[j]) / mx)); put(G, c0 + 5 + j, r0, bars[kk], j === t ? U.posHi : U.ui, j === t ? 1 : j > t ? 0.12 : tok.kind === "prompt" ? 0.28 : 0.6); });
+}
+function legend(c0, r0) { put(G, c0, r0, "· TOP 10%  ∙ 3%  • 1%  ● 0.3%  ◉ 0.1%  FOR THAT NEURON", U.ui, 0.42); }
+const lit = top1Now.toLocaleString();
+
+if (layout === "cinema") {
+  header();
+  putBig(G, G.COLS - 2 - lit.length * 2, 1, lit, U.uiHi, 0.95);
+  const sub = "NEURONS IN THEIR TOP 1% · TOKEN " + pad(t, 3) + "/256 · 6.1 TOK/S"; put(G, G.COLS - 2 - sub.length, 3, sub, U.ui, 0.5);
+  legend(2, 3);
+  // subtitles: the last two lines of the answer in double size
+  const lines = wrap(answer, 74).slice(-2);
+  lines.forEach((ln, j) => {
+    const r = 46 + j * 2, c0 = Math.floor((160 - ln.length * 2) / 2);
+    const last = j === lines.length - 1, at = last ? ln.lastIndexOf(cur.trim()) : -1;
+    if (last && at >= 0) { putBig(G, c0, r, ln.slice(0, at), U.uiHi, 0.9); putBig(G, c0 + at * 2, r, cur.trim(), U.posHi, 1, 500); putBig(G, c0 + (at + cur.trim().length) * 2, r, "█", U.pos, 0.85); }
+    else putBig(G, c0, r, ln, U.uiHi, 0.6);
+  });
+  put(G, 2, 52, "> " + prompt, U.ui, 0.5);
+  tape(2, 54, 160);
+} else if (layout === "split") {
+  header();
+  const end = transcript(2, 4, 46, 30);
+  const rows = [["TOKEN", JSON.stringify(cur)], ["TOP 1% NOW", lit], ["TOKEN #", `${pad(t, 3)} / 256`], ["SPEED", "6.1 tok/s"]];
+  rows.forEach(([k, val], j) => { put(G, 2, end + 2 + j, k.padEnd(12, "."), U.ui, 0.45); put(G, 15, end + 2 + j, val, U.uiHi, 0.9); });
+  legend(2, end + 7);
+  for (let r = 3; r < 51; r++) put(G, 50, r, "│", U.ui, 0.15);
+  tape(2, 53, 160);
+} else if (layout === "console") {
+  header();
+  transcript(2, 4, 37, 30);
+  for (let r = 3; r < 47; r++) { put(G, 40, r, "│", U.ui, 0.15); put(G, 123, r, "│", U.ui, 0.15); }
+  // right: per-layer top-1% counts as dot bars
+  put(G, 125, 4, "TOP 1% BY LAYER", U.uiHi, 0.8, true);
+  const mx = Math.max(...top1[t]);
+  for (let l = 0; l < L; l++) {
+    const n = top1[t][l], len = Math.round((22 * n) / mx);
+    put(G, 125, 6 + l, `L${pad(l, 2)}`, U.ui, 0.5);
+    put(G, 129, 6 + l, "•".repeat(len), l === top1[t].indexOf(mx) ? U.posHi : U.pos, 0.75);
+    put(G, 153, 6 + l, String(n).padStart(4), U.ui, 0.55);
+  }
+  // strongest neurons right now
+  const best = []; tokens[t].r.forEach((x, k) => best.push([Math.abs(x), k, x])); best.sort((a, b) => b[0] - a[0]);
+  put(G, 125, 36, "RAREST RIGHT NOW", U.uiHi, 0.8, true);
+  best.slice(0, 6).forEach(([a, k, x], j) => put(G, 125, 38 + j, `L${pad(Math.floor(k / N), 2)} N${pad(k % N, 4)}  ${x > 0 ? "+" : "−"}${a.toFixed(1)}× p99`, x > 0 ? U.pos : U.neg, 0.85));
+  legend(42, 45);
+  tape(2, 50, 160);
+  put(G, 2, 53, `TOKEN ${pad(t, 3)}/256 · 6.1 TOK/S · ${lit} IN TOP 1%`, U.ui, 0.5);
+} else if (layout === "score") {
+  header();
+  putBig(G, G.COLS - 2 - lit.length * 2, 1, lit, U.uiHi, 0.95);
+  const sub = "NEURONS IN THEIR TOP 1% · TOKEN " + pad(t, 3) + "/256"; put(G, G.COLS - 2 - sub.length, 3, sub, U.ui, 0.5);
+  legend(2, 3);
+  // the answer as a score: above every character, 7 rows (4 layers each) show that token's top-1% share
+  const ans = tokens.slice(0, t + 1).map((x, k) => ({ ...x, k })).filter((x) => x.kind === "gen");
+  let line = [], lines = [], len = 0;
+  for (const tok of ans) { if (len + tok.text.length > 150 && line.length) { lines.push(line); line = []; len = 0; } line.push(tok); len += tok.text.length; }
+  lines.push(line);
+  lines = lines.slice(-2);
+  put(G, 2, 31, "> " + prompt, U.ui, 0.5);
+  const dots = ["", "·", "∙", "•", "●", "◉"];
+  lines.forEach((ln, li) => {
+    const r0 = 33 + li * 10; let col = 4;
+    put(G, 0, r0, "L27", U.ui, 0.3); put(G, 0, r0 + 6, "L00", U.ui, 0.3);
+    for (const tok of ln) {
+      for (let gI = 0; gI < 7; gI++) {
+        const n = top1[tok.k][4 * gI] + top1[tok.k][4 * gI + 1] + top1[tok.k][4 * gI + 2] + top1[tok.k][4 * gI + 3];
+        const ratio = n / (4 * N * 0.01), lv = ratio < 0.5 ? 0 : ratio < 0.8 ? 1 : ratio < 1.2 ? 2 : ratio < 1.8 ? 3 : ratio < 2.6 ? 4 : 5;
+        if (!lv) continue;
+        const pos = top1[tok.k][4 * gI] >= 0; // sign not tracked in counts: use amber
+        for (let j = 0; j < tok.text.length; j++) if (tok.text[j] !== " ") put(G, col + j, r0 + 6 - gI, dots[lv], tok.k === t ? U.posHi : U.pos, tok.k === t ? 1 : 0.25 + 0.15 * lv);
+      }
+      put(G, col, r0 + 7, tok.text, tok.k === t ? U.posHi : U.uiHi, tok.k === t ? 1 : 0.85, tok.k === t);
+      col += tok.text.length;
+    }
+    if (li === lines.length - 1) put(G, col, r0 + 7, "█", U.pos, 0.85);
+  });
+  put(G, 2, 54, "EACH COLUMN = ONE WORD · ROWS = LAYERS 0–27 IN GROUPS OF 4 · DOT = SHARE OF NEURONS IN THEIR TOP 1% (• = USUAL)", U.ui, 0.4);
+}
+draw(g, Gm, dpr, { fs: MH * 0.95 });
+draw(g, G, dpr, { bg: false });
+window.__ready = true;
+</script></body></html>

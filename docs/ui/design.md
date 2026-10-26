@@ -10,4 +10,6 @@
 | Q2 | Shape | **Deck**: 28 layer sheets side by side, L0 to L27. Within a layer, neurons sit by index for now (64 × 48); v0.1.0 swaps in the co-activation layout (R9). | [q2-shape-sheet.png](mockups/q2-shape-sheet.png) |
 | Q3 | Glyphs | **Dots** `· ∙ • ● ◉`: bigger and brighter = stronger, readable without a legend (Jake: ASCII symbols look like they mean something). The ASCII feel stays in the grid, edge strokes and text UI. | [q3-glyph-sheet.png](mockups/q3-glyph-sheet.png) |
 | — | Honesty fix | **Rarity ladder with a crowding correction.** A dot shows how rare the firing is for that neuron (top 10 / 3 / 1 / 0.3 / 0.1%). A character cell that holds k neurons uses u = F(max)^k, so a crowded far cell is no likelier to light than one neuron. Without this, far layers looked ablaze just from packing. | [q4-trails.gif](mockups/q4-trails.gif) |
-| Q4 | Trails | *open* | [q4-trails.gif](mockups/q4-trails.gif) |
+| Q4 | Trails | **Half-life 2 tokens** (0.33 s at 6 tok/s), measured in tokens. Jake will tune it live, so it goes on a tuning knob. | [q4-trails.gif](mockups/q4-trails.gif) |
+| — | Resolution fix | **Two grids.** The map uses a fine dot grid (5 × 8 px, about one neuron per cell at the overview); the UI uses the 9 × 16 text grid. With one coarse grid, each cell pooled ~100 neurons and the map went dark. | [q5-cinema.png](mockups/q5-cinema.png) |
+| Q5 | Screen layout | *open* | [q5-layout-sheet.png](mockups/q5-layout-sheet.png) |

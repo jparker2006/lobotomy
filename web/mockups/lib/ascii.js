@@ -77,13 +77,13 @@ export function putBig(G, col, row, text, color = STYLE.uiHi, a = 1, weight = 30
   G.big.push({ col, row, text, color, a, weight });
 }
 
-export function draw(g, G, dpr) {
+export function draw(g, G, dpr, opts = {}) {
   const S = STYLE, { CW, CH, COLS, ROWS } = G;
-  g.fillStyle = S.bg; g.fillRect(0, 0, G.W, G.H);
+  if (opts.bg !== false) { g.fillStyle = S.bg; g.fillRect(0, 0, G.W, G.H); }
   const glowC = document.createElement("canvas"); glowC.width = G.W * dpr; glowC.height = G.H * dpr;
   const gg = glowC.getContext("2d"); gg.scale(dpr, dpr);
   g.textBaseline = gg.textBaseline = "top"; g.textAlign = gg.textAlign = "center";
-  const fs = Math.round(CH * 0.86);
+  const fs = opts.fs ?? Math.round(CH * 0.86);
   for (let i = 0; i < COLS * ROWS; i++) {
     const x = (i % COLS) * CW + CW / 2, y = Math.floor(i / COLS) * CH + 1;
     const o = G.over[i];
@@ -100,8 +100,9 @@ export function draw(g, G, dpr) {
     if (S.ladder) {
       const top = S.ladder.ramp.length - 1, pos = G.best[i] > 0, b = S.ladder.bright[lv];
       const col = lv >= top - 1 ? (pos ? S.posHi : S.negHi) : (pos ? S.pos : S.neg);
-      g.font = `${lv >= top - 1 ? 700 : 400} ${fs}px ${S.font}`; g.fillStyle = rgb(col, b); g.fillText(S.ladder.ramp[lv], x, y);
-      if (lv >= S.ladder.bloomFrom) { gg.font = g.font; gg.fillStyle = rgb(pos ? S.pos : S.neg, Math.min(1, b)); gg.fillText(S.ladder.ramp[lv], x, y); }
+      const sc = S.ladder.scale ? S.ladder.scale[lv] : 1, fz = fs * sc, yy = y - (fz - fs) * 0.55;
+      g.font = `${lv >= top - 1 ? 700 : 400} ${fz}px ${S.font}`; g.fillStyle = rgb(col, b); g.fillText(S.ladder.ramp[lv], x, yy);
+      if (lv >= S.ladder.bloomFrom) { gg.font = g.font; gg.fillStyle = rgb(pos ? S.pos : S.neg, Math.min(1, b)); gg.fillText(S.ladder.ramp[lv], x, yy); }
       continue;
     }
     const b = bright(val), pos = val > 0;
@@ -154,7 +155,8 @@ export function rarityLadder(tokens, skipFirst = 1) {
   return {
     F, TH,
     ramp: ["·", "·", "∙", "•", "●", "◉"],
-    bright: [0.2, 0.30, 0.50, 0.80, 0.95, 1.0],
+    bright: [0.2, 0.34, 0.55, 0.85, 0.95, 1.0],
+    scale: [1, 1, 1.15, 1.45, 1.8, 2.1],
     bloomFrom: 3,
     levelOf(m, k) { const u = Math.pow(F(Math.abs(m)), Math.max(1, k)); let lv = 0; while (lv < TH.length && u >= TH[lv]) lv++; return lv; },
   };
