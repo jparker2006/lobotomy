@@ -1,0 +1,30 @@
+The morning train was late again, so Maria bought a coffee and watched the pigeons fight over a crust of bread. She had a meeting at nine, a dentist appointment at noon, and a birthday dinner for her brother in the evening. None of it felt urgent yet. The station clock ticked forward, and a voice over the speakers apologised for the delay, blaming a signal fault near the river crossing.
+
+Photosynthesis is the process by which plants, algae and some bacteria turn light into chemical energy. Chlorophyll absorbs mostly red and blue light and reflects green, which is why leaves look green to us. In the light-dependent reactions, water is split and oxygen is released. In the Calvin cycle, carbon dioxide from the air is fixed into sugars that the plant uses to grow.
+
+To make a simple tomato sauce, warm two tablespoons of olive oil in a pan over medium heat. Add a chopped onion and cook it for about eight minutes, until soft. Stir in two cloves of garlic, then a can of crushed tomatoes, a pinch of salt and a few basil leaves. Let it simmer for twenty minutes, taste it, and add a little sugar if it is too sharp.
+
+def average(numbers):
+    """Return the mean of a list of numbers, or None if it is empty."""
+    if not numbers:
+        return None
+    return sum(numbers) / len(numbers)
+
+print(average([3, 5, 8, 13]))
+
+The Roman Empire reached its greatest extent under the emperor Trajan, around the year 117. It stretched from Britain in the north-west to Mesopotamia in the east, and from the Rhine to the deserts of North Africa. Roads, aqueducts and a common legal system held it together, but so did trade: grain from Egypt, olive oil from Spain, and wine from Gaul moved across the Mediterranean every summer.
+
+"Are you coming to the game on Saturday?" asked Tom.
+"I can't," said Priya. "My sister is moving house and I promised to help carry boxes."
+"Bring her along afterwards. We're getting pizza."
+"Maybe. Text me the address and I'll see how tired we are."
+
+A good password is long, unique and hard to guess. Use a password manager so you don't have to remember dozens of them, and turn on two-factor authentication for your email and bank accounts. Be careful with links in unexpected messages, even when they appear to come from someone you know.
+
+Mount Everest, at 8,849 metres, is the highest mountain above sea level. The first confirmed ascent was by Edmund Hillary and Tenzing Norgay in 1953. Today hundreds of climbers try each spring, when a short window of calm weather opens between the winter winds and the summer monsoon. Even then, the thin air above 8,000 metres makes every step exhausting.
+
+Dear hiring manager, I am writing to apply for the position of junior data analyst. I recently finished a degree in statistics, where I worked on survey data, built dashboards, and learned to explain results to people without a technical background. I would welcome the chance to discuss how I could help your team.
+
+The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. How vexingly quick daft zebras jump! Numbers like 42, 3.14159 and 1,000,000 appear in ordinary writing all the time, as do dates such as 12 March 2024 and times like 7:45 pm.
+
+When the storm finally passed, the village came out to look at the damage. Two old oaks had fallen across the lane, a barn roof had lifted and landed in a field, and the stream had burst its banks. But nobody was hurt. By the afternoon, neighbours were sharing chainsaws, tea and sandwiches, and the children were building dams in the muddy water.

@@ -1,0 +1,11 @@
+{
+  "name": "lobotomy-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && cp index.html dist/"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0"
+  }
+}
