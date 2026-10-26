@@ -12,3 +12,10 @@ Inspired by [lyramakesmusic/neuron-explorer](https://github.com/lyramakesmusic/n
 - **Coralboard (always on):** runs the model on the NPU and serves the page plus live activations over USB. Python, on Synaptics' Torq runtime.
 - **Laptop browser:** draws the map. TypeScript + three.js.
 - **Rented machines:** an x86 CPU pod compiles the model for the NPU. Later, a GPU tests every neuron once against random controls and writes an atlas of what the real ones do.
+
+## Run it (v0.0.1, CPU stand-in for the board)
+Needs Python 3.12 with numpy, and torch plus transformers for the `cpu` backend. Node is only for building the page.
+```
+(cd web && npm install && npm run build) && python server/server.py --backend cpu   # open http://localhost:8000
+```
+`--backend fake` needs no model. Tests: `python -m unittest discover server`.

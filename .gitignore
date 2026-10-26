@@ -7,3 +7,5 @@ models/
 *.onnx.data
 *.safetensors
 .env
+node_modules/
+web/dist/
