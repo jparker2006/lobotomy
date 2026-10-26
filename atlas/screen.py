@@ -376,6 +376,11 @@ def cmd_screen(a):
     scr = Screener(variant=a.variant, device=a.device)
     dim = scr.model.config.intermediate_size
     n_neu = dim if a.max_neurons == 0 else a.max_neurons
+    if a.device.startswith("cuda") and torch.cuda.is_available():   # cap ubatch to fit free VRAM
+        free = torch.cuda.mem_get_info()[0]
+        per_unit = 3 * nctx * 64 * N_KEPT * 4                        # ~3x [ubatch*B,T,V] fp32
+        a.ubatch = max(1, min(a.ubatch, int(free * 0.55 / per_unit)))
+        print(f"auto ubatch={a.ubatch} (free {free/1e9:.1f} GB)", flush=True)
     res, summary = {}, []
     for L in layers:
         t0 = time.time()
