@@ -21,7 +21,7 @@ Qwen3-0.6B runs offline on the Coralboard's 1-watt NPU, and the board also serve
 ## Machines
 | Machine | What it is | Notes |
 |---|---|---|
-| MacBook Air (`Jakes-MacBook-Air-2`) | Jake's laptop, Apple Silicon, 16 GB, macOS 26.5 | The machine Cloudroom cloud threads reach with `room-cli mac run`. Has `adb` (`brew install --cask android-platform-tools`), `uv` and `brew`. No PyTorch, no Docker. The disk is 90% full (~44 GB free). The board plugs in here. |
+| MacBook Air (`Jakes-MacBook-Air-2`) | Jake's laptop, Apple Silicon (Mac16,13), 16 GB, macOS 26.5, no SD slot | The machine Cloudroom cloud threads reach with `room-cli mac run`. Has `adb` (`brew install --cask android-platform-tools`), `uv` and `brew`. No PyTorch, no Docker. The disk is 90% full (~44 GB free). The board plugs in here. |
 | jake-desktop | Arch Linux, x86_64, remote | `adb` in `~/.local/bin`. No passwordless sudo. `gh` logged in. Cloud threads can't reach it, and the Mac has no SSH route to it. It could run its own Local Cloudroom thread. |
 | RunPod CPU pod | x86_64 Linux, rented | Export and compile. Use Ubuntu 24.04 (glibc 2.39, Python 3.12) to match the `torq-compiler` wheel. Delete it when idle. |
 | Cloud sandbox | aarch64 Linux, 4 cores | Can't run the Torq compiler. Runs PyTorch on CPU fine (the steering demo ran here). The real memory limit is 8 GB, even though `free` shows 247 GB. **Outbound SSH is blocked** (only HTTP/HTTPS/WebSocket get out), so pods are reached through a WebSocket tunnel (see RunPod below). |
@@ -42,7 +42,13 @@ Jake's board matches Synaptics' "Coralboard SL" photo, not the older Google I/O 
 - **Factory image:** Astra SDK v2.2 customised by Grinn, on eMMC (I/O edition guide). Official support is v2.4 and v2.5. Updates go to eMMC only, with github.com/synaptics-astra/usb-tool and `sl2619_coralboard_oobe_scarthgap_6.12_v2.5.0.zip` from the SDK releases.
 - **mikroBUS SPI:** `SM_SPI1_SDO` is a boot-strap pin (`BOOT_SRC1`), so a hat driving it can change the boot mode.
 
-### Bring-up status: not booted yet
+### Bring-up status: not booted yet (2026-10-26 evening)
+- **The board is a Coralboard SL, not the Google I/O edition.** It has the eMMC/xSPI slider and an empty footprint where the I/O edition's black "ON/1" S3 switch sits, and it matches Synaptics' SL product photo. Synaptics: "official SL support began in Astra SDK 2.6.1; 2.4 and 2.5 supported the Coralboard Google I/O Edition only". The v2.6.1 notes say "Coralboard SL only. Google I/O edition not supported". So the old rule "don't flash v2.6.1" was written for the wrong edition. Jake still has to decide before anything is written to the board.
+- **The cable and the chip work.** In USB download mode (hold USER, tap RESET) the Mac sees `06CB:019E` "TinyUSB Device", the Coralboard ID in usb-tool's manifest. Normal power-on still gives green only and no USB device, so the OS on storage isn't starting.
+- **RAM boot attempt:** `sudo ./astra-boot usbBOOTimg` (usb-tool `bin/mac/arm64/astra-boot` v2.0.4, image `sl2619_coralboard_usb_boot_scarthgap_6.12_v2.6.1.zip`, kit in `~/lobotomy-boot` on the Mac) sent key.bin, spk.bin and m52bl.bin, then failed with `Failed to run SL26XX SysMgr boot sequence`. Afterwards the board showed as `06CB:019E` "SL2610 Bootloader". The RAM disk includes adbd and NCM, so a successful RAM boot gives `adb shell` with nothing written.
+- **Next try:** set macOS "Allow accessories to connect" to "Automatically allow when unlocked" for the test (the chip changes USB identity mid-boot), re-enter download mode, then run `sudo ./astra-boot -D -S -l ~/lobotomy-boot/boot.log usbBOOTimg` and read the log. If the RAM boot works, choose a permanent install: SD card (v2.6.1 wic, needs a microSD and a USB-C card reader, since the MacBook Air has no SD slot) or eMMC with astra-update.
+
+### Earlier bring-up notes
 - The first try was plugged into the MacBook. Only the green LED lit; there was no red heartbeat (two short blinks, then a pause). `adb devices` was empty. Unclear whether the macOS "Allow accessory to connect?" prompt was approved.
 - **2026-10-26:** with the switch confirmed at eMMC, only green lit again, and the Mac saw **no USB device at all**, not even an unnamed one. Next test: USB download mode (hold USER, tap RESET). If the Mac sees a device, the cable carries data and the OS isn't starting, so reinstall v2.5 with usb-tool. If not, the cable is probably charge-only.
 - **Earlier checks:** use a known data cable plugged in directly, approve the macOS accessory prompt, press no buttons (reset during boot enters USB boot mode), and wait 60–90 s for the heartbeat. Then:
