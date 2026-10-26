@@ -3,23 +3,28 @@
 Everything learned so far, so any new session can pick up without the original chat.
 
 ## The project
-A live neuron explorer for Qwen3-0.6B running on a 1-watt NPU. The model runs offline on the Coralboard. Physical knobs push single MLP neurons while it talks, and a 3D map in the laptop browser shows every neuron lighting up per generated token. Inspired by Lyra's neuron-explorer (see below). The name "brainbox" is a placeholder.
+**lobotomy is Qwen running on my Coralboard so you can watch its neurons light up as it talks, and later push them.**
 
-## Decisions
-- **Model:** Qwen3-0.6B (28 layers × 3,072 MLP neurons = 86,016). Not Gemma 3: its `post_feedforward_layernorm` breaks the exact steering math.
-- **Language:** Rust everywhere except model export and compile, which need the Python Torq toolchain.
-- **Split:** a rented GPU builds the neuron atlas once. The board runs the steered model live. The laptop browser shows the map.
+Qwen3-0.6B runs offline on the Coralboard's 1-watt NPU, and the board also serves the web page. The Mac's browser only draws: a map where all 86,016 MLP neurons light up for each generated word. It's a hobby demo built for wow (and Twitter), not a product. The wow is two things: it runs on a real chip, and it looks beautiful. Inspired by Lyra's neuron-explorer (see below), but aiming higher on ML rigor and design. Versions and the v0.0.1 spec are in [PLAN.md](../PLAN.md).
+
+## Decisions (grill with Jake, 2026-10-26)
+- **Name:** lobotomy (was brainbox). It's also slang for a model that got dumber after editing, which is what a too-hard push does. Renaming the GitHub repo needs Jake's OK.
+- **Terms:** a *neuron* is one value at a layer's `down_proj` input (28 layers × 3,072). *Steering* adds a dose to it on every token. A multiply mode (×0 switches it off) comes later. We push activations, never weights.
+- **Model:** Qwen3-0.6B. Not Gemma 3: its `post_feedforward_layernorm` breaks the exact steering math.
+- **Where things run:** the board runs the model and the web server. The Mac's browser draws the map at `localhost:8000` via `adb forward`. Later, a rented GPU builds the neuron atlas once. Physical knobs are dropped. Steering will use on-screen sliders.
+- **Languages:** Python on the board, because Synaptics' runtime and examples are Python. TypeScript + three.js in the browser. Export and compile are Python too (the Torq toolchain). No Rust for now: it has no natural place, and whether it can drive the Torq runtime is unproven. Revisit only if Python becomes the bottleneck.
+- **Compute:** a RunPod x86 CPU pod for export and compile, with a $10 cap for v0.0.x (prepaid, auto-pay off). The agent drives it with `runpodctl` and Jake's API key, requested through a Cloudroom secret and never pasted in chat. No GPU before the atlas. The atlas budget gets decided later (Lyra's numbers suggest $10–50). jake-desktop is the free fallback.
+- **UI:** plain in v0.0.1. v0.0.2 starts with a separate UI grill and rendered mockups.
+- **Process:** v0.0.1 goes grill → spec → tickets (in PLAN.md). v0.1.0 is mapped with a wayfinder, because its path has real unknowns.
 - **License:** MIT, public repo.
-- **Ambition:** high. This is a side project built mostly with Claude Code.
 
 ## Machines
 | Machine | What it is | Notes |
 |---|---|---|
-| MacBook Air | Jake's laptop, Apple Silicon | `adb` installed via `brew install --cask android-platform-tools` |
-| jake-desktop | Arch Linux, x86_64 | `adb` in `~/.local/bin`. No passwordless sudo. `gh` logged in. This is the machine Cloudroom cloud threads reach with `room-cli mac run`. |
-| Cloud sandbox | aarch64 Linux | Can't run the Torq compiler. |
-
-**The Torq compiler ships only as x86_64 Linux wheels** (`torq-compiler==2.3.0`, `manylinux_2_39_x86_64`). Compile on jake-desktop or a rented x86 GPU pod, not on the Mac or the cloud sandbox.
+| MacBook Air (`Jakes-MacBook-Air-2`) | Jake's laptop, Apple Silicon, 16 GB, macOS 26.5 | The machine Cloudroom cloud threads reach with `room-cli mac run`. Has `adb` (`brew install --cask android-platform-tools`), `uv` and `brew`. No PyTorch, no Docker. The disk is 90% full (~44 GB free). The board plugs in here. |
+| jake-desktop | Arch Linux, x86_64, remote | `adb` in `~/.local/bin`. No passwordless sudo. `gh` logged in. Cloud threads can't reach it, and the Mac has no SSH route to it. It could run its own Local Cloudroom thread. |
+| RunPod CPU pod | x86_64 Linux, rented | Export and compile. Use Ubuntu 24.04 (glibc 2.39, Python 3.12) to match the `torq-compiler` wheel. Stop it between uses. |
+| Cloud sandbox | aarch64 Linux | Can't run the Torq compiler. Runs PyTorch on CPU fine (the steering demo ran here). |
 
 ## The board
 Synaptics Coralboard, Limited Edition 2GB, also called the Google I/O 2026 edition. The module is Grinn's AstraSOM-2619.
@@ -34,37 +39,51 @@ Synaptics Coralboard, Limited Edition 2GB, also called the Google I/O 2026 editi
 - **Next checks:** use a known data cable plugged in directly, approve the macOS accessory prompt, press no buttons (reset during boot enters USB boot mode), and wait 60–90 s for the heartbeat. Then:
   `ioreg -p IOUSB -w0 -l | grep -E '"USB Product Name"|"USB Vendor Name"'` and `adb devices -l`.
 - **Login:** `adb shell`, or serial at 115200 baud. User `root`, no password.
-- **Internet:** macOS System Settings → General → Sharing → Internet Sharing to the "NCM" USB interface. Or add an M.2 Wi-Fi card.
+- **First facts to record:** OS and SDK version, `python3 --version`, `ldd --version`, free RAM and disk. The `torq-runtime` 2.3.0 wheels are `cp312` / `manylinux_2_39_aarch64`, so the board needs **Python 3.12 and glibc ≥ 2.39**. Yocto Scarthgap (5.0) ships both, if that's what the image is built on.
+- **Web page on the Mac:** `adb forward tcp:8000 tcp:8000`, then open `localhost:8000`.
+- **Internet:** macOS System Settings → General → Sharing → Internet Sharing to the "NCM" USB interface. Or download on the Mac and `adb push`. Or add an M.2 Wi-Fi card.
 - **Do not flash SDK v2.6.1.** Its release notes say the Google I/O edition is not supported. The I/O edition was supported in v2.4 and v2.5 (`sl2619_coralboard*` images at github.com/synaptics-astra/sdk/releases). How those images get onto the eMMC is unverified.
 - **Docs:** Synaptics Coralboard getting started and user guide at developer.synaptics.com/docs/developer-kits/coralboard/sl/. Demos: github.com/synaptics-astra-demos/sl2610-examples.
 
 ## Toolchain
-- **Compiler:** github.com/synaptics-torq/torq-compiler (MLIR/IREE, Apache 2.0). Input is ONNX or TFLite, output is `.vmfb`. Ops it can't place on the NPU fall back to the CPU.
-- **Exporter:** github.com/synaptics-torq/torq-tools. `torq-export-model qwen -s qwen3-0.6b` does the following:
+Everything below is from Synaptics' public repos, checked 2026-10-26.
+- **Compiler:** github.com/synaptics-torq/torq-compiler (MLIR/IREE, Apache 2.0). Input is ONNX or TFLite, output is `.vmfb`. Ops it can't place on the NPU fall back to the CPU. On PyPI, `torq-compiler==2.3.0` ships only `cp312-manylinux_2_39_x86_64`. It also provides simulation of the hardware.
+- **Runtime:** `torq-runtime==2.3.0` on PyPI, `cp312-manylinux_2_39` for both aarch64 and x86_64. Its source is open, including the IREE HAL driver in C (`runtime/driver/torq_driver.c` in torq-compiler) and Python bindings.
+- **Exporter:** github.com/synaptics-torq/torq-tools (install from git, it's not on PyPI). `torq-export-model qwen -s qwen3-0.6b` does the following:
   1. Exports to ONNX with optimum.
-  2. Makes a static single-token decoder with a 256-slot KV cache.
-  3. Keeps the token embeddings on the host and trims the vocabulary to Latin text.
-  4. Rewrites attention.
-  5. Applies INT4 GPTQ weights (block 32, bf16 scales).
-  6. Compiles `transformer.vmfb` and `lm_head.vmfb.trim`.
+  2. Makes a static single-token decoder with a 256-slot KV cache (`-t` changes it).
+  3. Keeps the token embeddings on the host and trims the output vocabulary to Latin text, punctuation and digits (`token_id_lut.npy`).
+  4. Rewrites attention (read-only KV cache inputs, new rows as outputs).
+  5. Applies INT4 GPTQ weights (block 32, bf16 scales), downloaded from the model repo's `gptq/` folder.
+  6. Compiles `transformer.vmfb` and `lm_head.vmfb.trim` with the flags in `compile_flags.json`: `--torq-disable-slicing`, `--torq-prefetch-algorithm=stream-schedule` (hides compute under weight loads, since decode is DMA-bound), and `--torq-max-nss-programs-size=12582912` (transformer only).
 
-  Its README says the Torq model repos are private and you must run `hf auth login`. Unverified: `Synaptics/Qwen3-0.6B-GPTQ-int4-torq` looked public from the API.
-- **Runner:** github.com/synaptics-torq/torq-examples (`qwen3/`, `functiongemma/`, `gemma3/`), in Python.
-- **Speed (Synaptics' numbers):** Qwen3-0.6B 6.0–6.4 tok/s, Qwen2.5-0.5B 11.3 tok/s, Gemma 3 270M INT8 12.2 tok/s.
+  It needs only a CPU. Making new GPTQ weights takes about 2 h on 8 cores, and we only need that for a different model.
+- **Model repo:** `Synaptics/Qwen3-0.6B-GPTQ-int4-torq` is **public, not gated, Apache 2.0**, even though torq-tools' README calls the Torq repos private. Files: `transformer.vmfb`, `lm_head.vmfb.trim`, `token_embeddings.npy`, `token_id_lut.npy`, tokenizer, config, and `gptq/model.safetensors`. The only tag is `v2.3.0`.
+- **Runner:** github.com/synaptics-torq/torq-examples (Python, Apache 2.0). Qwen3: `python src/infer.py --instruct-model` for non-thinking mode. Prompt plus answer must fit in the 256-token context set at export. Thinking mode adds 100–300 hidden tokens (20–50 s) before the answer. There's also a `profile.py`.
+- **Speed:** on an SL2610 at 1 GHz, the Qwen3-0.6B transformer takes 155.5 ms and the LM head 15.7 ms per token, giving 6.0–6.4 tok/s in the chat demo. Qwen2.5-0.5B gets 11.3 tok/s and Gemma 3 270M INT8 gets 12.2.
+- **Cost of glowing (prediction):** each token streams about 250 MB of INT4 weights (440M non-embedding params at 4 bits, plus scales). Activation outputs add 86,016 × 2 B ≈ 172 KB, about 0.1%. Expect under 1% slowdown, unless the extra outputs break the compiler's fusion. Measure it.
+- **Open vs closed:** open (Apache 2.0) are the compiler, runtime and driver, export tools, examples, a simulator, a QEMU fork with Torq extensions (`synaptics-torq/qemu`), an MPACT simulator for the Coral NPU, and Google's coralnpu RTL and compiler. Closed are the silicon and, as far as we can see, the rest of the Torq NPU design.
 - **Already on the NPU** (huggingface.co/Synaptics): Moonshine speech-to-text, Piper TTS (vocoder on the NPU, about 3–4× real time), YOLOv8, SigLIP2, FunctionGemma 270M, LFM2/LFM2.5, Qwen2.5-0.5B, Qwen3-0.6B, and face ID.
-- **Rust on the board:** the board runs aarch64 Linux, so Rust cross-compiles. The NPU runtime is IREE-based with a C API. The `eerie` crate wraps the IREE compiler and runtime. **Unverified** whether it can load the Torq NPU driver.
-- **Open-source Coral NPU:** github.com/google-coral/coralnpu (RTL, plus MPACT and Verilator simulators that run without the board). There's also github.com/google-coral/coralnpu-compiler.
+- **Licenses:** Synaptics' code is Apache 2.0, so adapting it is fine if we keep their notices. Lyra's has no license, so we never copy it.
 
-## Steering design (Step 0 target)
+## Steering design (for v0.1.0)
 - Hook point: the input to each layer's `down_proj`, i.e. the neuron activations `h = silu(gate(x)) * up(x)`, shape `[*, 3072]`.
 - Add mode: `h[n] += dose * median_resid_norm(L) / ||W_down[:, n]||`. This moves the residual by exactly `dose × median residual norm`, because Qwen3 has no post-MLP norm and `down_proj` has no bias.
 - On the NPU, graphs are compiled ahead of time with static shapes and have no hooks. So add graph inputs `A[28, 3072]` (default 0) and optionally `M[28, 3072]` (default 1), and compute `h = h * M[l] + A[l]` before `down_proj`. Changing a dose then needs no recompile.
-- For live visualisation, add per-layer activation outputs: 86,016 values per token, about 172 KB at bf16.
+- For live visualisation (v0.0.1), add per-layer activation outputs: 86,016 values per token, about 172 KB at bf16.
 - Recalibrate the median residual norm and activation scales on the quantized graph, since host fp32 values won't match.
 - Likely tool: `onnx_graphsurgeon` on the exported ONNX, before `torq-compile`.
 
+## CPU steering demo (2026-10-26)
+Qwen3-0.6B in fp32 on the cloud sandbox's CPU. The prompt was "Describe your ideal Sunday in three sentences.", decoded greedily with the push applied at every position. Scripts are in [scripts/cpu-demo/](../scripts/cpu-demo/).
+- **Finding neurons:** compare mean activations on 5 ocean sentences against 6 neutral ones (`probe.py`), then check each candidate's logit lens (the words its `W_down` column pushes toward).
+- **Layer 8, neuron 908** (lens: 海底, 航行, 海岸, shore, reef, ocean). At +0.5: "A serene and fulfilling Sunday at the heart of a tranquil ocean, where the waves whisper…". At +1 it drifts and gets odd. At +2 and +4 it's garbage.
+- **Layer 19, neuron 834** (lens of the negative push: 船, marine, fish, sailed, sailor). At −0.5: "relax by the water… fresh seafood". At −1: "swim in the ocean… sailing". At −2 it's garbage.
+- **Controls:** three random residual directions of the same size (+0.5 at layer 8) changed the text ("countryside", "park") but never moved it toward the ocean.
+- **Lessons:** one neuron can pull a topic. The safe dose range is narrow and differs by layer. Only the controls prove a neuron is special. On this prompt the median residual norm was 29.7 at layer 8 and 145.4 at layer 19.
+
 ## Lyra's neuron-explorer
-github.com/lyramakesmusic/neuron-explorer @ f79b219. It has **no license**, so read it but don't copy code. 20 code-reader reports are in [docs/lyra-reports/](lyra-reports/). Key points:
+github.com/lyramakesmusic/neuron-explorer @ f79b219. It has **no license**, so read it but don't copy code. 20 code-reader reports are in [docs/lyra-reports/](lyra-reports/). She rented RunPod GPUs (4× RTX 4090) for the sweep and ran the explorer as a localhost site on her own machine. She never used a board. Key points:
 - **Sweep:** each neuron is pushed on 4 prompts (`who`, `snake`, `orange`, `free`) at doses {−0.7, +0.5, +0.8} ×3 plus free at +3, measured in median-residual-norm units. Greedy decoding, 256 tokens. 256 random-direction controls per layer, norm-matched.
 - **Ranking:** distinctive words versus the pool and the baselines. `z = (cnt − mean) / sqrt(mean + 0.5)`, mass = sum of the top 5 z, and `null_pct` against the controls. At Qwen3.5-4B L22, 19.6% of neurons beat every control.
 - **Lessons:** controls are essential (one random direction made the model claim to be "Xiaomi AI"). "Did the output change?" is useless, because ±1 changes greedy output 83–98% of the time. Calibrate doses per layer. Early layers break at relative doses.
@@ -75,8 +94,8 @@ github.com/lyramakesmusic/neuron-explorer @ f79b219. It has **no license**, so r
 - **Cost:** Qwen3.5-4B full sweep about 44–112 GPU-hours. Gemma 270M estimated 2–15 GPU-hours (about $2–14). Qwen3-0.6B is roughly 2–3× Gemma 270M (estimate).
 
 ## Open questions
-1. Does the board boot at all? See bring-up status above.
-2. Can Torq compile Qwen3-0.6B with steering inputs and activation outputs, and how fast does it run?
-3. Can Rust drive the Torq runtime (via `eerie` or bindgen on the C API)?
-4. Where does compiling happen: jake-desktop or a GPU pod?
-5. Final project name.
+1. Does the board boot at all? (ticket T1)
+2. Do the board's Python and glibc match the `torq-runtime` 2.3.0 wheels (3.12, ≥ 2.39)? (T3)
+3. Can Torq compile Qwen3-0.6B with 28 activation outputs, and what does it cost in speed? (T6)
+4. Do the board's 4-bit activations match a CPU reference? (T7)
+5. Everything for v0.1.0 (steering inputs, the atlas, the layout, the beautiful UI) goes in the wayfinder map, [docs/v0.1.0-map.md](v0.1.0-map.md), which is in progress.

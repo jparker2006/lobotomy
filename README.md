@@ -1,17 +1,14 @@
-# brainbox
+# lobotomy
 
-A live neuron explorer for Qwen3-0.6B running on a 1-watt NPU.
+Watch the neurons of a language model light up while it talks, live on a 1-watt chip.
 
-The model runs offline on a Synaptics Coralboard (SL2619, 1 TOPS Torq NPU). Physical knobs push individual neurons while it talks, and a 3D map in your browser shows every neuron lighting up as each token is generated.
+Qwen3-0.6B runs offline on a Synaptics Coralboard (SL2619, 1 TOPS Torq NPU). The board also serves a web page, and your browser shows all 86,016 of the model's MLP neurons lighting up as each word is generated. Later, you'll be able to push single neurons and watch the answer bend.
 
 Inspired by [lyramakesmusic/neuron-explorer](https://github.com/lyramakesmusic/neuron-explorer). No code is copied from it.
 
-**Status:** day 0. See [PLAN.md](PLAN.md).
+**Status:** v0.0.1 in progress. See [PLAN.md](PLAN.md).
 
 ## How it fits together
-
-- **GPU (once, a few hours):** pushes every one of Qwen3-0.6B's 86,016 MLP neurons, compares against random-direction controls, and writes an atlas of what each real neuron does.
-- **Coralboard (always on):** runs the steered model on the NPU and streams tokens plus live activations over USB. Knobs push neurons from the atlas.
-- **Laptop browser:** the 3D map.
-
-Rust everywhere except model export and compile, where the Torq toolchain needs Python.
+- **Coralboard (always on):** runs the model on the NPU and serves the page plus live activations over USB. Python, on Synaptics' Torq runtime.
+- **Laptop browser:** draws the map. TypeScript + three.js.
+- **Rented machines:** an x86 CPU pod compiles the model for the NPU. Later, a GPU tests every neuron once against random controls and writes an atlas of what the real ones do.
