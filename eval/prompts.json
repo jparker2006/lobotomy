@@ -1,0 +1,15 @@
+{
+ "system": "You are a helpful assistant. Answer in 1-2 sentences. No lists, no bullet points, no repetition.",
+ "enable_thinking": false,
+ "note": "Fixed test prompts for T4, T5 and T7. The system prompt is the torq-examples qwen3 demo default (--instruct-model). Prompt tokens: system turn, user turn, then '<|im_start|>assistant\\n<think>\\n\\n</think>\\n\\n', as apply_chat_template(..., enable_thinking=False) builds them.",
+ "prompts": [
+  {"id": "sky", "text": "Why is the sky blue?"},
+  {"id": "haiku", "text": "Write a haiku about a lighthouse."},
+  {"id": "math", "text": "What is 17 times 23?"},
+  {"id": "french", "text": "Translate \"good morning, my friend\" into French."},
+  {"id": "sleep", "text": "Give me one tip for sleeping better."},
+  {"id": "recursion", "text": "Explain recursion to a five-year-old."},
+  {"id": "lovelace", "text": "Who was Ada Lovelace?"},
+  {"id": "python", "text": "Write a Python one-liner that reverses a string."}
+ ]
+}
