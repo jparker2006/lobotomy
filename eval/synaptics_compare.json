@@ -1,0 +1,38 @@
+{
+ "rtn-fp32": {
+  "kl": 0.1516,
+  "cosine": 0.9479,
+  "max_abs_error": 9.565,
+  "top1_agreement": 0.8333
+ },
+ "int4-fp32": {
+  "kl": 0.1069,
+  "cosine": 0.9678,
+  "max_abs_error": 8.142,
+  "top1_agreement": 0.8542
+ },
+ "int4": {
+  "kl": 0.1071,
+  "cosine": 0.9671,
+  "max_abs_error": 8.63,
+  "top1_agreement": 0.8472
+ },
+ "synaptics_readme": {
+  "rtn-fp32": {
+   "kl": 0.152,
+   "cosine": 0.948,
+   "top1_agreement": 0.833
+  },
+  "int4-fp32": {
+   "kl": 0.107,
+   "cosine": 0.968,
+   "top1_agreement": 0.854
+  }
+ },
+ "_setup": {
+  "prompts": 6,
+  "positions": 288,
+  "vocab": 99520,
+  "note": "int4 = the board replica (npu numerics, bf16 activations), extra row"
+ }
+}
