@@ -145,29 +145,33 @@ class Screener:
                                   attention_mask=None, past_key_values=None, position_ids=position_ids)
         return pos_emb, mask, position_ids
 
-    def lifts_for(self, L, h_inL, pushes, base_ctx, logp_base, halfA, floor):
-        """pushes [U,3072]. Streams one unit at a time (reduces to A/B means immediately, so peak
-        memory is a single [B,T,V] tensor, not [U,B,T,V]). Returns three [U] tensors: the floored
-        lift (primary, map Q8 fix), the raw unfloored lift (transparency), and KL(steered||base)."""
-        pos_emb, mask, position_ids = base_ctx
+    def lifts_for(self, L, h_inL, pushes, ids, logp_base, halfA, floor, ubatch=4):
+        """pushes [U,Dn]. Scores `ubatch` units per forward pass (tiled hidden states + per-unit push),
+        reducing each chunk to A/B means so peak memory is ~[ubatch*B,T,V]. Returns four tensors: the
+        raw (no-floor) lift Sr (primary), the floored lift Sf (reported secondary), KL(steered||base),
+        and the top-10 steer-lens token ids per unit [U,10] (by overall mean delta, for the report)."""
+        B, T, Hn = h_inL.shape
+        U, Dn = pushes.shape
         self._attach(L)
-        U = pushes.shape[0]
-        Sf = torch.empty(U, device=self.device)
-        Sr = torch.empty(U, device=self.device)
+        Sf = torch.empty(U, device=self.device); Sr = torch.empty(U, device=self.device)
         KL = torch.empty(U, device=self.device)
-        for u in range(U):
-            self._push = pushes[u]
-            lg = self._rerun_from(L, h_inL, pos_emb, mask, position_ids)
-            lp = F.log_softmax(lg, dim=-1)              # [B,T,V]
-            d = lp - logp_base
-            A = d[halfA].mean(dim=(0, 1))               # [V] mean delta on A positions
-            Bm = d[~halfA].mean(dim=(0, 1))             # [V] mean delta on B positions
-            Sf[u] = self._lift_one(A, Bm, floor)
-            Sr[u] = self._lift_one(A, Bm, None)
-            KL[u] = (lp.exp() * d).sum(-1).mean()       # mean KL(steered||base) over positions
-            del lg, lp, d, A, Bm
+        lens = torch.full((U, 10), -1, dtype=torch.long, device=self.device)
+        for u0 in range(0, U, ubatch):
+            uc = pushes[u0:u0 + ubatch]; u = uc.shape[0]
+            pos_emb, mask, position_ids = self._ctx(ids.repeat(u, 1))   # batch u*B, causal mask
+            h = h_inL.unsqueeze(0).expand(u, B, T, Hn).reshape(u * B, T, Hn)
+            self._push = uc[:, None, None, :].expand(u, B, 1, Dn).reshape(u * B, 1, Dn)
+            lp = F.log_softmax(self._rerun_from(L, h, pos_emb, mask, position_ids), dim=-1).view(u, B, T, -1)
+            d = lp - logp_base.unsqueeze(0)             # [u,B,T,V]
+            A = d[:, halfA].mean(dim=(1, 2)); Bm = d[:, ~halfA].mean(dim=(1, 2))   # [u,V]
+            for i in range(u):
+                Sf[u0 + i] = self._lift_one(A[i], Bm[i], floor)
+                Sr[u0 + i] = self._lift_one(A[i], Bm[i], None)
+                KL[u0 + i] = (lp[i].exp() * d[i]).sum(-1).mean()
+            lens[u0:u0 + u] = (0.5 * (A + Bm)).topk(10, dim=-1).indices   # overall mean-delta top tokens
+            del lp, d, A, Bm
         self._push = None
-        return Sf, Sr, KL
+        return Sr, Sf, KL, lens
 
     # ---- the frozen statistic (map Q8 + the 2026-10-26 base-prob floor fix) ----
     @staticmethod
@@ -201,26 +205,24 @@ def null_dirs(n_nulls, dim, seed, device):
     return torch.randn(n_nulls, dim, generator=g)      # r ~ N(0,I); normalized inside build_pushes
 
 
-def score_units(scr, L, base, units, dose, chunk):
-    """For every unit, the max over the two signs of each metric. Returns a dict with S (floored
-    lift, primary), S_raw (unfloored), and KL."""
-    h_inL = base["h_in"][L]
-    base_ctx = scr._ctx(base["ids"])
-    B = base["ids"].shape[0]
-    halfA = torch.zeros(B, dtype=torch.bool, device=scr.device)
-    halfA[: B // 2] = True
+def score_units(scr, L, base, units, dose, ubatch=4):
+    """Score every unit at +dose and -dose. Returns S_raw (primary no-floor lift, the winning sign's),
+    S (floored secondary, max over signs), KL, lens token ids [U,10] (winning sign), and sign [U]."""
+    h_inL, ids = base["h_in"][L], base["ids"]
+    B = ids.shape[0]
+    halfA = torch.zeros(B, dtype=torch.bool, device=scr.device); halfA[: B // 2] = True
     logp_base, floor = base["logp_base"], base["floor"]
-    out = {k: torch.empty(len(units), device=scr.device) for k in ("S", "S_raw", "KL")}
-    for s0 in range(0, len(units), chunk):
-        sub = units[s0:s0 + chunk]
-        per = {"S": [], "S_raw": [], "KL": []}
-        for sign in (+1.0, -1.0):
-            pushes = build_pushes(scr, L, sub, base["med"][L], sign * dose)
-            Sf, Sr, KL = scr.lifts_for(L, h_inL, pushes, base_ctx, logp_base, halfA, floor)
-            per["S"].append(Sf); per["S_raw"].append(Sr); per["KL"].append(KL)
-        for k in out:
-            out[k][s0:s0 + len(sub)] = torch.maximum(per[k][0], per[k][1])
-    return out
+    sr, sf, kl, ln = [], [], [], []
+    for sign in (+1.0, -1.0):
+        pushes = build_pushes(scr, L, units, base["med"][L], sign * dose)
+        Sr, Sf, KL, lens = scr.lifts_for(L, h_inL, pushes, ids, logp_base, halfA, floor, ubatch)
+        sr.append(Sr); sf.append(Sf); kl.append(KL); ln.append(lens)
+    win = sr[0] >= sr[1]                                    # winning sign per unit = larger raw lift
+    return {"S_raw": torch.where(win, sr[0], sr[1]),
+            "S": torch.maximum(sf[0], sf[1]),
+            "KL": torch.maximum(kl[0], kl[1]),
+            "lens": torch.where(win[:, None], ln[0], ln[1]),
+            "sign": torch.where(win, torch.ones_like(sr[0]), -torch.ones_like(sr[0]))}
 
 
 def bh_by(pvals, q=0.05):
@@ -275,12 +277,12 @@ def cmd_selftest(a):
     units = [("neuron", n) for n in neurons]
     nulls = null_dirs(a.nulls, scr.model.config.intermediate_size, seed=L, device=a.device)
     units += [("null", nulls[i]) for i in range(a.nulls)]
-    out = score_units(scr, L, base, units, dose=0.5, chunk=a.chunk)
+    out = score_units(scr, L, base, units, dose=0.5, ubatch=a.ubatch)
     S, Sraw = out["S"].cpu().numpy(), out["S_raw"].cpu().numpy()
     n_neu = len(neurons)
     print(f"L{L}  base+score {time.time()-t0:.1f}s  med={base['med'][L]:.1f}  floor>{FLOOR:g} "
           f"keeps {int(base['floor'].sum())}/{N_KEPT} tokens")
-    for name, arr in [("floored (primary)", S), ("raw (old frozen)", Sraw)]:
+    for name, arr in [("raw (primary)", Sraw), ("floored (secondary)", S)]:
         Sneu, Snull = arr[:n_neu], arr[n_neu:]
         p_ctrl = (1 + int((Snull >= arr[0]).sum())) / (a.nulls + 1)
         print(f"  [{name}] n908 S={arr[0]:+.3f} p={p_ctrl:.3f}  "
@@ -379,12 +381,13 @@ def cmd_screen(a):
         t0 = time.time()
         nulls = null_dirs(a.nulls, dim, seed=L, device=a.device)
         units = [("neuron", n) for n in range(n_neu)] + [("null", nulls[i]) for i in range(a.nulls)]
-        o1 = score_units(scr, L, scr.base(set1), units, dose=0.5, chunk=a.chunk)
-        o2 = score_units(scr, L, scr.base(set2), units, dose=0.5, chunk=a.chunk)
+        o1 = score_units(scr, L, scr.base(set1), units, dose=0.5, ubatch=a.ubatch)
+        o2 = score_units(scr, L, scr.base(set2), units, dose=0.5, ubatch=a.ubatch)
         # PRIMARY = the pre-registered cross-fitted lift with NO floor (S_raw). The base-prob floor
         # (S) is kept only as a reported comparison: the pilot showed it removes concept tokens and
         # buries the positive controls, so it is NOT used for FDR.
         S1, S1flo, KL1 = (o1[k].cpu().numpy() for k in ("S_raw", "S", "KL"))
+        lens1, sign1 = o1["lens"].cpu().numpy(), o1["sign"].cpu().numpy()
         S2 = o2["S_raw"].cpu().numpy()
         Sn1, Snull1 = S1[:n_neu], S1[n_neu:]
         Sn2 = S2[:n_neu]
@@ -403,14 +406,22 @@ def cmd_screen(a):
         res[f"L{L}/S_neu"] = Sn1; res[f"L{L}/S_null"] = Snull1; res[f"L{L}/p"] = p
         res[f"L{L}/p_floored"] = p_floored; res[f"L{L}/KL_neu"] = KL1[:n_neu]
         res[f"L{L}/S_neu_set2"] = Sn2
+        res[f"L{L}/lens"] = lens1[:n_neu]; res[f"L{L}/sign"] = sign1[:n_neu]
         summary.append((L, at_floor, overlap, p.min(), cinfo))
         print(f"L{L}: {time.time()-t0:.0f}s  neurons beating all {a.nulls} nulls (p-floor {pfloor:.1e}): "
               f"{at_floor}  min p={p.min():.1e}  top200 set1/set2 overlap={overlap:.2f}{cinfo}", flush=True)
-    # BH / BY over the tested neurons (m = full model); pilot caveat: only tested layers' p-values present
+        np.savez_compressed(a.out, **res, meta=json.dumps({"layers": layers[:layers.index(L)+1],
+            "nulls": a.nulls, "n_neurons": n_neu, "n_contexts": nctx, "variant": a.variant, "floor": FLOOR}))
+    # BH / BY over all tested neurons (m = full model), then survivors per layer
     allp = np.concatenate([res[f"L{L}/p"] for L in layers])
     bh, by, bht, byt = bh_by(allp, q=0.05)
     print(f"\nFDR over {len(allp)} tested neurons (m={LAYERS*3072}): BH survivors={int(bh.sum())} "
           f"(thresh {bht:.2e}), BY survivors={int(by.sum())} (thresh {byt:.2e})")
+    off = 0
+    for L in layers:
+        nL = len(res[f"L{L}/p"])
+        print(f"  L{L}: BH {int(bh[off:off+nL].sum())}  BY {int(by[off:off+nL].sum())}")
+        off += nL
     res["meta"] = json.dumps({"layers": layers, "nulls": a.nulls, "n_neurons": n_neu,
                               "n_contexts": nctx, "variant": a.variant, "floor": FLOOR,
                               "summary": [(L, af, ov, float(mp)) for L, af, ov, mp, _ in summary]})
@@ -424,7 +435,7 @@ if __name__ == "__main__":
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("selftest")
     s.add_argument("--device", default="cpu"); s.add_argument("--contexts", type=int, default=4)
-    s.add_argument("--nulls", type=int, default=64); s.add_argument("--chunk", type=int, default=16)
+    s.add_argument("--nulls", type=int, default=64); s.add_argument("--ubatch", type=int, default=4)
     s.add_argument("--variant", default="int4-onnx", help="int4=board kernel; int4-onnx=faster bf16 (CPU test)")
     s = sub.add_parser("lens")
     s.add_argument("--layer", type=int, default=8); s.add_argument("--neuron", type=int, default=908)
@@ -435,7 +446,7 @@ if __name__ == "__main__":
     s.add_argument("--tokens", default=str(ROOT / "eval" / "ref_greedy.json"))
     s = sub.add_parser("screen")
     s.add_argument("--layers", default="8,19"); s.add_argument("--nulls", type=int, default=8192)
-    s.add_argument("--device", default="cuda"); s.add_argument("--chunk", type=int, default=64)
+    s.add_argument("--device", default="cuda"); s.add_argument("--ubatch", type=int, default=4)
     s.add_argument("--variant", default="int4-onnx",
                    help="int4-onnx=literal bf16 INT4 graph (fast, default); int4=slow board kernel")
     s.add_argument("--contexts", default=str(ROOT / "atlas" / "pilot_contexts.npz"))
