@@ -18,9 +18,9 @@
 </style>
 </head>
 <body>
-<form id="ask">
+<form id="ask" onsubmit="event.preventDefault()">
   <input id="prompt" autocomplete="off" placeholder="Ask Qwen something" value="Why is the sky blue? Answer in two sentences.">
-  <button>Ask</button>
+  <button disabled>Ask</button>
 </form>
 <div id="status">connecting…</div>
 <main>

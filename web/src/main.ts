@@ -103,7 +103,10 @@ async function main() {
       let frames: Frame[];
       try {
         const res = await fetch(`/api/frames?id=${id}&from=${from}`);
-        if (res.status === 404) return;
+        if (res.status === 404) {
+          statusEl.textContent = `${head}\nstopped: a newer question (maybe from another tab) replaced this one`;
+          return;
+        }
         if (!res.ok) throw new Error(String(res.status));
         frames = parseFrames(await res.arrayBuffer());
       } catch {
@@ -139,6 +142,7 @@ async function main() {
     e.preventDefault();
     if (promptEl.value.trim()) ask(promptEl.value);
   });
+  el<HTMLFormElement>("ask").querySelector("button")!.disabled = false;
 }
 
 main().catch((e) => (statusEl.textContent = `error: ${e}`));
