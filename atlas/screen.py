@@ -42,6 +42,9 @@ class Screener:
         self.device = torch.device(device)
         self.ref = IR.Ref(variant)
         self.model = self.ref.model.to(self.device).eval()
+        # the LM head is held on the Ref, not as a model submodule, so .to() above misses it
+        if isinstance(self.ref.head, torch.nn.Module):
+            self.ref.head = self.ref.head.to(self.device)
         self.hf = self.model.model                      # Qwen3Model
         self.nlayers = len(self.hf.layers)
         self.hidden = self.model.config.hidden_size
