@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q6 type</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>
+  html,body{margin:0;background:#030304;color:#eeeeea;overflow:hidden;width:1440px;height:900px}
+  .row{display:grid;grid-template-columns:200px 1fr 170px;align-items:center;height:220px;padding:0 36px;border-bottom:1px solid #1c1c1f}
+  .name{font:11px 'Geist Mono';letter-spacing:.08em;color:#8a8f94;text-transform:uppercase}
+  .hud{font-size:13px;letter-spacing:.06em;color:#a5acb2;margin-bottom:18px}
+  .hud b{color:#eeeeea;font-weight:700;margin-right:14px}
+  .sub{font-size:34px;font-weight:300;line-height:1.25;color:#e6e6e0}
+  .sub em{font-style:normal;color:#ffeaba;text-shadow:0 0 14px rgba(255,170,40,.9)}
+  .cur{display:inline-block;width:.55em;height:1em;background:#ffaa28;vertical-align:-0.12em;margin-left:2px}
+  .num{font-size:56px;font-weight:300;text-align:right;color:#eeeeea}
+  .num small{display:block;font-size:10px;letter-spacing:.08em;color:#8a8f94}
+  .leg{font-size:12px;color:#7d848a;margin-top:14px;letter-spacing:.04em}
+</style></head><body>
+<script type="module">
+// Q6 type specimen: the same HUD line, subtitle and numeral in four free (OFL) monospace fonts.
+const FONTS = [["JetBrains Mono", "neutral, very legible"], ["Geist Mono", "clean, modern"], ["IBM Plex Mono", "technical, humanist"], ["Departure Mono", "pixel, retro-future"]];
+for (const [f] of FONTS) { await document.fonts.load(`300 20px '${f}'`); await document.fonts.load(`400 20px '${f}'`); await document.fonts.load(`700 20px '${f}'`); }
+document.body.innerHTML = FONTS.map(([f, note], i) => `
+  <div class="row" style="font-family:'${f}'">
+    <div class="name">${"ABCD"[i]} · ${f}<br><span style="opacity:.6">${note}</span></div>
+    <div>
+      <div class="hud"><b>LOBOTOMY</b>QWEN3-0.6B · SL2619 NPU · 28 × 3,072 NEURONS · 6.1 TOK/S</div>
+      <div class="sub">The deep blue waters <em>glow</em><span class="cur"></span></div>
+      <div class="leg">· TOP 10%  ∙ 3%  • 1%  ● 0.3%  ◉ 0.1%  FOR THAT NEURON</div>
+    </div>
+    <div class="num">870<small>IN THEIR TOP 1%</small></div>
+  </div>`).join("");
+window.__ready = true;
+</script></body></html>

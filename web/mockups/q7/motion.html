@@ -1,0 +1,79 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q7 motion</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+// Q7: how a new word arrives. Four panels, same real stream at 6 tok/s, trail half-life 2 tokens.
+// Sweep: token k reaches layer l at time k + (l / 28) * SWEEP (in tokens), replaying the forward pass order.
+import { loadSession, L, N } from "../lib/data.js";
+import { camera } from "../lib/proj.js";
+import { SHAPES } from "../lib/shapes.js";
+import { STYLE, makeGrid, splat, polyline, put, putBig, draw, rarityLadder } from "../lib/ascii.js";
+const q = new URLSearchParams(location.search);
+const S = q.get("s") || "ocean", TOKS = 6, HL = 2;
+const PW = 960, PH = 600, dpr = devicePixelRatio, W = PW * 2, H = PH * 2;
+const c = document.getElementById("c"); c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
+const g = c.getContext("2d");
+for (const f of ["400 12px 'JetBrains Mono'", "700 12px 'JetBrains Mono'", "300 12px 'JetBrains Mono'"]) await document.fonts.load(f);
+const { tokens } = await loadSession(S);
+STYLE.ladder = rarityLadder(tokens);
+const sh = SHAPES.deck, pos = new Float32Array(3 * L * N);
+for (let l = 0; l < L; l++) for (let n = 0; n < N; n++) { const p = sh.pos(l, n), k = 3 * (l * N + n); pos[k] = p[0]; pos[k + 1] = p[1]; pos[k + 2] = p[2]; }
+
+const MODES = [
+  { title: "A  INSTANT: all 28 layers update together", sweep: 0, drift: false, speed: 1 },
+  { title: "B  SWEEP: layer 0 → 27 in 0.15 s, the board's real pace", sweep: 0.9, drift: false, speed: 1 },
+  { title: "C  SWEEP + SLOW CAMERA DRIFT", sweep: 0.9, drift: true, speed: 1 },
+  { title: "D  B IN SLOW MOTION (¼ SPEED), TO SHOW THE WAVE", sweep: 0.9, drift: false, speed: 0.25 },
+];
+function glowAt(tf, sweep) {
+  const out = new Float32Array(L * N), i = Math.floor(tf);
+  for (let l = 0; l < L; l++) {
+    const delay = (l / L) * sweep;
+    for (let k = Math.max(0, i - 12); k <= i; k++) {
+      const age = tf - (k + delay);
+      if (age < 0) continue;
+      const w = Math.pow(0.5, age / HL), r = tokens[k].r;
+      for (let n = 0, j = l * N; n < N; n++, j++) { const x = r[j] * w; if (Math.abs(x) > Math.abs(out[j])) out[j] = x; }
+    }
+  }
+  return out;
+}
+const off = document.createElement("canvas"); off.width = PW * dpr; off.height = PH * dpr;
+const og = off.getContext("2d");
+function panel(m, seconds) {
+  og.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const tf = window.firstGen + seconds * TOKS * m.speed;
+  const az = m.drift ? Math.sin(seconds * 0.45) * 0.16 : 0;
+  const base = [-22.4, 8.6, 31.2], ca = Math.cos(az), sa = Math.sin(az);
+  const eye = [base[0] * ca - base[2] * sa, base[1], base[0] * sa + base[2] * ca];
+  const cam = camera(eye, [0, -0.5, 0], 20, PW, PH, PW * 0.565, PH * 0.47);
+  const Gm = makeGrid(PW, PH, 4, 7), G = makeGrid(PW, PH, 7, 12), U = STYLE;
+  splat(Gm, pos, glowAt(tf, m.sweep), cam);
+  for (let l = L - 1; l >= 0; l--) for (const line of sh.outline(l)) polyline(Gm, line, cam, 0.16);
+  // wave front marker: the layer the sweep is passing right now
+  if (m.sweep) {
+    const ph = (tf - Math.floor(tf)) / m.sweep;
+    if (ph < 1) { const l = Math.min(L - 1, Math.floor(ph * L)); for (const line of SHAPES.deck.outline(0).map((ln) => ln.map((p) => [p[0] + l * 0.8, p[1], p[2]]))) polyline(Gm, line, cam, 0.0); }
+  }
+  put(G, 2, 1, m.title, U.uiHi, 0.9, true);
+  const i = Math.floor(tf);
+  let ans = ""; for (let k = 0; k <= i; k++) if (tokens[k].kind === "gen") ans += tokens[k].text;
+  const words = ans.split(/(?<=\s)/); let line = ""; const lines = [];
+  for (const w of words) { if ((line + w).length > 60) { lines.push(line); line = w; } else line += w; }
+  lines.push(line);
+  const last = lines[lines.length - 1];
+  putBig(G, Math.max(2, Math.floor((PW / 7 - last.length * 2) / 2)), G.ROWS - 4, last, U.uiHi, 0.9);
+  draw(og, Gm, dpr, { fs: 7 * 0.95 });
+  draw(og, G, dpr, { bg: false });
+}
+window.renderAt = (tf) => {
+  const seconds = (tf - window.firstGen) / TOKS;
+  MODES.forEach((m, j) => { panel(m, seconds); g.drawImage(off, (j % 2) * PW * dpr, Math.floor(j / 2) * PH * dpr); });
+  g.fillStyle = "#222"; g.fillRect(PW * dpr - 1, 0, 2, H * dpr); g.fillRect(0, PH * dpr - 1, W * dpr, 2);
+};
+window.firstGen = tokens.findIndex((x) => x.kind === "gen");
+window.renderAt(window.firstGen + 10.3);
+window.__ready = true;
+</script></body></html>

@@ -17,6 +17,14 @@ const g = c.getContext("2d"); g.scale(dpr, dpr);
 for (const f of ["400 14px 'JetBrains Mono'", "700 14px 'JetBrains Mono'", "300 28px 'JetBrains Mono'"]) await document.fonts.load(f);
 const { tokens } = await loadSession(S);
 const LAD = STYLE.ladder = rarityLadder(tokens);
+const PALS = {
+  amber: { pos: [255, 170, 40], posHi: [255, 234, 186], neg: [40, 205, 255], negHi: [212, 248, 255] },
+  holo: { pos: [255, 60, 170], posHi: [255, 210, 236], neg: [40, 225, 255], negHi: [215, 252, 255] },
+  instrument: { pos: [255, 84, 20], posHi: [255, 200, 170], neg: [205, 215, 230], negHi: [255, 255, 255] },
+  phosphor: { pos: [255, 176, 0], posHi: [255, 228, 160], neg: [255, 176, 0], negHi: [255, 228, 160], negRamp: ["·", "·", "∘", "○", "◯", "◎"] },
+};
+if (q.get("pal")) Object.assign(STYLE, PALS[q.get("pal")]);
+if (q.get("font")) STYLE.font = `'${q.get("font")}'`;
 const t = Math.min(T, tokens.length - 1), U = STYLE;
 
 // afterglow (Q4: half-life 2 tokens)
@@ -79,7 +87,10 @@ function tape(c0, r0, width) {
   put(G, c0, r0, "TAPE", U.ui, 0.45);
   tokens.forEach((tok, j) => { if (!j || 6 + j >= width) return; const kk = Math.max(1, Math.round((8 * tot[j]) / mx)); put(G, c0 + 5 + j, r0, bars[kk], j === t ? U.posHi : U.ui, j === t ? 1 : j > t ? 0.12 : tok.kind === "prompt" ? 0.28 : 0.6); });
 }
-function legend(c0, r0) { put(G, c0, r0, "· TOP 10%  ∙ 3%  • 1%  ● 0.3%  ◉ 0.1%  FOR THAT NEURON", U.ui, 0.42); }
+function legend(c0, r0) {
+  put(G, c0, r0, "· TOP 10%  ∙ 3%  • 1%  ● 0.3%  ◉ 0.1%  FOR THAT NEURON", U.ui, 0.42);
+  if (q.get("pal") === "phosphor") put(G, c0 + 54, r0, "·  FILLED = POSITIVE, HOLLOW = NEGATIVE", U.ui, 0.42);
+}
 const lit = top1Now.toLocaleString();
 
 if (layout === "cinema") {

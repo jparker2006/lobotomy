@@ -101,8 +101,9 @@ export function draw(g, G, dpr, opts = {}) {
       const top = S.ladder.ramp.length - 1, pos = G.best[i] > 0, b = S.ladder.bright[lv];
       const col = lv >= top - 1 ? (pos ? S.posHi : S.negHi) : (pos ? S.pos : S.neg);
       const sc = S.ladder.scale ? S.ladder.scale[lv] : 1, fz = fs * sc, yy = y - (fz - fs) * 0.55;
-      g.font = `${lv >= top - 1 ? 700 : 400} ${fz}px ${S.font}`; g.fillStyle = rgb(col, b); g.fillText(S.ladder.ramp[lv], x, yy);
-      if (lv >= S.ladder.bloomFrom) { gg.font = g.font; gg.fillStyle = rgb(pos ? S.pos : S.neg, Math.min(1, b)); gg.fillText(S.ladder.ramp[lv], x, yy); }
+      const glyph = !pos && S.negRamp ? S.negRamp[lv] : S.ladder.ramp[lv];
+      g.font = `${lv >= top - 1 ? 700 : 400} ${fz}px ${S.font}`; g.fillStyle = rgb(col, b); g.fillText(glyph, x, yy);
+      if (lv >= S.ladder.bloomFrom) { gg.font = g.font; gg.fillStyle = rgb(pos ? S.pos : S.neg, Math.min(1, b)); gg.fillText(glyph, x, yy); }
       continue;
     }
     const b = bright(val), pos = val > 0;
