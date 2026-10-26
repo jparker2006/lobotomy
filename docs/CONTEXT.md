@@ -8,14 +8,14 @@ Everything learned so far, so any new session can pick up without the original c
 Qwen3-0.6B runs offline on the Coralboard's 1-watt NPU, and the board also serves the web page. The Mac's browser only draws: a map where all 86,016 MLP neurons light up for each generated word. It's a hobby demo built for wow (and Twitter), not a product. The wow is two things: it runs on a real chip, and it looks beautiful. Inspired by Lyra's neuron-explorer (see below), but aiming higher on ML rigor and design. Versions and the v0.0.1 spec are in [PLAN.md](../PLAN.md).
 
 ## Decisions (grill with Jake, 2026-10-26)
-- **Name:** lobotomy (was brainbox). It's also slang for a model that got dumber after editing, which is what a too-hard push does. Renaming the GitHub repo needs Jake's OK.
+- **Name:** lobotomy (was brainbox). It's also slang for a model that got dumber after editing, which is what a too-hard push does. The GitHub repo was renamed to `jparker2006/lobotomy` on 2026-10-26; the old URL redirects.
 - **Terms:** a *neuron* is one value at a layer's `down_proj` input (28 layers × 3,072). *Steering* adds a dose to it on every token. A multiply mode (×0 switches it off) comes later. We push activations, never weights.
 - **Model:** Qwen3-0.6B. Not Gemma 3: its `post_feedforward_layernorm` breaks the exact steering math.
 - **Where things run:** the board runs the model and the web server. The Mac's browser draws the map at `localhost:8000` via `adb forward`. Later, a rented GPU builds the neuron atlas once. Physical knobs are dropped. Steering will use on-screen sliders.
 - **Languages:** Python on the board, because Synaptics' runtime and examples are Python. TypeScript + three.js in the browser. Export and compile are Python too (the Torq toolchain). No Rust for now: it has no natural place, and whether it can drive the Torq runtime is unproven. Revisit only if Python becomes the bottleneck.
 - **Compute:** a RunPod x86 CPU pod for export and compile, with a $10 cap for v0.0.x (prepaid, auto-pay off). The agent drives it with `runpodctl` and Jake's API key, requested through a Cloudroom secret and never pasted in chat. No GPU before the atlas. The atlas budget gets decided later (Lyra's numbers suggest $10–50). jake-desktop is the free fallback.
 - **UI:** plain in v0.0.1. v0.0.2 starts with a separate UI grill and rendered mockups.
-- **Process:** v0.0.1 goes grill → spec → tickets (in PLAN.md). v0.1.0 is mapped with a wayfinder, because its path has real unknowns.
+- **Process:** v0.0.1 goes grill → spec → tickets, published as GitHub issues (spec #1, tickets #2–#10 as sub-issues). v0.1.0 is mapped with a wayfinder, because its path has real unknowns.
 - **License:** MIT, public repo.
 
 ## Machines

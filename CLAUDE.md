@@ -1,6 +1,6 @@
 # lobotomy
 
-Read [docs/CONTEXT.md](docs/CONTEXT.md) first. It has the decisions, board facts, toolchain limits, steering design and current status. The plan, v0.0.1 spec and tickets are in [PLAN.md](PLAN.md).
+Read [docs/CONTEXT.md](docs/CONTEXT.md) first. It has the decisions, board facts, toolchain limits, steering design and current status. The roadmap is in [PLAN.md](PLAN.md). Version specs and tickets live in GitHub issues: a `spec` issue per version, with its tickets as sub-issues and native "blocked by" links (`gh issue view 1`).
 
 - Keep replies short. Jake skims long answers.
 - Lyra's neuron-explorer has no license. Use [docs/lyra-reports/](docs/lyra-reports/) as reference, and never copy its code.
