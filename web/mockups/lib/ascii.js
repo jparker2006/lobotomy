@@ -10,6 +10,7 @@ export const STYLE = {
   latt: [120, 132, 145], edge: [120, 132, 145],
   ui: [165, 172, 178], uiHi: [238, 238, 234],
   font: "'JetBrains Mono'",
+  ramp: RAMP, lattice: "·",
   alpha: (b) => 0.03 + 0.97 * Math.pow(b, 2.4),
   lattA: 0.14, edgeA: 0.30,
 };
@@ -93,11 +94,11 @@ export function draw(g, G, dpr) {
     }
     if (!G.occ[i]) continue;
     const val = G.best[i], lv = level(val);
-    if (lv === 0) { g.font = `400 ${fs}px ${S.font}`; g.fillStyle = rgb(S.latt, S.lattA); g.fillText("·", x, y); continue; }
+    if (lv === 0) { g.font = `400 ${fs}px ${S.font}`; g.fillStyle = rgb(S.latt, S.lattA); g.fillText(S.lattice, x, y); continue; }
     const b = bright(val), pos = val > 0;
     const col = lv >= 7 ? (pos ? S.posHi : S.negHi) : (pos ? S.pos : S.neg);
-    g.font = `${lv >= 7 ? 700 : 400} ${fs}px ${S.font}`; g.fillStyle = rgb(col, S.alpha(b)); g.fillText(RAMP[lv], x, y);
-    if (lv >= 5) { gg.font = g.font; gg.fillStyle = rgb(pos ? S.pos : S.neg, Math.min(1, 0.3 + b)); gg.fillText(RAMP[lv], x, y); }
+    g.font = `${lv >= 7 ? 700 : 400} ${fs}px ${S.font}`; g.fillStyle = rgb(col, S.alpha(b)); g.fillText(S.ramp[lv], x, y);
+    if (lv >= 5) { gg.font = g.font; gg.fillStyle = rgb(pos ? S.pos : S.neg, Math.min(1, 0.3 + b)); gg.fillText(S.ramp[lv], x, y); }
   }
   g.textAlign = "left";
   for (const t of G.big) {

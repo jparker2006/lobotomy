@@ -28,6 +28,9 @@ const PRESETS = {
 };
 const pr = PRESETS[shape], num = (k, d) => (q.get(k) ? q.get(k).split(",").map(Number) : d);
 const cam = camera(num("eye", pr.eye), num("tgt", pr.tgt), +(q.get("fov") || pr.fov), W, H, W * num("cxy", pr.cxy)[0], H * num("cxy", pr.cxy)[1]);
+const RAMPS = { ascii: " .:-=+*#%@", bars: " ▁▂▃▄▅▆▇██", dots: " ··∙∙••●●◉", digits: " 123456789" };
+if (q.get("ramp")) STYLE.ramp = RAMPS[q.get("ramp")];
+if (q.get("lattice")) STYLE.lattice = q.get("lattice");
 const sh = SHAPES[shape], opt = {};
 for (const k of ['pos', 'outline', 'label']) sh[k] = sh[k].bind(sh);
 const pos = new Float32Array(3 * L * N);
@@ -45,7 +48,7 @@ for (let l = L - 1; l >= 0; l--) for (const line of sh.outline(l, opt)) polyline
 const pad = (s, n) => String(s).padStart(n, "0"), U = STYLE;
 put(G, 2, 1, "LOBOTOMY", U.uiHi, 1, true);
 put(G, 12, 1, "QWEN3-0.6B · SL2619 NPU · 1 W · 28 × 3,072 NEURONS", U.ui, 0.55);
-put(G, 2, 2, `SHAPE: ${pr.title}`, U.ui, 0.35);
+put(G, 2, 2, q.get('ramp') ? `GLYPHS: ${STYLE.ramp.slice(1).split('').join(' ')}` : `SHAPE: ${pr.title}`, U.ui, 0.5);
 const lit = tokens[t].lit.toLocaleString();
 putBig(G, G.COLS - 2 - lit.length * 2, 1, lit, U.uiHi, 0.95);
 const sub = `ABOVE P99 · TOKEN ${pad(t, 3)}/256 · 6.1 TOK/S`; put(G, G.COLS - 2 - sub.length, 3, sub, U.ui, 0.5);
