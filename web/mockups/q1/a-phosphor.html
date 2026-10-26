@@ -1,0 +1,121 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q1-A phosphor</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+// Q1-A "Phosphor": a 1980s text terminal. Flat, 2D, everything is characters.
+// Each map character = the strongest of a 4x4 block of neurons (max-pool), glyph by the half-octave ramp.
+import { loadSession, glow, level, bright, RAMP, userPrompt, answerText, L, N, rgb } from "../lib/data.js";
+const q = new URLSearchParams(location.search);
+const S = q.get("s") || "ocean", T = +(q.get("t") || 52);
+const W = 1440, H = 900, dpr = devicePixelRatio;
+const c = document.getElementById("c"); c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
+const g = c.getContext("2d"); g.scale(dpr, dpr);
+await document.fonts.load("20px VT323");
+const { tokens, done } = await loadSession(S);
+const t = Math.min(T, tokens.length - 1);
+const v = glow(tokens, t);
+const AMB = [255, 176, 0], AMB_HI = [255, 228, 160], ICE = [110, 255, 140], ICE_HI = [205, 255, 215];
+
+g.fillStyle = "#070400"; g.fillRect(0, 0, W, H);
+const FONT = (px) => `${px}px VT323`;
+const CW = 8, CH = 12; // map cell in px
+
+// status bar (inverse video)
+g.fillStyle = rgb(AMB); g.fillRect(0, 0, W, 26);
+g.fillStyle = "#070400"; g.font = FONT(22); g.textBaseline = "top";
+const tokS = "6.1";
+g.fillText(` LOBOTOMY  ▌ QWEN3-0.6B  ▌ SL2619 NPU · 1 W  ▌ 28 × 3072 = 86,016 NEURONS  ▌ TOKEN ${String(t).padStart(3, "0")}/256  ▌ ${tokS} TOK/S `, 8, 3);
+
+// map: 7 x 4 blocks; each block 16 x 12 chars, one char per 4x4 neurons (grid 64 x 48)
+const BX = 28, BY = 50, PW = 16 * CW + 14, PH = 12 * CH + 26;
+g.font = FONT(16);
+for (let l = 0; l < L; l++) {
+  const ox = BX + (l % 7) * PW, oy = BY + Math.floor(l / 7) * PH;
+  g.fillStyle = rgb(AMB, 0.45); g.font = FONT(16);
+  g.fillText(`L${String(l).padStart(2, "0")}`, ox, oy);
+  g.font = FONT(15);
+  for (let cy = 0; cy < 12; cy++) for (let cx = 0; cx < 16; cx++) {
+    let best = 0;
+    for (let dy = 0; dy < 4; dy++) for (let dx = 0; dx < 4; dx++) {
+      const n = (cy * 4 + dy) * 64 + cx * 4 + dx, x = v[l * N + n];
+      if (Math.abs(x) > Math.abs(best)) best = x;
+    }
+    const lv = level(best), b = bright(best);
+    const ch = lv === 0 ? "·" : RAMP[lv];
+    const base = best >= 0 ? AMB : ICE, hi = best >= 0 ? AMB_HI : ICE_HI;
+    const col = lv >= 7 ? hi : base;
+    g.fillStyle = rgb(col, lv === 0 ? 0.10 : 0.10 + 0.9 * b * b);
+    g.fillText(ch, ox + cx * CW, oy + 18 + cy * CH);
+  }
+}
+
+// right column: terminal transcript
+const RX = 1050, RW = W - RX - 28;
+g.font = FONT(22); g.fillStyle = rgb(AMB, 0.5);
+g.fillText("─".repeat(31), RX, 44);
+const { answer } = answerText(tokens, t);
+const prompt = userPrompt(tokens);
+function wrap(text, maxChars) {
+  const out = []; let line = "";
+  for (const w of text.split(/(\s+)/)) {
+    if ((line + w).length > maxChars) { out.push(line); line = w.trimStart(); } else line += w;
+  }
+  out.push(line); return out;
+}
+let y = 66;
+g.fillStyle = rgb(AMB, 0.65);
+for (const ln of wrap("> " + prompt, 33)) { g.fillText(ln, RX, y); y += 24; }
+y += 12;
+const cur = tokens[t].text;
+const lines = wrap(answer, 33);
+g.fillStyle = rgb(AMB_HI);
+lines.forEach((ln, i) => {
+  if (i === lines.length - 1) {
+    const k = ln.lastIndexOf(cur.trim());
+    g.fillStyle = rgb(AMB_HI); g.fillText(ln.slice(0, k), RX, y);
+    const wx = RX + g.measureText(ln.slice(0, k)).width, ww = g.measureText(cur.trim()).width;
+    g.fillStyle = rgb(AMB); g.fillRect(wx - 1, y - 1, ww + 2, 22);
+    g.fillStyle = "#070400"; g.fillText(cur.trim(), wx, y);
+    g.fillStyle = rgb(AMB); g.fillRect(wx + ww + 6, y, 10, 20);
+  } else g.fillText(ln, RX, y);
+  y += 24;
+});
+
+// readout under the transcript
+y = 560; g.font = FONT(20); g.fillStyle = rgb(AMB, 0.6);
+const now = tokens[t];
+const rows = [
+  ["TOKEN", JSON.stringify(now.text)],
+  ["ABOVE P99", now.lit.toLocaleString()],
+  ["PEAK", (() => { let m = 0, mk = 0; now.r.forEach((x, k) => { if (Math.abs(x) > m) { m = Math.abs(x); mk = k; } }); return `L${Math.floor(mk / N)} N${mk % N}  ${m.toFixed(1)}× P99`; })()],
+  ["FRAME", "172,032 B"],
+];
+for (const [k, val] of rows) { g.fillText(k.padEnd(11, "."), RX, y); g.fillStyle = rgb(AMB_HI); g.fillText(val, RX + 120, y); g.fillStyle = rgb(AMB, 0.6); y += 26; }
+
+// token tape: lit count per token as block bars
+const TY = 818; g.font = FONT(20);
+g.fillStyle = rgb(AMB, 0.5); g.fillText("TAPE", 28, TY - 22);
+const bars = "▁▂▃▄▅▆▇█";
+const maxLit = Math.max(...tokens.map((x) => x.lit).slice(1));
+tokens.forEach((tok, i) => {
+  if (i === 0) return;
+  const k = Math.min(7, Math.floor(8 * tok.lit / (maxLit + 1)));
+  g.fillStyle = i === t ? rgb(AMB_HI) : i > t ? rgb(AMB, 0.12) : tok.kind === "prompt" ? rgb(AMB, 0.35) : rgb(AMB, 0.8);
+  g.fillText(bars[k], 28 + i * 14, TY);
+});
+g.fillStyle = rgb(AMB, 0.45); g.font = FONT(16);
+g.fillText("BAR = NEURONS ABOVE P99 PER TOKEN   · PROMPT  ▌ ANSWER", 28, TY + 26);
+
+// scanlines + glow (static texture, no motion)
+const glowC = document.createElement("canvas"); glowC.width = c.width; glowC.height = c.height;
+const gg = glowC.getContext("2d"); gg.filter = `blur(${6 * dpr}px)`; gg.drawImage(c, 0, 0);
+g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalCompositeOperation = "lighter"; g.globalAlpha = 0.55; g.drawImage(glowC, 0, 0); g.restore();
+g.fillStyle = "rgba(0,0,0,0.28)";
+for (let yy = 0; yy < H; yy += 3) g.fillRect(0, yy, W, 1);
+const vg = g.createRadialGradient(W / 2, H / 2, H * 0.35, W / 2, H / 2, H * 0.95);
+vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,0.55)");
+g.fillStyle = vg; g.fillRect(0, 0, W, H);
+window.__ready = true;
+</script></body></html>

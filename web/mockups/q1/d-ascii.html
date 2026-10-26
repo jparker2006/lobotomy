@@ -1,0 +1,125 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q1-D ascii render</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+// Q1-D "ASCII render": the 3D layer sheets drawn through a character grid, like a text-mode renderer.
+// The whole screen is one 180 x 64 grid. A map cell shows the strongest neuron that lands in it
+// (glyph = half-octave level, colour = sign). Sheet edges become / \ | - characters. The UI uses the same grid.
+import { loadSession, glow, level, bright, RAMP, userPrompt, answerText, L, N, rgb } from "../lib/data.js";
+import { camera, projectAll, sheetCorners } from "../lib/proj.js";
+const q = new URLSearchParams(location.search);
+const S = q.get("s") || "ocean", T = +(q.get("t") || 52);
+const W = 1440, H = 900, dpr = devicePixelRatio, CW = 9, CH = 16, COLS = W / CW, ROWS = Math.floor(H / CH);
+const c = document.getElementById("c"); c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
+const g = c.getContext("2d"); g.scale(dpr, dpr);
+await document.fonts.load("14px 'JetBrains Mono'"); await document.fonts.load("700 14px 'JetBrains Mono'");
+const { tokens } = await loadSession(S);
+const t = Math.min(T, tokens.length - 1), v = glow(tokens, t);
+const POS = [255, 150, 50], POS_HI = [255, 238, 205], NEG = [45, 190, 255], NEG_HI = [210, 245, 255];
+const EDGE = [70, 110, 140], LATT = [60, 90, 120], UI = [150, 190, 215], UI_HI = [225, 240, 250];
+
+const GAP = +(q.get('gap') || 0.62), PITCH = 0.05;
+const num = (k, d) => (q.get(k) || d).split(",").map(Number);
+const EYE = num("eye", "-9,4.2,14"), TGT = num("tgt", "0.8,-0.4,0"), FOV = +(q.get("fov") || 30), CXY = num("cxy", "0.52,0.42");
+const cam = camera(EYE, TGT, FOV, W, H, W * CXY[0], H * CXY[1]);
+const P = projectAll(cam, GAP, PITCH);
+
+// cell buffers
+const best = new Float32Array(COLS * ROWS), occ = new Uint8Array(COLS * ROWS), ch = new Array(COLS * ROWS).fill(null);
+for (let k = 0; k < L * N; k++) {
+  const cx = Math.floor(P.sx[k] / CW), cy = Math.floor(P.sy[k] / CH);
+  if (cx < 0 || cy < 0 || cx >= COLS || cy >= ROWS) continue;
+  const i = cy * COLS + cx; occ[i] = 1;
+  const fog = 1 - 0.45 * Math.min(1, Math.max(0, (P.sz[k] - 12) / 12));
+  const w = v[k] * fog;
+  if (Math.abs(w) > Math.abs(best[i])) best[i] = w;
+}
+// sheet edges in cell space
+function edge(a, b, layer) {
+  const ax = a.x / CW, ay = a.y / CH, bx = b.x / CW, by = b.y / CH;
+  const steps = Math.ceil(Math.max(Math.abs(bx - ax), Math.abs(by - ay)) * 1.5);
+  const ang = Math.atan2((b.y - a.y), (b.x - a.x)) * 180 / Math.PI, A = ((ang % 180) + 180) % 180;
+  const glyph = A < 22 || A > 158 ? "-" : A < 68 ? "\\" : A < 112 ? "|" : "/";
+  for (let s = 0; s <= steps; s++) {
+    const cx = Math.floor(ax + (bx - ax) * s / steps), cy = Math.floor(ay + (by - ay) * s / steps);
+    if (cx < 0 || cy < 0 || cx >= COLS || cy >= ROWS) continue;
+    const i = cy * COLS + cx;
+    if (level(best[i]) < 2 && !ch[i]) ch[i] = { c: glyph, col: EDGE, a: 0.42 - layer * 0.008 };
+  }
+}
+for (let l = L - 1; l >= 0; l--) {
+  const cs = sheetCorners(l, GAP, PITCH).map(cam);
+  for (let e = 0; e < 4; e++) edge(cs[e], cs[(e + 1) % 4], l);
+}
+// UI text on the same grid
+function put(col, row, text, color = UI, a = 1, bold = false) {
+  for (let j = 0; j < text.length; j++) {
+    const cx = col + j; if (cx < 0 || cx >= COLS || row < 0 || row >= ROWS) continue;
+    const i = row * COLS + cx; ch[i] = { c: text[j], col: color, a, bold, ui: true }; best[i] = 0; occ[i] = 0;
+  }
+}
+function box(c0, r0, w, h, title) {
+  put(c0, r0, "┌" + "─".repeat(w - 2) + "┐", UI, 0.5); put(c0, r0 + h - 1, "└" + "─".repeat(w - 2) + "┘", UI, 0.5);
+  for (let r = r0 + 1; r < r0 + h - 1; r++) { put(c0, r, "│" + " ".repeat(w - 2) + "│", UI, 0.5); }
+  if (title) put(c0 + 2, r0, ` ${title} `, UI_HI, 0.9);
+}
+const pad = (s, n) => String(s).padStart(n, "0");
+put(2, 1, "LOBOTOMY", UI_HI, 1, true);
+put(12, 1, "// QWEN3-0.6B // SL2619 TORQ NPU // 1 W // 28 × 3072 = 86,016 NEURONS", UI, 0.6);
+put(COLS - 34, 1, `TOKEN ${pad(t, 3)}/256  ·  6.1 TOK/S  ●`, UI_HI, 0.9);
+// labels next to some sheets
+for (const l of [0, 9, 18, 27]) {
+  const p = sheetCorners(l, GAP, PITCH).map(cam)[0];
+  put(Math.floor(p.x / CW) - 1, Math.floor(p.y / CH) - 2, `L${pad(l, 2)}`, UI_HI, 0.75);
+}
+// answer box
+const BW = 84, BH = 9, BC = 2, BR = ROWS - BH - 3;
+box(BC, BR, BW, BH, "OUTPUT");
+const prompt = userPrompt(tokens), { answer } = answerText(tokens, t), cur = tokens[t].text;
+put(BC + 2, BR + 1, "> " + prompt, UI, 0.6);
+const words = answer.split(/(?<=\s)/); let col = BC + 2, row = BR + 3, cursorAt = null;
+words.forEach((w, wi) => {
+  if (col + w.length > BC + BW - 3) { col = BC + 2; row++; }
+  const last = wi === words.length - 1;
+  put(col, row, w, last ? POS_HI : UI_HI, last ? 1 : 0.85, last);
+  if (last) cursorAt = [col + w.length, row];
+  col += w.length;
+});
+if (cursorAt) put(cursorAt[0], cursorAt[1], "█", POS, 1);
+// stats box
+const SW2 = 32; box(COLS - SW2 - 2, BR, SW2, BH, "THIS TOKEN");
+let peak = 0, pk = 0; tokens[t].r.forEach((x, k) => { if (Math.abs(x) > peak) { peak = Math.abs(x); pk = k; } });
+const rows = [["TOKEN", JSON.stringify(cur)], ["ABOVE P99", tokens[t].lit.toLocaleString()], ["PEAK", `L${Math.floor(pk / N)} N${pk % N}`], ["PEAK SIZE", `${peak.toFixed(1)} × P99`], ["FRAME", "172,032 B"]];
+rows.forEach(([k, val], j) => { put(COLS - SW2, BR + 2 + j, k.padEnd(11, "."), UI, 0.55); put(COLS - SW2 + 12, BR + 2 + j, val, UI_HI, 0.95); });
+// tape
+const bars = " ▁▂▃▄▅▆▇█", maxLit = Math.max(...tokens.slice(1).map((x) => x.lit));
+put(2, ROWS - 1, "TAPE", UI, 0.5);
+tokens.forEach((tok, j) => { if (!j) return; const kk = Math.max(1, Math.round(8 * tok.lit / maxLit)); put(7 + j, ROWS - 1, bars[kk], j === t ? POS_HI : j > t ? UI : tok.kind === "prompt" ? UI : UI_HI, j === t ? 1 : j > t ? 0.15 : tok.kind === "prompt" ? 0.35 : 0.7); });
+
+// draw
+g.fillStyle = "#020304"; g.fillRect(0, 0, W, H);
+const glowC = document.createElement("canvas"); glowC.width = c.width; glowC.height = c.height;
+const gg = glowC.getContext("2d"); gg.scale(dpr, dpr);
+g.textBaseline = gg.textBaseline = "top"; g.textAlign = gg.textAlign = "center";
+for (let i = 0; i < COLS * ROWS; i++) {
+  const x = (i % COLS) * CW + CW / 2, y = Math.floor(i / COLS) * CH + 1;
+  if (ch[i]) {
+    g.font = `${ch[i].bold ? 700 : 400} 14px 'JetBrains Mono'`; g.fillStyle = rgb(ch[i].col, ch[i].a); g.fillText(ch[i].c, x, y);
+    if (ch[i].col === POS || ch[i].col === POS_HI) { gg.font = g.font; gg.fillStyle = rgb(POS, 0.9); gg.fillText(ch[i].c, x, y); }
+    continue;
+  }
+  if (!occ[i]) continue;
+  const val = best[i], lv = level(val);
+  if (lv === 0) { g.font = "14px 'JetBrains Mono'"; g.fillStyle = rgb(LATT, 0.30); g.fillText("·", x, y); continue; }
+  const b = bright(val), hi = val > 0 ? POS_HI : NEG_HI, base = val > 0 ? POS : NEG;
+  g.font = `${lv >= 7 ? 700 : 400} 14px 'JetBrains Mono'`;
+  g.fillStyle = rgb(lv >= 7 ? hi : base, 0.07 + 0.93 * Math.pow(b, 1.8)); g.fillText(RAMP[lv], x, y);
+  if (lv >= 5) { gg.font = g.font; gg.fillStyle = rgb(base, b); gg.fillText(RAMP[lv], x, y); }
+}
+const blur = document.createElement("canvas"); blur.width = c.width; blur.height = c.height;
+const bb = blur.getContext("2d"); bb.filter = `blur(${7 * dpr}px)`; bb.drawImage(glowC, 0, 0); bb.filter = `blur(${2 * dpr}px)`; bb.drawImage(glowC, 0, 0);
+g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalCompositeOperation = "lighter"; g.globalAlpha = 0.85; g.drawImage(blur, 0, 0); g.restore();
+window.__ready = true;
+</script></body></html>
