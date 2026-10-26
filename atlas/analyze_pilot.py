@@ -48,7 +48,8 @@ def main(a):
     allp, per_layer_k = [], {}
     for L in layers:
         Sn, Snull = d[f"L{L}/S_neu"], d[f"L{L}/S_null"]
-        p, p_raw = d[f"L{L}/p"], d[f"L{L}/p_raw"]
+        p = d[f"L{L}/p"]                                   # primary = pre-registered no-floor lift
+        p_floored = d[f"L{L}/p_floored"]                   # secondary (base-prob floor), for the record
         S2 = d[f"L{L}/S_neu_set2"]
         allp.append(p)
         beat_all = int((p <= pfloor + 1e-12).sum())
@@ -63,7 +64,7 @@ def main(a):
         if L in CONTROL:
             cn, tag = CONTROL[L]
             gp = gpd_tail_p(Snull, Sn[cn])
-            print(f"  control n{cn} ({tag}): S={Sn[cn]:+.3f}  p_floored={p[cn]:.4f}  p_raw={p_raw[cn]:.4f}"
+            print(f"  control n{cn} ({tag}): S={Sn[cn]:+.3f}  p={p[cn]:.4f}  p_floored={p_floored[cn]:.4f}"
                   f"  rank {int((Sn > Sn[cn]).sum())+1}/3072" + (f"  GPD p={gp:.2e}" if gp else ""))
     allp = np.concatenate(allp)
     (bh_m, bh_t), (by_m, by_t) = bh_by(allp)
