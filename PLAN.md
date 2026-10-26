@@ -13,7 +13,7 @@ Export Qwen3-0.6B to ONNX with a `[28, 3072]` steering input added at each layer
 - **Parity:** the NPU and the fp32 candle reference match on the first 32 greedy tokens for at least 90% of a fixed steered test set.
 - **Reality:** every neuron in the shipped atlas beats the random-control 95th percentile.
 - **Labels:** label scores beat the random-label baseline on held-out text.
-- **Live:** at least 8 tok/s on the board with activations streaming, and a knob turn changes the output within one token.
+- **Live:** at least 5 tok/s on the board with activations streaming (Synaptics measured 6.0–6.4 tok/s for plain Qwen3-0.6B), and a knob turn changes the output within one token.
 - **Stranger test:** someone new finds and steers a neuron in under 5 minutes.
 
 ## Why Qwen3-0.6B
