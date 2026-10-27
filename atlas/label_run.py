@@ -16,7 +16,7 @@ WORKER_HEAD = """You label neurons of a small language model (Qwen3-0.6B) for an
 Each entry is one neuron POLE: the neuron pushed in one direction, "+" or "-". For a "-" pole, "firing" means the neuron going strongly negative.
 
 Evidence per pole:
-- SNIPPETS: the 15 text windows (64 tokens, web or chat) where this pole fires hardest. <<x>> marks the window's peak token. ⟦n⟧ after a token is its activation from 0 to 10, scaled so this pole's strongest token anywhere = 10; unmarked tokens are 0-1. ⏎ is a newline. This is what the neuron READS.
+- SNIPPETS: the 15 text windows (64 tokens, web or chat) where this pole fires hardest. <<x>> marks the window's peak token. ⟦n⟧ after a token is its activation from 0 to 10, scaled so this pole's strongest token anywhere = 10; unmarked tokens are 0-1. ⏎ is a newline. TOP TOKENS: the tokens with the highest average activation over all 6,000 labelling windows (seen at least 3 times; noisy for diffuse neurons). This is what the neuron READS.
 - LOGIT-LENS: the 10 tokens its output weights promote directly. STEER-LENS: the 10 tokens whose probability rises most when it is pushed. This is what it WRITES.
 - STEERED: the model's answers with this pole pushed at dose 0.5 (compare them with the unsteered answers below). This is its EFFECT. Late-layer poles often just spam the tokens they write.
 
@@ -52,6 +52,7 @@ def load_gz(name):
 def pole_block(k, e):
     L = [f"=== {k} (pole {e['sign']}, layer {e['layer']}) ===", "SNIPPETS:"]
     L += [f" {i}. [{s['kind']}] {s['text']}" for i, s in enumerate(e["snippets"], 1)]
+    L.append("TOP TOKENS: " + json.dumps([w for w in e["top_tokens"] if w], ensure_ascii=False))
     L.append("LOGIT-LENS: " + json.dumps([w for w in e["logit_lens"] if w], ensure_ascii=False))
     L.append("STEER-LENS: " + json.dumps([w for w in e["steer_lens"] if w], ensure_ascii=False))
     for s in e.get("steered", []):

@@ -1,0 +1,243 @@
+{
+ "L8n908": {
+  "name": "Sea and shipping",
+  "description": "Fires on sea, port and ship words; pushes toward sea, ocean and shore words.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "sea",
+   "ocean",
+   "port",
+   "ship",
+   "shore",
+   "maritime",
+   "coast",
+   "waves",
+   "reef",
+   "Baltic"
+  ],
+  "batch": 26,
+  "version": "pilot"
+ },
+ "L19n834": {
+  "name": "Ships and marine water",
+  "description": "Negative pole fires on ship, dock and port words; writes marine and sailor words, but steering gives generic fiction.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "ship",
+   "sea",
+   "marine",
+   "sailor",
+   "dock",
+   "port",
+   "shores",
+   "maritime",
+   "water",
+   "naval"
+  ],
+  "batch": 26,
+  "version": "pilot"
+ },
+ "L14n92": {
+  "name": "Scattered words to closers",
+  "description": "Fires on assorted content words and commas with no shared theme; pushes toward closing quote and bracket punctuation.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "punctuation",
+   "closing quotes",
+   "commas",
+   "miscellaneous",
+   "noun ends",
+   "polysemantic",
+   "brackets",
+   "no theme",
+   "word stems",
+   "gibberish"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L14n2251": {
+  "name": "Weak diffuse noise",
+  "description": "Barely fires on academic and technical nouns; writes scattered word fragments with no shared concept.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "weak",
+   "diffuse",
+   "noise",
+   "fragments",
+   "academic",
+   "technical",
+   "no theme",
+   "low activation",
+   "polysemantic",
+   "unclear"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L23n2405": {
+  "name": "Than comparison predictor",
+  "description": "Reads comparatives right before 'than' (more, rather, less, most); pushes toward 'than'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "than",
+   "comparison",
+   "comparatives",
+   "more",
+   "rather",
+   "less",
+   "most",
+   "versus",
+   "instead",
+   "greater"
+  ],
+  "batch": 8,
+  "version": "pilot"
+ },
+ "L23n2299": {
+  "name": "Weak reads, vector writes",
+  "description": "Weak, scattered reads on technical nouns and word fragments (acceleration, Jet, Feature); pushes toward 'vector'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "vector",
+   "vectors",
+   "acceleration",
+   "physics",
+   "technical nouns",
+   "word fragments",
+   "low activation",
+   "NASA",
+   "Galileo",
+   "feature"
+  ],
+  "batch": 12,
+  "version": "pilot"
+ },
+ "L22n2377": {
+  "name": "Consequence phrases, effect writes",
+  "description": "Reads loosely on consequence and outcome phrases (cumulative effects, withdrawal, fluorescence energy); pushes toward 'effect' and 'effects'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "effect",
+   "effects",
+   "consequences",
+   "outcomes",
+   "cumulative",
+   "withdrawal",
+   "suppression",
+   "fluorescence",
+   "results",
+   "impact"
+  ],
+  "batch": 13,
+  "version": "pilot"
+ },
+ "L24n2899": {
+  "name": "Connectives read, port writes",
+  "description": "Reads connective function words mid-phrase (and, for, in, has); pushes toward 'port'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "port",
+   "harbors",
+   "connectives",
+   "function words",
+   "and",
+   "for",
+   "in",
+   "comparisons",
+   "ports",
+   "shipping"
+  ],
+  "batch": 16,
+  "version": "pilot"
+ },
+ "L22n2178": {
+  "name": "Weak question reads, proof writes",
+  "description": "Weak reads on problem-set punctuation and pronouns ('problem 3:', 'Is it a curve?'); pushes toward 'proof' and 'prove'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "proof",
+   "prove",
+   "proofs",
+   "problem sets",
+   "math questions",
+   "punctuation",
+   "pronouns",
+   "low activation",
+   "theorems",
+   "reasoning"
+  ],
+  "name_long": true,
+  "batch": 21,
+  "version": "pilot"
+ },
+ "L21n1228": {
+  "name": "Weak function-word reads, zero",
+  "description": "Very weak reads on function words after verbs (because, with, of, to); pushes toward 'zero'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "zero",
+   "zeros",
+   "null",
+   "nothing",
+   "function words",
+   "because",
+   "with",
+   "weak signal",
+   "prepositions",
+   "empty"
+  ],
+  "batch": 23,
+  "version": "pilot"
+ },
+ "L24n948": {
+  "name": "Intersex reads, opposite writes",
+  "description": "Reads 'inter-' in intersex and 'at/in the same' phrases; pushes toward 'opposite' and 'adjacent'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "opposite",
+   "opposing",
+   "adjacent",
+   "intersex",
+   "inter-",
+   "same time",
+   "contrast",
+   "dissonance",
+   "sexuality",
+   "reverse"
+  ],
+  "batch": 24,
+  "version": "pilot"
+ },
+ "L21n1442": {
+  "name": "Superlatives read, choice writes",
+  "description": "Reads superlatives and best-pick words (top, best, leading, ideal, first); pushes toward 'choice' and 'choices'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "choice",
+   "choices",
+   "choosing",
+   "best",
+   "top",
+   "leading",
+   "ideal",
+   "superlatives",
+   "selection",
+   "preference"
+  ],
+  "batch": 26,
+  "version": "pilot"
+ }
+}

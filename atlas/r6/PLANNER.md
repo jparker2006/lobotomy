@@ -52,6 +52,8 @@ quality control, choosing re-runs, and an honest report.
    `score --planner pX --split dev --mode real --version v2`, then
    `python3 atlas/label_fanout.py pick --planner pX --versions v1,v2` → `labels_final.json` keeps, per pole,
    the version with the better dev r. One more round (v3) is allowed for batches still under 0.10.
+   `labels_pilot.json` holds the R6 pilot's labels for a few of your poles (older evidence): dev-score them
+   too (`score … --mode real --version pilot`) and add `pilot` to the pick list (e.g. `--versions v1,v2,pilot`).
    **Ambiguous cases come to you:** where you can't tell whether a low dev r means a bad label or a confused
    scorer (for example the label reads right on the evidence), get a second opinion from a fresh Opus
    scorer: `score --planner pX --split dev --mode real --version v1 --keys K1,K2 --suffix opus --model claude-opus-5-5`.

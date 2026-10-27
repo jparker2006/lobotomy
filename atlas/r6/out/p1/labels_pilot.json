@@ -1,0 +1,162 @@
+{
+ "L27n267": {
+  "name": "Mid-word piece to LaTeX",
+  "description": "Fires on the middle piece of a split word or name; pushes toward $-delimited math variables such as $a and $b.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "word fragment",
+   "mid-word",
+   "names",
+   "split token",
+   "LaTeX",
+   "$ variables",
+   "math",
+   "subword",
+   "proper nouns",
+   "syllable"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L27n1332": {
+  "name": "Capital initial to plus",
+  "description": "Negative pole fires on capitals and acronyms (N, U.S., NY); pushes toward plus-prefixed tokens such as +a and +N.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "capital letters",
+   "acronyms",
+   "U.S.",
+   "initials",
+   "plus sign",
+   "+",
+   "concatenation",
+   "abbreviations",
+   "NY",
+   "string joins"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L27n1266": {
+  "name": "Word start to colon",
+  "description": "Fires on word openers (Be-, Bre-, Car-); pushes toward colon-closer tokens such as ': and ):.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "word start",
+   "Be",
+   "Bre",
+   "Car",
+   "names",
+   "colon",
+   "closing parens",
+   "subword",
+   "mid-word",
+   "code syntax"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L27n276": {
+  "name": "Sentence opener to nouns",
+  "description": "Negative pole fires on sentence openers (Under, By, In, After); pushes toward nouns such as book, board and box.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "sentence openers",
+   "prepositions",
+   "Under",
+   "By",
+   "In",
+   "box",
+   "book",
+   "board",
+   "piles",
+   "waterfall"
+  ],
+  "batch": 3,
+  "version": "pilot"
+ },
+ "L27n863": {
+  "name": "Mid-word fragment completer",
+  "description": "Reads scattered mid-word fragments and nouns (Beorht w-, Car-, uta, ari) with no shared theme; pushes toward 'min' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "min",
+   "Min",
+   "MIN",
+   "fragment",
+   "subword",
+   "continuation",
+   "Carthaginians",
+   "shrauta",
+   "landers",
+   "code talkers"
+  ],
+  "batch": 4,
+  "version": "pilot"
+ },
+ "L27n622": {
+  "name": "Proper-name starts, mojibake writer",
+  "description": "Fires on first letters of proper names (Linares, Bruchac, Reher); pushes toward mojibake bytes like 'Â' and 'â'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "proper names",
+   "Linares",
+   "Bruchac",
+   "Reher",
+   "place names",
+   "mojibake",
+   "Â",
+   "Ã",
+   "encoding",
+   "Georgian"
+  ],
+  "batch": 9,
+  "version": "pilot"
+ },
+ "L27n961": {
+  "name": "Diffuse reads, writes Pro",
+  "description": "Diffuse weak reads (Nile, Roman, Ellsworth, '10' in percentages); pushes toward 'Pro' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Pro",
+   "pro",
+   "PRO",
+   "Nile",
+   "Roman",
+   "Ellsworth",
+   "hay",
+   "percent",
+   "renewable",
+   "States"
+  ],
+  "batch": 14,
+  "version": "pilot"
+ },
+ "L27n1642": {
+  "name": "Section-heading reads, clause writes",
+  "description": "Reads capitalized section and heading starts (TEACHING, PLANNING, RESOURCES); pushes toward clause openers From, If, For, And.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "headings",
+   "section titles",
+   "capitals",
+   "clause openers",
+   "conjunctions",
+   "From",
+   "If",
+   "For",
+   "And",
+   "teaching"
+  ],
+  "batch": 21,
+  "version": "pilot"
+ }
+}
