@@ -1,0 +1,110 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q8 inspect</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+// Q8: inspecting one neuron (L8 N908, the "ocean" neuron from the CPU demo). Real values from the session.
+// mode=hover: a light card at the cursor. mode=drawer: a side drawer. mode=lock: the camera turns the layer
+// face-on and a reticle locks onto the neuron, with a docked readout. Grey rows are slots for later versions.
+import { loadSession, L, N } from "../lib/data.js";
+import { camera } from "../lib/proj.js";
+import { SHAPES } from "../lib/shapes.js";
+import { STYLE, makeGrid, splat, polyline, put, putBig, draw, rarityLadder } from "../lib/ascii.js";
+const q = new URLSearchParams(location.search);
+const S = q.get("s") || "ocean", mode = q.get("mode") || "lock", HL = 2;
+const W = 1440, H = 900, dpr = devicePixelRatio, CW = 9, CH = 16;
+const c = document.getElementById("c"); c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
+const g = c.getContext("2d"); g.scale(dpr, dpr);
+for (const f of ["400 14px 'JetBrains Mono'", "700 14px 'JetBrains Mono'", "300 28px 'JetBrains Mono'", "400 28px 'Departure Mono'"]) await document.fonts.load(f);
+const { tokens } = await loadSession(S);
+const LAD = STYLE.ladder = rarityLadder(tokens), U = STYLE;
+const t = tokens.findIndex((x, i) => x.kind === "gen" && x.text === " sea");
+const LY = 8, NE = 908, K = LY * N + NE;
+
+const v = new Float32Array(L * N);
+for (let k = Math.max(0, t - 12); k <= t; k++) { const w = Math.pow(0.5, (t - k) / HL), r = tokens[k].r; for (let j = 0; j < v.length; j++) { const x = r[j] * w; if (Math.abs(x) > Math.abs(v[j])) v[j] = x; } }
+
+const G = makeGrid(W, H, CW, CH), Gm = makeGrid(W, H, 5, 8), sh = SHAPES.deck;
+const pos = new Float32Array(3 * L * N);
+for (let l = 0; l < L; l++) for (let n = 0; n < N; n++) {
+  const p = sh.pos(l, n), k = 3 * (l * N + n);
+  if (mode === "lock" && l !== LY) { pos[k] = NaN; continue; }
+  pos[k] = p[0]; pos[k + 1] = p[1]; pos[k + 2] = p[2];
+}
+const x8 = (LY - (L - 1) / 2) * 0.8;
+const cam = mode === "lock"
+  ? camera([x8 - 4.6, 0.1, 0], [x8, 0, 0], 36, 1000, H, 500, H * 0.46)
+  : camera([-22.4, 8.6, 31.2], [0, -0.5, 0], mode === "drawer" ? 19 : 16, mode === "drawer" ? 1000 : W, H * 0.75, mode === "drawer" ? 500 : W * 0.56, H * 0.42);
+splat(Gm, pos, v, cam);
+if (mode === "lock") { for (const line of sh.outline(0).map((ln) => ln.map((p) => [x8, p[1], p[2]]))) polyline(Gm, line, cam, 0.25); }
+else for (let l = L - 1; l >= 0; l--) for (const line of sh.outline(l)) polyline(Gm, line, cam, 0.16);
+if (mode !== "hover") for (let r = 0; r < Gm.ROWS; r++) for (let cc = Math.floor(1000 / 5); cc < Gm.COLS; cc++) { const i = r * Gm.COLS + cc; Gm.occ[i] = 0; Gm.over[i] = null; }
+
+// the neuron on screen
+const P = cam(sh.pos(LY, NE)), pc = Math.floor(P.x / CW), pr = Math.floor(P.y / CH);
+const pad = (s, n) => String(s).padStart(n, "0"), now = tokens[t].r[K], pct = LAD.F(Math.abs(now));
+const topPct = (1 - pct) * 100, topStr = topPct < 0.1 ? "top 0.1%" : `top ${topPct.toFixed(topPct < 1 ? 1 : 0)}%`;
+const series = tokens.map((x) => x.r[K]), mx = Math.max(...series.slice(1).map(Math.abs));
+const bars = " ▁▂▃▄▅▆▇█";
+const best = tokens.map((x, i) => [x.r[K], i]).filter(([, i]) => i > 0).sort((a, b) => b[0] - a[0]).slice(0, 5);
+
+function reticle(col, row, big) {
+  const d = big ? 2 : 1;
+  put(G, col - d - 1, row - d, "┌", U.posHi, 0.95); put(G, col + d + 1, row - d, "┐", U.posHi, 0.95);
+  put(G, col - d - 1, row + d, "└", U.posHi, 0.95); put(G, col + d + 1, row + d, "┘", U.posHi, 0.95);
+}
+function sparkline(col, row, width) {
+  const n = Math.min(width, tokens.length - 1);
+  for (let j = 1; j <= n; j++) {
+    const x = series[j], kk = Math.max(1, Math.round((8 * Math.abs(x)) / mx));
+    put(G, col + j - 1, row, bars[kk], j === t ? U.posHi : x >= 0 ? U.pos : U.neg, j === t ? 1 : j > t ? 0.15 : 0.7);
+  }
+}
+function readout(c0, r0, w, compact) {
+  put(G, c0, r0, `L${pad(LY, 2)} · N${pad(NE, 4)}`, U.uiHi, 1, true);
+  if (!compact) put(G, c0 + w - 12, r0, "[ESC] UNLOCK", U.ui, 0.4);
+  put(G, c0, r0 + 2, "NOW", U.ui, 0.45); put(G, c0 + 12, r0 + 2, `${now >= 0 ? "+" : "−"}${Math.abs(now).toFixed(1)}× ITS P99 · ${topStr.toUpperCase()}`, now >= 0 ? U.posHi : U.negHi, 1);
+  put(G, c0, r0 + 3, "WORD", U.ui, 0.45); put(G, c0 + 12, r0 + 3, JSON.stringify(tokens[t].text), U.uiHi, 0.9);
+  put(G, c0, r0 + 5, `THIS ANSWER, WORD BY WORD`, U.ui, 0.45);
+  sparkline(c0, r0 + 6, w);
+  if (compact) return;
+  put(G, c0, r0 + 8, "FIRES MOST ON (THIS ANSWER)", U.ui, 0.45);
+  best.forEach(([x, i], j) => put(G, c0 + (j % 2) * 22, r0 + 9 + Math.floor(j / 2), `${JSON.stringify(tokens[i].text).padEnd(11)} +${x.toFixed(1)}×`, U.uiHi, 0.85));
+  const slots = [["WORDS IT PUSHES", "COMING v0.0.3"], ["LABEL", "COMING v0.1.0"], ["REAL OR NOT", "COMING v0.1.0"], ["STEER", "━━━━━○━━━━━  v0.1.0"]];
+  slots.forEach(([k, val], j) => { put(G, c0, r0 + 13 + j, k, U.ui, 0.3); put(G, c0 + 17, r0 + 13 + j, val, U.ui, 0.25); });
+}
+
+put(G, 2, 1, "LOBOTOMY", U.uiHi, 1, true);
+put(G, 12, 1, "QWEN3-0.6B · BACKEND: CPU STAND-IN · 28 × 3,072 NEURONS", U.ui, 0.5);
+let ans = ""; for (let k = 0; k <= t; k++) if (tokens[k].kind === "gen") ans += tokens[k].text;
+const lines = []; let line = ""; for (const w of ans.split(/(?<=\s)/)) { if ((line + w).length > 70) { lines.push(line); line = w; } else line += w; } lines.push(line);
+const last = lines[lines.length - 1];
+if (mode === "hover") {
+  reticle(pc, pr, false);
+  const cc = Math.min(G.COLS - 52, pc + 4), rr = Math.max(4, pr - 9);
+  for (let r = rr - 1; r < rr + 9; r++) put(G, cc - 1, r, " ".repeat(50), U.ui, 0);
+  put(G, cc - 1, rr - 1, "┌" + "─".repeat(48) + "┐", U.ui, 0.35); put(G, cc - 1, rr + 8, "└" + "─".repeat(48) + "┘", U.ui, 0.35);
+  for (let r = rr; r < rr + 8; r++) { put(G, cc - 1, r, "│", U.ui, 0.35); put(G, cc + 48, r, "│", U.ui, 0.35); }
+  readout(cc + 1, rr, 46, true);
+  put(G, cc + 1, rr + 8, " CLICK TO LOCK ON ", U.ui, 0.5);
+  putBig(G, Math.floor((160 - last.length * 2) / 2), 48, last, U.uiHi, 0.85);
+} else if (mode === "drawer") {
+  for (let r = 3; r < 56; r++) put(G, 111, r, "│", U.ui, 0.15);
+  reticle(pc, pr, false);
+  readout(114, 4, 44, false);
+  putBig(G, Math.max(2, Math.floor((110 - Math.min(last.length, 52) * 2) / 2)), 48, last.slice(-52), U.uiHi, 0.85);
+} else {
+  reticle(pc, pr, true);
+  // leader line from the reticle to the readout
+  for (let cc = pc + 4; cc < 112; cc++) put(G, cc, pr, "─", U.posHi, 0.25);
+  put(G, 112, pr, "┤", U.posHi, 0.4);
+  readout(114, pr - 2, 44, false);
+  put(G, 2, 3, `LAYER ${LY} · FACE-ON · OTHER LAYERS HIDDEN`, U.ui, 0.45);
+  putBig(G, Math.max(2, Math.floor((110 - Math.min(last.length, 52) * 2) / 2)), 50, last.slice(-52), U.uiHi, 0.85);
+  put(G, 2, 54, "/ L8 908  — TYPE A NEURON TO JUMP TO IT · LATER: SEARCH LABELS (\"ocean\")", U.ui, 0.4);
+}
+draw(g, Gm, dpr, { fs: 8 * 0.95 });
+draw(g, G, dpr, { bg: false });
+window.__ready = true;
+</script></body></html>

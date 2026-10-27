@@ -14,4 +14,5 @@
 | — | Resolution fix | **Two grids.** The map uses a fine dot grid (5 × 8 px, about one neuron per cell at the overview); the UI uses the 9 × 16 text grid. With one coarse grid, each cell pooled ~100 neurons and the map went dark. | [q5-cinema.png](mockups/q5-cinema.png) |
 | Q5 | Screen layout | **Cinema by default** (map full-bleed, answer as large subtitles, prompt line, token tape) **plus the Console panels on a toggle key** (transcript, top-1% count per layer, rarest neurons now). | [q5-layout-sheet.png](mockups/q5-layout-sheet.png) |
 | Q6 | Colour and type | **Amber (+) / cyan (−)** (default; Jake didn't object). **JetBrains Mono** for all text, **Departure Mono** for the big counters. All fonts are OFL and bundled (the board serves the page offline). | [q6-palette-sheet.png](mockups/q6-palette-sheet.png), [q6-type.png](mockups/q6-type.png) |
-| Q7 | Motion | *open* | [q7-motion.gif](mockups/q7-motion.gif) |
+| Q7 | Motion | **Sweep + idle camera drift.** Each word's values sweep L0 → L27 in 0.9 / tok_s seconds (the real layer order at the measured pace, one word late). The camera drifts ±9° only when idle and stops on any input. | [q7-motion.gif](mockups/q7-motion.gif) |
+| Q8 | Inspect | *open* | [q8-inspect-sheet.png](mockups/q8-inspect-sheet.png) |
