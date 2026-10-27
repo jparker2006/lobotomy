@@ -27,6 +27,7 @@ const PALS = {
 };
 if (q.get("pal")) Object.assign(STYLE, PALS[q.get("pal")]);
 if (q.get("font")) STYLE.font = `'${q.get("font")}'`;
+if (q.get("astro") === "1") { STYLE.lattFade = [30, 46]; STYLE.haze = { r: 40, a: 0.8 }; }
 const t = Math.min(T, tokens.length - 1), U = STYLE;
 
 // afterglow (Q4: half-life 2 tokens)
@@ -101,6 +102,7 @@ if (layout === "cinema") {
   const sub = "NEURONS IN THEIR TOP 1% · TOKEN " + pad(t, 3) + "/256 · 6.1 TOK/S"; put(G, G.COLS - 2 - sub.length, 3, sub, U.ui, 0.5);
   legend(2, 3);
   // subtitles: the last two lines of the answer in double size
+  if (q.get("astro") === "1") window.__scrim = [0, 44 * CH, W, 7 * CH];
   const lines = wrap(answer, 74).slice(-2);
   lines.forEach((ln, j) => {
     const r = 46 + j * 2, c0 = Math.floor((160 - ln.length * 2) / 2);
@@ -170,6 +172,7 @@ if (layout === "cinema") {
   put(G, 2, 54, "EACH COLUMN = ONE WORD · ROWS = LAYERS 0–27 IN GROUPS OF 4 · DOT = SHARE OF NEURONS IN THEIR TOP 1% (• = USUAL)", U.ui, 0.4);
 }
 draw(g, Gm, dpr, { fs: MH * 0.95 });
+if (window.__scrim) { const [sx, sy, sw, sh2] = window.__scrim; const gr = g.createLinearGradient(0, sy, 0, sy + sh2); gr.addColorStop(0, "rgba(3,3,4,0)"); gr.addColorStop(0.35, "rgba(3,3,4,0.82)"); gr.addColorStop(1, "rgba(3,3,4,0.9)"); g.fillStyle = gr; g.fillRect(sx, sy, sw, sh2); }
 draw(g, G, dpr, { bg: false });
 window.__ready = true;
 </script></body></html>

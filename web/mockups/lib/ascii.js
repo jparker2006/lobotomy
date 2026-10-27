@@ -19,7 +19,7 @@ export function makeGrid(W, H, CW, CH) {
   const COLS = Math.floor(W / CW), ROWS = Math.floor(H / CH);
   return {
     W, H, CW, CH, COLS, ROWS,
-    best: new Float32Array(COLS * ROWS), occ: new Uint8Array(COLS * ROWS), cnt: new Uint16Array(COLS * ROWS),
+    best: new Float32Array(COLS * ROWS), occ: new Uint8Array(COLS * ROWS), cnt: new Uint16Array(COLS * ROWS), depth: new Float32Array(COLS * ROWS).fill(1e9),
     over: new Array(COLS * ROWS).fill(null), big: [],
   };
 }
@@ -35,7 +35,7 @@ export function splat(G, pos, v, cam, fog = null) {
     const cx = Math.floor(p.x / G.CW), cy = Math.floor(p.y / G.CH);
     if (cx < 0 || cy < 0 || cx >= G.COLS || cy >= G.ROWS) continue;
     const i = cy * G.COLS + cx;
-    G.occ[i] = 1; G.cnt[i]++;
+    G.occ[i] = 1; G.cnt[i]++; if (p.z < G.depth[i]) G.depth[i] = p.z;
     const f = fog ? 1 - 0.45 * Math.min(1, Math.max(0, (p.z - fog[0]) / (fog[1] - fog[0]))) : 1;
     const w = v[k] * f;
     if (Math.abs(w) > Math.abs(G.best[i])) G.best[i] = w;
@@ -96,7 +96,11 @@ export function draw(g, G, dpr, opts = {}) {
     if (!G.occ[i]) continue;
     const val = S.correct ? S.correct(G.best[i], G.cnt[i]) : G.best[i];
     const lv = S.ladder ? S.ladder.levelOf(G.best[i], G.cnt[i]) : level(val);
-    if (lv === 0) { g.font = `400 ${fs}px ${S.font}`; g.fillStyle = rgb(S.latt, S.lattA); g.fillText(S.lattice, x, y); continue; }
+    if (lv === 0) {
+      // view-only depth haze: the lattice (geometry, not data) fades with distance; data dots never do
+      const fade = S.lattFade ? 1 - 0.8 * Math.min(1, Math.max(0, (G.depth[i] - S.lattFade[0]) / (S.lattFade[1] - S.lattFade[0]))) : 1;
+      g.font = `400 ${fs}px ${S.font}`; g.fillStyle = rgb(S.latt, S.lattA * fade); g.fillText(S.lattice, x, y); continue;
+    }
     if (S.ladder) {
       const top = S.ladder.ramp.length - 1, pos = G.best[i] > 0, b = S.ladder.bright[lv];
       const col = lv >= top - 1 ? (pos ? S.posHi : S.negHi) : (pos ? S.pos : S.neg);
@@ -120,6 +124,7 @@ export function draw(g, G, dpr, opts = {}) {
   const bb = blur.getContext("2d");
   bb.filter = `blur(${10 * dpr}px)`; bb.drawImage(glowC, 0, 0);
   bb.filter = `blur(${3 * dpr}px)`; bb.drawImage(glowC, 0, 0);
+  if (S.haze) { bb.globalAlpha = S.haze.a; bb.filter = `blur(${S.haze.r * dpr}px)`; bb.drawImage(glowC, 0, 0); bb.drawImage(glowC, 0, 0); bb.globalAlpha = 1; }
   g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalCompositeOperation = "lighter"; g.globalAlpha = 1; g.drawImage(blur, 0, 0); g.restore();
 }
 
