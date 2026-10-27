@@ -1,0 +1,157 @@
+{
+ "L8n908": {
+  "sign": "+",
+  "S": 3.13,
+  "p": 0.006829268292682927,
+  "lens": [
+   "Sea",
+   "sea",
+   "marine",
+   "Ocean",
+   "ocean",
+   "Caribbean",
+   "maritime",
+   "Bahamas",
+   "Sea",
+   "reef"
+  ],
+  "snippets": [
+   {
+    "act": 11.06,
+    "text": "74 million hectares of land and 4 million hectares of << sea>>  country. Another 2"
+   },
+   {
+    "act": 8.25,
+    "text": " has drawn a steady flow of tourists to this Basque se <<ap>> ort on the northern coast"
+   },
+   {
+    "act": 8.06,
+    "text": " IPAs occur on land, but some also extend into the << sea>> . The first IPA was"
+   }
+  ]
+ },
+ "L21n1527": {
+  "sign": "+",
+  "S": 12.27,
+  "p": 0.000975609756097561,
+  "lens": [
+   "random",
+   "random",
+   "randomly",
+   "randomness",
+   "Random",
+   "Random",
+   "RANDOM",
+   "-random",
+   "(random",
+   "RANDOM"
+  ],
+  "snippets": [
+   {
+    "act": 4.09,
+    "text": " related to Ancient Greece. Once on the site, each student << was>>  free to explore according to"
+   },
+   {
+    "act": 3.44,
+    "text": " forms of gambling. Lotteries allow people to purchase a << ticket>>  and stand a chance of"
+   },
+   {
+    "act": 2.81,
+    "text": " a Java program that prompts the user to input an array of << integers>> , and then sorts the"
+   }
+  ]
+ },
+ "L22n796": {
+  "sign": "+",
+  "S": 13.09,
+  "p": 0.000975609756097561,
+  "lens": [
+   "return",
+   "return",
+   "Return",
+   "-return",
+   "Return",
+   ".return",
+   "return",
+   "_return",
+   "returns",
+   "Returns"
+  ],
+  "snippets": [
+   {
+    "act": 4.44,
+    "text": ", and then sorts the array using the counting sort algorithm. << The>>  program should display the sorted"
+   },
+   {
+    "act": 1.85,
+    "text": "59 men gathered in a small frame building at Washington-on <<-the>> -Brazos had signed"
+   },
+   {
+    "act": 1.55,
+    "text": " be deployed to AWS Lambda. The microservice should be designed << to>>  handle high"
+   }
+  ]
+ },
+ "L23n1482": {
+  "sign": "+",
+  "S": 13.06,
+  "p": 0.000975609756097561,
+  "lens": [
+   "interpretation",
+   "interpretations",
+   "interpreting",
+   "interpreted",
+   "interpret",
+   "Interpret",
+   "interpret",
+   "interpre",
+   "interpre",
+   "interpreted"
+  ],
+  "snippets": [
+   {
+    "act": 13.81,
+    "text": " the project according to the complexity of the application. The basic << machine>>  vision hardware comparison is "
+   },
+   {
+    "act": 12.0,
+    "text": " analyzes it and forwards an evaluation. PC is a part of << machine>> "
+   },
+   {
+    "act": 11.31,
+    "text": " love of the English language and a growing ability << to>>  string the many words he"
+   }
+  ]
+ },
+ "L18n2736": {
+  "sign": "-",
+  "S": 10.55,
+  "p": 0.000975609756097561,
+  "lens": [
+   "November",
+   "December",
+   "July",
+   "October",
+   "February",
+   "September",
+   "June",
+   "March",
+   "August",
+   "January"
+  ],
+  "snippets": [
+   {
+    "act": 10.38,
+    "text": " that could be sent into and out of Cuba. However, << in>>  2013"
+   },
+   {
+    "act": 9.38,
+    "text": " pushback from consumers regarding social, environmental and economic sustainability. << In>>  an effort to qualify the"
+   },
+   {
+    "act": 8.25,
+    "text": " to raise money for the settlement of Jamestown, Virginia. << In>>  the 18th"
+   }
+  ]
+ }
+}
