@@ -11,7 +11,6 @@ ROOT = Path(__file__).resolve().parent.parent
 LR = importlib.util.spec_from_file_location("label_run", ROOT / "atlas" / "label_run.py")
 label_run = importlib.util.module_from_spec(LR); LR.loader.exec_module(label_run)
 WORKER_HEAD, pole_block = label_run.WORKER_HEAD, label_run.pole_block
-TMP = Path("/tmp/atlas/fanout"); TMP.mkdir(parents=True, exist_ok=True)
 
 
 def sh(args):
@@ -52,8 +51,13 @@ def valid(lab):
 
 
 def main(a):
+    TMP = Path("/tmp/atlas/fanout") / Path(a.out).stem   # namespaced per output -> no planner clashes
+    TMP.mkdir(parents=True, exist_ok=True)
     ev = json.loads(Path(a.evidence).read_text())["poles"]
     keys = list(ev.keys())
+    if a.keys_file:                                   # a planner labels only its assigned slice
+        want = set(json.loads(Path(a.keys_file).read_text()))
+        keys = [k for k in keys if k in want]
     batches = [keys[i:i + a.batch] for i in range(0, len(keys), a.batch)]
     print(f"{len(keys)} poles -> {len(batches)} batches of {a.batch}; waves of {a.wave}", flush=True)
     labels, failed = {}, []
@@ -111,5 +115,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--evidence", default=str(ROOT / "atlas" / "labels_evidence.json"))
     ap.add_argument("--wave", type=int, default=40); ap.add_argument("--batch", type=int, default=20)
+    ap.add_argument("--keys-file", default=None, help="json list of pole keys for this planner's slice")
     ap.add_argument("--out", default=str(ROOT / "atlas" / "labels_full.json"))
     main(ap.parse_args())
