@@ -99,7 +99,7 @@ const lit = top1Now.toLocaleString();
 if (layout === "cinema") {
   header();
   putBig(G, G.COLS - 2 - lit.length * 2, 1, lit, U.uiHi, 0.95);
-  const sub = "NEURONS IN THEIR TOP 1% · TOKEN " + pad(t, 3) + "/256 · 6.1 TOK/S"; put(G, G.COLS - 2 - sub.length, 3, sub, U.ui, 0.5);
+  const sub = "NEURONS IN THEIR TOP 1% · TOKEN " + pad(t, 3) + "/256 · 29.0 TOK/S"; put(G, G.COLS - 2 - sub.length, 3, sub, U.ui, 0.5);
   legend(2, 3);
   // subtitles: the last two lines of the answer in double size
   if (q.get("astro") === "1") window.__scrim = [0, 44 * CH, W, 7 * CH];
@@ -115,7 +115,7 @@ if (layout === "cinema") {
 } else if (layout === "split") {
   header();
   const end = transcript(2, 4, 46, 30);
-  const rows = [["TOKEN", JSON.stringify(cur)], ["TOP 1% NOW", lit], ["TOKEN #", `${pad(t, 3)} / 256`], ["SPEED", "6.1 tok/s"]];
+  const rows = [["TOKEN", JSON.stringify(cur)], ["TOP 1% NOW", lit], ["TOKEN #", `${pad(t, 3)} / 256`], ["SPEED", "29.0 tok/s"]];
   rows.forEach(([k, val], j) => { put(G, 2, end + 2 + j, k.padEnd(12, "."), U.ui, 0.45); put(G, 15, end + 2 + j, val, U.uiHi, 0.9); });
   legend(2, end + 7);
   for (let r = 3; r < 51; r++) put(G, 50, r, "│", U.ui, 0.15);
@@ -139,7 +139,7 @@ if (layout === "cinema") {
   best.slice(0, 6).forEach(([a, k, x], j) => put(G, 125, 38 + j, `L${pad(Math.floor(k / N), 2)} N${pad(k % N, 4)}  ${x > 0 ? "+" : "−"}${a.toFixed(1)}× p99`, x > 0 ? U.pos : U.neg, 0.85));
   legend(42, 45);
   tape(2, 50, 160);
-  put(G, 2, 53, `TOKEN ${pad(t, 3)}/256 · 6.1 TOK/S · ${lit} IN TOP 1%`, U.ui, 0.5);
+  put(G, 2, 53, `TOKEN ${pad(t, 3)}/256 · 29.0 TOK/S · ${lit} IN TOP 1%`, U.ui, 0.5);
 } else if (layout === "score") {
   header();
   putBig(G, G.COLS - 2 - lit.length * 2, 1, lit, U.uiHi, 0.95);

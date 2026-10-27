@@ -1,0 +1,6 @@
+# Third-party reference images stay local; the public repo keeps links and notes only.
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif

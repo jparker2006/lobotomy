@@ -25,8 +25,8 @@ const CW = 8, CH = 12; // map cell in px
 // status bar (inverse video)
 g.fillStyle = rgb(AMB); g.fillRect(0, 0, W, 26);
 g.fillStyle = "#070400"; g.font = FONT(22); g.textBaseline = "top";
-const tokS = "6.1";
-g.fillText(` LOBOTOMY  ▌ QWEN3-0.6B  ▌ SL2619 NPU · 1 W  ▌ 28 × 3072 = 86,016 NEURONS  ▌ TOKEN ${String(t).padStart(3, "0")}/256  ▌ ${tokS} TOK/S `, 8, 3);
+const tokS = "29.0";
+g.fillText(` LOBOTOMY  ▌ QWEN3-0.6B  ▌ CPU STAND-IN  ▌ 28 × 3072 = 86,016 NEURONS  ▌ TOKEN ${String(t).padStart(3, "0")}/256  ▌ ${tokS} TOK/S `, 8, 3);
 
 // map: 7 x 4 blocks; each block 16 x 12 chars, one char per 4x4 neurons (grid 64 x 48)
 const BX = 28, BY = 50, PW = 16 * CW + 14, PH = 12 * CH + 26;

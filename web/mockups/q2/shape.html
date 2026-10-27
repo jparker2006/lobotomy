@@ -32,6 +32,8 @@ const RAMPS = { ascii: " .:-=+*#%@", bars: " ▁▂▃▄▅▆▇██", dots:
 if (q.get("ramp")) STYLE.ramp = RAMPS[q.get("ramp")];
 if (q.get("lattice")) STYLE.lattice = q.get("lattice");
 const sh = SHAPES[shape], opt = {};
+// legacy=1 reproduces the Q2/Q3 renders exactly (the style constants of that day)
+if (q.get("legacy") === "1") { STYLE.alpha = (b) => 0.03 + 0.97 * Math.pow(b, 2.4); STYLE.lattA = 0.14; STYLE.edgeA = 0.30; opt.allFrames = true; }
 for (const k of ['pos', 'outline', 'label']) sh[k] = sh[k].bind(sh);
 const pos = new Float32Array(3 * L * N);
 for (let l = 0; l < L; l++) for (let n = 0; n < N; n++) {
@@ -47,11 +49,11 @@ for (let l = L - 1; l >= 0; l--) for (const line of sh.outline(l, opt)) polyline
 // UI: same in every shape
 const pad = (s, n) => String(s).padStart(n, "0"), U = STYLE;
 put(G, 2, 1, "LOBOTOMY", U.uiHi, 1, true);
-put(G, 12, 1, "QWEN3-0.6B · SL2619 NPU · 1 W · 28 × 3,072 NEURONS", U.ui, 0.55);
+put(G, 12, 1, "QWEN3-0.6B · BACKEND: CPU STAND-IN · 28 × 3,072 NEURONS", U.ui, 0.55);
 put(G, 2, 2, q.get('ramp') ? `GLYPHS: ${STYLE.ramp.slice(1).split('').join(' ')}` : `SHAPE: ${pr.title}`, U.ui, 0.5);
 const lit = tokens[t].lit.toLocaleString();
 putBig(G, G.COLS - 2 - lit.length * 2, 1, lit, U.uiHi, 0.95);
-const sub = `ABOVE P99 · TOKEN ${pad(t, 3)}/256 · 6.1 TOK/S`; put(G, G.COLS - 2 - sub.length, 3, sub, U.ui, 0.5);
+const sub = `ABOVE P99 · TOKEN ${pad(t, 3)}/256 · 29.0 TOK/S`; put(G, G.COLS - 2 - sub.length, 3, sub, U.ui, 0.5);
 for (const l of (shape === 'radar' ? [0, 13, 27] : [0, 9, 18, 27])) {
   const p = cam(sh.label(l, opt));
   put(G, Math.floor(p.x / G.CW), Math.floor(p.y / G.CH), `L${pad(l, 2)}`, U.uiHi, 0.7);

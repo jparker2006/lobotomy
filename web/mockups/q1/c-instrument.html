@@ -23,7 +23,7 @@ g.fillStyle = "#0b0b0c"; g.fillRect(0, 0, W, H);
 // header
 g.font = "600 12px 'Geist Mono'"; g.fillStyle = INK; g.fillText("LOBOTOMY", 40, 44);
 g.font = "400 11px 'Geist Mono'"; g.fillStyle = MUTE;
-g.fillText("QWEN3-0.6B · INT4 · SL2619 TORQ NPU · 1 W", 150, 44);
+g.fillText("QWEN3-0.6B · CPU STAND-IN (BOARD: SL2619 TORQ NPU)", 150, 44);
 g.textAlign = "right"; g.fillText("LIVE  ●", W - 40, 44); g.textAlign = "left";
 g.fillStyle = RULE; g.fillRect(40, 58, W - 80, 1);
 
@@ -36,7 +36,7 @@ let peak = 0, pk = 0; tokens[t].r.forEach((x, k) => { if (Math.abs(x) > peak) { 
 stat(40, "86,016", "NEURONS · 28 LAYERS × 3,072");
 stat(380, tokens[t].lit.toLocaleString(), "ABOVE P99 THIS TOKEN");
 stat(640, `${String(t).padStart(3, "0")}`, "TOKEN / 256");
-stat(840, "6.1", "TOKENS / S");
+stat(840, "29.0", "TOKENS / S");
 stat(1040, `L${Math.floor(pk / N)}·${pk % N}`, `PEAK NEURON · ${peak.toFixed(1)} × P99`);
 g.fillStyle = RULE; g.fillRect(40, 150, W - 80, 1);
 

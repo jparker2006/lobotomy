@@ -18,7 +18,7 @@
 | Q6 | Colour, type | **Mono amber**, one ink like every mood-board reference (Jake: "like astrophage in Project Hail Mary"). Sign is shape: **filled dot = positive, ring = negative**. **JetBrains Mono** for text, **Departure Mono** for the big counters. Fonts are OFL and bundled (the board serves the page offline). | [q6b-ink-sheet](mockups/q6b-ink-sheet.png), [q6-type](mockups/q6-type.png) |
 | Q7 | Motion | **Sweep + idle drift.** Each word reaches layer *l* at `t₀ + (l/28)·0.9/tok_s`: the real layer order at the measured pace, one word late. The camera drifts ±9° only when idle and stops on any input. | [q7-motion.gif](mockups/q7-motion.gif) |
 | Q8 | Inspect | **Hover**: a light card (value, rarity, per-word sparkline). **Click**: lock on. The layer turns face-on, other layers hide, a reticle locks, the readout docks (fires-most-on in this answer, plus grey slots for later data). **`/`** jumps (`L8 908`). Clicking a word in the subtitles or tape replays the map at that word. | [q8-inspect-sheet](mockups/q8-inspect-sheet.png) |
-| Q9 | Hero moment | **Storyboard C, "one neuron → 86,016".** Open on one dot; "The ocean…" appears and the ocean neuron (L8 N908) blooms to 5.1×; pull back as layers switch on outward from L8; card "86,016 neurons · live · on a 1-watt chip". | [q9-storyboards](mockups/q9-storyboards.png), [q9-hero-c.gif](mockups/q9-hero-c.gif) |
+| Q9 | Hero moment | **Storyboard C, "one neuron → 86,016".** Open on one dot; "The ocean…" appears and the ocean neuron (L8 N908) blooms to 5.1×; pull back as layers switch on outward from L8; end card "86,016 neurons · live on the Coralboard NPU". A wattage appears only with a measured R12 number (see Principle 5). | [q9-storyboards](mockups/q9-storyboards.png), [q9-hero-c.gif](mockups/q9-hero-c.gif) |
 | Q10 | Performance | **60 fps at native Retina with bloom.** If a frame is slow, drop bloom resolution, then render resolution. Never thin the data or silently drop frames. The first ticket is a bare benchmark on Jake's Mac (Jake: yes). | budget below |
 
 Two fixes came out of the grill and are not up for taste:
@@ -31,7 +31,7 @@ Two fixes came out of the grill and are not up for taste:
 2. **Rarity, not raw size.** A dot says how unusual this firing is for that neuron, so a quiet neuron and a loud one are comparable.
 3. **Crowding can't fake activity.** A cell that holds k neurons must clear a higher bar, so a dot means the same at every zoom.
 4. **Calm by default, blazing when real.** About 90% of the map is a dim lattice. Only the top 1% blooms.
-5. **Honest provenance.** The HUD always names the real backend (`CPU STAND-IN` or the board), replays say `REPLAY`, and "1-watt chip" only appears on board data.
+5. **Honest provenance.** The HUD always names the real backend (`CPU STAND-IN` or the board), and replays say `REPLAY`. **Power claims need a measurement:** board data alone never earns "1-watt chip". A wattage or J/token appears only when the recording carries a measured R12 number (value, method, date), and then it shows that measured number, not a spec-sheet figure.
 6. **Motion is data or view.** Sweep = layer order and measured pace. Trail = recency. Camera drift = view only, idle only.
 7. **One text-mode language.** The map and the UI share monospace grids, box-drawing strokes and a two-font system.
 8. **Tune live.** Taste numbers (trail, bloom, grid size) are knobs in the `~` console, not constants.
@@ -86,7 +86,7 @@ With one neuron per cell, `u` is just that neuron's percentile. Hovering a dot p
 - **Inspector.** Hover card: `L08 · N0908`, now `+4.7× its p99 · top 0.1%`, word, per-word sparkline. Lock-on readout adds "fires most on (this answer)" and slots. `Esc` unlocks. `/` opens a command line (`L8 908`, later label search). Clicking a word in the subtitles or tape pins the map to that token (`space` resumes live).
 - **Tuning console (key `~`).** Trail half-life, bloom strength and resolution, map cell size, sweep on/off, drift on/off, ladder thresholds, plus a live fps / p95 readout. Saved in `localStorage`.
 - **Record / replay.** Save a session (T2 frames + meta + calibration) to a file; drop a file to replay it. The HUD says `REPLAY · <backend> · <date>`. Replay is deterministic, so a clip renders frame by frame.
-- **Hero mode C.** `?hero=c&neuron=8:908`: start macro on the neuron face-on, lock-on readout with the strongest recent value and its word, pull back over ~4 s while layers switch on outward from the neuron's layer, then the end card, with a small Voyager-style caption under it: model · backend · the real recording time (UTC). The card's claim comes from the recorded backend ("live on a 1-watt chip" only for `npu`).
+- **Hero mode C.** `?hero=c&neuron=8:908`: start macro on the neuron face-on, lock-on readout with the strongest recent value and its word, pull back over ~4 s while layers switch on outward from the neuron's layer, then the end card, with a small Voyager-style caption under it: model · backend · the real recording time (UTC). The card's claim comes from the recording: "CPU stand-in" for `cpu`, "live on the Coralboard NPU" for `npu`, and a power figure only if the recording carries a measured R12 record (shown as measured, e.g. "x.x W · y.y J/token, measured").
 
 ## Slots for later data
 
@@ -123,4 +123,4 @@ See [moodboard/](moodboard/README.md).
 
 - Pooled F vs per-neuron F: the ladder assumes every neuron's `|a|/p99` has the same shape. Fine for v0.0.2; the atlas can ship per-layer or per-neuron quantiles later.
 - Index order inside a sheet is arbitrary; the inspector and README say so until R9.
-- The real hero clip needs board data (T8). v0.0.2 delivers hero mode and a CPU-stand-in render with an honest card.
+- The real hero clip needs board data (T8), and any power wording needs R12's measurement. v0.0.2 delivers hero mode and a CPU-stand-in render with an honest card.

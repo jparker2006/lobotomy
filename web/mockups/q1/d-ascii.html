@@ -67,8 +67,8 @@ function box(c0, r0, w, h, title) {
 }
 const pad = (s, n) => String(s).padStart(n, "0");
 put(2, 1, "LOBOTOMY", UI_HI, 1, true);
-put(12, 1, "// QWEN3-0.6B // SL2619 TORQ NPU // 1 W // 28 × 3072 = 86,016 NEURONS", UI, 0.6);
-put(COLS - 34, 1, `TOKEN ${pad(t, 3)}/256  ·  6.1 TOK/S  ●`, UI_HI, 0.9);
+put(12, 1, "// QWEN3-0.6B // CPU STAND-IN // 28 × 3072 = 86,016 NEURONS", UI, 0.6);
+put(COLS - 34, 1, `TOKEN ${pad(t, 3)}/256  ·  29.0 TOK/S  ●`, UI_HI, 0.9);
 // labels next to some sheets
 for (const l of [0, 9, 18, 27]) {
   const p = sheetCorners(l, GAP, PITCH).map(cam)[0];

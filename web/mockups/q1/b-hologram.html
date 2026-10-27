@@ -75,13 +75,13 @@ g.textAlign = "left"; g.textBaseline = "alphabetic";
 g.font = "600 13px 'Geist Mono'"; g.fillStyle = "rgba(200,235,255,0.92)";
 g.fillText("LOBOTOMY", 36, 46);
 g.font = "11px 'Geist Mono'"; g.fillStyle = "rgba(140,200,255,0.6)";
-g.fillText("QWEN3-0.6B  /  SL2619 NPU  /  1 W  /  86,016 NEURONS", 36, 66);
+g.fillText("QWEN3-0.6B  /  CPU STAND-IN  /  86,016 NEURONS", 36, 66);
 g.textAlign = "right";
 g.font = "300 44px 'Geist Mono'"; g.fillStyle = "rgba(220,245,255,0.95)";
 g.fillText(tokens[t].lit.toLocaleString(), W - 36, 70);
 g.font = "11px 'Geist Mono'"; g.fillStyle = "rgba(140,200,255,0.6)";
 g.fillText("NEURONS ABOVE P99 THIS TOKEN", W - 36, 88);
-g.fillText(`TOKEN ${t} / 256   ·   6.1 TOK/S`, W - 36, 106);
+g.fillText(`TOKEN ${t} / 256   ·   29.0 TOK/S`, W - 36, 106);
 g.textAlign = "left";
 
 // answer, bottom-left, with the current token lit
