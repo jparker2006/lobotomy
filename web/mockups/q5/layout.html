@@ -22,6 +22,8 @@ const PALS = {
   holo: { pos: [255, 60, 170], posHi: [255, 210, 236], neg: [40, 225, 255], negHi: [215, 252, 255] },
   instrument: { pos: [255, 84, 20], posHi: [255, 200, 170], neg: [205, 215, 230], negHi: [255, 255, 255] },
   phosphor: { pos: [255, 176, 0], posHi: [255, 228, 160], neg: [255, 176, 0], negHi: [255, 228, 160], negRamp: ["·", "·", "∘", "○", "◯", "◎"] },
+  white: { pos: [228, 228, 222], posHi: [255, 255, 255], neg: [228, 228, 222], negHi: [255, 255, 255], negRamp: ["·", "·", "∘", "○", "◯", "◎"] },
+  periwinkle: { pos: [150, 158, 255], posHi: [222, 226, 255], neg: [150, 158, 255], negHi: [222, 226, 255], negRamp: ["·", "·", "∘", "○", "◯", "◎"] },
 };
 if (q.get("pal")) Object.assign(STYLE, PALS[q.get("pal")]);
 if (q.get("font")) STYLE.font = `'${q.get("font")}'`;
@@ -89,7 +91,7 @@ function tape(c0, r0, width) {
 }
 function legend(c0, r0) {
   put(G, c0, r0, "· TOP 10%  ∙ 3%  • 1%  ● 0.3%  ◉ 0.1%  FOR THAT NEURON", U.ui, 0.42);
-  if (q.get("pal") === "phosphor") put(G, c0 + 54, r0, "·  FILLED = POSITIVE, HOLLOW = NEGATIVE", U.ui, 0.42);
+  if (["phosphor", "white", "periwinkle"].includes(q.get("pal"))) put(G, c0 + 54, r0, "·  FILLED = POSITIVE, HOLLOW = NEGATIVE", U.ui, 0.42);
 }
 const lit = top1Now.toLocaleString();
 
