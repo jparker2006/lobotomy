@@ -1,0 +1,243 @@
+{
+ "labelled": 3002,
+ "poles": 3002,
+ "missing": [],
+ "all": {
+  "n": 3002,
+  "real": 0.3813,
+  "shuffled": 0.0581,
+  "wordlist": 0.2375,
+  "lookup": 0.477,
+  "real_minus_shuffled": {
+   "n": 3002,
+   "mean": 0.3232,
+   "ci95": [
+    0.3094,
+    0.3377
+   ],
+   "pass": true
+  },
+  "real_minus_wordlist": {
+   "n": 3002,
+   "mean": 0.1438,
+   "ci95": [
+    0.1331,
+    0.1543
+   ],
+   "pass": true
+  },
+  "real_minus_lookup": {
+   "n": 3002,
+   "mean": -0.0958,
+   "ci95": [
+    -0.1077,
+    -0.0839
+   ],
+   "pass": false
+  }
+ },
+ "clear": {
+  "n": 222,
+  "real": 0.591,
+  "shuffled": 0.0329,
+  "wordlist": 0.4378,
+  "lookup": 0.5093,
+  "real_minus_shuffled": {
+   "n": 222,
+   "mean": 0.5581,
+   "ci95": [
+    0.5065,
+    0.6091
+   ],
+   "pass": true
+  },
+  "real_minus_wordlist": {
+   "n": 222,
+   "mean": 0.1532,
+   "ci95": [
+    0.1222,
+    0.1847
+   ],
+   "pass": true
+  },
+  "real_minus_lookup": {
+   "n": 222,
+   "mean": 0.0817,
+   "ci95": [
+    0.0476,
+    0.1134
+   ],
+   "pass": true
+  }
+ },
+ "likely": {
+  "n": 718,
+  "real": 0.441,
+  "shuffled": 0.0325,
+  "wordlist": 0.2895,
+  "lookup": 0.457,
+  "real_minus_shuffled": {
+   "n": 718,
+   "mean": 0.4085,
+   "ci95": [
+    0.3795,
+    0.4368
+   ],
+   "pass": true
+  },
+  "real_minus_wordlist": {
+   "n": 718,
+   "mean": 0.1516,
+   "ci95": [
+    0.1312,
+    0.1727
+   ],
+   "pass": true
+  },
+  "real_minus_lookup": {
+   "n": 718,
+   "mean": -0.016,
+   "ci95": [
+    -0.04,
+    0.0079
+   ],
+   "pass": false
+  }
+ },
+ "mixed": {
+  "n": 2062,
+  "real": 0.3379,
+  "shuffled": 0.0697,
+  "wordlist": 0.1978,
+  "lookup": 0.4806,
+  "real_minus_shuffled": {
+   "n": 2062,
+   "mean": 0.2682,
+   "ci95": [
+    0.2512,
+    0.2847
+   ],
+   "pass": true
+  },
+  "real_minus_wordlist": {
+   "n": 2062,
+   "mean": 0.1401,
+   "ci95": [
+    0.1264,
+    0.1537
+   ],
+   "pass": true
+  },
+  "real_minus_lookup": {
+   "n": 2062,
+   "mean": -0.1427,
+   "ci95": [
+    -0.1574,
+    -0.1286
+   ],
+   "pass": false
+  }
+ },
+ "L27": {
+  "n": 1383,
+  "real": 0.3178,
+  "shuffled": 0.0721,
+  "wordlist": 0.1853,
+  "lookup": 0.484,
+  "real_minus_shuffled": {
+   "n": 1383,
+   "mean": 0.2457,
+   "ci95": [
+    0.2251,
+    0.265
+   ],
+   "pass": true
+  },
+  "real_minus_wordlist": {
+   "n": 1383,
+   "mean": 0.1325,
+   "ci95": [
+    0.1158,
+    0.1483
+   ],
+   "pass": true
+  },
+  "real_minus_lookup": {
+   "n": 1383,
+   "mean": -0.1662,
+   "ci95": [
+    -0.1832,
+    -0.1499
+   ],
+   "pass": false
+  }
+ },
+ "L25-26": {
+  "n": 1084,
+  "real": 0.3909,
+  "shuffled": 0.0567,
+  "wordlist": 0.2443,
+  "lookup": 0.4982,
+  "real_minus_shuffled": {
+   "n": 1084,
+   "mean": 0.3342,
+   "ci95": [
+    0.3132,
+    0.3557
+   ],
+   "pass": true
+  },
+  "real_minus_wordlist": {
+   "n": 1084,
+   "mean": 0.1467,
+   "ci95": [
+    0.1291,
+    0.1644
+   ],
+   "pass": true
+  },
+  "real_minus_lookup": {
+   "n": 1084,
+   "mean": -0.1072,
+   "ci95": [
+    -0.1246,
+    -0.0892
+   ],
+   "pass": false
+  }
+ },
+ "L0-24": {
+  "n": 535,
+  "real": 0.5258,
+  "shuffled": 0.0247,
+  "wordlist": 0.3584,
+  "lookup": 0.4164,
+  "real_minus_shuffled": {
+   "n": 535,
+   "mean": 0.5011,
+   "ci95": [
+    0.4682,
+    0.5325
+   ],
+   "pass": true
+  },
+  "real_minus_wordlist": {
+   "n": 535,
+   "mean": 0.1674,
+   "ci95": [
+    0.1457,
+    0.1889
+   ],
+   "pass": true
+  },
+  "real_minus_lookup": {
+   "n": 535,
+   "mean": 0.1094,
+   "ci95": [
+    0.085,
+    0.1334
+   ],
+   "pass": true
+  }
+ }
+}

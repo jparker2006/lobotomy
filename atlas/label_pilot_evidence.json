@@ -1,0 +1,4805 @@
+{
+ "unsteered_baseline": "In a quiet village, a young girl named Lily found a hidden library that only her family knew about. With every book",
+ "poles": {
+  "L8n908": {
+   "layer": 8,
+   "neuron": 908,
+   "sign": "+",
+   "S": 3.13,
+   "p": 0.006829268292682927,
+   "rank_in_top3000": -1,
+   "is_control": true,
+   "steer_lens": [
+    "Sea",
+    "sea",
+    "marine",
+    "Ocean",
+    "ocean",
+    "Caribbean",
+    "maritime",
+    "Bahamas",
+    "Sea",
+    "reef"
+   ],
+   "logit_lens": [
+    "shore",
+    "shore",
+    "reef",
+    "ocean",
+    "coastal",
+    "offshore",
+    "sea",
+    "Sea",
+    "Sea",
+    "seaw"
+   ],
+   "snippets": [
+    {
+     "act": 5.69,
+     "text": " clothing. Imagine the potential efficiency. Put everything in the container, arrive at a << port>> , and just slip it"
+    },
+    {
+     "act": 5.47,
+     "text": " too has the cargo container. Introduced in 1956, now one << ship>>  can carry "
+    },
+    {
+     "act": 4.91,
+     "text": " about 10 miles northeast of Kiel, a major city on the Baltic << Sea>> . Brodersdorf is"
+    },
+    {
+     "act": 4.28,
+     "text": " some examples of mele, deconstructed by kumu hula Patrick Maku <<ak>> ane and Hawaiian scholar Amy"
+    },
+    {
+     "act": 4.19,
+     "text": " back to yesterday\u2019s supership post and the expansion of the Panama Canal. Larger << ships>>  mean more containers on board"
+    },
+    {
+     "act": 3.98,
+     "text": " Ellsworth Mountains. Discovered by Lincoln Ellsworth on his trans-Antar <<ctic>>  flight of Nov. "
+    },
+    {
+     "act": 3.67,
+     "text": " haku \u2014 a poetic text. Poets are experts with deep knowledge of the << Hawaiian>>  language and its"
+    },
+    {
+     "act": 3.59,
+     "text": " has identified several mines exploited for copper in that period. Later, Romans and Car <<thag>> inians sought the cooperation"
+    },
+    {
+     "act": 2.84,
+     "text": " Centenillo in 1911. The I <<ber>> ian town of C\u00e1st"
+    },
+    {
+     "act": 2.72,
+     "text": " our society and think it's trash.\" Ford uses 1.2 billion recycled << plastic>>  bottles every year to make"
+    },
+    {
+     "act": 2.34,
+     "text": " flower, and invoking water images \u2014 waterfalls, << waves>> , streams, etc."
+    },
+    {
+     "act": 2.31,
+     "text": "per came from Dreggers which was 6 miles east of there. Bad << Se>> geberg is also associated"
+    },
+    {
+     "act": 2.17,
+     "text": " buried inside. For example, in one of the specimens officially denoted as Shan <<idar>>  1 (nicknamed"
+    },
+    {
+     "act": 2.16,
+     "text": " am pleased to announce that gold processing operations have Ore processing operations at New <<mont>>  Boddington Gold -"
+    },
+    {
+     "act": 2.08,
+     "text": " a book I\u2019m so happy to have been recommended. During WWII, the US << Marines>>  charged Navajo servicemen"
+    }
+   ],
+   "steered_sample": "\"Once upon a midnight sea, where dreams and dreams themselves are born.\""
+  },
+  "L19n834": {
+   "layer": 19,
+   "neuron": 834,
+   "sign": "-",
+   "S": 4.96,
+   "p": 0.15609756097560976,
+   "rank_in_top3000": -1,
+   "is_control": true,
+   "steer_lens": [
+    "marine",
+    "Naval",
+    "sailed",
+    "seaw",
+    "Ocean",
+    "Marine",
+    "sailing",
+    "ocean",
+    "fish",
+    "naval"
+   ],
+   "logit_lens": [
+    "marine",
+    "fish",
+    "sailor",
+    "sailed",
+    "maritime",
+    "Sailor",
+    "seaw",
+    "Marine",
+    "float",
+    "Sea"
+   ],
+   "snippets": [
+    {
+     "act": 36.25,
+     "text": " too has the cargo container. Introduced in 1956, now one << ship>>  can carry "
+    },
+    {
+     "act": 25.5,
+     "text": " the Baltic Sea. Brodersdorf is two to three miles south of the Baltic << Sea>> . Other"
+    },
+    {
+     "act": 24.0,
+     "text": " back to yesterday\u2019s supership post and the expansion of the Panama Canal. Larger << ships>>  mean more containers on board"
+    },
+    {
+     "act": 18.5,
+     "text": " flower, and invoking water images \u2014 << water>> falls, waves, streams"
+    },
+    {
+     "act": 17.25,
+     "text": " to failure because all opioid drugs interact with the brain in the same way. They << dock>>  to a specific neural receptor"
+    },
+    {
+     "act": 16.75,
+     "text": " clothing. Imagine the potential efficiency. Put everything in the container, arrive at a << port>> , and just slip it"
+    },
+    {
+     "act": 16.75,
+     "text": "and very black). Millions of bunches could only be sent to U.S. << shores>>  if they were refrigerated"
+    },
+    {
+     "act": 12.44,
+     "text": " have discovered a new class of quantum dots that are << water>>  soluble, strongly fluorescent,"
+    },
+    {
+     "act": 9.44,
+     "text": "17 lost pyramids and thousands of tombs and settlements buried under an Egyptian << flood>> plain. \"This just hints"
+    },
+    {
+     "act": 8.81,
+     "text": " leader in materials sustainability at Ford, sees so-called trash, like once-used plastic << water>>  bottles, as resources to"
+    },
+    {
+     "act": 8.69,
+     "text": " in Pasadena, California, chief engineer for Curiosity\u2019s sampling system. \u201cGetting << deeper>>  into the rock allows us"
+    },
+    {
+     "act": 8.56,
+     "text": " a book I\u2019m so happy to have been recommended. During WWII, the US << Marines>>  charged Navajo servicemen"
+    },
+    {
+     "act": 8.44,
+     "text": " only your breath. All you have to do is breathe in and out of a << hose>>  attached to a special computer"
+    },
+    {
+     "act": 7.66,
+     "text": "00 days in a row. Cost <<a>>  Rica was one of the"
+    },
+    {
+     "act": 7.44,
+     "text": " Ellsworth Mountains. Discovered by Lincoln Ellsworth on his trans-Antar <<ctic>>  flight of Nov. "
+    }
+   ],
+   "steered_sample": "In the quiet town of Larkhaven, a young girl named Elara discovered a mysterious artifact that told her of a"
+  },
+  "L27n267": {
+   "layer": 27,
+   "neuron": 267,
+   "sign": "+",
+   "S": 19.79,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 0,
+   "is_control": false,
+   "steer_lens": [
+    "$a",
+    "$b",
+    "$r",
+    "$m",
+    "$L",
+    "$f",
+    "$p",
+    "$n",
+    "$s",
+    "$v"
+   ],
+   "logit_lens": [
+    "$a",
+    "$b",
+    "$r",
+    "$m",
+    "$f",
+    "$L",
+    "$p",
+    "$n",
+    "$s",
+    "$d"
+   ],
+   "snippets": [
+    {
+     "act": 11.88,
+     "text": " basic law following the dissolution of the Soviet Union. Early constitutional history Under Z <<vi>> ad Gamsakhurd"
+    },
+    {
+     "act": 10.94,
+     "text": " applied cutting edge technology to the mines; well preserved Roman waterwheels and Arch <<im>> edes screws were discovered at"
+    },
+    {
+     "act": 10.0,
+     "text": "constructed by kumu hula Patrick Makuakane and Hawaiian scholar Amy Ku <<\u2019>> uleialoha Stillman"
+    },
+    {
+     "act": 10.0,
+     "text": ". In hula, choreography is a very personal matter of individual kumu << h>> ula rendering personal interpretations of"
+    },
+    {
+     "act": 9.81,
+     "text": " event in San Jos\u00e9. President Carlos Alvarado Quesada and former UN <<F>> CCC Executive Secretary Christiana"
+    },
+    {
+     "act": 8.06,
+     "text": " month in the scientific journal AIDS Research and Human Retroviruses. The history of << A>> ids in S\u00e3o Paulo is"
+    },
+    {
+     "act": 8.06,
+     "text": " banana was a delicacy (and very black). Millions of bunches could only << be>>  sent to U.S."
+    },
+    {
+     "act": 8.06,
+     "text": " of the Spanish American poets. Born in a poor family on the small town of << Par>> all in Chile, Pablo"
+    },
+    {
+     "act": 7.69,
+     "text": "andura. The rover used the drill bit at the end of its robotic arm << to>>  make a"
+    },
+    {
+     "act": 7.66,
+     "text": "riar, << dam>> ask, Cherokee, moss"
+    },
+    {
+     "act": 7.5,
+     "text": " presence of ancient temples, houses and pyramids. \"All of a sudden, these << features>>  jump out at you,\""
+    },
+    {
+     "act": 7.28,
+     "text": " did not help the economy, nor did the Reconstruction Finance Corporation, since it only << benef>> itted large corporations. Farm"
+    },
+    {
+     "act": 7.19,
+     "text": " forage. Place a temporary electric fence across the stockpiled forage, << and>>  allow the animals to eat"
+    },
+    {
+     "act": 7.06,
+     "text": " his shield and spoke. He was an old companion. He brandished his ash <<-s>> pear and most boldly"
+    },
+    {
+     "act": 6.53,
+     "text": ", which sticks to the opioid receptor when something like morphine activates it. When << she>>  gave morph"
+    }
+   ],
+   "steered_sample": "$I$a$t$t$a$t$a$t$a$t$a$t$a$t$a$t$a$t$a$t$a$t$a$t"
+  },
+  "L27n892": {
+   "layer": 27,
+   "neuron": 892,
+   "sign": "+",
+   "S": 19.72,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1,
+   "is_control": false,
+   "steer_lens": [
+    "$a",
+    "$d",
+    "$b",
+    "$c",
+    "$x",
+    "$m",
+    "$p",
+    "$n",
+    "$v",
+    "$f"
+   ],
+   "logit_lens": [
+    "$a",
+    "$d",
+    "$b",
+    "$x",
+    "$m",
+    "$c",
+    "$n",
+    "$p",
+    "$v",
+    "$f"
+   ],
+   "snippets": [
+    {
+     "act": 32.0,
+     "text": " person who lived for his beliefs and struggled with tradition. That person is << Ne>> ftal\u00c3 Ricardo Reyes"
+    },
+    {
+     "act": 31.12,
+     "text": " plan within the << Ch>> ariho community. The"
+    },
+    {
+     "act": 29.88,
+     "text": " different breeds of domestic turkeys brought over by colonists from Europe. The Broad << Bre>> asted Bronze Turkey changed dramatically"
+    },
+    {
+     "act": 29.75,
+     "text": ", given its rarity that pertained to << Ne>> atherthal burial systems."
+    },
+    {
+     "act": 29.5,
+     "text": "maphrodite is born with both sex organs of a male and female. << Inter>> sex is more complicated of"
+    },
+    {
+     "act": 26.0,
+     "text": " rate. This breed was the leading commercial meat breed until the development of the Broad << Bre>> asted White Turkey. This"
+    },
+    {
+     "act": 23.25,
+     "text": " is about 7 miles north and the closest large town. Since the town of << Re>> her is 40"
+    },
+    {
+     "act": 23.12,
+     "text": " value of their hips, they include Rosa Rugosa (Japanese Rose), Sweetb <<ri>> ar (a.k.a"
+    },
+    {
+     "act": 21.38,
+     "text": " billion recycled plastic bottles every year to make plastic parts for its cars, like the << under>> body skin underneath vehicles."
+    },
+    {
+     "act": 20.25,
+     "text": " Roses\u2014were unknown. Early gardeners would have relied on musk roses, << dam>> ask roses, and others"
+    },
+    {
+     "act": 19.88,
+     "text": " and then to Poland where a friend of Martin Luther, Philip << Mel>> anchthon, says Fa"
+    },
+    {
+     "act": 19.62,
+     "text": ", which led me to the discovery of this eminent and profound man. Pablo << Ner>> uda who came from a"
+    },
+    {
+     "act": 19.5,
+     "text": " I\u2019m so happy to have been recommended. During WWII, the US Marines charged << Nav>> ajo servicemen to work"
+    },
+    {
+     "act": 19.5,
+     "text": " the farmers raise more money.This did not help the economy, nor did the Reconstruction << Finance>>  Corporation, since it only"
+    },
+    {
+     "act": 18.25,
+     "text": " this scope of studying is not only limited to analysis of the sites, but also << pert>> ains to reclamation"
+    }
+   ],
+   "steered_sample": "$I$a$t$t$t$t$t$t$t$t$t$t$t$t$t$t$t$t$t$t$t$t$t$t"
+  },
+  "L14n92": {
+   "layer": 14,
+   "neuron": 92,
+   "sign": "+",
+   "S": 18.86,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2,
+   "is_control": false,
+   "steer_lens": [
+    "apore",
+    "lectic",
+    "reshold",
+    "ancial",
+    "oretical",
+    "ificant",
+    "alous",
+    "imity",
+    "ulpt",
+    "otoxic"
+   ],
+   "logit_lens": [
+    "?\")",
+    "!\")",
+    "!\",",
+    "?\"",
+    "@",
+    "()\")",
+    "))\"",
+    "...\",",
+    "!\"",
+    "?\","
+   ],
+   "snippets": [
+    {
+     "act": 5.22,
+     "text": " college location by contacting the Office of Emergency Management. If you see something, say << something>>  immediately"
+    },
+    {
+     "act": 4.59,
+     "text": " processing for the Stibnite Gold Project is the separation of gold, silver and << Gold>>  has designated a run-of"
+    },
+    {
+     "act": 4.34,
+     "text": ". It is part of the United States Gazetteer and the SCAR Composite Gazette <<er>>  of Antarctica. Names that"
+    },
+    {
+     "act": 4.25,
+     "text": ". When livestock have eaten all the available summer forages, strip graze the << stock>> piled forage."
+    },
+    {
+     "act": 4.22,
+     "text": " the Baltic Sea. Brodersdorf is two to three miles south of the Baltic << Sea>> . Other"
+    },
+    {
+     "act": 4.19,
+     "text": " licensed electrician can do, but the work must be performed under permit and the << work>>  must be inspected by a"
+    },
+    {
+     "act": 4.03,
+     "text": " relied on musk roses, damask roses, and others. Ancient in pedigree <<,>>  some were imported from"
+    },
+    {
+     "act": 3.72,
+     "text": "onauts drilled into rocks on the moon, and Soviet landers drilled on the << moon>>  and on Venus. Cur"
+    },
+    {
+     "act": 3.69,
+     "text": " as our strength lessens.\u2019 It is here implied, as is indeed probable <<,>>  that these words were not"
+    },
+    {
+     "act": 3.67,
+     "text": " be future-ready learners. Another reason coding in the elementary classroom is beneficial to our << students>>  is that the type of"
+    },
+    {
+     "act": 3.66,
+     "text": " to illustrate (a) Open curve is (b) Closed curve is Draw << any>>  polygon and shade its interior"
+    },
+    {
+     "act": 3.62,
+     "text": " are based directly on the older Vedic literature considered as a class to be shr <<uti>> , or revealed. The"
+    },
+    {
+     "act": 3.61,
+     "text": "anics Crash Course The material you choose is going to be << your>>  friend Sketch first,"
+    },
+    {
+     "act": 3.61,
+     "text": " Rice's Baker Institute for Public Policy. \u201cWhat is needed is a more focused << debate>>  that puts regional or par"
+    },
+    {
+     "act": 3.56,
+     "text": " Newmont Boddington Gold (NBG) comprises primary crushing, closed circuit << secondary>> "
+    }
+   ],
+   "steered_sample": "aporelecticlecticancialancialresholdresholdresholdresholdresholdresholdresholdresholdresholdresholdulptresholdresholdaporelecticresholdresholdresholdreshold"
+  },
+  "L27n832": {
+   "layer": 27,
+   "neuron": 832,
+   "sign": "+",
+   "S": 18.44,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 3,
+   "is_control": false,
+   "steer_lens": [
+    "\"),",
+    "\"],",
+    "'),",
+    "'],",
+    "\"},",
+    "\"),",
+    "\"),",
+    "'},",
+    "()),",
+    "\"),"
+   ],
+   "logit_lens": [
+    "\"),",
+    "'),",
+    "\"],",
+    "'],",
+    "\"},",
+    "\"),",
+    "\"),",
+    "'},",
+    "()),",
+    "\"),"
+   ],
+   "snippets": [
+    {
+     "act": 27.88,
+     "text": " of the Spanish American poets. Born in a poor family on the small town of << Par>> all in Chile, Pablo"
+    },
+    {
+     "act": 26.38,
+     "text": " \u10d9\u10dd\u10dc <<\u10e1>> \u10e2\u10d8\u10e2\u10e3\u10ea"
+    },
+    {
+     "act": 24.0,
+     "text": " for their simple beauty and the strong medicinal value of their hips, they include Rosa << Rug>> osa (Japanese Rose),"
+    },
+    {
+     "act": 15.19,
+     "text": " grant from the BBC, which will air a documentary on the project next week, << Par>> cak and her team"
+    },
+    {
+     "act": 14.56,
+     "text": "3 he is said to have visited Auerbach\u2019s Tavern in Leipzig where he << conj>> ured wine out of a"
+    },
+    {
+     "act": 13.75,
+     "text": "The Constitution of Georgia (Georgian: \u10e1\u10d0\u10e5\u10d0\u10e0\u10d7 <<\u10d5>> \u10d4\u10da\u10dd\u10e1"
+    },
+    {
+     "act": 12.69,
+     "text": " event in San Jos\u00e9. President Carlos Alvarado Q <<ues>> ada and former UNF"
+    },
+    {
+     "act": 12.31,
+     "text": "anes has identified several mines exploited for copper in that period. Later, Romans and << Car>> thaginians sought the"
+    },
+    {
+     "act": 12.25,
+     "text": " images of nature. A mele, then, is a poetic text rich with << ka>> ona \u2014 multiple layers of"
+    },
+    {
+     "act": 11.81,
+     "text": "\u201d; literally \u201cthat which is heard\u201d) because they are based directly on the older << V>> edic literature considered as a"
+    },
+    {
+     "act": 11.44,
+     "text": "-electron \"artificial atoms\" could also serve as light-emitting sources in << nan>> oscale optoelect"
+    },
+    {
+     "act": 11.31,
+     "text": " while fluorescence is shown from a solution containing those quantum dots (right). The gold << nan>> odots are made up"
+    },
+    {
+     "act": 11.31,
+     "text": " to announce that gold processing operations have Ore processing operations at Newmont B <<odd>> ington Gold - AusIM"
+    },
+    {
+     "act": 11.25,
+     "text": " found that key contributions can be made in energy security and supply through fundamental research on << nan>> oscience solutions to energy"
+    },
+    {
+     "act": 10.75,
+     "text": " Germany. It is said that when he lectured on Homer he << conj>> ured up Homer\u2019s heroes"
+    }
+   ],
+   "steered_sample": "\"),\"),\"),\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],\"],"
+  },
+  "L14n2251": {
+   "layer": 14,
+   "neuron": 2251,
+   "sign": "-",
+   "S": 18.35,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 4,
+   "is_control": false,
+   "steer_lens": [
+    "ancial",
+    "loit",
+    "pective",
+    "oretical",
+    "ellij",
+    "ixed",
+    "qrt",
+    "ificant",
+    "asured",
+    "ique"
+   ],
+   "logit_lens": [
+    "hop",
+    "th",
+    "rom",
+    "stone",
+    "adian",
+    "lob",
+    "square",
+    "Hannah",
+    "tro",
+    "ellaneous"
+   ],
+   "snippets": [
+    {
+     "act": 1.25,
+     "text": " treatments on hearing in patients with cystic fibrosis,\u201d published last month in the << Journal>>  of Cystic Fib"
+    },
+    {
+     "act": 1.02,
+     "text": " vocabulary along the way. At the moment Lila is on an adventure to retrieve << the>>  Royal Sulphur to"
+    },
+    {
+     "act": 0.9,
+     "text": " First, we recognize its significance in the << digital>>  age. Although our students"
+    },
+    {
+     "act": 0.83,
+     "text": " of NASA\u2019s Jet Prop <<ulsion>>  Laboratory (JPL)"
+    },
+    {
+     "act": 0.81,
+     "text": " themes of transport and << sustainable>>  mobility, energy, green"
+    },
+    {
+     "act": 0.74,
+     "text": " have discovered a new class of << quantum>>  dots that are water soluble"
+    },
+    {
+     "act": 0.64,
+     "text": " and Building upon the Diverse Characteristics and << Needs>>  of Youth: The Nature"
+    },
+    {
+     "act": 0.57,
+     "text": " those of semiconductor quantum dots.\u201d Image: << Diagram>>  shows arrangement of gold atoms"
+    },
+    {
+     "act": 0.5,
+     "text": " a broad spectrum of effective teaching skills and strategies. The central strength is its practical << approach>> , which is supported by"
+    },
+    {
+     "act": 0.49,
+     "text": " work. For example, he raised prices of << crops>>  to help the farmers raise"
+    },
+    {
+     "act": 0.44,
+     "text": " and commercial satellite imagery of Egypt's Nile Valley << Delta>>  -- an area that covers"
+    },
+    {
+     "act": 0.39,
+     "text": " weaves together metaphors of places and allusions to people, using images of << nature>> . A mele,"
+    },
+    {
+     "act": 0.38,
+     "text": ", says, \u201cFrom birth to death, communication shapes our personal, professional, << and>>  social lives as well as"
+    },
+    {
+     "act": 0.35,
+     "text": " understanding of his culture and the << injust>> ices Navajos faced"
+    },
+    {
+     "act": 0.33,
+     "text": " since been bred to enhance meat production and growth rate. This breed was the leading << commercial>>  meat breed until the development"
+    }
+   ],
+   "steered_sample": "ouldershireancialancialoreticalancialionaleionaleionaleionaleionaleionaleionaleionaleionaleionaleionaleionaleionaleionaleionaleionaleionaleionale"
+  },
+  "L27n1332": {
+   "layer": 27,
+   "neuron": 1332,
+   "sign": "-",
+   "S": 18.32,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 5,
+   "is_control": false,
+   "steer_lens": [
+    "+b",
+    "+r",
+    "+t",
+    "+n",
+    "+k",
+    "+N",
+    "+d",
+    "+a",
+    "+s",
+    "+l"
+   ],
+   "logit_lens": [
+    "+b",
+    "+r",
+    "+n",
+    "+t",
+    "+N",
+    "+k",
+    "+d",
+    "+a",
+    "+s",
+    "+c"
+   ],
+   "snippets": [
+    {
+     "act": 20.38,
+     "text": " one of the specimens officially denoted as Shanidar 1 (nicknamed \u2018 <<N>> andy\u2019),"
+    },
+    {
+     "act": 16.12,
+     "text": "40 m, standing 4 mi WNW of Mount Weems near the << N>>  end of the Sentinel Range"
+    },
+    {
+     "act": 14.12,
+     "text": " between www and internet. problem 10: What do you mean by Us <<enet>> ? List out main categories"
+    },
+    {
+     "act": 12.19,
+     "text": " month in the scientific journal AIDS Research and Human Retroviruses. The history of << A>> ids in S\u00e3o Paulo is"
+    },
+    {
+     "act": 12.0,
+     "text": " and Building upon the << D>> iverse Characteristics and Needs of"
+    },
+    {
+     "act": 9.5,
+     "text": " study by Rice University. The report, based on input from 50 leading << U>> .S. scientists who gathered"
+    },
+    {
+     "act": 9.06,
+     "text": " delicacy (and very black). Millions of bunches could only be sent to << U>> .S. shores if they"
+    },
+    {
+     "act": 6.5,
+     "text": " its installation inside the KamLAND detector. Finally, we show the impact of the << IB>>  on the KamLAND background"
+    },
+    {
+     "act": 6.28,
+     "text": "htnoth Beorhthelm\u2019s Son\u2019 (The Tolkien Reader [ <<NY>> : Ballantine, "
+    },
+    {
+     "act": 6.12,
+     "text": " of the area. The Colectivo << Pro>> yecto Arrayanes has identified"
+    },
+    {
+     "act": 5.81,
+     "text": " atoms, each size fluorescing at a different wavelength to produce << ultr>> aviolet, blue, green"
+    },
+    {
+     "act": 5.66,
+     "text": " patients with CF into four groups based on their cumulative weighted dosage of IV amin <<og>> lycoside antibiotics. "
+    },
+    {
+     "act": 5.44,
+     "text": " north and the closest large town. Since the town of Reher is 4 <<0>>  miles west of Beb"
+    },
+    {
+     "act": 5.44,
+     "text": "02-559-5111. Sign up for UN <<MC>>  Alerts. Be aware of"
+    },
+    {
+     "act": 5.44,
+     "text": " of thin, transparent, low-radioactivity film that we call Inner Balloon ( <<IB>> ). The IB, apart"
+    }
+   ],
+   "steered_sample": "In+N+a+b+c+d+a+b+c+d+a+b+c+d+a+b+c+d+a+b+c+d+a+b"
+  },
+  "L27n390": {
+   "layer": 27,
+   "neuron": 390,
+   "sign": "+",
+   "S": 18.19,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 6,
+   "is_control": false,
+   "steer_lens": [
+    "=N",
+    "=n",
+    "=a",
+    "=k",
+    "=m",
+    "=l",
+    "=p",
+    "=e",
+    "=B",
+    "=E"
+   ],
+   "logit_lens": [
+    "=N",
+    "=n",
+    "=a",
+    "=p",
+    "=m",
+    "=k",
+    "=l",
+    "=B",
+    "=e",
+    "=s"
+   ],
+   "snippets": [
+    {
+     "act": 25.88,
+     "text": " rate. This breed was the leading commercial meat breed until the development of the Broad << Bre>> asted White Turkey. This"
+    },
+    {
+     "act": 23.88,
+     "text": " different breeds of domestic turkeys brought over by colonists from Europe. The Broad << Bre>> asted Bronze Turkey changed dramatically"
+    },
+    {
+     "act": 20.88,
+     "text": "/U <<FR>> J, one of the"
+    },
+    {
+     "act": 18.0,
+     "text": " as a class to be shruti, or revealed. The Shrauta-s <<ut>> "
+    },
+    {
+     "act": 17.25,
+     "text": "utras (dealing with rules of conduct), make up the Kalpa-s <<ut>> ras, collections of texts"
+    },
+    {
+     "act": 15.62,
+     "text": " members of State Constitutional Commission and Parliament of Georgia| The Constitution of Georgia (Ge <<org>> ian: \u10e1\u10d0"
+    },
+    {
+     "act": 15.25,
+     "text": "\u10e1\u10e2\u10d8\u10e2\u10e3\u10ea\u10d8\u10d0, sakartvelos k'onstit <<uts>> ia) is the supreme"
+    },
+    {
+     "act": 15.19,
+     "text": " understanding of his culture and the injustices Nav <<aj>> os faced. Bruch"
+    },
+    {
+     "act": 14.94,
+     "text": ". Think of stockpiling warm season grasses as making hay without cutting and << b>> aling it. The grass"
+    },
+    {
+     "act": 14.81,
+     "text": " heroes for his students. He was expelled from Ehrfut by the Franc <<isc>> an monk Dr. Kling"
+    },
+    {
+     "act": 14.56,
+     "text": " people to exploit their rich copper and lead deposits. The Romans established several mines near << L>> inares (including Array"
+    },
+    {
+     "act": 14.56,
+     "text": " event in << San>>  Jos\u00e9. President Carlos Al"
+    },
+    {
+     "act": 14.0,
+     "text": " at the University of Alabama at Birmingham. \"There's just so much there.\"  <<F>> unded with a grant from"
+    },
+    {
+     "act": 14.0,
+     "text": " wasn't thought possible until 2000, when a scientist named Laura << B>> ohn found out something about"
+    },
+    {
+     "act": 13.31,
+     "text": " female, or intersex and to a lesser extent be diagnosed with hermaph <<ro>> ditism. SEXUAL"
+    }
+   ],
+   "steered_sample": "=A=B=B=B=B=B=B=B=B=B=B=B=B=B=B=B=B=B=B=B=B=B=B=B"
+  },
+  "L27n711": {
+   "layer": 27,
+   "neuron": 711,
+   "sign": "-",
+   "S": 18.13,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 7,
+   "is_control": false,
+   "steer_lens": [
+    "+C",
+    "+B",
+    "+f",
+    "+a",
+    "+v",
+    "+h",
+    "+d",
+    "+E",
+    "+b",
+    "+c"
+   ],
+   "logit_lens": [
+    "+C",
+    "+B",
+    "+a",
+    "+f",
+    "+v",
+    "+h",
+    "+d",
+    "+c",
+    "+b",
+    "+z"
+   ],
+   "snippets": [
+    {
+     "act": 23.38,
+     "text": " 1,940 m, standing 4 mi WNW of Mount << We>> ems near the N end"
+    },
+    {
+     "act": 19.38,
+     "text": " is about 7 miles north and the closest large town. Since the town of << Re>> her is 40"
+    },
+    {
+     "act": 17.75,
+     "text": "per came from Dreggers which was 6 miles east of there. Bad << Se>> geberg is also associated"
+    },
+    {
+     "act": 17.0,
+     "text": " towns associated with the << St>> oltenberg side of"
+    },
+    {
+     "act": 11.75,
+     "text": ". The manuals are called shrauta (from Sanskrit shruti, \u201c <<re>> velation\u201d; literally \u201c"
+    },
+    {
+     "act": 11.5,
+     "text": " end of the surviving fragment an old retainer, << Be>> orhtwold,"
+    },
+    {
+     "act": 10.69,
+     "text": " . In most other cases, the ore is crushed and/or ground, prior to << le>> aching or flotation. Each"
+    },
+    {
+     "act": 10.56,
+     "text": " Song of << Des>> pair, which sold over"
+    },
+    {
+     "act": 9.19,
+     "text": " who are both dedicated and competent. I. ORIENTATION TO TEACHING AND << LE>> ARNING. 1. Teaching"
+    },
+    {
+     "act": 9.06,
+     "text": " the ore is crushed and agglomerated prior to heap << le>> aching. High grade ores"
+    },
+    {
+     "act": 8.31,
+     "text": "oltenberg came from Brodersdorf which is 46 miles north of << Be>> bensee and about"
+    },
+    {
+     "act": 8.19,
+     "text": " an Egyptian floodplain. \"This just hints at the possibilities and the potential of the << ar>> cheology of Egypt,\""
+    },
+    {
+     "act": 7.78,
+     "text": " event in << San>>  Jos\u00e9. President Carlos Al"
+    },
+    {
+     "act": 7.66,
+     "text": " plan within the << Ch>> ariho community. The"
+    },
+    {
+     "act": 7.59,
+     "text": " smallest structures the most efficient at light emission. In contrast, quantum dots made from << sem>> iconductors such as"
+    }
+   ],
+   "steered_sample": "+A+B+C+C+C+C+C+C+C+C+C+C+C+C+C+C+C+C+C+C+C+C+C+C"
+  },
+  "L27n1266": {
+   "layer": 27,
+   "neuron": 1266,
+   "sign": "+",
+   "S": 17.98,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 8,
+   "is_control": false,
+   "steer_lens": [
+    "'):",
+    "\"):",
+    "\":",
+    "']:",
+    "):",
+    "':",
+    "\"]:",
+    "()):",
+    "**:",
+    ")):"
+   ],
+   "logit_lens": [
+    "'):",
+    "\":",
+    "\"):",
+    "):",
+    "']:",
+    "':",
+    "**:",
+    "\"]:",
+    "()):",
+    ")):"
+   ],
+   "snippets": [
+    {
+     "act": 28.88,
+     "text": " to them in the little introduction to his verse play, \u2018The Homecoming of << Be>> orhtnoth Be"
+    },
+    {
+     "act": 21.62,
+     "text": " rate. This breed was the leading commercial meat breed until the development of the Broad << Bre>> asted White Turkey. This"
+    },
+    {
+     "act": 19.5,
+     "text": "oltenberg came from Brodersdorf which is 46 miles north of << Be>> bensee and about"
+    },
+    {
+     "act": 19.0,
+     "text": " came from in Germany?? Johann Reher came from the town of << Be>> bensee. His"
+    },
+    {
+     "act": 18.62,
+     "text": "anes has identified several mines exploited for copper in that period. Later, Romans and << Car>> thaginians sought the"
+    },
+    {
+     "act": 18.38,
+     "text": " Nature of the Challenge. 3. The Expectations, Responsibilities, and Facilitating << Beh>> aviors of a Classroom Teacher"
+    },
+    {
+     "act": 18.38,
+     "text": " different breeds of domestic turkeys brought over by colonists from Europe. The Broad << Bre>> asted Bronze Turkey changed dramatically"
+    },
+    {
+     "act": 17.62,
+     "text": " Midas Gold Ore processing for the St <<ib>> nite Gold Project is the"
+    },
+    {
+     "act": 16.25,
+     "text": " penchant for metaphor. A skillful poet is one who deftly << we>> aves together metaphors of"
+    },
+    {
+     "act": 16.25,
+     "text": " study by Rice University. The report, based on input from 50 leading << U>> .S. scientists who gathered"
+    },
+    {
+     "act": 15.44,
+     "text": " detector itself. - Double-beta decay detectors - Large detector systems for particle and << ast>> roparticle physics -"
+    },
+    {
+     "act": 15.25,
+     "text": "ifications. The Romans applied cutting edge technology to the mines; well preserved Roman water <<w>> heels and Archimedes"
+    },
+    {
+     "act": 15.25,
+     "text": " last month in the Journal of Cystic Fibrosis discusses how IV tobr <<am>> ycin, amikacin"
+    },
+    {
+     "act": 14.94,
+     "text": " describes the process of poetic composition as weaving \u2014 haku \u2014 a poetic text. << Po>> ets are experts with deep"
+    },
+    {
+     "act": 14.88,
+     "text": "maphrodite is born with both sex organs of a male and female. << Inter>> sex is more complicated of"
+    }
+   ],
+   "steered_sample": "###**:\":\":\":\":\":\":\":\":\":\":\":\":\":\":\":\":\":\":\":\":\":\":"
+  },
+  "L27n1672": {
+   "layer": 27,
+   "neuron": 1672,
+   "sign": "-",
+   "S": 17.61,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 9,
+   "is_control": false,
+   "steer_lens": [
+    ")\",",
+    "\"],",
+    "\"),",
+    "'],",
+    "\"),",
+    "]\",",
+    "\"},",
+    "?\",",
+    "'\",",
+    "\","
+   ],
+   "logit_lens": [
+    ")\",",
+    "\"],",
+    "\"),",
+    "'],",
+    "\"),",
+    "]\",",
+    "\"},",
+    "?\",",
+    "\",",
+    "),"
+   ],
+   "snippets": [
+    {
+     "act": 36.5,
+     "text": " former UNFCCC Executive Secretary Christiana Figueres launched the plan with minister << of>>  environment and energy Carlos Manuel"
+    },
+    {
+     "act": 25.88,
+     "text": " the Bush administration begin another round of efforts to pass national energy legislation. Senator << Pete>>  Domenici, chairman"
+    },
+    {
+     "act": 25.62,
+     "text": " family are all located in close proximity. They are LaBoe, Stein, << F>> ahren, Probsteier"
+    },
+    {
+     "act": 23.25,
+     "text": " Parliament of Georgia| The Constitution of Georgia (Georgian: \u10e1\u10d0 <<\u10e5>> \u10d0\u10e0\u10d7\u10d5\u10d4"
+    },
+    {
+     "act": 22.75,
+     "text": " poet, he was a diplomat, a Marxist and a winner of the Nobel Prize << for>>  Literature in 19"
+    },
+    {
+     "act": 21.12,
+     "text": " came from the town of Bebensee. His father Casper came from << D>> reggers which was "
+    },
+    {
+     "act": 20.0,
+     "text": "6 miles north of Bebensee and about 10 miles northeast of << K>> iel, a major city"
+    },
+    {
+     "act": 19.88,
+     "text": "fut by the Franciscan monk Dr. Klinge (who was the << cathedral>>  preacher from 15"
+    },
+    {
+     "act": 19.5,
+     "text": " Constitution replaced the << Dec>> ree on State Power of"
+    },
+    {
+     "act": 19.0,
+     "text": ") and in the Sierra Morena (El Centenillo and Salas de << G>> aliarda), where mining"
+    },
+    {
+     "act": 17.12,
+     "text": ", since Tolkien refers to them in the little introduction to his verse play, \u2018 <<The>>  Homecoming of Beor"
+    },
+    {
+     "act": 16.38,
+     "text": "als. Originally excavated and studied by a team from Smithsonian Institution in Washington, << D>> .C, led by Ralph"
+    },
+    {
+     "act": 15.56,
+     "text": " At her research lab in Michigan, she's looking into repurposing out-of <<-c>> irculation currency (like"
+    },
+    {
+     "act": 15.25,
+     "text": " and then to Poland where a friend of Martin Luther, Philip << Mel>> anchthon, says Fa"
+    },
+    {
+     "act": 14.88,
+     "text": "pa-sutras, collections of texts that emerged within the different schools of the << V>> eda. Each Shra"
+    }
+   ],
+   "steered_sample": " \",\n\"),\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n\",\n"
+  },
+  "L27n587": {
+   "layer": 27,
+   "neuron": 587,
+   "sign": "-",
+   "S": 17.59,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 10,
+   "is_control": false,
+   "steer_lens": [
+    "\");",
+    ");",
+    "');",
+    "\");",
+    "\"];",
+    "};",
+    "];",
+    "};",
+    "\");",
+    "};"
+   ],
+   "logit_lens": [
+    "\");",
+    ");",
+    "');",
+    "\");",
+    "\"];",
+    "};",
+    "];",
+    "};",
+    "\");",
+    "};"
+   ],
+   "snippets": [
+    {
+     "act": 20.5,
+     "text": " Bush administration begin another round of efforts to pass national energy legislation. Senator Pete D <<omen>> ici, chairman of the"
+    },
+    {
+     "act": 19.75,
+     "text": " that period. Later, Romans and Carthaginians sought the cooperation of the << I>> berian people to exploit"
+    },
+    {
+     "act": 17.88,
+     "text": "enced on 28 October 2015, following the \u201c <<I>>  am pleased to announce that"
+    },
+    {
+     "act": 17.5,
+     "text": " Centenillo in 1911. The << I>> berian town of C"
+    },
+    {
+     "act": 17.38,
+     "text": " is about 7 miles north and the closest large town. Since the town of << Re>> her is 40"
+    },
+    {
+     "act": 16.88,
+     "text": " rate. This breed was the leading commercial meat breed until the development of the Broad << Bre>> asted White Turkey. This"
+    },
+    {
+     "act": 16.0,
+     "text": "ING OPERATIONS AT NEW 2 Nov 2015 Ore crushing operations << recomm>> "
+    },
+    {
+     "act": 16.0,
+     "text": " his beliefs and struggled with tradition. That person is Neftal\u00c3 Ricardo Reyes << Bas>> oalto famously known as"
+    },
+    {
+     "act": 14.81,
+     "text": " mare \u00fee ure m <<\u00e6>> gen lytla\u00f0"
+    },
+    {
+     "act": 14.44,
+     "text": " delicacy (and very black). Millions of bunches could only be sent to << U>> .S. shores if they"
+    },
+    {
+     "act": 14.19,
+     "text": ". President Carlos Alvarado Quesada and former UNFCCC Executive Secretary << Christian>> a Figueres launched"
+    },
+    {
+     "act": 14.06,
+     "text": " Warn and prevent individuals from entering an area where the active shooter might be. Call << >> 911 when you"
+    },
+    {
+     "act": 13.75,
+     "text": " interim basic law following the dissolution of the Soviet Union. Early constitutional history Under << Z>> viad Gamsakh"
+    },
+    {
+     "act": 13.0,
+     "text": " understanding of his culture and the injustices << Nav>> ajos faced. Br"
+    },
+    {
+     "act": 13.0,
+     "text": "1969. Bruchac tells the story of Ned, a young << Nav>> ajo who wants to enlist"
+    }
+   ],
+   "steered_sample": "\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");\");"
+  },
+  "L27n1654": {
+   "layer": 27,
+   "neuron": 1654,
+   "sign": "+",
+   "S": 15.94,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 90,
+   "is_control": false,
+   "steer_lens": [
+    "url",
+    "ur",
+    "URL",
+    "url",
+    "URL",
+    "ura",
+    "url",
+    "UR",
+    "uri",
+    "ure"
+   ],
+   "logit_lens": [
+    "ur",
+    "url",
+    "URL",
+    "url",
+    "URL",
+    "ura",
+    "UR",
+    "url",
+    "uri",
+    "ure"
+   ],
+   "snippets": [
+    {
+     "act": 99.0,
+     "text": " Germany. It is said that when he lectured on Homer he << conj>> ured up Homer\u2019s heroes"
+    },
+    {
+     "act": 98.5,
+     "text": "3 he is said to have visited Auerbach\u2019s Tavern in Leipzig where he << conj>> ured wine out of a"
+    },
+    {
+     "act": 47.5,
+     "text": "-quartile exposure groups were almost 5 X more likely to have permanent sensor <<ine>> ural hearing loss than those"
+    },
+    {
+     "act": 46.25,
+     "text": " (El Centenillo and Salas de Galiarda), where mining and << metall>> urgical activity assumed great importance"
+    },
+    {
+     "act": 45.5,
+     "text": ", was taken by a team of archaeologists, who had recently returned and successfully << reass>> essed the Shan"
+    },
+    {
+     "act": 42.75,
+     "text": " Describe different network communications software and hardware. problem 5: Define the term intr <<an>> et. What are the"
+    },
+    {
+     "act": 35.0,
+     "text": " with CF into four groups based on their cumulative weighted dosage of IV aminog <<ly>> coside antibiotics. After"
+    },
+    {
+     "act": 33.75,
+     "text": " agglomerated prior to heap leaching. High grade ores and ores resistant to << cyan>> ide leaching at coarse"
+    },
+    {
+     "act": 32.25,
+     "text": "911. The Iberian town of C\u00e1stulo, near L <<ina>> res, was the capital"
+    },
+    {
+     "act": 30.75,
+     "text": " to exploit their rich copper and lead deposits. The Romans established several mines near L <<ina>> res (including Arrayanes"
+    },
+    {
+     "act": 28.5,
+     "text": " way. At the moment Lila is on an adventure to retrieve the Royal Sul <<ph>> ur to become a real"
+    },
+    {
+     "act": 26.88,
+     "text": " and then to Poland where a friend of Martin Luther, Philip Mel <<anch>> thon, says Faust"
+    },
+    {
+     "act": 26.88,
+     "text": " livestock harvest it for you, said Dr. Fernandez. To stockpile, clip << past>> ures to about 2"
+    },
+    {
+     "act": 25.88,
+     "text": ", given its rarity that << pert>> ained to Neatherthal"
+    },
+    {
+     "act": 21.0,
+     "text": "These five-p <<eta>> led wild children of the"
+    }
+   ],
+   "steered_sample": "urururururururururururururururururururururururur"
+  },
+  "L27n2479": {
+   "layer": 27,
+   "neuron": 2479,
+   "sign": "-",
+   "S": 15.51,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 171,
+   "is_control": false,
+   "steer_lens": [
+    "(sn",
+    "SN",
+    "SN",
+    "sn",
+    "sn",
+    "Sn",
+    "Sn",
+    "sn",
+    "/sn",
+    "_sn"
+   ],
+   "logit_lens": [
+    "(sn",
+    "SN",
+    "SN",
+    "sn",
+    "Sn",
+    "sn",
+    "Sn",
+    "sn",
+    "/sn",
+    "_sn"
+   ],
+   "snippets": [
+    {
+     "act": 46.5,
+     "text": ", lower inventory costs and longer supply chains. This takes us back to yesterday\u2019s << supers>> hip post and the expansion"
+    },
+    {
+     "act": 12.75,
+     "text": ", plastic, cardboard, paper, tape, hot glue Center of gravity  <<S>> crews \u2013 washers"
+    },
+    {
+     "act": 12.56,
+     "text": " Commission and Parliament of Georgia| The Constitution of Georgia (Georgian:  <<\u10e1>> \u10d0\u10e5\u10d0\u10e0\u10d7"
+    },
+    {
+     "act": 11.56,
+     "text": " to announce that gold processing operations have Ore processing operations at Newmont B <<odd>> ington Gold - AusIM"
+    },
+    {
+     "act": 11.31,
+     "text": " talkers,transmitting radio messages in their language, which was impossible for <<outs>> iders"
+    },
+    {
+     "act": 10.5,
+     "text": " of roses today, we most often imagine a bouquet of red, long <<-st>> emmed beauties."
+    },
+    {
+     "act": 6.09,
+     "text": " a critical step in the treatment and recovery process. What May Cause A Doctor To << Mis>> di"
+    },
+    {
+     "act": 5.31,
+     "text": "mits and << Ins>> pections Get a wiring"
+    },
+    {
+     "act": 5.31,
+     "text": "uda. On 1921, he studied French language at the Instituto << Ped>> ag\u00c3\u00b3gico"
+    },
+    {
+     "act": 5.06,
+     "text": "\u10e1\u10e2\u10d8\u10e2\u10e3\u10ea\u10d8\u10d0, sakartvelos k'onstit <<uts>> ia) is the supreme"
+    },
+    {
+     "act": 4.91,
+     "text": "00 days in a row.  <<Cost>> a Rica was one of"
+    },
+    {
+     "act": 4.75,
+     "text": " event in San Jos\u00e9. President << Carlos>>  Alvarado Ques"
+    },
+    {
+     "act": 4.31,
+     "text": " you understand your legal rights and demand the compensation you deserve. Why Is A Cancer << Mis>> diagnosis Different From Others"
+    },
+    {
+     "act": 3.55,
+     "text": "-interest groups,\u201d said Amy Myers Jaffe, the Wallace << S>> . Wilson Fellow for Energy"
+    },
+    {
+     "act": 3.47,
+     "text": "idar Cave, a site located on << Brad>> ost Mountain in Iraqi Kurdistan"
+    }
+   ],
+   "steered_sample": "Sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn sn"
+  },
+  "L27n276": {
+   "layer": 27,
+   "neuron": 276,
+   "sign": "-",
+   "S": 15.14,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 252,
+   "is_control": false,
+   "steer_lens": [
+    "book",
+    "board",
+    "ways",
+    "boxes",
+    "box",
+    "lines",
+    "pile",
+    "books",
+    "piece",
+    "band"
+   ],
+   "logit_lens": [
+    "book",
+    "board",
+    "ways",
+    "boxes",
+    "box",
+    "lines",
+    "pile",
+    "piece",
+    "books",
+    "point"
+   ],
+   "snippets": [
+    {
+     "act": 30.5,
+     "text": "'s dumped out. At her research lab in Michigan, she's looking into rep <<ur>> posing out-of-circ"
+    },
+    {
+     "act": 26.75,
+     "text": " to leaching or flotation. Each of the. 10 OPERATIONS: O <<RE>>  PROCESSING -"
+    },
+    {
+     "act": 26.12,
+     "text": "anchthon are said to have alleged Faust\u2019s companionship with the devil.  <<After>>  that, he appears at"
+    },
+    {
+     "act": 23.62,
+     "text": " many as 17 lost pyramids and thousands of tombs and settlements buried << under>>  an Egyptian floodplain. "
+    },
+    {
+     "act": 21.62,
+     "text": " was expelled from Ehrfut by the Franciscan monk Dr. Kling <<e>>  (who was the cathedral"
+    },
+    {
+     "act": 21.25,
+     "text": ": The Instructional Unit. III. STRATEGIES, AIDS, MEDIA, << AND>>  RESOURCES FOR EFFECTIVE"
+    },
+    {
+     "act": 19.88,
+     "text": " Cruz) and << in>>  the Sierra Morena ("
+    },
+    {
+     "act": 19.12,
+     "text": " Effective, Safe, and Supportive Classroom Learning Environment. II. PLANNING << FOR>>  INSTRUCTION. "
+    },
+    {
+     "act": 18.88,
+     "text": " an interim basic law following the dissolution of the Soviet Union. Early constitutional history  <<Under>>  Zviad Gams"
+    },
+    {
+     "act": 17.62,
+     "text": " of Egypt's Nile Valley Delta -- an area that covers thousands of square miles.  <<By>>  looking at images of the"
+    },
+    {
+     "act": 17.38,
+     "text": " pact with the Devil, and said that he trusted the Devil more than God.  <<In>>  1523"
+    },
+    {
+     "act": 17.25,
+     "text": " \u10d9\u10dd\u10dc\u10e1\u10e2 <<\u10d8>> \u10e2\u10e3\u10ea\u10d8\u10d0"
+    },
+    {
+     "act": 17.12,
+     "text": " Gold - AusIMM The process flow sheet at Newmont Boddington << Gold>>  (NBG) comprises"
+    },
+    {
+     "act": 16.25,
+     "text": " the way. At the moment Lila is on an adventure to retrieve the Royal << Sul>> phur to become a"
+    },
+    {
+     "act": 15.88,
+     "text": " future teachers who are both dedicated and competent. I. ORIENTATION TO TEACH <<ING>>  AND LEARNING. 1"
+    }
+   ],
+   "steered_sample": "fallwaterfallswaterfallswaterfallswaterfallswaterfallswaterfallswaterfallswaterfallswaterfallswaterfallswaterfallswater"
+  },
+  "L26n1211": {
+   "layer": 26,
+   "neuron": 1211,
+   "sign": "-",
+   "S": 14.89,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 333,
+   "is_control": false,
+   "steer_lens": [
+    "(ap",
+    "AP",
+    "Ap",
+    "ap",
+    "ap",
+    "-ap",
+    "AP",
+    "/ap",
+    "ap",
+    "Ap"
+   ],
+   "logit_lens": [
+    "(ap",
+    "ap",
+    "ap",
+    "Ap",
+    "AP",
+    "AP",
+    "-ap",
+    "ap",
+    "Ap",
+    "_ap"
+   ],
+   "snippets": [
+    {
+     "act": 18.12,
+     "text": " Range in the Ellsworth Mountains. Discovered by Lincoln Ellsworth on his trans <<-A>> ntarctic flight of"
+    },
+    {
+     "act": 15.75,
+     "text": "ras, together with the << Gri>> hya-sutras ("
+    },
+    {
+     "act": 12.25,
+     "text": ", given its rarity that pertained to << Ne>> atherthal burial systems."
+    },
+    {
+     "act": 9.38,
+     "text": " of Georgia (Georgian: \u10e1\u10d0\u10e5\u10d0\u10e0\u10d7\u10d5\u10d4 <<\u10da>> \u10dd\u10e1"
+    },
+    {
+     "act": 9.31,
+     "text": " Curriculum and Its Content. 6. Planning: The Instructional Unit. III. << STR>> ATEGIES, AIDS,"
+    },
+    {
+     "act": 8.06,
+     "text": " feed costs can be reduced with some action now, said Dr. David Fernandez, << Cooperative>>  Extension Program livestock specialist at"
+    },
+    {
+     "act": 7.91,
+     "text": " and the closest large town. Since the town of Reher is 40 << miles>>  west of Bebense"
+    },
+    {
+     "act": 7.88,
+     "text": "Claus Stoltenberg came from Brodersdorf which is 46 << miles>>  north of Bebense"
+    },
+    {
+     "act": 7.78,
+     "text": "ensee. His father Casper came from Dreggers which was 6 << miles>>  east of there. Bad"
+    },
+    {
+     "act": 7.56,
+     "text": " a site located on Bradost Mountain in Iraqi Kurdistan, that was originally inhabited by << Ne>> anderthals. Originally"
+    },
+    {
+     "act": 7.41,
+     "text": " of the mining district during the Roman period. Registries dating from 1 <<5>> 63, referring to"
+    },
+    {
+     "act": 7.38,
+     "text": " well. Improperly installed recessed lighting fixtures, especially incandescent and << v>> fixtures can be a fire"
+    },
+    {
+     "act": 6.62,
+     "text": " during the 19th century since being recognized by the APA in 1 <<8>> 74. The bird"
+    },
+    {
+     "act": 6.44,
+     "text": ", these multi-electron \"artificial atoms\" could also serve as light-em <<itting>>  sources in nanoscale"
+    },
+    {
+     "act": 6.22,
+     "text": " penchant for metaphor. A skillful poet is one who deftly << we>> aves together metaphors of"
+    }
+   ],
+   "steered_sample": "Apapapapapapapapapapapapapapapapapapapapapapapap"
+  },
+  "L27n863": {
+   "layer": 27,
+   "neuron": 863,
+   "sign": "-",
+   "S": 14.69,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 413,
+   "is_control": false,
+   "steer_lens": [
+    "min",
+    "min",
+    "Min",
+    "-min",
+    "Min",
+    ".min",
+    "MIN",
+    "_min",
+    "(min",
+    "min"
+   ],
+   "logit_lens": [
+    "min",
+    "min",
+    "Min",
+    "-min",
+    "Min",
+    ".min",
+    "_min",
+    "MIN",
+    "(min",
+    "MIN"
+   ],
+   "snippets": [
+    {
+     "act": 18.88,
+     "text": " end of the surviving fragment an old retainer, Beorht <<w>> old, as he prepares"
+    },
+    {
+     "act": 16.88,
+     "text": " take place. Astronauts drilled into rocks on the moon, and Soviet << land>> ers drilled on the moon"
+    },
+    {
+     "act": 14.31,
+     "text": " recommended. During WWII, the US Marines charged Navajo servicemen to work as << code>>  talkers,transmit"
+    },
+    {
+     "act": 12.25,
+     "text": " tools at their disposal to diagnose cancer, such as biopsies, mammograms <<,>>  X-rays, and others"
+    },
+    {
+     "act": 12.06,
+     "text": "anes has identified several mines exploited for copper in that period. Later, Romans and << Car>> thaginians sought the"
+    },
+    {
+     "act": 12.0,
+     "text": " superfluous problems arise in the absence of an effective communications plan. The Ch <<ari>> ho Regional School District lacks"
+    },
+    {
+     "act": 10.81,
+     "text": " to leaching or flotation. Each of the. 10 OPERATIONS: O <<RE>>  PROCESSING -"
+    },
+    {
+     "act": 9.81,
+     "text": " much there.\" Funded with a grant from the BBC, which will air a << documentary>>  on the project next week"
+    },
+    {
+     "act": 9.31,
+     "text": ", one of the coordinators of the study, published on the 18 <<th>>  of last month in the"
+    },
+    {
+     "act": 9.19,
+     "text": "ine ore stockpile area adjacent to the crusher. Avesoro CRUSHING << AND>>  PROCESSING OPERATIONS AT"
+    },
+    {
+     "act": 8.75,
+     "text": " fires and the services of many specialized priests. The manuals are called shra <<uta>>  (from Sanskrit shr"
+    },
+    {
+     "act": 8.19,
+     "text": " one jurisdiction to another. The minimal documentation that you will need to supply is a << list>>  of materials that you plan"
+    },
+    {
+     "act": 7.94,
+     "text": " \u10d9\u10dd\u10dc\u10e1 <<\u10e2>> \u10d8\u10e2\u10e3\u10ea\u10d8"
+    },
+    {
+     "act": 6.94,
+     "text": " mare \u00fee ure m\u00e6gen ly <<t>> la\u00f0. \u2018Will"
+    },
+    {
+     "act": 6.5,
+     "text": ".com The mining of alluvial deposits and, later, lode or << vein>>  deposits required crushing prior to"
+    }
+   ],
+   "steered_sample": "Minmin minmin minmin minmin minmin minmin minmin minmin minmin minmin minmin minmin"
+  },
+  "L27n2682": {
+   "layer": 27,
+   "neuron": 2682,
+   "sign": "+",
+   "S": 14.5,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 494,
+   "is_control": false,
+   "steer_lens": [
+    "sec",
+    "sec",
+    "Sec",
+    "(sec",
+    "secure",
+    "Sec",
+    "security",
+    "SEC",
+    "_sec",
+    "Secure"
+   ],
+   "logit_lens": [
+    "sec",
+    "sec",
+    "Sec",
+    "(sec",
+    "secure",
+    "Sec",
+    "security",
+    "_sec",
+    "SEC",
+    "Security"
+   ],
+   "snippets": [
+    {
+     "act": 19.38,
+     "text": "pections Get a wiring permit. The National Electric Code and the local Authority Having << Jur>> isdiction permits the homeowner to"
+    },
+    {
+     "act": 18.12,
+     "text": " Song of << Des>> pair, which sold over"
+    },
+    {
+     "act": 17.12,
+     "text": " the expansion of the Panama Canal. Larger ships mean more containers on board. The << NY>>  Times said that the newest"
+    },
+    {
+     "act": 16.88,
+     "text": ", about 10 times the strength of opium, was used to curb << op>> ium cravings in the early"
+    },
+    {
+     "act": 15.0,
+     "text": " believe there is a threat, respond immediately as time is critical. The Department of << Homeland>>  Security recommends the following actions"
+    },
+    {
+     "act": 13.94,
+     "text": " the way. At the moment Lila is on an adventure to retrieve the Royal << Sul>> phur to become a"
+    },
+    {
+     "act": 13.38,
+     "text": "iate between www and internet. problem 10: What do you mean by << Us>> enet? List out main"
+    },
+    {
+     "act": 13.25,
+     "text": " that puts regional or parochial short-term interests aside and emphasizes our long-term << national>>  interests. The outlook is"
+    },
+    {
+     "act": 11.0,
+     "text": " \u10d9\u10dd <<\u10dc>> \u10e1\u10e2\u10d8\u10e2\u10e3"
+    },
+    {
+     "act": 10.94,
+     "text": " work. For example, he raised prices of crops to help the farmers raise more << money>> .This did not help the"
+    },
+    {
+     "act": 10.94,
+     "text": " with the Grihya-sutras (dealing with domestic ceremonies) and the << D>> harma-sutras ("
+    },
+    {
+     "act": 9.88,
+     "text": " Alabama at Birmingham. \"There's just so much there.\" Funded with a << grant>>  from the BBC, which"
+    },
+    {
+     "act": 9.69,
+     "text": " of the epidemic: more than 71 thousand patients, not including thousands of << asympt>> omatic carriers. The other"
+    },
+    {
+     "act": 8.88,
+     "text": " department varies slightly from one jurisdiction to another. The minimal documentation that you will need << to>>  supply is a list of"
+    },
+    {
+     "act": 8.5,
+     "text": " work their fields. They even blocked roads to prevent << food>>  from getting to the market"
+    }
+   ],
+   "steered_sample": "Sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec sec"
+  },
+  "L27n1531": {
+   "layer": 27,
+   "neuron": 1531,
+   "sign": "+",
+   "S": 14.34,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 575,
+   "is_control": false,
+   "steer_lens": [
+    "reflection",
+    "reflecting",
+    "reflect",
+    "reflections",
+    "reflected",
+    "reflective",
+    "Reflect",
+    "reflection",
+    "reflect",
+    "Reflect"
+   ],
+   "logit_lens": [
+    "reflection",
+    "reflecting",
+    "reflect",
+    "reflections",
+    "reflected",
+    "reflective",
+    "Reflect",
+    "reflect",
+    "reflection",
+    "reflects"
+   ],
+   "snippets": [
+    {
+     "act": 12.81,
+     "text": "6Xe-loaded liquid << sc>> intillator. The liquid"
+    },
+    {
+     "act": 7.19,
+     "text": " she said. \"It's almost like you've got Superman or << Super>> woman X-ray vision and"
+    },
+    {
+     "act": 6.41,
+     "text": " how superfluous problems arise in the absence of an effective communications plan. The << Ch>> ariho Regional School District"
+    },
+    {
+     "act": 4.44,
+     "text": " flower, and invoking water images \u2014 waterfalls, << waves>> , streams, etc."
+    },
+    {
+     "act": 3.84,
+     "text": " figure and answer the questions: (a) Is it a curve? (b) Is << it>>  closed? (a) Yes"
+    },
+    {
+     "act": 3.83,
+     "text": " one of the following with a rough diagram: (a) A closed curve that is << not>>  a polygon. (b)"
+    },
+    {
+     "act": 3.12,
+     "text": " plan within the << Ch>> ariho community. The"
+    },
+    {
+     "act": 3.08,
+     "text": " multiple layers of meanings. Common techniques in love songs include referring to a person as << a>> "
+    },
+    {
+     "act": 2.86,
+     "text": " to dominate the industry. This was partly because of its white pin feathers that do << not>> "
+    },
+    {
+     "act": 2.73,
+     "text": " providing vital science backup to current technologies in the short term, including technologies for storing << and>>  transmitting electricity. The study"
+    },
+    {
+     "act": 2.66,
+     "text": " hide. If you have a disability or other access and functional needs, contact the << Office>>  of Emergency Management for help"
+    },
+    {
+     "act": 2.59,
+     "text": "-5111. Sign up for UNMC Alerts. Be aware of << your>>  environment and any possible dangers"
+    },
+    {
+     "act": 2.48,
+     "text": " during a << car>> 's lifetime, studies have"
+    },
+    {
+     "act": 2.44,
+     "text": " clothing. Imagine the potential efficiency. Put everything in the container, arrive at a << port>> , and just slip it"
+    },
+    {
+     "act": 2.33,
+     "text": "and faster) by gravity because of its physical properties. - Because everyone << sees>>  this when they drop different"
+    }
+   ],
+   "steered_sample": "Reflect reflecting reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection reflection"
+  },
+  "L27n2247": {
+   "layer": 27,
+   "neuron": 2247,
+   "sign": "-",
+   "S": 14.19,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 656,
+   "is_control": false,
+   "steer_lens": [
+    "return",
+    "return",
+    "Return",
+    "Return",
+    ".return",
+    "returns",
+    ":return",
+    "RETURN",
+    "returns",
+    "(return"
+   ],
+   "logit_lens": [
+    "return",
+    "return",
+    "Return",
+    "Return",
+    ".return",
+    "returns",
+    "returns",
+    ":return",
+    "RETURN",
+    "(return"
+   ],
+   "snippets": [
+    {
+     "act": 35.0,
+     "text": "2-3 inches, and fertilize with 50-60 pounds << of>>  nitrogen"
+    },
+    {
+     "act": 21.38,
+     "text": " source, collection and transportation of dry waste and composting << of>>  wet waste, training of"
+    },
+    {
+     "act": 17.38,
+     "text": " Homer he conjured up Homer\u2019s heroes for his students. He was expelled from << E>> hrfut by the"
+    },
+    {
+     "act": 16.88,
+     "text": "6Xe-loaded liquid << sc>> intillator. The liquid"
+    },
+    {
+     "act": 12.62,
+     "text": " metals, these multi-electron \"artificial atoms\" could also serve as light <<-em>> itting sources in nanos"
+    },
+    {
+     "act": 12.56,
+     "text": "\u2019s companionship with the devil. After that, he appears at the University of << E>> hrfut in central"
+    },
+    {
+     "act": 10.44,
+     "text": " to the radius of the quantum dot, with the smallest structures the most efficient at << light>>  emission. In contrast,"
+    },
+    {
+     "act": 10.38,
+     "text": " decay detectors - Large detector systems for particle and astroparticle physics - << Liquid>> "
+    },
+    {
+     "act": 10.12,
+     "text": " be made in energy security and supply through fundamental research on nanoscience solutions to << energy>> "
+    },
+    {
+     "act": 9.94,
+     "text": "osa (Japanese Rose), Sweetbriar (a.k.a. Shakespeare's << E>> gl"
+    },
+    {
+     "act": 9.75,
+     "text": " an overview of the IB and describe the various steps of its commissioning minimizing the << radioactive>>  contaminations"
+    },
+    {
+     "act": 9.31,
+     "text": "riar, << dam>> ask, Cherokee, moss"
+    },
+    {
+     "act": 8.5,
+     "text": " and choreographic interpretation are separate sets of skills and knowledge. The term haku << me>> le describes the process of"
+    },
+    {
+     "act": 8.38,
+     "text": " \u2014 when this can be known. Take a closer look at some examples of me <<le>> , deconstructed by k"
+    },
+    {
+     "act": 7.97,
+     "text": " the Bush administration begin another round of efforts to pass national << energy>>  legislation. Senator Pete D"
+    }
+   ],
+   "steered_sample": "Return return return return return return return return return return return return return return return return return return return return return return return return"
+  },
+  "L26n1244": {
+   "layer": 26,
+   "neuron": 1244,
+   "sign": "+",
+   "S": 14.02,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 737,
+   "is_control": false,
+   "steer_lens": [
+    "prefix",
+    "denote",
+    "Prefix",
+    "notation",
+    "Prefix",
+    "(prefix",
+    "prefix",
+    "Suffix",
+    ".prefix",
+    "notation"
+   ],
+   "logit_lens": [
+    "notation",
+    "denote",
+    "prefix",
+    "symbol",
+    "Prefix",
+    "notation",
+    "Symbols",
+    "symbols",
+    "Prefix",
+    "(prefix"
+   ],
+   "snippets": [
+    {
+     "act": 42.0,
+     "text": ". Describe different network communications software and hardware. problem 5: Define the term << intr>> anet. What are"
+    },
+    {
+     "act": 24.75,
+     "text": " the services of many specialized priests. The manuals are called shrauta (from << Sans>> krit shruti, \u201c"
+    },
+    {
+     "act": 23.12,
+     "text": "ras, together with the << Gri>> hya-sutras ("
+    },
+    {
+     "act": 19.38,
+     "text": " labeled intersex are born with any of several variations in sex characteristics including chromosomes, << gon>> ads,"
+    },
+    {
+     "act": 16.88,
+     "text": " have not been so much cultivated as invited in and encouraged to thrive in gardens. << Pr>> ized for their simple beauty"
+    },
+    {
+     "act": 16.62,
+     "text": " as a male, female, or << inter>> sex and to a lesser"
+    },
+    {
+     "act": 16.5,
+     "text": "mits and << Ins>> pections Get a wiring"
+    },
+    {
+     "act": 13.75,
+     "text": ", increases the risk of hearing loss. A study, \u201cThe cumulative effects of << intr>> avenous antibiotic treatments on hearing"
+    },
+    {
+     "act": 12.81,
+     "text": " towns associated with the << St>> oltenberg side of"
+    },
+    {
+     "act": 12.81,
+     "text": " grant from the BBC, which will air a documentary on the project next week, << Par>> cak and her team"
+    },
+    {
+     "act": 12.62,
+     "text": "maphrodite is born with both sex organs of a male and female. << Inter>> sex is more complicated of"
+    },
+    {
+     "act": 12.62,
+     "text": " analysis. That means << Cur>> iosity is the first Mars"
+    },
+    {
+     "act": 12.19,
+     "text": " work will pass inspection, but that it will be a safe installation as well. << Impro>> perly installed recessed"
+    },
+    {
+     "act": 11.12,
+     "text": " take place. << Astr>> onauts drilled into rocks"
+    },
+    {
+     "act": 10.94,
+     "text": " Curriculum and Its Content. 6. Planning: The Instructional Unit. III. << STR>> ATEGIES, AIDS,"
+    }
+   ],
+   "steered_sample": "In a quiet village, a girl named Lila found a symbol denoting her prefix prefix prefix prefix prefix prefix prefix prefix"
+  },
+  "L27n622": {
+   "layer": 27,
+   "neuron": 622,
+   "sign": "+",
+   "S": 13.86,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 817,
+   "is_control": false,
+   "steer_lens": [
+    "\u00e2",
+    "\u00c2",
+    "\u00e2",
+    "\u00c2",
+    "\u00c3",
+    "\u00c3",
+    "\ufffdt",
+    "",
+    "\ufffds",
+    "\u00ce"
+   ],
+   "logit_lens": [
+    "\u00e2",
+    "\u00c2",
+    "\u00e2",
+    "\u00c2",
+    "\u00c3",
+    "\u00c3",
+    "",
+    "\ufffdt",
+    "\ufffds",
+    "\u00ce"
+   ],
+   "snippets": [
+    {
+     "act": 24.88,
+     "text": "1911. The Iberian town of C\u00e1stulo, near << L>> inares, was the"
+    },
+    {
+     "act": 24.25,
+     "text": " people to exploit their rich copper and lead deposits. The Romans established several mines near << L>> inares (including Array"
+    },
+    {
+     "act": 22.88,
+     "text": "ige sceal \u00fee heardra, heorte \u00fee cenre, mod << sce>> al \u00fee"
+    },
+    {
+     "act": 19.0,
+     "text": " mare \u00fee ure m\u00e6gen ly <<t>> la\u00f0. \u2018Will"
+    },
+    {
+     "act": 14.75,
+     "text": "osa (Japanese Rose), Sweetbriar (a.k.a. Shakespeare's << E>> gl"
+    },
+    {
+     "act": 14.75,
+     "text": " of the Spanish American poets. Born in a poor family on the small town of << Par>> all in Chile, Pablo"
+    },
+    {
+     "act": 14.31,
+     "text": "\u10d9\u10dd\u10dc\u10e1\u10e2\u10d8\u10e2\u10e3\u10ea\u10d8\u10d0, sakartvelos << k>> 'onstitutsia)"
+    },
+    {
+     "act": 13.81,
+     "text": " understanding of his culture and the injustices Navajos faced. << Br>> uchac sprinkles historical"
+    },
+    {
+     "act": 12.75,
+     "text": " is about 7 miles north and the closest large town. Since the town of << Re>> her is 40"
+    },
+    {
+     "act": 12.56,
+     "text": " look at some examples of mele, deconstructed by kumu hula Patrick << M>> akuakane and Hawaiian"
+    },
+    {
+     "act": 11.88,
+     "text": ", although their role in the military was classified until 1969. << Br>> uchac tells the story"
+    },
+    {
+     "act": 11.75,
+     "text": " from in Germany?? Johann Reher came from the town of Be <<b>> ensee. His father"
+    },
+    {
+     "act": 11.31,
+     "text": " and preservation of several << lo>> oted and partially destroyed artifacts"
+    },
+    {
+     "act": 11.25,
+     "text": " several large settlements along the beds of the rivers that flow southward from the Sierra << More>> na. The settlement of"
+    },
+    {
+     "act": 10.88,
+     "text": " means \u201cson of.\u201d << Br>> uchac writes, \u201c"
+    }
+   ],
+   "steered_sample": "\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2\u00c2"
+  },
+  "L27n1161": {
+   "layer": 27,
+   "neuron": 1161,
+   "sign": "-",
+   "S": 13.71,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 898,
+   "is_control": false,
+   "steer_lens": [
+    "extension",
+    "extensions",
+    "extend",
+    "Ext",
+    "extended",
+    "(ext",
+    "Extension",
+    "extension",
+    "(extension",
+    "EXT"
+   ],
+   "logit_lens": [
+    "extension",
+    "extensions",
+    "extend",
+    "Ext",
+    "extended",
+    "(ext",
+    "Extension",
+    "extending",
+    "extends",
+    "extension"
+   ],
+   "snippets": [
+    {
+     "act": 23.75,
+     "text": " of the Spanish American poets. Born in a poor family on the small town of << Par>> all in Chile, Pablo"
+    },
+    {
+     "act": 22.25,
+     "text": " feed costs can be reduced with some action now, said Dr. David Fernandez, << Cooperative>>  Extension Program livestock specialist at"
+    },
+    {
+     "act": 12.94,
+     "text": ". Request active shooter training for your student group, office or other college location by << contacting>>  the Office of Emergency Management"
+    },
+    {
+     "act": 12.94,
+     "text": "Amy Davidsen, Executive Director of North America at The Climate Group, was << at>> "
+    },
+    {
+     "act": 10.69,
+     "text": " Paulo is important,\u201d says Marcelo Soares, from the Federal University of Rio << de>>  Janeiro"
+    },
+    {
+     "act": 9.88,
+     "text": " Safety-Dispatch at 402-559-511 <<1>> . Sign up for UN"
+    },
+    {
+     "act": 9.12,
+     "text": " you could hide. If you have a disability or other access and functional needs, << contact>>  the Office of Emergency Management"
+    },
+    {
+     "act": 8.75,
+     "text": " Christiana Figueres launched the plan with minister of environment and energy Carlos Manuel << Rodriguez>> . \u2018The National Dec"
+    },
+    {
+     "act": 7.78,
+     "text": " little differently.\" When you walk on the ground over an Egyptian floodplain, Par <<c>> ak said, you can"
+    },
+    {
+     "act": 7.69,
+     "text": " The settlement of Pe\u00f1alosa, studied by archaeologists from the University of << Gran>> ada, was the focal"
+    },
+    {
+     "act": 7.16,
+     "text": " intent \u2014 when this can be known. Take a closer look at some examples of << me>> le, deconstructed by"
+    },
+    {
+     "act": 6.5,
+     "text": "ors of places and allusions to people, using images of nature. A me <<le>> , then, is a"
+    },
+    {
+     "act": 6.44,
+     "text": " consulting with the << district>> \u2019s superintendent on numerous occasions"
+    },
+    {
+     "act": 6.38,
+     "text": " Public Policy. \u201cWhat is needed is a more focused debate that puts regional or << par>> ochial short-term interests"
+    },
+    {
+     "act": 6.31,
+     "text": " hints at the possibilities and the potential of the archeology of Egypt,\" said << Par>> "
+    }
+   ],
+   "steered_sample": "Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext Ext"
+  },
+  "L25n162": {
+   "layer": 25,
+   "neuron": 162,
+   "sign": "-",
+   "S": 13.57,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 979,
+   "is_control": false,
+   "steer_lens": [
+    "wait",
+    "wait",
+    "waiting",
+    "Wait",
+    "Wait",
+    "Waiting",
+    "_wait",
+    "waiting",
+    "waited",
+    "wait"
+   ],
+   "logit_lens": [
+    "wait",
+    "wait",
+    "waiting",
+    "waited",
+    "waits",
+    "Waiting",
+    "Wait",
+    "waiting",
+    "Wait",
+    "_wait"
+   ],
+   "snippets": [
+    {
+     "act": 5.34,
+     "text": ", female, or intersex and to a lesser extent be diagnosed with herm <<aph>> roditism. SEX"
+    },
+    {
+     "act": 5.09,
+     "text": " in the Ellsworth Mountains. Discovered by Lincoln Ellsworth on his trans-A <<nt>> arctic flight of Nov"
+    },
+    {
+     "act": 4.38,
+     "text": "6 miles north of Bebensee and about 10 miles northeast of << K>> iel, a major city"
+    },
+    {
+     "act": 4.28,
+     "text": "The members of State Constitutional Commission and Parliament of Georgia| The Constitution of Georgia ( <<Ge>> orgian: \u10e1"
+    },
+    {
+     "act": 3.52,
+     "text": " costs are reduced because it does not have to cut, baled or << h>> auled to and from the"
+    },
+    {
+     "act": 3.31,
+     "text": " the typical definitions for male or female bodies\". Some who is born a herm <<aph>> rodite is born with"
+    },
+    {
+     "act": 2.2,
+     "text": ", Parcak said, you can't see much more than a brown, << sil>> ty surface. But pictures"
+    },
+    {
+     "act": 2.08,
+     "text": "uda. On 1921, he studied French language at the Instituto << Ped>> ag\u00c3\u00b3gico"
+    },
+    {
+     "act": 1.92,
+     "text": " 911 when you are safe and describe shooter, location and weapons.  <<H>> IDE, if escape is"
+    },
+    {
+     "act": 1.73,
+     "text": " different objects, it wasn\u2019t questioned for almost 2000 years.  <<Gal>> ileo Galilei was"
+    },
+    {
+     "act": 1.4,
+     "text": " electric fence across the stockpiled forage, and allow the animals to eat <<.>>  As livestock eat down the"
+    },
+    {
+     "act": 1.09,
+     "text": " an adventure to retrieve the Royal Sulphur to become a real Firework Maker << but>>  she does not realise how"
+    },
+    {
+     "act": 1.04,
+     "text": " warm season grasses as making hay without cutting and baling it. The grass << will>>  cure naturally in the field"
+    },
+    {
+     "act": 0.98,
+     "text": " behind it. Coding allows kids to become actively engaged in the process of computing, << not>>  just passive users of technology"
+    },
+    {
+     "act": 0.97,
+     "text": " on the project next week, Parcak and her team spent more than a << year>>  poring over NASA"
+    }
+   ],
+   "steered_sample": "Wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait wait"
+  },
+  "L25n1364": {
+   "layer": 25,
+   "neuron": 1364,
+   "sign": "+",
+   "S": 13.4,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1060,
+   "is_control": false,
+   "steer_lens": [
+    "Node",
+    "node",
+    "Node",
+    "_node",
+    "_Node",
+    "(node",
+    "-node",
+    "node",
+    "<Node",
+    "[node"
+   ],
+   "logit_lens": [
+    "node",
+    "Node",
+    "_Node",
+    "Node",
+    "_node",
+    "(node",
+    "NODE",
+    "=node",
+    "node",
+    "-node"
+   ],
+   "snippets": [
+    {
+     "act": 9.81,
+     "text": " people to exploit their rich copper and lead deposits. The Romans established several mines near << L>> inares (including Array"
+    },
+    {
+     "act": 8.56,
+     "text": "1911. The Iberian town of C\u00e1stulo, near << L>> inares, was the"
+    },
+    {
+     "act": 7.78,
+     "text": " Constitution replaced the << Dec>> ree on State Power of"
+    },
+    {
+     "act": 7.31,
+     "text": "mits and << Ins>> pections Get a wiring"
+    },
+    {
+     "act": 7.06,
+     "text": " and << van>> comycin contribute to hearing"
+    },
+    {
+     "act": 6.59,
+     "text": " software. describe common types of it. problem 9: Differentiate between www << and>>  internet. problem 1"
+    },
+    {
+     "act": 5.12,
+     "text": "practice. Talk to the professionals at Cooper << Sch>> all & Levy. We"
+    },
+    {
+     "act": 4.75,
+     "text": " well. Improperly installed recessed lighting fixtures, especially incandescent and << v>> fixtures can be a fire"
+    },
+    {
+     "act": 4.25,
+     "text": " students. He was expelled from Ehrfut by the Franciscan monk << Dr>> . Klinge (who"
+    },
+    {
+     "act": 3.92,
+     "text": "ras, together with the << Gri>> hya-sutras ("
+    },
+    {
+     "act": 2.61,
+     "text": " was quite a distance to travel. Claus << St>> oltenberg came from"
+    },
+    {
+     "act": 2.61,
+     "text": " of Georgia (Georgian: \u10e1\u10d0\u10e5\u10d0\u10e0\u10d7\u10d5\u10d4 <<\u10da>> \u10dd\u10e1"
+    },
+    {
+     "act": 2.2,
+     "text": " over time, we want our students to be future-ready learners. Another reason coding << in>>  the elementary classroom is beneficial"
+    },
+    {
+     "act": 2.2,
+     "text": " towns associated with the << St>> oltenberg side of"
+    },
+    {
+     "act": 2.17,
+     "text": "ety, and he was expelled from a succession of cities. Is is said that << Fa>> ust had predicted that the"
+    }
+   ],
+   "steered_sample": "In a quiet town where the trees whispered secrets, a young girl named Lila learned to listen to the wind and the"
+  },
+  "L27n1367": {
+   "layer": 27,
+   "neuron": 1367,
+   "sign": "+",
+   "S": 13.29,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1140,
+   "is_control": false,
+   "steer_lens": [
+    "input",
+    "input",
+    "Input",
+    "Input",
+    "inputs",
+    "_input",
+    "INPUT",
+    "-input",
+    "(input",
+    "input"
+   ],
+   "logit_lens": [
+    "input",
+    "input",
+    "Input",
+    "Input",
+    "inputs",
+    "_input",
+    "INPUT",
+    "(input",
+    "-input",
+    "input"
+   ],
+   "snippets": [
+    {
+     "act": 5.12,
+     "text": "pile, clip pastures to about 2-3 inches, and fertilize << with>>  50-6"
+    },
+    {
+     "act": 1.88,
+     "text": " time to act. Producers can stock <<pile>>  warm season grasses,"
+    },
+    {
+     "act": 1.84,
+     "text": " << manpower>> . Technical Resource Document:"
+    },
+    {
+     "act": 1.84,
+     "text": " << communication>>  expert, says, \u201c"
+    },
+    {
+     "act": 1.83,
+     "text": " << vocabulary>>  along the way. At"
+    },
+    {
+     "act": 1.82,
+     "text": " << sexuality>>  have blurred and confused people"
+    },
+    {
+     "act": 1.81,
+     "text": " <<idar>>  Cave, a site located"
+    },
+    {
+     "act": 1.81,
+     "text": " <<-interest>>  groups,\u201d said Amy Myers"
+    },
+    {
+     "act": 1.81,
+     "text": " << mare>>  \u00fee ure m\u00e6"
+    },
+    {
+     "act": 1.8,
+     "text": " << work>>  their fields. They even"
+    },
+    {
+     "act": 1.8,
+     "text": " << work>> . For example, he"
+    },
+    {
+     "act": 1.8,
+     "text": " << different>>  objects. - Drop a"
+    },
+    {
+     "act": 1.8,
+     "text": " << towns>>  associated with the Stol"
+    },
+    {
+     "act": 1.8,
+     "text": " << cancer>>  presents a unique risk."
+    },
+    {
+     "act": 1.8,
+     "text": " << audiences>>  extend outside the classroom and"
+    }
+   ],
+   "steered_sample": "Input input input input input input input input input input input input input input input input input input input input input input input input"
+  },
+  "L26n876": {
+   "layer": 26,
+   "neuron": 876,
+   "sign": "-",
+   "S": 13.14,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1221,
+   "is_control": false,
+   "steer_lens": [
+    "']))",
+    ")])",
+    "']))",
+    "])):",
+    "]))",
+    "))):",
+    "\")));",
+    "\")));",
+    ")))",
+    ")])"
+   ],
+   "logit_lens": [
+    "']))",
+    "']));",
+    "\")));",
+    "']))",
+    "\")));",
+    "))):",
+    ")])",
+    "')])",
+    "')));",
+    "])):"
+   ],
+   "snippets": [
+    {
+     "act": 27.12,
+     "text": " towns associated with the << St>> oltenberg side of"
+    },
+    {
+     "act": 24.0,
+     "text": "per came from Dreggers which was 6 miles east of there. Bad << Se>> geberg is also associated"
+    },
+    {
+     "act": 21.12,
+     "text": " they had less withdrawal. Their breathing was more regular, and they weren't as << const>> "
+    },
+    {
+     "act": 20.5,
+     "text": " \u00fee ure m\u00e6gen lytla\u00f0. \u2018Will shall be the << st>> erner, heart the b"
+    },
+    {
+     "act": 18.0,
+     "text": " Midas Gold Ore processing for the << St>> ibnite Gold Project is"
+    },
+    {
+     "act": 15.44,
+     "text": " \u10d9\u10dd\u10dc\u10e1 <<\u10e2>> \u10d8\u10e2\u10e3\u10ea\u10d8"
+    },
+    {
+     "act": 14.88,
+     "text": "The members of State Constitutional Commission and Parliament of Georgia| The Constitution of Georgia ( <<Ge>> orgian: \u10e1"
+    },
+    {
+     "act": 14.5,
+     "text": " Bush administration begin another round of efforts to pass national energy legislation. Senator Pete D <<omen>> ici, chairman of the"
+    },
+    {
+     "act": 13.31,
+     "text": ": The Nature of the Challenge. 3. The Expectations, Responsibilities, and << Fac>> ilitating Behaviors of a"
+    },
+    {
+     "act": 12.94,
+     "text": " (Japanese Rose), Sweetbriar (a.k.a. Shakespeare's E <<gl>> "
+    },
+    {
+     "act": 12.94,
+     "text": " of NASA\u2019s Jet << Prop>> ulsion Laboratory (JPL"
+    },
+    {
+     "act": 12.5,
+     "text": " introduction to his verse play, \u2018The Homecoming of Beorhtnoth << Be>> orhthelm\u2019s"
+    },
+    {
+     "act": 11.62,
+     "text": "Center of gravity Screws \u2013 washers \u2013 nuts Resources for digital << prot>> otyping: "
+    },
+    {
+     "act": 11.19,
+     "text": " this scope of studying is not only limited to analysis of the sites, but also << pert>> ains to reclamation"
+    },
+    {
+     "act": 9.62,
+     "text": " of roses today, we most often imagine a bouquet of red, long <<-st>> emmed beauties."
+    }
+   ],
+   "steered_sample": "In a quiet village, a young girl named Lila spent her days outside her window, where she could watch the world"
+  },
+  "L27n961": {
+   "layer": 27,
+   "neuron": 961,
+   "sign": "-",
+   "S": 12.98,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1302,
+   "is_control": false,
+   "steer_lens": [
+    "Pro",
+    "(pro",
+    "Pro",
+    "pro",
+    "pro",
+    "-pro",
+    "PRO",
+    "PRO",
+    "_pro",
+    ".pro"
+   ],
+   "logit_lens": [
+    "Pro",
+    "(pro",
+    "Pro",
+    "pro",
+    "pro",
+    "-pro",
+    "PRO",
+    "PRO",
+    "_pro",
+    ".pro"
+   ],
+   "snippets": [
+    {
+     "act": 9.25,
+     "text": " and commercial satellite imagery of Egypt's << Nile>>  Valley Delta -- an area"
+    },
+    {
+     "act": 9.0,
+     "text": " both, he said. Think of stockpiling warm season grasses as making << hay>>  without cutting and baling"
+    },
+    {
+     "act": 7.75,
+     "text": "ulo, near Linares, was the capital of the mining district during the << Roman>>  period. Registries"
+    },
+    {
+     "act": 7.66,
+     "text": "NW of Mount Weems near the N end of the Sentinel Range in the Ell <<sworth>>  Mountains. Discovered by"
+    },
+    {
+     "act": 7.66,
+     "text": ") This name originates from United States of America. It is part of the United << States>>  Gazetteer and the SC"
+    },
+    {
+     "act": 7.5,
+     "text": " you plan to use and a sketch as to how you plan to install them.  <<Turn>>  off the Power Always"
+    },
+    {
+     "act": 7.44,
+     "text": " it, the possibility of effective treatment. Patients who survive may still face expensive, << time>> -consuming, and painful recover"
+    },
+    {
+     "act": 6.5,
+     "text": " of opioids to treat the addiction to its parent. Morphine, about 1 <<0>>  times the strength of op"
+    },
+    {
+     "act": 6.22,
+     "text": " plan includes commitments to ensure the electric grid is capable of operating with 10 <<0>> % renewable energy by "
+    },
+    {
+     "act": 5.84,
+     "text": " young Navajo who wants to enlist. Starting with his youth, when he is << taken>>  from his parents to be"
+    },
+    {
+     "act": 5.84,
+     "text": " by the Parliament of Georgia on 24 August 1995 and << entered>>  into force on 1"
+    },
+    {
+     "act": 5.81,
+     "text": " invoking water images \u2014 waterfalls, waves, streams, etc. \u2014 to describe << lov>> emaking. In h"
+    },
+    {
+     "act": 5.53,
+     "text": " new world record in 2017 when it ran on 10 <<0>>  percent renewable energy for "
+    },
+    {
+     "act": 5.44,
+     "text": " about 10 miles northeast of Kiel, a major city on the Baltic << Sea>> . Brodersdorf is"
+    },
+    {
+     "act": 4.94,
+     "text": " table, and rode a << barrel>>  of wine. Goethe"
+    }
+   ],
+   "steered_sample": "Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro Pro"
+  },
+  "L25n24": {
+   "layer": 25,
+   "neuron": 24,
+   "sign": "-",
+   "S": 12.87,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1383,
+   "is_control": false,
+   "steer_lens": [
+    "('{",
+    "ajs",
+    "(_,",
+    "()]",
+    "('{{",
+    "()):",
+    "()):",
+    "pewno\u015bci\u0105",
+    "(vis",
+    "()]"
+   ],
+   "logit_lens": [
+    "'*',",
+    ":",
+    ":result",
+    "],",
+    "'!",
+    "WindowState",
+    ",\u2026",
+    "\u3011,",
+    "|`",
+    "//}"
+   ],
+   "snippets": [
+    {
+     "act": 67.5,
+     "text": ",\u201d said Robert Dickson, associate professor in the School of Chemistry and Biochemistry << at>>  the Georgia Institute of Technology"
+    },
+    {
+     "act": 62.25,
+     "text": ", both the same size, but different masses. - They both hit the ground << at>>  the same time, even"
+    },
+    {
+     "act": 61.25,
+     "text": ": (a) Is it a curve? (b) Is it closed? (a) << Yes>> , the given figure represents"
+    },
+    {
+     "act": 58.25,
+     "text": ",\u201d said Amy Myers Jaffe, the Wallace S. Wilson Fellow for Energy Studies << at>>  Rice's Baker Institute for"
+    },
+    {
+     "act": 54.5,
+     "text": " of NASA\u2019s Jet Propulsion Laboratory (JPL) << in>>  Pasadena, California, chief"
+    },
+    {
+     "act": 54.25,
+     "text": "cak, an Egyptologist and assistant professor of archeology << at>>  the University of Alabama at"
+    },
+    {
+     "act": 52.75,
+     "text": " all objects will fall at the same rate. - Galileo said that the acceleration << of>>  any object (in the"
+    },
+    {
+     "act": 52.0,
+     "text": ". Lung cancer is one of the deadliest cancers. But researchers << at>>  National Jewish Health in Denver"
+    },
+    {
+     "act": 52.0,
+     "text": " opioids to treat the addiction to its parent. Morphine, about 10 << times>>  the strength of opium"
+    },
+    {
+     "act": 51.75,
+     "text": " person labeled intersex are born with any of several variations in sex characteristics including chromosomes <<,>>  gonads,"
+    },
+    {
+     "act": 51.75,
+     "text": " on the moon and on Venus. Curiosity\u2019s predecessors, the rovers Spirit << and>>  Opportunity, each had a"
+    },
+    {
+     "act": 50.75,
+     "text": "Image: Diagram shows arrangement of gold atoms in an eight-atom quantum dot ( <<left>> ) while fluorescence is shown"
+    },
+    {
+     "act": 50.75,
+     "text": " a major city on the Baltic Sea. Brodersdorf is two to three miles << south>>  of the Baltic Sea."
+    },
+    {
+     "act": 50.75,
+     "text": " father Casper came from Dreggers which was 6 miles east of there <<.>>  Bad Segeberg is"
+    },
+    {
+     "act": 50.75,
+     "text": " almost 5 X more likely to have permanent sensorineural hearing loss than those << in>>  the two lowest-quart"
+    }
+   ],
+   "steered_sample": "Once upon a time, a young girl named Lily discovered a hidden treasure hidden in a forest hidden away from the town."
+  },
+  "L27n632": {
+   "layer": 27,
+   "neuron": 632,
+   "sign": "-",
+   "S": 12.74,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1464,
+   "is_control": false,
+   "steer_lens": [
+    "ting",
+    "ted",
+    "te",
+    "ter",
+    "tes",
+    "ters",
+    "ta",
+    "ten",
+    "TING",
+    "ty"
+   ],
+   "logit_lens": [
+    "ting",
+    "ted",
+    "te",
+    "ter",
+    "tes",
+    "ters",
+    "ta",
+    "ten",
+    "TING",
+    "ty"
+   ],
+   "snippets": [
+    {
+     "act": 16.88,
+     "text": "00 years. Galileo Galilei was the first major scientist to refute << (>> prove wrong) Aristotle\u2019s"
+    },
+    {
+     "act": 15.56,
+     "text": " long-stemmed beauties. In the colonial period, those kinds of roses <<\u2014>> called Hybrid Tea Roses\u2014"
+    },
+    {
+     "act": 12.94,
+     "text": " (b), << (>> d) and (e"
+    },
+    {
+     "act": 11.12,
+     "text": ". - In Aristotle\u2019s view, this was because the bar was being pulled harder << (>> "
+    },
+    {
+     "act": 9.5,
+     "text": "0: What do you mean by Usenet? List out main categories of it <<? >> problem 11:"
+    },
+    {
+     "act": 9.5,
+     "text": " fall at the same rate. - Galileo said that the acceleration of any object << (>> in the absence of air"
+    },
+    {
+     "act": 9.06,
+     "text": " was a small group of CF patients who had normal hearing despite high exposure to IV <<->> antib"
+    },
+    {
+     "act": 8.94,
+     "text": " the uses of it to business? problem 6: Describe the components of MIS <<. >> problem 7:"
+    },
+    {
+     "act": 7.69,
+     "text": " one of the first national governments to endorse the Under2 Coalition, a group of << over>>  220 ambitious"
+    },
+    {
+     "act": 7.66,
+     "text": " the less, likely for that reason actually to have used them in his last hour <<. >> Byrhtwold"
+    },
+    {
+     "act": 7.44,
+     "text": ", Parcak said, you can't see much more than a brown, << sil>> ty surface. But pictures"
+    },
+    {
+     "act": 7.41,
+     "text": "15, following the \u201cI am pleased to announce that gold processing operations have << >> Ore processing operations at"
+    },
+    {
+     "act": 7.06,
+     "text": " communication expert, says, << \u201c>> From birth to death,"
+    },
+    {
+     "act": 6.94,
+     "text": " as a male, female, or << inter>> sex and to a lesser"
+    },
+    {
+     "act": 6.81,
+     "text": " and vancomycin contribute to hearing loss in people with CF. Vancomycin << (>> a glycopeptide antibiotic"
+    }
+   ],
+   "steered_sample": "tedtingtingtingtingtingtingtingtingtingtingtingtingtingtingtingtingtingtingtingtingtingtingting"
+  },
+  "L26n1968": {
+   "layer": 26,
+   "neuron": 1968,
+   "sign": "+",
+   "S": 12.61,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1544,
+   "is_control": false,
+   "steer_lens": [
+    "Union",
+    "union",
+    "unions",
+    "UNION",
+    "Union",
+    "union",
+    ".union",
+    "thal",
+    "_union",
+    "subsets"
+   ],
+   "logit_lens": [
+    "unions",
+    "union",
+    "UNION",
+    "union",
+    "Union",
+    "Union",
+    "thal",
+    "_union",
+    ".union",
+    "oms"
+   ],
+   "snippets": [
+    {
+     "act": 32.5,
+     "text": " a safe installation as well. Improperly installed recessed lighting fixtures, especially << inc>> andescent and vfixtures"
+    },
+    {
+     "act": 21.5,
+     "text": " 387 patients from 13 cities- recently diagnosed patients or patients << chron>> ically infected by the virus"
+    },
+    {
+     "act": 17.5,
+     "text": "\u2019s heroes for his students. He was expelled from Ehrfut by the << Franc>> iscan monk Dr."
+    },
+    {
+     "act": 12.94,
+     "text": " radiation. \u201cThis is the only time anybody\u2019s drilled into Mars,\u201d says Louise J <<and>> ura"
+    },
+    {
+     "act": 12.0,
+     "text": " male, female, or intersex and to a lesser extent be diagnosed with her <<m>> aphroditism. "
+    },
+    {
+     "act": 11.81,
+     "text": " penchant for metaphor. A skillful poet is one who << def>> tly weaves together"
+    },
+    {
+     "act": 10.75,
+     "text": " is hard, but drilling on a rover kicks it up a notch,\u201d says J <<and>> ura. The rover used"
+    },
+    {
+     "act": 9.25,
+     "text": " have not been so much cultivated as invited in and encouraged to thrive in gardens. << Pr>> ized for their simple beauty"
+    },
+    {
+     "act": 9.0,
+     "text": " small group of CF patients who had normal hearing despite high exposure to IV-ant <<ib>> "
+    },
+    {
+     "act": 8.5,
+     "text": " Bush administration begin another round of efforts to pass national energy legislation. Senator Pete D <<omen>> ici, chairman of the"
+    },
+    {
+     "act": 8.38,
+     "text": " and preservation of several << lo>> oted and partially destroyed artifacts"
+    },
+    {
+     "act": 7.34,
+     "text": " protein called beta-arrestin, which sticks to the opioid receptor when something like << morph>> ine activates it. When"
+    },
+    {
+     "act": 6.81,
+     "text": " they are based directly on the older Vedic literature considered as a class to be << shr>> uti, or revealed."
+    },
+    {
+     "act": 6.66,
+     "text": ", particularly novels set during wars, but Joseph << Br>> uchac\u2019s Code Talk"
+    },
+    {
+     "act": 6.44,
+     "text": "per came from Dreggers which was 6 miles east of there. Bad << Se>> geberg is also associated"
+    }
+   ],
+   "steered_sample": "In a small village, a young girl named Lily found an old tale hidden in the tree, which told of a time"
+  },
+  "L27n620": {
+   "layer": 27,
+   "neuron": 620,
+   "sign": "+",
+   "S": 12.49,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1625,
+   "is_control": false,
+   "steer_lens": [
+    "robust",
+    "dense",
+    "intense",
+    "meticulous",
+    "tightly",
+    "vigorous",
+    "rigorous",
+    "stringent",
+    "sturdy",
+    "lush"
+   ],
+   "logit_lens": [
+    "robust",
+    "dense",
+    "intense",
+    "tightly",
+    "meticulous",
+    "vigorous",
+    "rigorous",
+    "carefully",
+    "stringent",
+    "sturdy"
+   ],
+   "snippets": [
+    {
+     "act": 16.0,
+     "text": " succession of cities. Is is said that Faust had predicted that the Bishop of << M>> \u00fcn"
+    },
+    {
+     "act": 15.75,
+     "text": " Costa Rica\u2019s land cover is made up of rainforest. Costa Rica set << a>>  new world record in "
+    },
+    {
+     "act": 11.75,
+     "text": " of Alabama at Birmingham. \"There's just so much there.\" Funded with << a>>  grant from the BBC,"
+    },
+    {
+     "act": 11.25,
+     "text": " repentance. Faust refused the monk\u2019s offer of intervention and admitted having signed << a>>  pact with the Devil,"
+    },
+    {
+     "act": 11.0,
+     "text": " Energy and Natural Resources Committee, recently vowed to work collaboratively with Democrats to get << a>>  substantive, passable bill"
+    },
+    {
+     "act": 10.56,
+     "text": "ajo who wants to enlist. Starting with his youth, when he is taken from << his>>  parents to be educated,"
+    },
+    {
+     "act": 9.25,
+     "text": ". Third graders in Mary Pellin\u2019s and Heather Lopez <<\u2019s>>  classrooms were introduced to coding"
+    },
+    {
+     "act": 9.06,
+     "text": " will help you understand your legal rights and demand the compensation you deserve. Why Is << A>>  Cancer Misdiagnosis Different"
+    },
+    {
+     "act": 9.0,
+     "text": " audiences extend outside the classroom and beyond the playground perimeter. In << my>>  role as a school committee"
+    },
+    {
+     "act": 9.0,
+     "text": " On 1924 he gained international fame with Twenty Love Poems and << a>> "
+    },
+    {
+     "act": 8.5,
+     "text": " many as 17 lost pyramids and thousands of tombs and settlements buried << under>>  an Egyptian floodplain. "
+    },
+    {
+     "act": 8.31,
+     "text": " that came from the south-west looking for copper. They established several large settlements along << the>>  beds of the rivers that"
+    },
+    {
+     "act": 8.19,
+     "text": " Code Talker. My high school boyfriend was Navajo and I never knew that << his>>  last name, Begay"
+    },
+    {
+     "act": 8.12,
+     "text": ". The rover used the drill bit at the end of its robotic arm to make << a>> "
+    },
+    {
+     "act": 8.0,
+     "text": "\u2019s predecessors, the rovers Spirit and Opportunity, each had a tool that scraped << away>>  the top layers of rocks"
+    }
+   ],
+   "steered_sample": "A brave brave brave brave brave brave brave brave brave brave brave brave brave brave brave brave brave brave brave brave brave brave brave"
+  },
+  "L26n2867": {
+   "layer": 26,
+   "neuron": 2867,
+   "sign": "-",
+   "S": 12.37,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1706,
+   "is_control": false,
+   "steer_lens": [
+    "van",
+    "Van",
+    "van",
+    "Van",
+    "vanish",
+    "VAN",
+    "\u0129",
+    "\u1ef9",
+    "iske",
+    "Netherlands"
+   ],
+   "logit_lens": [
+    "van",
+    "Van",
+    "van",
+    "Van",
+    "vanish",
+    "VAN",
+    "Dutch",
+    "Netherlands",
+    "\u1ef9",
+    "\u0129"
+   ],
+   "snippets": [
+    {
+     "act": 12.25,
+     "text": " wasn't thought possible until 2000, when a scientist named Laura << B>> ohn found out something about"
+    },
+    {
+     "act": 11.88,
+     "text": " to announce that gold processing operations have Ore processing operations at Newmont B <<odd>> ington Gold - AusIM"
+    },
+    {
+     "act": 11.81,
+     "text": "1 patients with CF into four groups based on their cumulative weighted dosage of IV a <<min>> oglycoside antibiotics"
+    },
+    {
+     "act": 11.62,
+     "text": " in Germany?? Johann Reher came from the town of Beb <<ense>> e. His father Cas"
+    },
+    {
+     "act": 10.5,
+     "text": "\u10d8\u10e2\u10e3\u10ea\u10d8\u10d0, sakartvelos k'onstitutsia <<)>>  is the supreme law of"
+    },
+    {
+     "act": 9.5,
+     "text": " Midas Gold Ore processing for the St <<ib>> nite Gold Project is the"
+    },
+    {
+     "act": 7.94,
+     "text": "berg side of the family are all located in close proximity. They are LaBo <<e>> , Stein, Fahren"
+    },
+    {
+     "act": 7.78,
+     "text": "berg came from Brodersdorf which is 46 miles north of Beb <<ense>> e and about 1"
+    },
+    {
+     "act": 7.5,
+     "text": " of Georgia (Georgian: \u10e1\u10d0\u10e5\u10d0\u10e0\u10d7\u10d5\u10d4 <<\u10da>> \u10dd\u10e1"
+    },
+    {
+     "act": 7.38,
+     "text": "als buried inside. For example, in one of the specimens officially denoted as << Shan>> idar 1 (nick"
+    },
+    {
+     "act": 7.22,
+     "text": " could not really understand our language, he did not realize that Biye\u2019 in << Nav>> ajo just means \u2018son"
+    },
+    {
+     "act": 7.16,
+     "text": " collections of texts that emerged within the different schools of the Veda. Each Sh <<ra>> uta-sutra guides the"
+    },
+    {
+     "act": 6.69,
+     "text": "idar Cave, a site located on << Brad>> ost Mountain in Iraqi Kurdistan"
+    },
+    {
+     "act": 6.34,
+     "text": " kumu hula Patrick Makuakane and Hawaiian scholar Amy Ku\u2019ule <<ial>> oha Stillman. They"
+    },
+    {
+     "act": 6.25,
+     "text": " grade ores and ores resistant to cyanide leaching at coarse particle Gold processing << Britann>> ica.com The mining"
+    }
+   ],
+   "steered_sample": "Van van van van van van van van van van van van van van van van van van van van van van van van"
+  },
+  "L25n2845": {
+   "layer": 25,
+   "neuron": 2845,
+   "sign": "+",
+   "S": 12.25,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1787,
+   "is_control": false,
+   "steer_lens": [
+    "guaranteed",
+    "always",
+    "always",
+    "necessarily",
+    "definitely",
+    "sure",
+    "guarantee",
+    "altijd",
+    "siempre",
+    "ALWAYS"
+   ],
+   "logit_lens": [
+    "guaranteed",
+    "always",
+    "always",
+    "necessarily",
+    "guarantee",
+    "ALWAYS",
+    "altijd",
+    "definitely",
+    "sure",
+    "siempre"
+   ],
+   "snippets": [
+    {
+     "act": 9.69,
+     "text": " time of hearing test, participants in the two highest-quartile exposure groups were << almost>>  5 X more likely"
+    },
+    {
+     "act": 8.31,
+     "text": " to announce that gold processing operations have Ore processing operations at Newmont B <<odd>> ington Gold - AusIM"
+    },
+    {
+     "act": 8.0,
+     "text": "oltenberg came from Brodersdorf which is 46 miles north of << Be>> bensee and about"
+    },
+    {
+     "act": 7.25,
+     "text": " imagery (and more than a decade of experience), Parcak uncovered not just << Tan>> is, but as many"
+    },
+    {
+     "act": 6.94,
+     "text": " Dharma-sutras (dealing with rules of conduct), make up the << Kal>> pa-sutras,"
+    },
+    {
+     "act": 6.41,
+     "text": " came from in Germany?? Johann Reher came from the town of << Be>> bensee. His"
+    },
+    {
+     "act": 6.41,
+     "text": " of cities. Is is said that Faust had predicted that the Bishop of M <<\u00fcn>> "
+    },
+    {
+     "act": 6.28,
+     "text": " event in San Jos\u00e9. President Carlos Alvarado << Q>> uesada and former UN"
+    },
+    {
+     "act": 6.22,
+     "text": " Indeed these events could contribute to the total counts in the region of interest around the << Q>> -value of the double-beta"
+    },
+    {
+     "act": 5.88,
+     "text": " conjured up Homer\u2019s heroes for his students. He was expelled from Ehr <<f>> ut by the Francisc"
+    },
+    {
+     "act": 5.88,
+     "text": "ors of places and allusions to people, using images of nature. A me <<le>> , then, is a"
+    },
+    {
+     "act": 5.59,
+     "text": "cak, an Egyptologist and assistant professor of << ar>> cheology at the University"
+    },
+    {
+     "act": 5.12,
+     "text": " the way. At the moment Lila is on an adventure to retrieve the Royal << Sul>> phur to become a"
+    },
+    {
+     "act": 5.12,
+     "text": " to them in the little introduction to his verse play, \u2018The Homecoming of << Be>> orhtnoth Be"
+    },
+    {
+     "act": 4.84,
+     "text": " hits the ground first? - Obviously, common sense will tell you that the bar << will>>  hit first, while the"
+    }
+   ],
+   "steered_sample": "In a quiet village always always always always always always always always always always always always always always always always always always always always"
+  },
+  "L27n2781": {
+   "layer": 27,
+   "neuron": 2781,
+   "sign": "-",
+   "S": 12.13,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1868,
+   "is_control": false,
+   "steer_lens": [
+    "prime",
+    "Prime",
+    "prime",
+    "primes",
+    "Prime",
+    "prim",
+    "prim",
+    "Prim",
+    "_prime",
+    "Prim"
+   ],
+   "logit_lens": [
+    "prime",
+    "Prime",
+    "primes",
+    "prime",
+    "Prime",
+    "prim",
+    "prim",
+    "Prim",
+    "_prime",
+    "Prim"
+   ],
+   "snippets": [
+    {
+     "act": 49.0,
+     "text": "\u2019s heroes for his students. He was expelled from Ehrfut by the << Franc>> iscan monk Dr."
+    },
+    {
+     "act": 29.75,
+     "text": " them in the little introduction to his verse play, \u2018The Homecoming of Be <<or>> htnoth Beor"
+    },
+    {
+     "act": 26.0,
+     "text": " costs are reduced because it does not have to cut, baled or << h>> auled to and from the"
+    },
+    {
+     "act": 25.0,
+     "text": " have not been so much cultivated as invited in and encouraged to thrive in gardens. << Pr>> ized for their simple beauty"
+    },
+    {
+     "act": 22.25,
+     "text": ". David Fernandez, Cooperative Extension Program livestock specialist at the University of Arkansas at Pine << Bl>> uff. Because southern Arkansas"
+    },
+    {
+     "act": 15.62,
+     "text": " atoms, each size << fluores>> cing at a different wavelength"
+    },
+    {
+     "act": 15.5,
+     "text": " means \u201cson of.\u201d << Br>> uchac writes, \u201c"
+    },
+    {
+     "act": 14.38,
+     "text": " time to act. << Pro>> ducers can stockpile warm"
+    },
+    {
+     "act": 14.19,
+     "text": " until late October. When livestock have eaten all the available summer forages, strip << gra>> ze the stockpiled"
+    },
+    {
+     "act": 12.88,
+     "text": "orhtwold, as he prepares to die in the last desperate stand, << ut>> ters the famous words,"
+    },
+    {
+     "act": 12.44,
+     "text": " Bronze Turkey was first created by crossing the Eastern Wild Turkey and different breeds of domestic << tur>> keys brought over by colon"
+    },
+    {
+     "act": 11.88,
+     "text": " \u10d9\u10dd\u10dc\u10e1\u10e2\u10d8\u10e2 <<\u10e3>> \u10ea\u10d8\u10d0, sak"
+    },
+    {
+     "act": 11.0,
+     "text": " breasted << tur>> keys brought to Canada and"
+    },
+    {
+     "act": 10.81,
+     "text": " understanding of his culture and the injustices Navajos faced. << Br>> uchac sprinkles historical"
+    },
+    {
+     "act": 10.38,
+     "text": " Luther, Philip Melanchthon, says Faust studied magic at the University of << Krak>> \u00f3w. Martin Luther and"
+    }
+   ],
+   "steered_sample": "Prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime prime"
+  },
+  "L25n2781": {
+   "layer": 25,
+   "neuron": 2781,
+   "sign": "-",
+   "S": 12.02,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 1948,
+   "is_control": false,
+   "steer_lens": [
+    "safety",
+    "Safety",
+    "Safety",
+    "safe",
+    "safe",
+    "safely",
+    "afety",
+    "Safe",
+    "safer",
+    "Safe"
+   ],
+   "logit_lens": [
+    "safety",
+    "Safety",
+    "Safety",
+    "safe",
+    "safe",
+    "safely",
+    "Safe",
+    "safer",
+    "afety",
+    "Safe"
+   ],
+   "snippets": [
+    {
+     "act": 9.19,
+     "text": " as time is critical. The Department of Homeland Security recommends the following actions: Be << In>> formed. Request active shooter"
+    },
+    {
+     "act": 8.38,
+     "text": ": Extraction and Beneficiation of Ores 1.4 GOLD EXTRACTION << AND>>  BENEFICIATION P"
+    },
+    {
+     "act": 8.12,
+     "text": "2003, found that key contributions can be made in energy security and << supply>>  through fundamental research on nan"
+    },
+    {
+     "act": 7.03,
+     "text": " a lesser extent be diagnosed with hermaphroditism. SEXUALITY << &>>  SEXUAL ORIENTATION "
+    },
+    {
+     "act": 6.44,
+     "text": " in people with CF. Vancomycin (a glycopeptide antibiotic) is << used>>  to treat MRSA. "
+    },
+    {
+     "act": 6.19,
+     "text": " of office waste: systems and recycling linkages were set up. Thus facilitating the << waste>>  value chain for the project"
+    },
+    {
+     "act": 5.72,
+     "text": " If you have a disability or other access and functional needs, contact the Office of << Emergency>>  Management for help with emergency"
+    },
+    {
+     "act": 5.69,
+     "text": " and get << away>> . Help others escape,"
+    },
+    {
+     "act": 5.59,
+     "text": "ila is on an adventure to retrieve the Royal Sulphur to become a real << Fire>> work Maker but she does"
+    },
+    {
+     "act": 5.19,
+     "text": " for consumers, lower freight bills, less shipping time, lower inventory costs and longer << supply>>  chains. This takes us"
+    },
+    {
+     "act": 4.84,
+     "text": "-quartile exposure groups were almost 5 X more likely to have permanent sensor <<ine>> ural hearing loss than those"
+    },
+    {
+     "act": 4.75,
+     "text": " among others. The ambitious plan includes commitments to ensure the electric grid is capable of << operating>>  with 100"
+    },
+    {
+     "act": 4.28,
+     "text": "With satellite imagery (and more than a decade of experience), Par <<c>> ak uncovered not just Tan"
+    },
+    {
+     "act": 4.22,
+     "text": " Navajo servicemen to work as code talkers,transmitting radio messages << in>>  their language, which was"
+    },
+    {
+     "act": 4.06,
+     "text": " her research lab in Michigan, she's looking into repurposing out-of-c <<irc>> ulation currency (like dollar"
+    }
+   ],
+   "steered_sample": "Safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety safety"
+  },
+  "L23n2405": {
+   "layer": 23,
+   "neuron": 2405,
+   "sign": "+",
+   "S": 11.92,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2029,
+   "is_control": false,
+   "steer_lens": [
+    "than",
+    "than",
+    "THAN",
+    "Than",
+    "Than",
+    "_than",
+    "-than",
+    "ni\u017c",
+    "_THAN",
+    "que"
+   ],
+   "logit_lens": [
+    "than",
+    "than",
+    "THAN",
+    "Than",
+    "Than",
+    "-than",
+    "_than",
+    "_THAN",
+    "ni\u017c",
+    "\u00e4n"
+   ],
+   "snippets": [
+    {
+     "act": 52.0,
+     "text": "uchac sprinkles historical facts throughout the book in a way that feels fascinating, << rather>>  than didactic. I"
+    },
+    {
+     "act": 47.75,
+     "text": " large corporations. Farmers burned their corn, wheat and dumped their milk on highways << rather>>  than sell it for a"
+    },
+    {
+     "act": 35.25,
+     "text": " over an Egyptian floodplain, Parcak said, you can't see much << more>>  than a brown, sil"
+    },
+    {
+     "act": 32.25,
+     "text": " air a documentary on the project next week, Parcak and her team spent << more>>  than a year poring"
+    },
+    {
+     "act": 29.38,
+     "text": " Cruz) and in the Sierra << More>> na (El Centen"
+    },
+    {
+     "act": 28.75,
+     "text": " highest number of cases registered in the three decades since the outbreak of the epidemic: << more>>  than 71 thousand"
+    },
+    {
+     "act": 27.5,
+     "text": " several large settlements along the beds of the rivers that flow southward from the Sierra << More>> na. The settlement of"
+    },
+    {
+     "act": 25.5,
+     "text": " lighting outlet box or through a junction box, so you may have to turn off << more>>  than"
+    },
+    {
+     "act": 24.5,
+     "text": " is born with both sex organs of a male and female. Intersex is more << complicated>>  of the latter two because"
+    },
+    {
+     "act": 21.62,
+     "text": " admitted having signed a pact with the Devil, and said that he trusted the Devil << more>>  than God. In "
+    },
+    {
+     "act": 18.62,
+     "text": " be the sterner, heart the bolder, spirit the greater as our strength << less>> ens.\u2019 It is"
+    },
+    {
+     "act": 16.5,
+     "text": "pair, which sold over a million copies in its first release but he was perhaps << most>>  known for his poem in"
+    },
+    {
+     "act": 16.12,
+     "text": " a barrel of wine. Goethe often visited the same tavern as a student centuries << later>> . From then on,"
+    },
+    {
+     "act": 15.62,
+     "text": " Levinson says the result is << more>>  variety for consumers, lower"
+    },
+    {
+     "act": 14.75,
+     "text": ", participants in the two highest-quartile exposure groups were almost 5 X << more>>  likely to have permanent sensor"
+    }
+   ],
+   "steered_sample": "A young thann thann thann thann thann thann thann thann thann thann thann"
+  },
+  "L25n1019": {
+   "layer": 25,
+   "neuron": 1019,
+   "sign": "-",
+   "S": 11.82,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2110,
+   "is_control": false,
+   "steer_lens": [
+    "options",
+    "options",
+    "options",
+    "(options",
+    ".options",
+    "_options",
+    "Options",
+    "-options",
+    ",options",
+    "Options"
+   ],
+   "logit_lens": [
+    "options",
+    "options",
+    "options",
+    "Options",
+    ".options",
+    "_options",
+    "(options",
+    ",options",
+    "-options",
+    "Options"
+   ],
+   "snippets": [
+    {
+     "act": 11.38,
+     "text": ", if possible, but evacuate regardless of whether others agree to follow. Warn and << prevent>>  individuals from entering an area"
+    },
+    {
+     "act": 10.94,
+     "text": " critical. The Department of Homeland Security recommends the following actions: Be Informed. << Request>>  active shooter training for your"
+    },
+    {
+     "act": 9.75,
+     "text": " US Marines charged Navajo servicemen to work as code talkers,transmit <<ting>>  radio messages in their language"
+    },
+    {
+     "act": 9.62,
+     "text": " several large settlements along the beds of the rivers that flow southward from the Sierra << More>> na. The settlement of"
+    },
+    {
+     "act": 9.62,
+     "text": "? What sensors give this information most effectively? How can the problem be decomposed << into>>  behaviors? Wish you"
+    },
+    {
+     "act": 9.12,
+     "text": " Cruz) and in the Sierra << More>> na (El Centen"
+    },
+    {
+     "act": 8.81,
+     "text": " many cases, the disease is missed \u2013 and, along with it, the possibility << of>>  effective treatment. Patients who"
+    },
+    {
+     "act": 8.25,
+     "text": " Cooper Schall & Levy. We will help you understand your legal rights and demand << the>>  compensation you deserve. Why"
+    },
+    {
+     "act": 7.5,
+     "text": ". - Double-beta decay detectors - Large detector systems for particle and astrop <<article>>  physics - Liquid"
+    },
+    {
+     "act": 7.41,
+     "text": " an escape path in mind, and << identify>>  places where you could hide"
+    },
+    {
+     "act": 7.38,
+     "text": " the effort will create a unique opportunity for me to effectively utilize skills specific to analysis <<,>>  communication and public relations to"
+    },
+    {
+     "act": 6.94,
+     "text": " archeology at the University of Alabama at Birmingham. \"There's just so << much>>  there.\" Funded with"
+    },
+    {
+     "act": 6.59,
+     "text": ", the Wallace S. Wilson Fellow for Energy Studies at Rice's Baker Institute for << Public>>  Policy. \u201cWhat is"
+    },
+    {
+     "act": 6.41,
+     "text": " deeper understanding of cause and effect, and it sharpens their ability to troubleshoot << and>>  solve problems"
+    },
+    {
+     "act": 6.12,
+     "text": " a Plan. Plan what you would do if confronted by an active shooter. Look << for>>  the two nearest exits anywhere"
+    }
+   ],
+   "steered_sample": "In a quiet village, a young girl named Lily found a old, dusty book that contained stories of the past. Each"
+  },
+  "L25n409": {
+   "layer": 25,
+   "neuron": 409,
+   "sign": "-",
+   "S": 11.73,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2191,
+   "is_control": false,
+   "steer_lens": [
+    "),",
+    "\"),",
+    "\"\");",
+    "\"));",
+    "/",
+    "\"))",
+    "(),",
+    ").",
+    "],",
+    ")),"
+   ],
+   "logit_lens": [
+    "*\",",
+    "#\",",
+    "_\",",
+    "*T",
+    "...\",",
+    ".\").",
+    "*\"",
+    "*B",
+    "*R",
+    "*',"
+   ],
+   "snippets": [
+    {
+     "act": 9.06,
+     "text": " On 1921, he studied French language at the Instituto Pedag <<\u00c3>> \u00b3gico in Santiago"
+    },
+    {
+     "act": 6.84,
+     "text": " who lived for his beliefs and struggled with tradition. That person is Neftal <<\u00c3>>  Ricardo Reyes Basoalto"
+    },
+    {
+     "act": 3.5,
+     "text": " \u10d9\u10dd\u10dc\u10e1 <<\u10e2>> \u10d8\u10e2\u10e3\u10ea\u10d8"
+    },
+    {
+     "act": 3.03,
+     "text": " of roses today, we most often imagine a bouquet of red, long <<-st>> emmed beauties."
+    },
+    {
+     "act": 2.59,
+     "text": "enillo in 1911. The Iberian town of C <<\u00e1st>> ulo, near Lina"
+    },
+    {
+     "act": 2.02,
+     "text": " Commission and Parliament of Georgia| The Constitution of Georgia (Georgian:  <<\u10e1>> \u10d0\u10e5\u10d0\u10e0\u10d7"
+    },
+    {
+     "act": 1.59,
+     "text": " common sense will tell you that the bar will hit first, while the feather slowly << fl>> utters to the ground. "
+    },
+    {
+     "act": 1.59,
+     "text": "ras, together with the Grihya-s <<ut>> ras (dealing with"
+    },
+    {
+     "act": 1.4,
+     "text": " Carlos Alvarado Quesada and former UNFCCC Executive Secretary Christiana << Fig>> ueres launched the plan"
+    },
+    {
+     "act": 1.32,
+     "text": " we recognize its significance in the digital age. Although our students use technology on a << daily>>  basis, it is important"
+    },
+    {
+     "act": 1.32,
+     "text": " the Journal of Cystic Fibrosis discusses how IV tobramycin, << am>> ikacin"
+    },
+    {
+     "act": 1.23,
+     "text": " a safe installation as well. Improperly installed recessed lighting fixtures, especially << inc>> andescent and vfixtures"
+    },
+    {
+     "act": 1.19,
+     "text": " diagnosed patients or patients chronically infected by the virus \u2013 but who had not come << into>>  contact with the medications because"
+    },
+    {
+     "act": 1.18,
+     "text": " help you understand your legal rights and demand the compensation you deserve. Why Is A << Cancer>>  Misdiagnosis Different From"
+    },
+    {
+     "act": 1.15,
+     "text": ", each had a tool that scraped away the top layers of rocks to see what << was>>  beneath, but they were"
+    }
+   ],
+   "steered_sample": "In a quiet, unchanging forest, a brave-hearted youth vowed to protect the wild promises of the wild woods, and"
+  },
+  "L23n2299": {
+   "layer": 23,
+   "neuron": 2299,
+   "sign": "-",
+   "S": 11.66,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2271,
+   "is_control": false,
+   "steer_lens": [
+    "vector",
+    "vectors",
+    "vector",
+    "vect",
+    "vec",
+    "Vector",
+    "Vector",
+    "-vector",
+    "_vector",
+    "VECTOR"
+   ],
+   "logit_lens": [
+    "vector",
+    "vectors",
+    "vector",
+    "Vector",
+    "-vector",
+    "Vector",
+    "vect",
+    "VECTOR",
+    "_vector",
+    "VECTOR"
+   ],
+   "snippets": [
+    {
+     "act": 7.78,
+     "text": " and all objects will fall at the same rate. - Galileo said that the << acceleration>>  of any object (in"
+    },
+    {
+     "act": 2.36,
+     "text": " of these patients (59.1%) live in the capital city. \u201c <<Stat>> istically, this data on"
+    },
+    {
+     "act": 2.28,
+     "text": "idar Cave, a site located on << Brad>> ost Mountain in Iraqi Kurdistan"
+    },
+    {
+     "act": 1.58,
+     "text": " of NASA\u2019s << Jet>>  Propulsion Laboratory (J"
+    },
+    {
+     "act": 1.45,
+     "text": " manpower. Technical << Resource>>  Document: Extraction and Benef"
+    },
+    {
+     "act": 1.29,
+     "text": " map) If this information is incorrect, please e-mail firstname.lastname@example.org  <<Feature>>  type: Mountain (2"
+    },
+    {
+     "act": 1.26,
+     "text": " during a car <<'s>>  lifetime, studies have shown"
+    },
+    {
+     "act": 1.24,
+     "text": " First, we << recognize>>  its significance in the digital"
+    },
+    {
+     "act": 1.22,
+     "text": "\u2014called Hybrid Tea Roses\u2014were unknown. Early gardeners would have relied on << mus>> k roses, damask"
+    },
+    {
+     "act": 1.19,
+     "text": " programming. Students in Mary Pellin\u2019s math class can be seen here completing a << hands>> -on"
+    },
+    {
+     "act": 1.16,
+     "text": " at some examples of mele, deconstructed by kumu hula Patrick M <<aku>> akane and Hawaiian scholar"
+    },
+    {
+     "act": 1.15,
+     "text": " beliefs and struggled with tradition. That person is Neftal\u00c3 Ricardo Reyes Bas <<o>> alto famously known as Pablo"
+    },
+    {
+     "act": 0.99,
+     "text": " and strategies. The central strength is its practical approach, which is supported by numerous << hands>>  on activities, opportunities for"
+    },
+    {
+     "act": 0.99,
+     "text": " Secretary Christiana Figueres launched the plan with minister of environment and energy Carlos << Manuel>>  Rodriguez. \u2018The National"
+    },
+    {
+     "act": 0.96,
+     "text": " means \u201cson of.\u201d Br <<uch>> ac writes, \u201cBecause"
+    }
+   ],
+   "steered_sample": "A young girl, Lila, found a vector in her vector diagram, which led her to a vector field that changed"
+  },
+  "L22n2377": {
+   "layer": 22,
+   "neuron": 2377,
+   "sign": "+",
+   "S": 11.58,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2352,
+   "is_control": false,
+   "steer_lens": [
+    "effect",
+    "Effect",
+    "efect",
+    "effect",
+    "EFFECT",
+    "effet",
+    "_effect",
+    "effects",
+    "Effect",
+    "-effect"
+   ],
+   "logit_lens": [
+    "effect",
+    "Effect",
+    "effects",
+    "effect",
+    "Effect",
+    "Effects",
+    "_effect",
+    "EFFECT",
+    "(effect",
+    "-effect"
+   ],
+   "snippets": [
+    {
+     "act": 7.84,
+     "text": " is said that when he lectured on Homer he conjured up Homer\u2019s heroes << for>>  his students. He was"
+    },
+    {
+     "act": 6.59,
+     "text": ", smaller particle size and << fluorescence>>  comparable to systems based on"
+    },
+    {
+     "act": 5.44,
+     "text": " produce ultraviolet, blue, green, red and infrared emissions, respectively. The << fluorescence>>  energy varies according to the"
+    },
+    {
+     "act": 5.28,
+     "text": "and faster) by gravity because of its physical properties. - Because everyone sees << this>>  when they drop different objects"
+    },
+    {
+     "act": 5.12,
+     "text": " Levin <<son>>  says the result is more"
+    },
+    {
+     "act": 5.03,
+     "text": " The Nature of the Challenge. 3. The Expectations, Responsibilities, and Fac <<ilitating>>  Behaviors of a Classroom"
+    },
+    {
+     "act": 4.44,
+     "text": " air resistance, a type of friction. - Get rid of friction (air resistance <<)>>  and all objects will fall"
+    },
+    {
+     "act": 3.69,
+     "text": " fibrosis infections, increases the risk of hearing loss. A study, \u201cThe << cumulative>>  effects of intravenous antibiotic"
+    },
+    {
+     "act": 3.2,
+     "text": " the liquid containment, also allows to minimize the background from cosmogenic muon-sp <<all>> ation products"
+    },
+    {
+     "act": 3.06,
+     "text": " didn't build tolerance to the drug. At certain dosages, they had less << withdrawal>> . Their breathing was more"
+    },
+    {
+     "act": 3.0,
+     "text": " euphoria, dependence and life-threatening respiratory << suppression>>  that causes deadly overdoses"
+    },
+    {
+     "act": 2.84,
+     "text": ". It occurs in the human body when cells experience uncontrolled and unusual growth. << This>>  cell growth can spread to"
+    },
+    {
+     "act": 2.77,
+     "text": " and encouraged to thrive in gardens. Prized for their simple beauty and the strong << medicinal>>  value of their hips,"
+    },
+    {
+     "act": 2.77,
+     "text": "icists!) experiment, Galileo went to << the>>  top of the leaning tower"
+    },
+    {
+     "act": 2.73,
+     "text": " A mele, then, is a poetic text rich with kaona \u2014 multiple << layers>>  of meanings. Common techniques"
+    }
+   ],
+   "steered_sample": "In the quiet effect of a distant forest, a boy found a glowing leaf that whispered secrets of a long-lof."
+  },
+  "L26n2666": {
+   "layer": 26,
+   "neuron": 2666,
+   "sign": "+",
+   "S": 11.51,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2433,
+   "is_control": false,
+   "steer_lens": [
+    "DNA",
+    "DNA",
+    "password",
+    ">Password",
+    "dna",
+    ".password",
+    "password",
+    "Password",
+    "dna",
+    "Password"
+   ],
+   "logit_lens": [
+    "DNA",
+    "DNA",
+    "dna",
+    ">Password",
+    "dna",
+    ".password",
+    "password",
+    "password",
+    "password",
+    "getPassword"
+   ],
+   "snippets": [
+    {
+     "act": 9.75,
+     "text": " run-of-mine ore stockpile area adjacent to the crusher. Avesoro << CR>> USHING AND PROCESSING"
+    },
+    {
+     "act": 9.44,
+     "text": " his shield and spoke. He was an old companion. He brandished his ash <<-s>> pear and most boldly"
+    },
+    {
+     "act": 8.75,
+     "text": " when a scientist named Laura Bohn found out something about a protein called beta-ar <<rest>> in, which sticks to"
+    },
+    {
+     "act": 8.62,
+     "text": "These five <<-p>> etaled wild children of"
+    },
+    {
+     "act": 8.06,
+     "text": " they are based directly on the older Vedic literature considered as a class to be << shr>> uti, or revealed."
+    },
+    {
+     "act": 7.91,
+     "text": "mits and << Ins>> pections Get a wiring"
+    },
+    {
+     "act": 7.62,
+     "text": " (The Tolkien Reader [NY: Ballantine, 1966], << p>> . 5): Near"
+    },
+    {
+     "act": 7.41,
+     "text": " based on semiconductor quantum dots. Providing the \"missing link\" between atomic and << nanop>> article behavior in noble metals"
+    },
+    {
+     "act": 7.38,
+     "text": " its first release but he was perhaps most known for his poem in the movie, << Patch>>  Adams, Sonnet "
+    },
+    {
+     "act": 6.69,
+     "text": " My high school boyfriend was Navajo and I never knew that his last name, << Beg>> ay, actually"
+    },
+    {
+     "act": 6.69,
+     "text": " Bush administration begin another round of efforts to pass national energy legislation. Senator Pete D <<omen>> ici, chairman of the"
+    },
+    {
+     "act": 6.25,
+     "text": " ambitious governments committed to acting on climate change, led by The Climate Group. Amy << Dav>> idsen, Executive Director"
+    },
+    {
+     "act": 5.91,
+     "text": ". Third graders in Mary << Pell>> in\u2019s and Heather Lopez"
+    },
+    {
+     "act": 5.78,
+     "text": " Roses\u2014were unknown. Early gardeners would have relied on musk roses, << dam>> ask roses, and others"
+    },
+    {
+     "act": 5.72,
+     "text": "ing the liquid containment, also allows to minimize the background from cosmogenic muon <<-sp>> allation products"
+    }
+   ],
+   "steered_sample": "Once upon a time, a traveler found a hidden garden where the DNA DNA DNA DNA DNA DNA DNA DNA DNA DNA DNA"
+  },
+  "L24n2899": {
+   "layer": 24,
+   "neuron": 2899,
+   "sign": "+",
+   "S": 11.43,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2514,
+   "is_control": false,
+   "steer_lens": [
+    "port",
+    ".Port",
+    "Port",
+    "Port",
+    ".port",
+    "_Port",
+    "-port",
+    "port",
+    "_port",
+    "(port"
+   ],
+   "logit_lens": [
+    "port",
+    "Port",
+    "Port",
+    ".Port",
+    ".port",
+    "_Port",
+    "-port",
+    "port",
+    "port",
+    "_port"
+   ],
+   "snippets": [
+    {
+     "act": 59.25,
+     "text": " Differentiate between desktop PC << and>>  portable PC. problem "
+    },
+    {
+     "act": 27.0,
+     "text": " Double check to make sure the circuit is actually safe to work on by using a << non>> contact voltage tester. In"
+    },
+    {
+     "act": 14.06,
+     "text": " fluorescent, and display discrete excitation and emission spectra that make them potentially very useful << for>>  biological labeling,\u201d said Robert"
+    },
+    {
+     "act": 12.88,
+     "text": ". All you have to do is breathe in and out of a hose attached to << a>>  special computer for 5"
+    },
+    {
+     "act": 11.06,
+     "text": " and scientists have a number of tools at their disposal to diagnose cancer, such as << bi>> opsies, mammograms"
+    },
+    {
+     "act": 10.5,
+     "text": " film that we call Inner Balloon (IB). The IB, apart from guarantee <<ing>>  the liquid containment, also"
+    },
+    {
+     "act": 10.31,
+     "text": " to mine the Red Planet. Unlike with previous soil samples, this time the drill << has>>  dug beneath the surface layers"
+    },
+    {
+     "act": 9.81,
+     "text": " be a safe installation as well. Improperly installed recessed lighting fixtures, << especially>>  incandescent and v"
+    },
+    {
+     "act": 8.94,
+     "text": " Midas Gold Ore processing for the St <<ib>> nite Gold Project is the"
+    },
+    {
+     "act": 8.88,
+     "text": " providing vital science backup to current technologies in the short term, including technologies for storing << and>>  transmitting electricity. The study"
+    },
+    {
+     "act": 8.38,
+     "text": " arrive at a port, and just slip it onto a truck or a railroad car << for>>  it to move to its"
+    },
+    {
+     "act": 8.31,
+     "text": " also serve as light-emitting sources in nanoscale optoelectronics and << in>>  energy transfer pairs. \u201cWe"
+    },
+    {
+     "act": 7.66,
+     "text": " confronted by an active shooter. Look for the two nearest exits anywhere you go. << Have>> "
+    },
+    {
+     "act": 7.22,
+     "text": " atoms, each size fluorescing at a different wavelength to produce << ultr>> aviolet, blue, green"
+    },
+    {
+     "act": 6.16,
+     "text": "ulsion Laboratory (JPL) in Pasadena, California, chief engineer for Curiosity <<\u2019s>>  sampling system. \u201cGetting"
+    }
+   ],
+   "steered_sample": "In a quiet port town, a portman found a lost treasure that brought him a life-changing adventure."
+  },
+  "L27n1642": {
+   "layer": 27,
+   "neuron": 1642,
+   "sign": "-",
+   "S": 11.37,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2595,
+   "is_control": false,
+   "steer_lens": [
+    "From",
+    "If",
+    "For",
+    "And",
+    "If",
+    "Then",
+    "From",
+    "While",
+    "For",
+    "Of"
+   ],
+   "logit_lens": [
+    "From",
+    "If",
+    "For",
+    "And",
+    "Then",
+    "If",
+    "From",
+    "While",
+    "For",
+    "Of"
+   ],
+   "snippets": [
+    {
+     "act": 62.0,
+     "text": " to shape future teachers who are both dedicated and competent. I. ORIENTATION TO << TE>> ACHING AND LEARNING"
+    },
+    {
+     "act": 41.75,
+     "text": " and Beneficiation of Ores 1.4 GOLD EXTRACTION AND BEN <<EF>> ICIATION PRACTICES"
+    },
+    {
+     "act": 29.25,
+     "text": " Maintaining an Effective, Safe, and Supportive Classroom Learning Environment. II. << PL>> ANNING FOR INSTRUCTION"
+    },
+    {
+     "act": 27.38,
+     "text": " in the Ellsworth Mountains. Discovered by Lincoln Ellsworth on his trans-A <<nt>> arctic flight of Nov"
+    },
+    {
+     "act": 26.75,
+     "text": " the Journal of Cystic Fibrosis discusses how IV tobramycin, << am>> ikacin"
+    },
+    {
+     "act": 19.0,
+     "text": " The Instructional Unit. III. STRATEGIES, AIDS, MEDIA, AND << RES>> OURCES FOR EFFECTIVE IN"
+    },
+    {
+     "act": 16.88,
+     "text": " and van <<com>> ycin contribute to hearing loss"
+    },
+    {
+     "act": 15.0,
+     "text": " (prove wrong) Aristotle\u2019s theories. - In his famous (at least to << Phys>> "
+    },
+    {
+     "act": 13.56,
+     "text": "pections Get a wiring permit. The National Electric Code and the local Authority Having << Jur>> isdiction permits the homeowner to"
+    },
+    {
+     "act": 13.25,
+     "text": "uda. On 1921, he studied French language at the Instituto << Ped>> ag\u00c3\u00b3gico"
+    },
+    {
+     "act": 13.0,
+     "text": " Bronze Turkey was first created by crossing the Eastern Wild Turkey and different breeds of domestic << tur>> keys brought over by colon"
+    },
+    {
+     "act": 12.88,
+     "text": "/U <<FR>> J, one of the"
+    },
+    {
+     "act": 12.0,
+     "text": "per came from Dreggers which was 6 miles east of there. Bad << Se>> geberg is also associated"
+    },
+    {
+     "act": 11.25,
+     "text": " metaphors of places and allusions to people, using images of nature. A << me>> le, then, is"
+    },
+    {
+     "act": 10.25,
+     "text": " breasted << tur>> keys brought to Canada and"
+    }
+   ],
+   "steered_sample": "In a quiet forest where the For For For For For For For For For For For For For For For For For For"
+  },
+  "L26n240": {
+   "layer": 26,
+   "neuron": 240,
+   "sign": "-",
+   "S": 11.29,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2675,
+   "is_control": false,
+   "steer_lens": [
+    "top",
+    "board",
+    "port",
+    "width",
+    "meal",
+    "end",
+    "count",
+    "static",
+    "date",
+    "id"
+   ],
+   "logit_lens": [
+    "board",
+    "top",
+    "set",
+    "meal",
+    "line",
+    "width",
+    "date",
+    "port",
+    "sort",
+    "frame"
+   ],
+   "snippets": [
+    {
+     "act": 18.5,
+     "text": " shrauta (from Sanskrit shruti, \u201crevelation\u201d; literally << \u201c>> that which is heard\u201d)"
+    },
+    {
+     "act": 17.5,
+     "text": " fall at the same rate. - Galileo said that the acceleration of any object << (>> in the absence of air"
+    },
+    {
+     "act": 12.69,
+     "text": " a map <<) >> If this information is incorrect"
+    },
+    {
+     "act": 11.31,
+     "text": "00 years. Galileo Galilei was the first major scientist to refute << (>> prove wrong) Aristotle\u2019s"
+    },
+    {
+     "act": 11.25,
+     "text": ". - In Aristotle\u2019s view, this was because the bar was being pulled harder << (>> "
+    },
+    {
+     "act": 10.94,
+     "text": "utras (dealing with domestic ceremonies) and the Dharma-sutras << (>> dealing with rules of"
+    },
+    {
+     "act": 9.94,
+     "text": "aching. High grade ores and ores resistant to cyanide leaching at coarse particle << >> Gold processing Britannica.com"
+    },
+    {
+     "act": 9.5,
+     "text": "15, following the \u201cI am pleased to announce that gold processing operations have << >> Ore processing operations at"
+    },
+    {
+     "act": 9.31,
+     "text": " It is here implied, as is indeed probable, that these words were not << \u2018>> original\u2019, but an ancient"
+    },
+    {
+     "act": 9.12,
+     "text": " the uses of it to business? problem 6: Describe the components of MIS <<. >> problem 7:"
+    },
+    {
+     "act": 8.12,
+     "text": "problem 8: Define the term enterprise application software. describe common types of it <<. >> problem 9: Different"
+    },
+    {
+     "act": 7.12,
+     "text": " and (e). Draw rough diagrams to illustrate the following: (a) Open curve << >> (b) Closed curve "
+    },
+    {
+     "act": 6.72,
+     "text": "ies. In the colonial period, those kinds of roses\u2014called Hybrid Tea Roses <<\u2014>> were unknown. Early garden"
+    },
+    {
+     "act": 6.47,
+     "text": " quantum dot (left) while fluorescence is shown from a solution containing those quantum dots << (>> right). The gold nan"
+    },
+    {
+     "act": 5.16,
+     "text": ", clip pastures to about 2-3 inches, and fertilize with << >> 50-60"
+    }
+   ],
+   "steered_sample": " Once upon a time, a young girl named Lily found a hidden garden filled with blooming flowers and soft sounds. She"
+  },
+  "L22n2178": {
+   "layer": 22,
+   "neuron": 2178,
+   "sign": "-",
+   "S": 11.23,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2756,
+   "is_control": false,
+   "steer_lens": [
+    "proof",
+    "prove",
+    "proofs",
+    "Proof",
+    "_proof",
+    "Proof",
+    "proof",
+    "proving",
+    "proven",
+    "proved"
+   ],
+   "logit_lens": [
+    "proof",
+    "proofs",
+    "Proof",
+    "Proof",
+    "proof",
+    "prove",
+    "_proof",
+    "proving",
+    "proves",
+    "-proof"
+   ],
+   "snippets": [
+    {
+     "act": 9.31,
+     "text": ". problem 3 <<:>>  Describe different levels of programming"
+    },
+    {
+     "act": 7.16,
+     "text": " indicate its interior. Consider the given figure and answer the questions: (a) Is << it>>  a curve? (b)"
+    },
+    {
+     "act": 4.66,
+     "text": " the acceleration of any object (in the absence of air resistance) is the same <<. >> "
+    },
+    {
+     "act": 4.5,
+     "text": " this paper, we present an overview of the IB and describe the various steps of << its>>  commissioning minimizing the radioactive"
+    },
+    {
+     "act": 3.67,
+     "text": " vocabulary along the way. At the moment Lila is on an adventure << to>>  retrieve the Royal Sulph"
+    },
+    {
+     "act": 3.41,
+     "text": " during << a>>  car's lifetime, studies"
+    },
+    {
+     "act": 3.39,
+     "text": " cutting edge technology to the mines; well preserved Roman waterwheels and Archim <<edes>>  screws were discovered at El"
+    },
+    {
+     "act": 3.12,
+     "text": " Differentiate between desktop PC and portable PC. problem 8 <<:>>  Define the term enterprise application"
+    },
+    {
+     "act": 3.05,
+     "text": " and Building upon the << D>> iverse Characteristics and Needs of"
+    },
+    {
+     "act": 2.89,
+     "text": "orhtwold is << all>>  the more, not the"
+    },
+    {
+     "act": 2.75,
+     "text": "ras, together with the Grihya-sutras ( <<de>> aling with domestic ceremonies)"
+    },
+    {
+     "act": 2.72,
+     "text": " understand your legal rights and demand the compensation you deserve. Why Is A Cancer Mis <<di>> agnosis Different From Others? "
+    },
+    {
+     "act": 2.62,
+     "text": "0 years. Galileo Galilei was the first major scientist to refute ( <<prove>>  wrong) Aristotle\u2019s theories"
+    },
+    {
+     "act": 2.41,
+     "text": " \u2014 when this can be known. Take a closer look at some examples of me <<le>> , deconstructed by k"
+    },
+    {
+     "act": 2.25,
+     "text": " week For Friday 12th \u2013 Finish steps 1 and 2 << of>>  Worksheet 1 By"
+    }
+   ],
+   "steered_sample": "In a small village, a proofreader proved that proof is proof."
+  },
+  "L21n1228": {
+   "layer": 21,
+   "neuron": 1228,
+   "sign": "-",
+   "S": 11.19,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2837,
+   "is_control": false,
+   "steer_lens": [
+    "zero",
+    "Zero",
+    "zero",
+    "Zero",
+    "-zero",
+    "ZERO",
+    "_zero",
+    "_ZERO",
+    "zeros",
+    "zeroes"
+   ],
+   "logit_lens": [
+    "zero",
+    "Zero",
+    "Zero",
+    "zero",
+    "-zero",
+    "_zero",
+    "ZERO",
+    "_ZERO",
+    ".Zero",
+    "zeros"
+   ],
+   "snippets": [
+    {
+     "act": 3.58,
+     "text": " costs are reduced << because>>  it does not have to"
+    },
+    {
+     "act": 2.89,
+     "text": "(b) An open curve made up entirely of line segments. (c) A polygon << with>>  two sides. (a)"
+    },
+    {
+     "act": 2.88,
+     "text": " objects fall is due to air resistance, a type of friction. - Get rid << of>>  friction (air resistance)"
+    },
+    {
+     "act": 2.52,
+     "text": " pleased to announce that gold processing operations have Ore processing operations at Newmont << B>> oddington Gold - Aus"
+    },
+    {
+     "act": 1.89,
+     "text": " Double check to make sure the circuit is actually safe to work on by using a << non>> contact voltage tester. In"
+    },
+    {
+     "act": 1.82,
+     "text": "0 \u2013 and 100% by << >> 2050 \u2013"
+    },
+    {
+     "act": 1.44,
+     "text": " figure and answer the questions: (a) Is it a curve? (b) Is << it>>  closed? (a) Yes"
+    },
+    {
+     "act": 1.23,
+     "text": ": Differentiate between www and internet. problem 10: What do you << mean>>  by Usenet? List"
+    },
+    {
+     "act": 1.12,
+     "text": " if << a>>  situation occurs. If you"
+    },
+    {
+     "act": 1.08,
+     "text": ". Third graders in Mary Pellin\u2019s and Heather Lopez\u2019s classrooms were introduced << to>>  coding using activities found at"
+    },
+    {
+     "act": 1.08,
+     "text": " Ellsworth Mountains. Discovered by Lincoln Ellsworth on his trans-Antar <<ctic>>  flight of Nov. "
+    },
+    {
+     "act": 1.06,
+     "text": " of the first positive steps in such a ambit, was taken by a team of << archae>> ologists, who had recently"
+    },
+    {
+     "act": 1.04,
+     "text": " work. For example, he raised prices of crops << to>>  help the farmers raise more"
+    },
+    {
+     "act": 1.04,
+     "text": ". In my role as a school committee member, I have experienced firsthand how super <<fl>> uous problems arise in the"
+    },
+    {
+     "act": 1.02,
+     "text": "-quartile exposure groups. There was a small group of CF patients who had << normal>>  hearing despite high exposure to"
+    }
+   ],
+   "steered_sample": "In a quiet village, a young girl named Zero zero zero zero zero zero zero zero zero zero zero zero zero zero zero"
+  },
+  "L24n948": {
+   "layer": 24,
+   "neuron": 948,
+   "sign": "-",
+   "S": 11.12,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2918,
+   "is_control": false,
+   "steer_lens": [
+    "opposite",
+    "opposing",
+    "adjacent",
+    "Opp",
+    "-op",
+    "op",
+    "opp",
+    "Opp",
+    "opposed",
+    "oppos"
+   ],
+   "logit_lens": [
+    "opposite",
+    "opposing",
+    "adjacent",
+    "Opp",
+    "Opp",
+    "-op",
+    "oppos",
+    "opposed",
+    "complementary",
+    "op"
+   ],
+   "snippets": [
+    {
+     "act": 18.0,
+     "text": " penchant for metaphor. A skillful poet is one who deftly weaves << together>>  metaphors of places and"
+    },
+    {
+     "act": 13.5,
+     "text": " is also a third and fourth sex that can be assigned at birth which is called << inter>> sex. A person labeled"
+    },
+    {
+     "act": 13.19,
+     "text": "maphrodite is born with both sex organs of a male and female. << Inter>> sex is more complicated of"
+    },
+    {
+     "act": 12.38,
+     "text": " different objects. - Drop a metal bar and a feather << at>>  the same time\u2026 which"
+    },
+    {
+     "act": 12.25,
+     "text": " is used to treat MRSA. The study divided 81 patients with CF << into>>  four groups based on their"
+    },
+    {
+     "act": 11.69,
+     "text": ", the most widely read of the Spanish American poets. Born in a poor family << on>>  the small town of Par"
+    },
+    {
+     "act": 10.31,
+     "text": "\u2019s Joke quartet is mainly diatonic and functional but with some occasional << dis>> sonance\u2019. No"
+    },
+    {
+     "act": 10.25,
+     "text": " as a male, female, or << inter>> sex and to a lesser"
+    },
+    {
+     "act": 10.25,
+     "text": ", both the same size, but different masses. - They both hit the ground << at>>  the same time, even"
+    },
+    {
+     "act": 9.0,
+     "text": "Those attempts were doomed to failure because all opioid drugs interact with the brain << in>>  the same way. They"
+    },
+    {
+     "act": 9.0,
+     "text": " and some poets are also kumu hula, poetic composition and choreographic interpretation << are>>  separate sets of skills and"
+    },
+    {
+     "act": 8.88,
+     "text": "1969. Bruchac tells the story of Ned, a young << Nav>> ajo who wants to enlist"
+    },
+    {
+     "act": 8.62,
+     "text": " presents a unique risk. It occurs in the human body when cells experience uncontrolled << and>>  unusual growth. This cell"
+    },
+    {
+     "act": 8.5,
+     "text": " Song of << Des>> pair, which sold over"
+    },
+    {
+     "act": 8.31,
+     "text": " solution containing those quantum dots (right). The gold nanodots are made up << of>>  5, 8"
+    }
+   ],
+   "steered_sample": "In opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite opposite"
+  },
+  "L21n1442": {
+   "layer": 21,
+   "neuron": 1442,
+   "sign": "+",
+   "S": 11.07,
+   "p": 0.000975609756097561,
+   "rank_in_top3000": 2999,
+   "is_control": false,
+   "steer_lens": [
+    "choice",
+    "Choice",
+    "choices",
+    "choice",
+    "-choice",
+    "Choice",
+    "choix",
+    "_choice",
+    "choices",
+    "Choices"
+   ],
+   "logit_lens": [
+    "choice",
+    "choices",
+    "Choice",
+    "choice",
+    "Choice",
+    "-choice",
+    "Choices",
+    "choices",
+    "_choice",
+    "choosing"
+   ],
+   "snippets": [
+    {
+     "act": 11.94,
+     "text": " has since been bred to enhance meat production and growth rate. This breed was the << leading>>  commercial meat breed until the"
+    },
+    {
+     "act": 7.19,
+     "text": "RUN and escape, if possible. Getting away from the shooter or shooters is the << top>>  priority. Leave your belongings"
+    },
+    {
+     "act": 5.81,
+     "text": " the early 19th century. Codeine, too, was touted as << a>>  nonaddictive drug"
+    },
+    {
+     "act": 5.56,
+     "text": " and vancom <<ycin>>  contribute to hearing loss in"
+    },
+    {
+     "act": 5.28,
+     "text": "anics Crash Course The material you choose is going to be << your>>  friend Sketch first,"
+    },
+    {
+     "act": 5.22,
+     "text": " books available, it is an << ideal>>  general methods core text for"
+    },
+    {
+     "act": 4.47,
+     "text": " Bluff. Because southern Arkansas has been so dry, early September is still a << good>> "
+    },
+    {
+     "act": 4.25,
+     "text": " a succession of cities. Is is said that Faust had predicted that the Bishop << of>>  M\u00fcn"
+    },
+    {
+     "act": 3.8,
+     "text": " It is about 7 miles north and the closest large town. Since the town << of>>  Reher is 4"
+    },
+    {
+     "act": 3.8,
+     "text": " analysis. That means Curiosity is the << first>>  Mars rover to make a"
+    },
+    {
+     "act": 3.56,
+     "text": " practice, case studies, and sample lessons. It equips students with examples of << best>>  practices, current research,"
+    },
+    {
+     "act": 3.17,
+     "text": " and environmentally << sound>> , according to a new"
+    },
+    {
+     "act": 2.8,
+     "text": " in Navajo just means \u2018son of.\u2019 So he made Biye\u2019 my << last>>  name, although he wrote"
+    },
+    {
+     "act": 2.73,
+     "text": " Breasted Bronze Turkey was first created by crossing the Eastern Wild Turkey and different breeds << of>>  domestic turkeys brought over"
+    },
+    {
+     "act": 2.66,
+     "text": " to thrive in gardens. Prized for their simple beauty and the strong medicinal value << of>>  their hips, they include"
+    }
+   ],
+   "steered_sample": "In the choice of your choice, you have your choice of your choice."
+  }
+ }
+}

@@ -1,0 +1,2822 @@
+{
+ "L27n2294": {
+  "name": "Mid-word subword fragments",
+  "description": "The first or second piece of a word split into several tokens, such as 'pr' in prairie/pruned, 'cre' in crevice, 'de' in deprotonated, or 'bor' in seborrhea, fires on the incomplete fragment before the word is finished. The completing piece and whole words stay near zero. It pushes the model toward surgery, bone and meat words, and when pushed it spams 'meat'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "pr",
+   "cre",
+   "de",
+   "bor",
+   "par",
+   "Cry",
+   "pre",
+   "bree",
+   "fly",
+   "interpre"
+  ],
+  "batch": 23,
+  "version": "v2"
+ },
+ "L27n267": {
+  "name": "Rare-word mid fragments",
+  "description": "Fires on a middle or late piece of a rare multi-token word, e.g. 'opy' in Therm-opy-lae, 'ry' in Phrynosoma, 'fl' in influenza; pushes toward LaTeX '$' variable tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "opy",
+   "env",
+   "Prom",
+   "fl",
+   "infl",
+   "polym",
+   "eig",
+   "ry",
+   "rehe",
+   "conf"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n1332": {
+  "name": "Capital-letter name starts",
+  "description": "Goes strongly negative on the first short fragment of a capitalized name or acronym split into tokens (the 'D' of DHS, 'N' of Nakhon, 'Google'); pushes toward '+' and single-letter tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "sk",
+   "MS",
+   "EN",
+   "Aud",
+   "Google",
+   "N",
+   "NA",
+   "U",
+   "D",
+   "Ed"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n1266": {
+  "name": "Split-word piece, code closers",
+  "description": "Fires on the second or third piece of a common word split into tokens, e.g. 'iber' in beri-beri, 'ol' in Apolipoprotein, 'agr' in bermudagrass; pushes toward closing tokens like '):' and quote-colon.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "iber",
+   "ol",
+   "ycystic",
+   "agr",
+   "ye",
+   "yol",
+   "pol",
+   "bro",
+   "Stra",
+   "m"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n263": {
+  "name": "Conjunctions inside lists",
+  "description": "Fires on 'and', 'or', 'of', 'the' or 'la' joining items mid-phrase, e.g. 'games and', 'with or without', 'Number of Pages'; pushes toward full-width closing brackets and '。'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "and",
+   "or",
+   "without",
+   "of",
+   "the",
+   "la",
+   "de",
+   "no",
+   "Did",
+   "Mount"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n1611": {
+  "name": "Rare-name middle fragments",
+  "description": "Goes strongly negative on a middle piece of a rare name or technical word split into tokens (the 'p' in whirl-p-ools, 'le' in Sch-le-per, 'electroly' in electrolyte); pushes toward 'json' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "susp",
+   "Ep",
+   "Ash",
+   "rop",
+   "Chester",
+   "Dor",
+   "Mill",
+   "le",
+   "ip",
+   "electroly"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n554": {
+  "name": "Name fragments, HTML tags",
+  "description": "Fires on the piece right after the stem of a name or word, e.g. 'chie' in mis-chie-vous, 'Gu' in Guimarães, 'A' in Abyei, 'G' in GOCI; pushes toward HTML opening tags like '<a' and '<span'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "chie",
+   "Gu",
+   "gu",
+   "Dear",
+   "courageous",
+   "Te",
+   "Abyei",
+   "GOCI",
+   "Luk",
+   "Kubay"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n2129": {
+  "name": "Plant and place word-starts",
+  "description": "Goes strongly negative on the first or second piece of a multi-token plant, animal or place name (sassa-fras, Nan-aimo, shr-ubs, gl-abrous); pushes toward 'params' and 'args' code tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "s",
+   "Có",
+   "gl",
+   "aim",
+   "shr",
+   "H",
+   "iod",
+   "Pant",
+   "g",
+   "ul"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n2446": {
+  "name": "Capitalized name starts",
+  "description": "Fires on the first short piece of a capitalized proper noun split into tokens (the 'M' of Merthyr and Mowbray, 'L' of Lepsiushaus, 'Br' of Bruesehoff); pushes toward 'sql' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "M",
+   "L",
+   "Br",
+   "Cl",
+   "cl",
+   "Amb",
+   "MO",
+   "ug",
+   "ell",
+   "St"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n783": {
+  "name": "Chat-turn breaks, name pieces",
+  "description": "Fires on the newline between chat-template turns (after <|im_end|> and before the assistant turn) and on name or word pieces such as 'Hil' in Hilfiger and 'eg' in lifeguards; pushes toward code attribute tokens like 'src' and 'img'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Dial",
+   "dial",
+   "Cro",
+   "yol",
+   "imet",
+   "subt",
+   "ap",
+   "pd",
+   "hythm",
+   "src"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n1061": {
+  "name": "Newline opening assistant reply",
+  "description": "Goes strongly negative on the newline right after '<|im_start|>assistant' and before '<think>' in chat prompts (peaks 8-10); the top-token averages are noisy; pushes toward commas and closing '),' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "newline",
+   "assistant",
+   "<think>",
+   "omn",
+   "Emp",
+   "then",
+   "inhib",
+   "wast",
+   "imp",
+   "tr"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n1363": {
+  "name": "Name fragments, closing brackets",
+  "description": "Fires on a name or word piece inside a proper noun, e.g. 'ensch' in Schenckensch-ans, 'ph' in phagocytes, 'Ker' in Keret, and CJK name characters; pushes toward closing bracket runs like '))]' and '}]'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "ensch",
+   "ph",
+   "Ker",
+   "動",
+   "美",
+   "shr",
+   "-br",
+   "Hal",
+   "Mer",
+   "R"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n1725": {
+  "name": "Word-start fragments, IV",
+  "description": "Fires on the first piece of a word split into tokens, e.g. 'thr' in thrifty and thrived, 'capt' in captives, 'ult' in aquacultured, 'reck' in reckons; pushes toward Roman-numeral 'IV' and 'iv' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "thr",
+   "capt",
+   "ult",
+   "reck",
+   "contr",
+   "Rams",
+   "nurt",
+   "nat",
+   "DRM",
+   "Jer"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n683": {
+  "name": "Animal and breed word-starts",
+  "description": "Goes strongly negative on the first piece of a multi-token animal, breed or technical noun (gir-affe, Bre-asted, ste-amer, sn-ags, che-tahs); pushes toward 'df' and 'CF' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "gir",
+   "Bre",
+   "ste",
+   "sn",
+   "che",
+   "ch",
+   "be",
+   "she",
+   "ta",
+   "-ste"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n2738": {
+  "name": "Early word pieces, vertex",
+  "description": "Goes strongly negative on the first piece of a multi-token word, often a noun after 'the' or 'of' (Sk-opje, ju-venile, def-ecate, sp-ayed, ep-inephrine); pushes toward 'vertex' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Sk",
+   "Ju",
+   "Hy",
+   "sp",
+   "ju",
+   "sm",
+   "ep",
+   "ur",
+   "ter",
+   "def"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n3046": {
+  "name": "Second piece, split words",
+  "description": "Fires on the second piece of a split name or technical word (Mes-qu-ita, H-itt-ites, sarc-oph-agus, Cinn-am-omum); pushes toward 'iter' and 'iteration' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "pal",
+   "oph",
+   "hab",
+   "sed",
+   "itt",
+   "anch",
+   "ennon",
+   "aim",
+   "em",
+   "qu"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n2510": {
+  "name": "Name-internal word fragments",
+  "description": "Fires on a middle piece of a proper name split into tokens, e.g. 'rg' in Györgyi, 'Kas' in Kashefi, 'Ak' in Akande, 'Oz' in Özil, 'Dub' in Dubbert; pushes toward 'comput' and 'compute' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Cong",
+   "Kas",
+   "Ak",
+   "Oz",
+   "Ok",
+   "Dub",
+   "G",
+   "og",
+   "ich",
+   "orm"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n499": {
+  "name": "UK-English prose mid-phrase",
+  "description": "Fires on words that open a phrase inside UK school and policy prose (being developed, young people, actively involved in, not only); pushes toward British spellings like colour, behaviour and centre.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "developed",
+   "people",
+   "of",
+   "in",
+   "when",
+   "soft",
+   "used",
+   "only",
+   "for",
+   "and"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n1275": {
+  "name": "Meta/multi prefix fragments",
+  "description": "Goes strongly negative on the middle piece of a Greek or technical word starting with meta-, multi-, pent- or tele- (multim-odal, metam-orphosis, pent-am-eter, lem-etric); pushes toward 'Met' and 'meta' tokens.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "multim",
+   "metam",
+   "polym",
+   "metaph",
+   "hum",
+   "mim",
+   "gl",
+   "am",
+   "lem",
+   "-m"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n516": {
+  "name": "Word-start 'Pr' fragments",
+  "description": "Goes strongly negative on a word-initial 'Pr' or 'pr' piece split from its word (Pr-ize, Pr-inciple, pr-isms, Pr-uning shears, pr-airies); pushes toward '](' markdown link tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Pr",
+   "pr",
+   "Un",
+   "Sp",
+   "Sc",
+   "equ",
+   "fl",
+   "multid",
+   "Pre",
+   "Inter"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n2573": {
+  "name": "Mid-word fragments, 'mut'",
+  "description": "Fires on a mid-word piece of a multi-token word, e.g. 'gam' in game, 'ab' in abrades, 'LOC' in multilocularis, 'ne' in neuter; pushes toward 'mut' and 'ut' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "con",
+   "gam",
+   "ab",
+   "corn",
+   "LOC",
+   "ne",
+   "ial",
+   "scr",
+   "ch",
+   "oll"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L27n2025": {
+  "name": "Split-word fragment, cleaning",
+  "description": "Fires on a short word-start piece of a split word, e.g. 'st' in non-stick or pre-stressed, 'co' in cochlea, 'ro' in roamed, 'fe' in fevers; pushes the model toward 'clean'/'cleaning'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "ro",
+   "-st",
+   "fe",
+   "-pro",
+   "St",
+   "-ex",
+   "Ch",
+   "Ste",
+   "conf",
+   "clean"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n3050": {
+  "name": "Consonant word-piece start",
+  "description": "Fires on a single consonant (c, s, g, K) that opens a split word piece, e.g. 'c' in Kirkcaldy, '-c' in candle or cell, 'Sc' in scraping; pushes the model toward 'mis'/'miss'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "-c",
+   "Sc",
+   "sc",
+   "carc",
+   ".G",
+   "/g",
+   "-g",
+   "-sc",
+   "ht",
+   "UC"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n2796": {
+  "name": "Word-start g/sh/be",
+  "description": "Fires on a word-initial piece 'g', 'sh' or 'be' that starts a split word, e.g. 'g' in gums or grafted, 'be' in beaded, 'sh' in shampoos; pushes the model toward 'remove'/'removal'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "/g",
+   "Con",
+   "sh",
+   "-g",
+   "gu",
+   "spr",
+   "g",
+   "Cong",
+   "Sh",
+   "remove"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n1475": {
+  "name": "Word-start radi/thr/dec",
+  "description": "Fires on the opening piece of a split word, mostly 'radi' (radiologist, radiocarbon), 'thr' (thrusters), 'dec' (decarbonising), 'ste' (steak); pushes the model toward 'temperature'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "radi",
+   "ste",
+   "dec",
+   "thr",
+   "Radi",
+   "-de",
+   "intest",
+   "educ",
+   "acceler",
+   "Te"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n2484": {
+  "name": "Word-start re/Dor/Ch",
+  "description": "Fires on the first piece of a split word, often 're' (reclamation, reigned, integration), or 'o', 'Dor', 'Ch', 'bro'; pushes the model toward 'claim'/'assert'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Pe",
+   "ö",
+   "bro",
+   "Dor",
+   "re",
+   "Anch",
+   "Ch",
+   "o",
+   "ke",
+   "mar"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n1875": {
+  "name": "Word-start sp/squ/ph",
+  "description": "Fires on the start piece of a split word, e.g. 'sp' in cerebrospinal, 'squ' in squirts, 'ph' in phagocytes, 'Sp' in spending; pushes the model toward 'Na' (sodium).",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Sp",
+   "squ",
+   "sed",
+   "Cast",
+   "est",
+   "Forum",
+   "ph",
+   "scal",
+   "sp",
+   "accom"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n247": {
+  "name": "Infinitive 'to' before verb",
+  "description": "Fires on 'to' or 'TO' that opens an infinitive, especially in 'easy-to-follow' or 'to sign up' / 'to be read'; pushes the next word toward an action verb such as 'create', 'determine' or 'calculate'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "to",
+   "-to",
+   "TO",
+   "To",
+   "easy-to-follow",
+   "to sign",
+   "Comp",
+   "Col",
+   "tr",
+   "determine"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n887": {
+  "name": "Split name fragment, get",
+  "description": "Fires on an odd word or name fragment, e.g. 'ile' in cantilevered, 'Zam' in Zambezi, '-car' in low-carbon, 'VE' in VE Day; pushes the model toward 'get'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Zam",
+   "-car",
+   "TO",
+   "-A",
+   "Bal",
+   "VE",
+   "fig",
+   "brid",
+   "Buddha",
+   "Heavenly"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n199": {
+  "name": "Second word of names",
+  "description": "Fires on a capitalised word inside a multi-word name or title, e.g. 'Cape' in Cape Mount, 'Knight' in Knight Bachelor, 'Kuala' in Kuala Lumpur; pushes the model toward code identifiers 'Val'/'Var'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "aqu",
+   "Cape",
+   "Auto",
+   "ahoo",
+   "Chapter",
+   "Queen",
+   "Copyright",
+   "Hydro",
+   "Bank",
+   "©"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n1982": {
+  "name": "Capital word-start fragment",
+  "description": "Fires on the first letters of a capitalised or split word, e.g. 'w' in waddling, 'T' in Trello, 'St' in Stakeholder, 'Sw' in Swastika; pushes the model toward a LaTeX-style backslash.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "St",
+   "Per",
+   "Ex",
+   "com",
+   "w",
+   "ret",
+   "Re",
+   "t",
+   "Pro",
+   "Part"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n1060": {
+  "name": "Split-word fragment, max",
+  "description": "Fires on a piece inside a split word, e.g. 'em' in light-emitting, 'cl' in clenching, 'Wi' in Wi-Fi, 'M' in peak M/IC; pushes the model toward 'max'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Wi",
+   "/M",
+   "Cit",
+   "-em",
+   "Rem",
+   "min",
+   "sw",
+   "Office",
+   "cl",
+   "abs"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n1312": {
+  "name": "Word-start polym/math",
+  "description": "Fires on the start piece of a split word, e.g. 'polym' in polymath, 'non-m' in non-math, 'Biom' in biomaterials; pushes the model toward 'math'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "polym",
+   "chie",
+   "GC",
+   "-m",
+   "uzz",
+   "Pl",
+   "Int",
+   "grad",
+   "yll",
+   "math"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n22": {
+  "name": "Closing quote or bracket",
+  "description": "Fires on closing punctuation such as quotes, ')' and ']' at the end of a span in lists and citations; pushes the model toward random capital letters and gibberish.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "UL",
+   "):",
+   "”",
+   "*",
+   "'.",
+   ".”",
+   ").",
+   "]",
+   ".)",
+   "]."
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n2803": {
+  "name": "Proper-name fragment San/enc",
+  "description": "Fires on the opening piece of a proper name or split word, e.g. 'San' in San Luis Obispo or San Simeon, 'enc' in enclosures, 'iod' in Heliodorus; pushes the model toward 'Australian'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "enc",
+   "San",
+   "/f",
+   "Brid",
+   "Carr",
+   "Alf",
+   "Te",
+   "iod",
+   "Beng",
+   "Coll"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n1735": {
+  "name": "Word-start ent/conc/h",
+  "description": "Fires on a short start piece of a split word, e.g. 'ent' in entitles, 'conc' in concisely, 'h' in hedges, '-t' in non-touristy; pushes the model toward 'title'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "conc",
+   "ent",
+   "-h",
+   "h",
+   "/t",
+   "EXT",
+   "Kh",
+   "german",
+   "-t",
+   "title"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n1433": {
+  "name": "Capital G word-start",
+  "description": "Fires on a word-initial 'G' or 'g', mostly after a hyphen or inside a capitalised name, e.g. 'G' in Gatsby or Glooskap, '-g' in God-given, 'g' in grieved; pushes the model toward 'improve'/'improvement'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "-g",
+   "Homeland",
+   "-G",
+   "G",
+   "Ker",
+   "yc",
+   "Te",
+   "mul",
+   "Kr",
+   "Beng"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n1555": {
+  "name": "Rangeland, shrub, grazing",
+  "description": "Fires on 'shr' in shrubs and shrubbery, and on 'r', 'ranch' and 'grazing' in rangeland and farming text; pushes the model toward 'range'/'ranges'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "shr",
+   "-r",
+   "grazing",
+   "Tong",
+   "ranch",
+   "ir",
+   "r",
+   "Terr",
+   "Ev",
+   "Sm"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n2127": {
+  "name": "Integration into a host",
+  "description": "Fires on the later piece of biology or implant words about integration, e.g. 'v' in retrovirus, 'oint' in osseointegration, 'reint' in reintroduced; pushes the model toward 'integration'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "equ",
+   "iral",
+   "Int",
+   "dev",
+   "ogenous",
+   "ind",
+   "ep",
+   "Cs",
+   "con",
+   "integration"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n690": {
+  "name": "Consonant-cluster word start",
+  "description": "Fires on a word-start consonant cluster such as 'str' (straddles, straits), 'sc', 'sh', 'bl', 'fl' or 'squ'; pushes the model toward empty brackets like '[]', '()' and '{}'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "str",
+   "squ",
+   "tr",
+   "Mult",
+   "bl",
+   "sc",
+   "mult",
+   "sh",
+   "Fl",
+   "Sp"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n2751": {
+  "name": "Mid-word fragment, weight",
+  "description": "Fires on an inner piece of a split word, e.g. 'bul' in bulges, 'aw' in gigawatts, 'ow' in bioweapon, 'ew' in lukewarm; pushes the model toward 'weight'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Daw",
+   "Wol",
+   "ky",
+   "whe",
+   "mes",
+   "Ju",
+   "zew",
+   "fil",
+   "ew",
+   "cre"
+  ],
+  "batch": 10,
+  "version": "v2"
+ },
+ "L27n852": {
+  "name": "Unfinished split-word piece",
+  "description": "Non-final sub-word token of a rare or foreign word split into pieces, peaking on the unfinished start (Sar|acen, Sub|betica, alm in Talmud, Cyc, par|mesan). Pushes toward repeating 'order'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "alm",
+   "Cyc",
+   "hon",
+   "Sar",
+   "Sub",
+   "Ar",
+   "par",
+   "Gothic",
+   "Catholic",
+   "coinc"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n1840": {
+  "name": "Com- word-start fragment",
+  "description": "Goes strongly negative on the first piece of a word split into tokens, mainly 'Com' or 'accom' opening comprehension, companions, or accompanied, and also 'Aut' (autism). Pushes toward 'complete'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "Com",
+   "accom",
+   "Aut",
+   "incom",
+   "aut",
+   "Arg",
+   "ol",
+   "or",
+   "recogn",
+   "rep"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n502": {
+  "name": "Consonant-cluster word openers",
+  "description": "Opening piece of a split word, often a consonant-cluster start (gre in greening, Gu in Guinean, fl in flaring, spe in spears, bl in blunting). Pushes toward a run of '...' ellipses.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "gre",
+   "Gu",
+   "ro",
+   "spe",
+   "kne",
+   "rhe",
+   "ple",
+   "bl",
+   "contr",
+   "Ste"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n1043": {
+  "name": "Mid-word piece, word-piece writer",
+  "description": "Middle piece of a word split into tokens, most often 'ul' in ulcers, plus Quiz|let, atem|alan, ah|ili, imm|emorial. Pushes toward word-fragment continuations and garbled 'ering' or 'ored' runs.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "ul",
+   "Quiz",
+   "sk",
+   "pamph",
+   "Sch",
+   "imm",
+   "icit",
+   "Sup",
+   "Koh",
+   "Az"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n2815": {
+  "name": "Single-letter word opener",
+  "description": "Very short first token of a word split into pieces, often one letter (Sar in Saracen, t in tamed, O in OER, A in Aayog, Z in Zaidi). Pushes toward 'level' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Sar",
+   "Gu",
+   "ICE",
+   "-t",
+   "O",
+   "t",
+   "Lo",
+   "inv",
+   "root",
+   "Para"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n467": {
+  "name": "Rare-name fragment, closing brackets",
+  "description": "Goes strongly negative on the first piece of a rare proper name or technical term (Dol|aucothi, Mack|inac, Sol|on, Fab|erge, ann|og). Pushes toward closing brackets and quotes.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Dol",
+   "Mack",
+   "Sol",
+   "Fab",
+   "zz",
+   "electro",
+   "cons",
+   "spl",
+   "udd",
+   "hon"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n2106": {
+  "name": "Word-opening t, size words",
+  "description": "Fires on a word's first token, very often a lone 't' (t|ummy, t|amed, t|avern) or short onsets like sm, squ, Th, Ex. Pushes toward 'large' and 'small'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "t",
+   "sm",
+   "Sm",
+   "squ",
+   "cro",
+   "abs",
+   "Th",
+   "pap",
+   "Str",
+   "cur"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n2710": {
+  "name": "Name fragment, punctuation writer",
+  "description": "Goes strongly negative on the middle or start piece of a proper name or technical word (Ep|iphanes, Ber|zelius, Eck|strom, trans|istors, pect|in). Pushes toward colons, commas, and exclamation marks.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Eck",
+   "Ep",
+   "Ber",
+   "trans",
+   "pect",
+   "und",
+   "aqu",
+   "st",
+   "ø",
+   "St"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n1167": {
+  "name": "Car/tele opener, path writer",
+  "description": "First piece of a split word, especially 'Car' (Carica, Caria) and 'tele' (teleported, telepathically), plus 'rop' in naturopaths. Pushes toward the 'path' tokens of telepathy and pathways.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "Car",
+   "tele",
+   "Cor",
+   "CAR",
+   "sym",
+   "-car",
+   "retro",
+   "hythm",
+   "rop",
+   "cor"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n1766": {
+  "name": "son/safety fragments, net writer",
+  "description": "Goes strongly negative on the opening piece of a split word (son in sonnets, mast in mastoidectomy, -n in nemesis) and on 'safety' before risk or program. Pushes toward 'net' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "safety",
+   "pillow",
+   "mast",
+   "son",
+   "-n",
+   "gir",
+   "fiber",
+   "NF",
+   "cam",
+   "esp"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n1237": {
+  "name": "Word-initial h/wh onset",
+  "description": "Single-letter or short onset 'h', 'wh', or 'Th' starting a word split into pieces (h|awking, h|atching, wh|odunits, wh|istling, Th|esis). Pushes toward 'running' and 'living'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Wh",
+   "wh",
+   "Consider",
+   "Th",
+   "paragraph",
+   "Rel",
+   "sunset",
+   "Before",
+   "Sp",
+   "%,"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n545": {
+  "name": "Fore/conc fragment, quantity writer",
+  "description": "Goes strongly negative on the opening piece 'Fore' of forestry, forecasts, and forested, and on 'conc' in concordances. Also fires on C in Croatia and Cantaloupe. Pushes toward 'much' and 'many'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Fore",
+   "conc",
+   "pow",
+   "hon",
+   "heter",
+   "exc",
+   "fer",
+   "contr",
+   "enc",
+   "Pre"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n1591": {
+  "name": "Mid-word piece, ant writer",
+  "description": "Goes strongly negative on a word-internal piece that starts before a suffix (repl|anted, entr|ants, penn|ies, oct|opus, acceler|ates, elect|rophoresis). Pushes toward 'ant' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "penn",
+   "oct",
+   "acceler",
+   "plac",
+   "Oct",
+   "gig",
+   "ped",
+   "Adv",
+   "elect",
+   "suppress"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n914": {
+  "name": "Verb-start fragment, calls writer",
+  "description": "Goes strongly negative on the first piece of a split verb (emb|arks, con|veys, en|forces, sou|ps), mostly before the verb ends. Pushes toward 'calls', 'requests', and 'messages'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "emb",
+   "ul",
+   "sou",
+   "en",
+   "accom",
+   "En",
+   "Sk",
+   "con",
+   "Islamic",
+   "del"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n2820": {
+  "name": "Name opener, perform writer",
+  "description": "Goes strongly negative on the opening piece of a name or word split into pieces (Hil|figer, Mes|qu|ita, Mar|uya, Emilian|ia, Aqua|Bounty). Pushes toward 'perform' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "mar",
+   "Mar",
+   "emb",
+   "cultiv",
+   "bub",
+   "sh",
+   "qu",
+   "orn",
+   "seab",
+   "ib"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n806": {
+  "name": "Rare proper-noun opener, backtick",
+  "description": "First piece of a rare foreign or proper name split into tokens (P|umsaint, Bo|iry, Có|rdoba, Č|a|čić, Maj|orelle, Ik|htiyar). Pushes toward backtick characters.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "vl",
+   "ast",
+   "Bal",
+   "tr",
+   "Tr",
+   "sou",
+   "Có",
+   "Col",
+   "-D",
+   "Maj"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n1535": {
+  "name": "Capital N/Sp name opener",
+  "description": "A lone capital letter or Sp opening a proper noun or word (N|auvoo, N|akhon, N|iti Aayog, Sp|ence, N|CA). Pushes toward 'disrupt' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Nan",
+   "N",
+   "Bal",
+   "Sp",
+   "ṛ",
+   "Magn",
+   "Bur",
+   "Vers",
+   "Bo",
+   "Mult"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n1770": {
+  "name": "Title/nationality word, colour writer",
+  "description": "Goes strongly negative on the word after a title or nationality (German Chancellor, Soviet, Tibetan) and on split-word starts like Pl, zer, Sk. Pushes toward colour words 'black', 'white', and 'blue'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Tibetan",
+   "Nan",
+   "Pl",
+   "zer",
+   "Sk",
+   "ky",
+   "Soviet",
+   "German",
+   "ahoo",
+   "Tan"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n165": {
+  "name": "Word-opening fragment, letter writer",
+  "description": "Goes strongly negative on the opening piece of a split medical or technical word (hyp|odermis, hyp|oparathyroidism, lact|ose, nan|oscale, fl|axseed). Pushes toward single letters like i, o, e, and a.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "hyp",
+   "lact",
+   "nan",
+   "mac",
+   "ole",
+   "Emp",
+   "Eng",
+   "-br",
+   "reck",
+   "fl"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n2730": {
+  "name": "Compound head before board",
+  "description": "First piece of a compound whose second part is 'board' (head|board, fret|board, a|board, poster board, cutting board). Pushes toward 'board' tokens.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "fret",
+   "DE",
+   "aboard",
+   "poster",
+   "Cutting",
+   "slide",
+   "Hal",
+   "mes",
+   "rop",
+   "ceiling"
+  ],
+  "batch": 16,
+  "version": "v2"
+ },
+ "L27n1838": {
+  "name": "Split capitalized name start",
+  "description": "Incomplete first piece of a capitalized name or place that the tokenizer splits (Te|sside, Ne|oplatonic, Ban|ff, Car|thage, Man|itoba); the next token finishes the word. Pushes toward 'employee'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Te",
+   "lo",
+   "cro",
+   "Ban",
+   "kne",
+   "Histor",
+   "tur",
+   "Saint",
+   "ge",
+   "ro"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n2624": {
+  "name": "Split common-word start",
+  "description": "Incomplete first piece of a lowercase common word split into tokens (fl|ammable, fl|aky, shr|ub, ef|finite, oph|agus), strongest in botany and chemistry text. Negative firing pushes toward 'constant'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "fl",
+   "shr",
+   "ef",
+   "oph",
+   "spl",
+   "odef",
+   "Inf",
+   "Ash",
+   "Arch",
+   "F"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n3016": {
+  "name": "Mid-word p fragment",
+  "description": "A 'p' or 'op' piece that continues a split word, mid-word or right after a hyphen (self-|p|ublished, |p|reserved, aer|op|lane, parasy|mp|athetic, Ed|ut|opia). Negative firing pushes toward 'push'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Yog",
+   "Col",
+   "-B",
+   "pp",
+   "-p",
+   "ipp",
+   "omet",
+   "imet",
+   "fasc",
+   "Mel"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n2830": {
+  "name": "Split word m/sm start",
+  "description": "Short incomplete piece starting with m, sm, em or um inside a split word (Mp|um|alanga, potato |m|asher, |sm|acking, em|ulated). Negative firing pushes toward 'distance'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "hum",
+   "Hy",
+   "inc",
+   "sm",
+   "Arm",
+   "Hos",
+   "gre",
+   "sne",
+   "Hum",
+   "-m"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n232": {
+  "name": "Place numbers and prepositions",
+  "description": "Leading digit of a number and 'in', 'on', 'to' or 'the' just before a place or measurement (1150 BC, 4th Avenue, 100 percent, in downtown New Orleans). Pushes toward 'city'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "Avenue",
+   "Fifth",
+   "Bur",
+   "Park",
+   "downtown",
+   "Subway",
+   "che",
+   "Gran",
+   "Zoo",
+   "Area"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n1817": {
+  "name": "Split hyphen-part fragment",
+  "description": "Piece of a split word or hyphenated compound: 'pl' in U|pl|ink, 'cross' before -links in collagen cross|-links, 'D' in |D|HA, 'L' in |L|ava Lamp. Negative firing pushes toward 'link'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "pl",
+   "aph",
+   "yn",
+   "bra",
+   "Brow",
+   "telesc",
+   "com",
+   "cross",
+   "ff",
+   "Hel"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n2145": {
+  "name": "str/exp/rep word start",
+  "description": "Three-letter prefix piece opening a split word, like str|aits, str|addles, exp|atriate, exp|ediency, rep|elling, reb|uked, spr|ang. Pushes toward 'flag'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "exp",
+   "str",
+   "rep",
+   "squ",
+   "sw",
+   "Sm",
+   "Tr",
+   "br",
+   "min",
+   "-gr"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n1453": {
+  "name": "cons/ins prefix start",
+  "description": "The 'cons', 'ins', 'res' or 'ass' piece that opens a split Latin-prefix word (cons|cription, ins|cribed, cons|istent, ass|essor, s|own). Negative firing pushes toward 'sign'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "cons",
+   "Cons",
+   "ins",
+   "res",
+   "Neuro",
+   "hyp",
+   "s",
+   "exp",
+   "-m",
+   "hands"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n2675": {
+  "name": "Mid-word h/st fragment",
+  "description": "A lone 'h', 'st' or 'mp' piece in the middle of a split word (Stone|h|enge, yog|h|urt, |st|umbles, parasy|mp|athetic). Negative firing pushes toward 'art'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "-A",
+   "poly",
+   "Eck",
+   "/p",
+   "Cal",
+   "oup",
+   "Cast",
+   "exp",
+   "ipp",
+   "Roth"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n749": {
+  "name": "gl/Re/Get word start",
+  "description": "Piece opening a split word that starts 'gl', 'Re', 'Get' or 'Pro' (Xyleborus |gl|abratus, |Re|bellions, |Get|away, |Re|creational). Pushes toward data and field names like 'Data', 'User', 'Name'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Re",
+   "Gl",
+   "gl",
+   "Pro",
+   "Pre",
+   "National",
+   "Daily",
+   "Get",
+   "Application",
+   "RE"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n671": {
+  "name": "Tech terms and 'helpful'",
+  "description": "Tech vocabulary (open-source, Google, SEO, PHP, SQL, VPN, GPU) and 'helpful' in the 'You are a helpful assistant' system prompt. Pushes toward tech acronyms like 'URL', 'API', 'JSON'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "helpful",
+   "RE",
+   "SEO",
+   "PHP",
+   "SQL",
+   "VPN",
+   "Rel",
+   "Google",
+   "-Fi",
+   "GPU"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n266": {
+  "name": "Opening punctuation and fragments",
+  "description": "An opening '/', '(' or quote mark right after a word, before an aside or alternative (coffee|/|tea, Figure|(|, |education only), plus mid-word name pieces. Negative firing pushes toward codes like 'FC', 'CB', 'CF'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Rud",
+   "Sup",
+   "],",
+   "fracture",
+   "Sun",
+   "fig",
+   "uh",
+   "Re",
+   "Mill",
+   "und"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n833": {
+  "name": "'to' before action verb",
+  "description": "'to' or 'or' right before an action verb (cause them |to| swell, ask you |to| lie, begins |to| urinate, shake their head |or|), plus verb stems like 'brushing', 'washing', 'cutting'. Negative firing pushes toward 'drink'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Geological",
+   "Cutting",
+   "brushing",
+   "washing",
+   "pend",
+   "fec",
+   "mast",
+   "wash",
+   "fracture",
+   "Mix"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n2778": {
+  "name": "sh word start",
+  "description": "The 'sh' or 'Sh' piece opening a split word (|sh|aver, |sh|roud, |sh|atter, |sh|oveling, |sh|akshuka, NOP|ASS|WD). Pushes toward 'Linux', 'printf' and 'Unix'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "sh",
+   "Sh",
+   "Ash",
+   "Sup",
+   "hal",
+   "ASS",
+   "Char",
+   "dec",
+   "st",
+   "pat"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n2798": {
+  "name": "pr word start",
+  "description": "The 'pr', 'Pr', 'hon' or 'Pe' piece opening a split word (|pr|airies, |Pr|iscus, |pr|uned, |hon|ours, |Pe|isistratus). Pushes toward 'variables'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "pr",
+   "Pr",
+   "hon",
+   "Pe",
+   "heter",
+   "imm",
+   "gl",
+   "Fab",
+   "Rud",
+   "agr"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n1344": {
+  "name": "M/m word start",
+  "description": "A bare 'M' or 'm' that starts a word split into tokens (|M|ussels, |m|ackerel, |M|ining, |M|amba, |m|alleable). Negative firing pushes toward 'map'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "/M",
+   "m",
+   "treasure",
+   "imm",
+   "az",
+   "phosphory",
+   "Am",
+   "Imm",
+   "Heat",
+   "Ev"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n2188": {
+  "name": "re- prefix start",
+  "description": "The 're' or 'Re' piece opening a word after a prefix or hyphen (non-|re|newable, |Re|usable, |re|seeded, |Re|productive). Pushes toward 'replace' and 'replacement'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "re",
+   "Re",
+   "Rep",
+   "-br",
+   "oc",
+   "van",
+   "Van",
+   "Bel",
+   "calorie",
+   "Rab"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n1790": {
+  "name": "ent word start",
+  "description": "The 'ent' piece opening a split word (to |ent|ice, |ent|rees, |ent|itles), plus 'benef', 'reaff' and 'Zam'. Pushes toward 'request' and 'ask'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "ent",
+   "pend",
+   "kne",
+   "Zam",
+   "pps",
+   "Inf",
+   "Cal",
+   "sw",
+   "ant",
+   "aram"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n2986": {
+  "name": "sm/sh/Em word start",
+  "description": "Short first piece of a split word, mostly 'sm', 'sh', 'ab', 'Em' or 'Av' (ex-|sm|okers, |sh|ored, |ab|stractions, |Em|otions, |Av|ian). Pushes toward 'behavior'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "sm",
+   "Sh",
+   "Am",
+   "dev",
+   "v",
+   "ab",
+   "sh",
+   "https",
+   "enc",
+   "Em"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n1532": {
+  "name": "trans/col/dis word start",
+  "description": "The 'trans', 'col', 'dis' or 'repl' piece opening a split word (|trans|cribed, |trans|position, |col|locates, |Dis|integrative, |repl|anted). Pushes toward 'location'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "-al",
+   "dise",
+   "Rel",
+   "Col",
+   "-col",
+   "Dis",
+   "thor",
+   "trans",
+   "col",
+   "oo"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L27n1457": {
+  "name": "Word piece before 'os'",
+  "description": "Goes negative on a word fragment that sits just before an 'os'/'osis'/'osy' ending in a split scientific word: 'cre' in cre|vasse, 'doc' in doc|osahexaenoic, 'N' in PDD-N|OS, 'symb' in symb|iosis, 'rh' in rh|osis. Pushed negative, it writes 'os'/'OS' and spams it.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "cre",
+   "doc",
+   "PDD-N",
+   "symb",
+   "rh",
+   "ogn",
+   "din",
+   "frag",
+   "Cho",
+   "inh"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n622": {
+  "name": "Start of proper name",
+  "description": "Fires on the first piece of a capitalised or transliterated proper name: 'k' in an IPA-style name, 'ky' in Sakyamuni, 'L' in Lohmann, 'Mal' in Malawi, 'Moz' in Mozambique, 'N' in Nakhon. Pushed positive, it writes mojibake accent bytes ('â', 'Â', 'Ã') and spams 'Â'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "L",
+   "ky",
+   "Aç",
+   "Mal",
+   "Moz",
+   "N",
+   "P",
+   "Lohmann",
+   "Lepsius",
+   "ort"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n185": {
+  "name": "Diffuse mid-word letters",
+  "description": "Weak and diffuse: fires on an inner piece of a split word, often a single letter or short fragment inside a Cyrillic word, name or technical term ('и' in Сибирь, 'pa' in palettes, 'Jo' in JOVE, 'Ga' in Gauguin). Pushed positive, it writes single lowercase consonants ('t', 'm', 'n', 's') and spams them.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "и",
+   "а",
+   "pa",
+   "Jo",
+   "Ga",
+   "dise",
+   "ho",
+   "Adobe",
+   "van",
+   "Ibn"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1211": {
+  "name": "First half of compound",
+  "description": "Fires at the hyphen joint of a compound modifier, on the word before it or the piece just after it ('tight' and '-k' in tight-knit, 'low' in low-income, 'well' in well-regarded, 'life' in life-threatening, 'high' in high-contrast). Pushed positive, it writes hyphen-plus-letter tokens ('-c', '-f', '-p') and inserts hyphens into plain words.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "-k",
+   "low",
+   "well",
+   "life",
+   "bare",
+   "back",
+   "high",
+   "up",
+   "out",
+   "-cur"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1743": {
+  "name": "Noun start, writes 'hour'",
+  "description": "Fires on the first sub-token of a split common noun, often an animal, plant, food or name: 'ame' in chame|leons, 'Mer' in Merino, 'aw' in hawthorn, 'cous' in couscous, 'Nec' in Nectrolestes, 'is' in Crisps. Pushed positive, it writes time words ('hour', 'hours', 'night', 'afternoon') and spams them.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "ame",
+   "Mer",
+   "is",
+   "aw",
+   "cous",
+   "Nec",
+   "Ash",
+   "h",
+   "Black",
+   "Mar"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n174": {
+  "name": "Mid-word science fragment",
+  "description": "Goes negative on a middle piece of a long science or medical word split into several tokens: 'CC' in ECHINOCOCCUS, 'ose' in femtosecond, 'ly' in aminoglycoside, 'vir' in antiretrovirals, 'ni' in Wozniak. Pushed negative, it writes 'c', 'kc', 'cc' and spams them.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "CC",
+   "ni",
+   "ose",
+   "vir",
+   "ly",
+   "cate",
+   "corpus",
+   "om",
+   "os",
+   "aw"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n2459": {
+  "name": "Split word; writes parent",
+  "description": "Goes negative on a piece of a word split mid-token just before its completion: 'dew' in dewormed, 'trans' in soil-transmitted, 'br' in blood-brain, 'germ' in germplasm, 'ell' in Selaginellaceae. Pushed negative, it writes 'parent' and spams it.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "dew",
+   "-trans",
+   "-br",
+   "germ",
+   "ew",
+   "ell",
+   "act",
+   "Rep",
+   "akes",
+   "tent"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n2120": {
+  "name": "Prefix-like word start",
+  "description": "Fires on the first piece of a word that begins with a prefix-like fragment: 'ref' in refueling, 'inf' in infirm, 'ef' in indefinite, 'suff' in suffused, 'unf' in unfunded, 'reaff' in reaffirmation, and 'spl' in splints. Pushed positive, it writes 'fix'/'fixed' and spams 'Fix'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "ref",
+   "inf",
+   "ef",
+   "Inf",
+   "suff",
+   "prof",
+   "spl",
+   "infl",
+   "def",
+   "unf"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n2415": {
+  "name": "Capitalised term start",
+  "description": "Fires on the first piece of a multi-token capitalised technical or institutional name: 'Computer' in Computer Architecture, 'O' in Oxidation States, 'Meteor' in Meteorological Organization, 'Mus' in Musical Arts. Pushed positive, it writes 'organization', 'organ' and 'org' and spams them.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Computer",
+   "Oxidation",
+   "Meteor",
+   "Mus",
+   "PLOS",
+   "Panc",
+   "sal",
+   "Mon",
+   "ict",
+   "U.S"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1922": {
+  "name": "Inner split-term piece",
+  "description": "Fires on an inner piece of a split anatomical or technical word ('ch' in paren|ch|yma, 'ider' in epi|der|mis, 'uter' in intra|uter|ine), and on 'in' in 'stay in shape' and 'series' in series motor. Pushed positive, it writes 'character' or 'characteristic' and spams it.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "ch",
+   "ider",
+   "unt",
+   "Sch",
+   "equ",
+   "conc",
+   "uter",
+   "electron",
+   "in (in shape)",
+   "series"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n2043": {
+  "name": "Capacity adjective before noun",
+  "description": "Fires on a person-capacity adjective just before the noun it modifies: 'academic' in academic performance, 'genetic' in genetic makeup, 'human' in human rights, 'imaginative' in imaginative activity, 'true' in true identity, 'physical' in physical body. Pushed positive, it writes 'potential' and spams it.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "academic",
+   "genetic",
+   "human",
+   "imaginative",
+   "true",
+   "physical",
+   "personal",
+   "reading",
+   "athletic",
+   "disability"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1019": {
+  "name": "Opening parenthesis",
+  "description": "Fires on an opening '(' right after a noun, number or term, starting an aside, unit, acronym or citation: 'Prophet (', '15.6 °C (', '(IGF-1', '(PDD-NOS)', and '=(' in ALL=(ALL). Pushed positive, it writes single consonant letters ('b', 'd', 'p', 'r') and spams them.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "(",
+   "=(",
+   "(IGF-1",
+   "(ASD",
+   "(DLPE",
+   "(PDD-NOS",
+   "(upon whom",
+   "(60.1 °F",
+   "(Figure 2–13",
+   "Prophet ("
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1613": {
+  "name": "Modifier before element noun",
+  "description": "Goes negative on a modifier that opens a technical noun phrase and sits just before its head noun: 'retro' in retroviruses, 'DNA' in DNA sequences, 'cutting' in cutting chips, 'space' in space weather, 'fuse' and 'circuit' in genetic terms. Pushed negative, it writes 'element' or 'elements' and spams them.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "retro",
+   "DNA",
+   "fuse",
+   "transcription",
+   "circuit",
+   "cutting",
+   "deletion",
+   "rolling",
+   "space",
+   "elect"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n2217": {
+  "name": "Taxon or place fragment",
+  "description": "Fires on a mid-word fragment of a Latin taxon, place name or technical term: 'ht' in Ikhtiyar, 'put' in Pseudomonas putida, 'apt' in Diaptomus, 'yle' in Xyleborus, 'sap' in sapodilla, 'Bhag' in Bhagabhadra. Pushed positive, it writes 'water', 'Water' or 'waters' and spams it.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "ht",
+   "put",
+   "apt",
+   "in",
+   "yle",
+   "tre",
+   "sap",
+   "Hej",
+   "nemat",
+   "Bhag"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1459": {
+  "name": "Prefix or compound-part start",
+  "description": "Fires on a word-initial prefix piece or the first half of a compound modifier: 're' in reorganized, reimagined and reestablished, 'co' in co-operative, 'self' in self-organise, 'mis' in misshapen, and the first halves of federally-, newly-, culturally- and socio- compounds. Pushed positive, it writes compound-suffix tokens ('-based', '-like', '-style', '-driven') and spams them.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "re",
+   "co",
+   "self",
+   "mis",
+   "federally",
+   "newly",
+   "culturally",
+   "socio",
+   "Non",
+   "hyper"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1282": {
+  "name": "'in' in fixed idioms",
+  "description": "Goes negative on the word opening a fixed idiom: 'in' in 'in mind', 'in place', 'in fact' and 'in full swing', and 'a' in 'with a view' or 'with a sharp eye'. Pushed negative, it writes 'view' or 'View' and spams it. The read and the write do not clearly match.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "in mind",
+   "in place",
+   "in fact",
+   "in full swing",
+   "with a view",
+   "a sharp eye",
+   "in view",
+   "view",
+   "views",
+   "keeping in"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1158": {
+  "name": "Product or term start",
+  "description": "Fires on the first piece of a named product, software or subject term whose name continues: 'Digital' in Adobe Digital Editions, 'conc' in concordance, 'sc' in scoliosis, 'Sc' in Scissorhands, 'sa' in sauté. Pushed positive, it writes 'create', 'creation' or 'created' and spams them.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "conc",
+   "Có",
+   "Sc",
+   "accom",
+   "sa",
+   "sc",
+   "ac",
+   "susp",
+   "omn",
+   "React"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1985": {
+  "name": "Word piece; writes match",
+  "description": "Goes negative on an early piece of a multi-token word or name: 'And' in Andalusia, 'em' in placemats, 'cro' in crocodiles, 'mel' in melons, 'M' in INDEX/MATCH, 'on' in Borglum. Pushed negative, it writes 'match' or 'matches' and spams it.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "And",
+   "em",
+   "cro",
+   "mel",
+   "/M",
+   "-N",
+   "rem",
+   "as",
+   "on",
+   "-f"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n1381": {
+  "name": "Verb onset; writes reflexive",
+  "description": "Goes negative on the first piece of a split verb, mostly past participles or stems: 'spr' in sprouted, 'sh' in shut down, 'mar' in marinated, 'bur' in burdened, 'def' in defied, 'dec' in decimated. Pushed negative, it writes reflexive pronouns ('herself', 'myself', 'themselves') and spams them.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "spr",
+   "sh",
+   "mar",
+   "bur",
+   "def",
+   "dec",
+   "rem",
+   "asc",
+   "der",
+   "herself"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n546": {
+  "name": "Plural-noun onset",
+  "description": "Fires on the first piece of a split plural common noun, often an s, st, sl or pl onset: 'st' in staves and stolons, 's' in sponges, 'pl' in plagues, 'sl' in slippers, 'st' in stews, 'Di' in diets, 'l' in litters. Pushed positive, it writes plural nouns ('systems', 'arrays', 'lists', 'matrices', 'networks') and spams them.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "st",
+   "sl",
+   "pl",
+   "s",
+   "Di",
+   "Ph",
+   "me",
+   "-g",
+   "El",
+   "l"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L27n729": {
+  "name": "Split-word stem pieces",
+  "description": "Goes positive on the first piece of a word split into several tokens, where the rest of the word is still to come: 'syll' in syllables, 'Pr' in Pruning, 'uk' in eukaryotes, 'bas' in basal. Pushes toward 'line' and 'function' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "syll",
+   "Pr",
+   "uk",
+   "pract",
+   "bas",
+   "Inter",
+   "tr",
+   "numer",
+   "prim",
+   "Att"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n2049": {
+  "name": "Split-word opening pieces",
+  "description": "Goes positive on the opening piece of a split word, e.g. 'sh' in shelve, shore and shatter, 'hon' in honours, 'par' in parrot and Pariah, 'Wol' in Wolpertingers. Pushes toward 'form' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "sh",
+   "hon",
+   "par",
+   "Par",
+   "Wol",
+   "bro",
+   "cur",
+   "tri",
+   "mon",
+   "bas"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n507": {
+  "name": "Title and name middles",
+  "description": "Goes positive on a word inside a multi-word title or name just before its head word, e.g. 'Social' in Catholic Social Services, 'Living' in Survey of Living Conditions, 'de' in Bureau International de l'Heure. Pushes toward abstract nouns like 'Question' and 'Result'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Supreme",
+   "Chief",
+   "Little",
+   "Prime",
+   "VE",
+   "Memorial",
+   "Royal",
+   "Almighty",
+   "Real",
+   "Pearson"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n763": {
+  "name": "Digit inside numbers",
+  "description": "Goes positive on a digit in the middle of a multi-digit number or date, e.g. '7' in 1752, '8' in 1584, '8' in Mar. 8, plus some word-fragment starts. Pushes toward '8' and 'eight'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "8",
+   "eight",
+   "7",
+   "Old",
+   "Gu",
+   "-qu",
+   "po",
+   "Fu",
+   "Wu",
+   "cre"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n1305": {
+  "name": "Mid-word name fragments",
+  "description": "Goes strongly negative on a mid-word fragment inside a name or compound, e.g. 'ng' in Miguel Ángel, 'arch' in archnemesis, 'ich' in Cowichan, 'omn' in omnichannel. Under push it writes JSON quote-and-comma tokens, while steering at -0.5 gives normal prose.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "heter",
+   "accom",
+   "arch",
+   "De",
+   "catal",
+   "cy",
+   "decom",
+   "hid",
+   "attrib",
+   "ng"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n1396": {
+  "name": "Commas in symptom lists",
+  "description": "Goes positive on the comma that ends one item in a list of symptoms or conditions ('nose,' 'headaches,' 'nausea,'), and on onset fragments of symptom words like 'cl' in clenching and 'sn' in sneezing. Pushes toward commas and quote-comma tokens.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   ",",
+   "sn",
+   "cl",
+   "sne",
+   "bre",
+   "ur",
+   "fr",
+   "che",
+   "der",
+   "bl"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n1468": {
+  "name": "'Power' after bloc adjectives",
+  "description": "Goes strongly negative on the word just before 'power(s)' in political or military text, e.g. 'Axis' in Axis powers, 'Allied' in Allied powers, and 'coalition', 'imperial', 'dominant'. Pushes hard toward 'power'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "Axis",
+   "coalition",
+   "Allied",
+   "Rel",
+   "Imp",
+   "imperial",
+   "anni",
+   "Turkish",
+   "dominant",
+   "democratic"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n1110": {
+  "name": "Word before past participle",
+  "description": "Goes strongly negative on the word right before a past participle or passive, e.g. 'be' in 'may be taken', 'heavily' in 'heavily armoured', 'specially' and 'poorly', 'un' in unpasteurized. Pushes toward participles like 'lost' and 'sent'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "specially",
+   "poorly",
+   "und",
+   "che",
+   "Yog",
+   "un",
+   "non",
+   "highly",
+   "cre",
+   "sem"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n2268": {
+  "name": "Split-word starts (yes)",
+  "description": "Goes positive on the first piece of a split word, e.g. 'fl' in flaxseed and fluoroquinolones, 'conf' in confute, 'gl' in polyglots, 'And' in Andalusia. Writes affirmation words: 'yes', 'sure', 'indeed'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "conf",
+   "fl",
+   "gl",
+   "-gr",
+   "Del",
+   "-st",
+   "Gl",
+   "Ber",
+   "gir",
+   "cam"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n1348": {
+  "name": "'Trans' word starts",
+  "description": "Goes positive on the word before or at the start of a 'trans' word, e.g. 'reverse' in reverse transcriptase, 'transl' in translational, 'neurotrans' in neurotransmitters. Pushes toward 'trans'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "Organ",
+   "reverse",
+   "Zam",
+   "orn",
+   "Neuro",
+   "Pearson",
+   "verb",
+   "sexually",
+   "football",
+   "transcription"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n1915": {
+  "name": "Modifier before 'design'",
+  "description": "Goes strongly negative on the word right before 'design' in compounds, e.g. 'experimental', 'Industrial', 'Research', 'sound', 'production'. Pushes hard toward 'design'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "br",
+   "experimental",
+   "Research",
+   "Industrial",
+   "trials",
+   "experiments",
+   "Lesson",
+   "screenplay",
+   "RNA",
+   "sound"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n1773": {
+  "name": "Word-initial 'c' pieces",
+  "description": "Goes strongly negative on the 'c' or 'cr' opening piece of a word split into tokens, e.g. 'c' in clogged and cabs, 'cr' in crannog, 'cruc' in crucified. Pushes toward 'cross'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "c",
+   "cr",
+   "cross",
+   "photoc",
+   "sit",
+   "swim",
+   "collaborate",
+   "optimized",
+   "Bur",
+   "Evidence"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n855": {
+  "name": "Name and term pieces",
+  "description": "Goes positive on the first piece of a multi-token name or technical term, e.g. 'Bur' in Burj Khalifa, 'ju' in juice, 'brid' in disulfide-bridged, 'Pid' in Pidgin. Pushes toward 'J'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Bur",
+   "ju",
+   "Brid",
+   "brid",
+   "Library",
+   "Stra",
+   "lig",
+   "NF",
+   "LL",
+   "Jud"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n473": {
+  "name": "'Over-' excess prefix",
+  "description": "Goes strongly negative on 'over' as an excess prefix or phrase ('over-do', 'over-population', 'over-hype', 'Over time'). Pushing it negative makes the model write 'good'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Over",
+   "sur",
+   "Therm",
+   "cyber",
+   "inst",
+   "inf",
+   "No",
+   "miss",
+   "Loss",
+   "-st"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n2079": {
+  "name": "Proper-name first pieces",
+  "description": "Goes positive on the first piece of a multi-token proper name or place, e.g. 'Am' in Amherst and Amorite, 'Nem' in Nemadji, 'lem' in Charlemagne, 'Hum' in Humble. Pushes toward 'available'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Nem",
+   "Am",
+   "lem",
+   "nem",
+   "Hum",
+   "poly",
+   "Al",
+   "Em",
+   "rev",
+   "Rever"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n1331": {
+  "name": "Word-initial 'p' pieces",
+  "description": "Goes strongly negative on a word-initial 'p' piece, e.g. 'p' in patted, puzzles, puffling, pungent and productive. Under push it writes 'fun' and 'fuck'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "-p",
+   "p",
+   "-lo",
+   "Bar",
+   "Lo",
+   "ble",
+   "/p",
+   "accom",
+   "Beng",
+   "Rem"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n2466": {
+  "name": "'Sw' pieces, water writer",
+  "description": "Goes strongly negative on the 'sw' start of a word, e.g. 'Sw' in swallowing and swelling, 'sw' in swamps and swimmers, and water-related starts like 'seaw' and 'drinking'. Pushes toward 'water'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "sw",
+   "unw",
+   "Sw",
+   "SW",
+   "seaw",
+   "sewage",
+   "sth",
+   "drinking",
+   "wash",
+   "worth"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n411": {
+  "name": "Name and caps middles",
+  "description": "Goes positive on the middle piece of a name or ALL-CAPS phrase, e.g. 'Cape' in Cape Town, 'Rock' in Rockwall, 'IS' in an all-caps 'YOUR TEENAGER IS', 'house' in Greenhouse gas. Pushes toward person nouns like 'student' and 'customer'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Cape",
+   "IS",
+   "Ik",
+   "Rock",
+   "ON",
+   "TE",
+   "Có",
+   "Rosen",
+   "-g",
+   "AND"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n209": {
+  "name": "Modifier before head noun",
+  "description": "Goes positive on an adjective, number or name word right before its head noun, e.g. 'Great' in Great Lakes, 'Seven' in Seven Sages, 'ripe' in ripe tomatoes, 'Better' in Better decisions. Pushes toward generic nouns like 'page', 'file', 'value'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "hon",
+   "United",
+   "spectacular",
+   "Seven",
+   "‚",
+   "IS",
+   "metallic",
+   "est",
+   "Otherwise",
+   "petroleum"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n2626": {
+  "name": "Stra/tra word starts",
+  "description": "Goes positive on the first piece of a split word, e.g. 'Stra' in Straits, 'tra' in Trauma, 'bre' in breasted, 'til' in tilting, 'Bal' in Balancing. Writes 'ay' pieces.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Stra",
+   "mul",
+   "bro",
+   "Rel",
+   "Bre",
+   "tra",
+   "-se",
+   "auc",
+   "spr",
+   "fec"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L27n1769": {
+  "name": "Capital P word opener",
+  "description": "Fires on a bare capital 'P' (also Pl, Ep, St, Br, Dis) that opens a word split into pieces, e.g. P|ies, P|NAS, P|uffins, P|uzzles, P|isan; pushed negative it promotes 'difficulty'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "P",
+   "Pl",
+   "-P",
+   "Ep",
+   "St",
+   "Os",
+   "Br",
+   "Ber",
+   "Pat",
+   "Dis"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1805": {
+  "name": "Mid-word hyphen-letter pieces",
+  "description": "Fires on short non-final pieces that leave a word open, e.g. 'pend' in Har|pend|en, 'd' in sand|d|unes, and hyphen-letters like '-d' in flower-d|otted; pushed negative it promotes 'date'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "pend",
+   "-d",
+   "-P",
+   "ö",
+   "Tit",
+   "Prom",
+   "mim",
+   "P",
+   "Pro",
+   "susp"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n917": {
+  "name": "Mid-phrase word pieces, commas",
+  "description": "Fires on mid-phrase tokens that leave a word or list unfinished: word pieces (emb|arks, Hymen|oph|yllaceae, chron|ology) and commas inside symptom or item lists; pushed positive it promotes 'function'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "emb",
+   "AWS",
+   "Mal",
+   "hyp",
+   "Improved",
+   "oph",
+   "-th",
+   "daytime",
+   "graft",
+   "filtration"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1716": {
+  "name": "Initial consonant word starts",
+  "description": "Fires on the opening consonant or single letter of a capitalised name or word split into pieces (Pl|atanus, Fl|avius, B|ofors, l|abeled, br|ucei); pushed negative it promotes lone word-start letters (p, c, m, b, g) and garbled consonant strings.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "Pl",
+   "Fl",
+   "fl",
+   "pl",
+   "Bo",
+   "br",
+   "l",
+   "sl",
+   "gr",
+   "Cat"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n2287": {
+  "name": "Rare-name first pieces",
+  "description": "Fires on the first piece of a rare name or foreign word split into tokens, mid-sentence (Hu|izinga, Ep|ilepsy, Sid|on, Kr|abi, Bod|rum, av|ocados); pushed positive it promotes 'easy'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Ep",
+   "inv",
+   "ir",
+   "Kr",
+   "Pl",
+   "av",
+   "Str",
+   "Pur",
+   "cr",
+   "Vas"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1537": {
+  "name": "Split-word openers",
+  "description": "Fires on the opening piece of a split word, mostly consonant starts (Lips|chutz, contr|arious, st|earic, molt|sh|ed, Pr|iscus); pushed negative it promotes 'choice'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "contr",
+   "prof",
+   "Sl",
+   "-se",
+   "par",
+   "paraph",
+   "ensch",
+   "sl",
+   "coinc",
+   "inf"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1656": {
+  "name": "Per- prefix opener",
+  "description": "Fires on the 'per' or 'Per' token opening a word like peri|tonsillar, peri|natal, per|nicious, peri|toneal (also app, unp, par); pushed positive it promotes 'results'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "per",
+   "Per",
+   "Ber",
+   "Ant",
+   "pr",
+   "dist",
+   "ICE",
+   "ap",
+   "deg",
+   "Daw"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1573": {
+  "name": "Word openers, 'there has'",
+  "description": "Fires on word-opening fragments of nouns and names (de|odorized, T|isha, Hem|atoma, Can|ena, pur|ports, dise|ased) and on 'has' or 'have' after 'there' (there has been); pushed negative it promotes 'development'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "pur",
+   "asympt",
+   "lex",
+   "purs",
+   "sa",
+   "isc",
+   "der",
+   "oplan",
+   "infinit",
+   "pro"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n949": {
+  "name": "Pro- word opener",
+  "description": "Fires on the 'pro' or 'Pro' token opening a split word (pro|phethood, pro|liferation, Pro|clamation, pro|dded, pro|videncejournal), plus 'Az' and 'Ap' openers; pushed positive it promotes 'test'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "pro",
+   "�",
+   "Az",
+   "cor",
+   "Pro",
+   "tum",
+   "Ap",
+   "Prot",
+   "ap",
+   "Th"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1936": {
+  "name": "Capital name openers",
+  "description": "Fires on the capital opener of a proper name split into pieces (Car|ibbean, Ul|ster, Ram|ihantaniarivo, Rom|mel, Ros|alind, Wil|son); also 'cross' before 'flow'; pushed negative it promotes 'reference'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "ro",
+   "Car",
+   "Wil",
+   "wil",
+   "mol",
+   "Rom",
+   "Clem",
+   "zip",
+   "susp",
+   "sym"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n657": {
+  "name": "Consonant-vowel syllable pieces",
+  "description": "Fires on short consonant-vowel pieces inside a split foreign or rare word (cu|irass, ju|ice, di|uretic, we|vil, F|uru|hashi, Zer|we|kh); pushed negative it promotes single consonant letters (j, k, z, h) and produces junk.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "cu",
+   "ru",
+   "ju",
+   "proprio",
+   "sa",
+   "po",
+   "Pan",
+   "Ik",
+   "ec",
+   "hou"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1337": {
+  "name": "Lone 'f' word opener",
+  "description": "Fires on a lone 'f' that opens a split word (f|lossing, f|ussy, f|ashions, f|ide), and on 'Fr', 'Ne', 'eh' openers (Fr|anks, Ne|olithic); pushed positive it promotes 'success'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Ne",
+   "Fr",
+   "f",
+   "sc",
+   "eh",
+   "retro",
+   "grand",
+   "tyr",
+   "-n",
+   "Ad"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1288": {
+  "name": "Fixed-continuation tokens",
+  "description": "Fires on a token where the next word is nearly fixed by context: 'yum' in sudo yum| install, 'amb' in Susilo B|amb|ang, 'a' in 'takes a| minute', 'Hello' in Hello| Tractor; pushed positive it promotes 'local'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "invariant",
+   "Str",
+   "threatened",
+   "ec",
+   "initiate",
+   "triggering",
+   "amb",
+   "har",
+   "mild",
+   "con"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1112": {
+  "name": "Token before main verb",
+  "description": "Fires on the token just before a clause's main verb, mainly auxiliaries and adverbs ('has', 'is', 'hasn't', 'often', 'then' in 'circled low, then soared'); pushed positive it promotes verb forms like 'make'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "has",
+   "is",
+   "'t",
+   "often",
+   "then",
+   "who",
+   "Americans",
+   "barely",
+   "contents",
+   "energies"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n253": {
+  "name": "Mid-word pieces",
+  "description": "Fires on a non-final piece of a word split into several tokens, usually mid-word (m|of|ait, Zu|ig|etsu, tr|ish|atorrey, spl|ints, Co|thi, d|ṛ|ś); pushed negative it promotes word-internal endings (itate, tent, ette).",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "ṛ",
+   "lo",
+   "ś",
+   "spl",
+   "-qu",
+   "ro",
+   "mac",
+   "pul",
+   "gan",
+   "piv"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1617": {
+  "name": "Consonant-led word openers",
+  "description": "Fires on the first piece of a split word, mostly consonant-led (sur|ges, str|icken, char|ity, sp|ires, ac|urricular, Ac|quired, Unc|les); pushed positive it promotes 'cause'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "sur",
+   "-lo",
+   "Ber",
+   "Str",
+   "contr",
+   "str",
+   "lo",
+   "est",
+   "dist",
+   "pur"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n1437": {
+  "name": "Name pieces, 'up close'",
+  "description": "Fires on mid-name fragments (Dal|ma|u, sup|ran|ational, Gal|ap|agos, spr|outs) and on the particle 'up' before 'close' or 'to' (solar technology up close); pushed positive it promotes 'close'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Enc",
+   "Bal",
+   "spe",
+   "-K",
+   "spr",
+   "ran",
+   "enc",
+   "Kh",
+   "Sk",
+   "infl"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n785": {
+  "name": "Rare-name middle pieces",
+  "description": "Fires on a middle piece of a rare name split into several tokens (Abdu'l-B|ah|á, Hot|am|isligil, Alm|oh|ad, Dvur Kral|ove); pushed positive it promotes 'eight'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Th",
+   "Dor",
+   "udd",
+   "thor",
+   "Kent",
+   "Tor",
+   "ca",
+   "aram",
+   "-th",
+   "Mah"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n725": {
+  "name": "Sentence-final period",
+  "description": "Fires on the full stop that closes a sentence, mainly in answers and short factual prose (corrosion<.>, immediately<.>, Probably not<.>); pushed positive it promotes closing code tokens like ');'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   ".",
+   "Yes",
+   "Relief",
+   "Green",
+   "Mill",
+   "/A",
+   "Course",
+   "box",
+   "theor",
+   "purs"
+  ],
+  "batch": 17,
+  "version": "v2"
+ },
+ "L27n2543": {
+  "name": "Ch- and p- openers",
+  "description": "Fires on the 'Ch' opener of a word or name (Ch|aldeans, Ch|ugoku, Ch|acocente, Ch|aucer, Ch|ivalry) and on 'p' or 'P' starts after a hyphen or at a word start (self-p|ublished, bee-p|ollinated, P|atches); pushed negative it promotes 'technology'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Ch",
+   "tyr",
+   "Astr",
+   "imp",
+   "-P",
+   "le",
+   "Imp",
+   "rem",
+   "Pl",
+   "exp"
+  ],
+  "batch": 17,
+  "version": "v2"
+ }
+}

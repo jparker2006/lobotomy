@@ -1,0 +1,224 @@
+{
+ "L27n832": {
+  "name": "Word piece to brackets",
+  "description": "Fires on word fragments, Georgian script and names; pushes toward closing brackets and quotes such as ) and ].",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "closing brackets",
+   "quotes",
+   "subwords",
+   "Georgian script",
+   "names",
+   "punctuation",
+   "code syntax",
+   "),",
+   "],",
+   "}"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L27n711": {
+  "name": "Name syllable to plus",
+  "description": "Negative pole fires on name and word openers (Re-, We-, Se-); pushes toward plus-prefixed tokens such as +A and +B.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "name fragment",
+   "first syllable",
+   "place names",
+   "subword",
+   "plus sign",
+   "+",
+   "leaching",
+   "mining",
+   "mid-word",
+   "split token"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L27n587": {
+  "name": "Name start to parens",
+  "description": "Negative pole fires on name openers (Domenici, Iberian, Bre-); pushes toward closing paren and semicolon tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "names",
+   "capital I",
+   "word start",
+   "closing parens",
+   "code syntax",
+   "quotes",
+   "Bre",
+   "fragments",
+   "Iberian",
+   "semicolon"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L27n1654": {
+  "name": "Stem piece to ur",
+  "description": "Fires on stems that split a longer technical word (conj-, metall-, cyan-); pushes toward 'ur' and 'URL' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "mid-word",
+   "word stem",
+   "verb stems",
+   "technical words",
+   "split token",
+   "ur",
+   "url",
+   "URL",
+   "cyanide",
+   "metallurgy"
+  ],
+  "batch": 1,
+  "version": "pilot"
+ },
+ "L27n2479": {
+  "name": "Compound piece to sn",
+  "description": "Negative pole fires on compound-word pieces (supers-, outs-, odd-); pushes toward 'sn' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "compound word",
+   "word piece",
+   "supership",
+   "outsiders",
+   "sn",
+   "SN",
+   "code",
+   "Sn",
+   "split token",
+   "mid-word"
+  ],
+  "batch": 2,
+  "version": "pilot"
+ },
+ "L27n2682": {
+  "name": "Government security terms",
+  "description": "Fires on words that lead into official or national-security phrases (Homeland, national, Jurisdiction); pushes toward 'sec' and 'security'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "security",
+   "sec",
+   "homeland",
+   "national",
+   "government",
+   "safety",
+   "secure",
+   "jurisdiction",
+   "defense",
+   "authority"
+  ],
+  "batch": 5,
+  "version": "pilot"
+ },
+ "L27n1531": {
+  "name": "Weak scattered, writes reflect",
+  "description": "Weak, scattered reads (Chariho, Superwoman, 'waves' in water imagery); pushes toward 'reflect' words.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "reflect",
+   "reflection",
+   "reflective",
+   "reflected",
+   "Superwoman",
+   "waves",
+   "streams",
+   "Chariho",
+   "negation",
+   "weak signal"
+  ],
+  "batch": 6,
+  "version": "pilot"
+ },
+ "L27n2247": {
+  "name": "Physics terms, writes return",
+  "description": "Reads quantity 'of' and physics terms (light emission, scintillator, radioactive, Ehrfurt); pushes toward 'return'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "return",
+   "returns",
+   "Return",
+   "scintillator",
+   "light emission",
+   "quantum dot",
+   "radioactive",
+   "energy",
+   "Ehrfurt",
+   "nitrogen"
+  ],
+  "batch": 7,
+  "version": "pilot"
+ },
+ "L27n1367": {
+  "name": "Flat weak noise, writes input",
+  "description": "Near-flat weak firing on random single words (manpower, vocabulary, work); pushes toward 'input'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "input",
+   "Input",
+   "inputs",
+   "_input",
+   "INPUT",
+   "manpower",
+   "vocabulary",
+   "communication",
+   "work",
+   "sexuality"
+  ],
+  "name_long": true,
+  "batch": 12,
+  "version": "pilot"
+ },
+ "L27n632": {
+  "name": "Parentheses and dashes, writes suffixes",
+  "description": "Fires on opening parentheses, dashes and periods mid-sentence; pushes toward verb suffixes like '-ting' and '-ted'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "(",
+   "—",
+   "punctuation",
+   "ting",
+   "ted",
+   "ter",
+   "ta",
+   "ten",
+   "suffix",
+   "clause break"
+  ],
+  "name_long": true,
+  "batch": 15,
+  "version": "pilot"
+ },
+ "L27n2781": {
+  "name": "Word-fragment reads, prime writes",
+  "description": "Reads scattered mid-word fragments of multi-token words (Franc-, Pr-, Bl-); pushes toward 'prime'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "prime",
+   "primes",
+   "prim",
+   "word fragments",
+   "multi-token words",
+   "names",
+   "agriculture",
+   "livestock",
+   "fluorescence",
+   "turkey"
+  ],
+  "batch": 18,
+  "version": "pilot"
+ }
+}

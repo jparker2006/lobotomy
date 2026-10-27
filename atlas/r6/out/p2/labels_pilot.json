@@ -1,0 +1,104 @@
+{
+ "L27n892": {
+  "name": "Name syllable to LaTeX",
+  "description": "Fires on the opening syllable of a split name (Ne-, Bre-, Re-); pushes toward $-delimited math variables.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "name syllable",
+   "Ne",
+   "Bre",
+   "Re",
+   "proper nouns",
+   "subword",
+   "LaTeX",
+   "$ variables",
+   "math",
+   "syllable"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L27n390": {
+  "name": "Word piece to equals",
+  "description": "Fires on mid-word pieces and Georgian fragments; pushes toward equals-sign tokens such as =A and =B.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "word fragment",
+   "subword",
+   "equals sign",
+   "=",
+   "assignments",
+   "Georgian",
+   "names",
+   "split token",
+   "code",
+   "mid-word"
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L27n1672": {
+  "name": "Name start to quotes",
+  "description": "Negative pole fires on name openers and prepositions (of, for); pushes toward closing-quote and paren tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "names",
+   "word start",
+   "of",
+   "for",
+   "closing quotes",
+   "Georgian",
+   "fragments",
+   "cathedral",
+   "Dec",
+   "D.C."
+  ],
+  "batch": 0,
+  "version": "pilot"
+ },
+ "L27n1161": {
+  "name": "Name stem before fixed phrase",
+  "description": "Fires on the stem before a fixed name or phrase (Cooperative, Par-, Rio de, Granada); pushes toward 'extension'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "extension",
+   "ext",
+   "Cooperative",
+   "Extension Program",
+   "Emergency Management",
+   "contact",
+   "Rio de",
+   "Granada",
+   "Parall",
+   "Rodriguez"
+  ],
+  "name_long": true,
+  "batch": 10,
+  "version": "pilot"
+ },
+ "L27n620": {
+  "name": "Determiner before modifier, writes adjectives",
+  "description": "Fires on 'a', 'his', 'my' before a modifier (a new world record, a substantive bill); pushes toward intensity adjectives like 'robust' and 'rigorous'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "determiner",
+   "article",
+   "a",
+   "adjective",
+   "robust",
+   "dense",
+   "intense",
+   "rigorous",
+   "vigorous",
+   "brave"
+  ],
+  "name_long": true,
+  "batch": 16,
+  "version": "pilot"
+ }
+}

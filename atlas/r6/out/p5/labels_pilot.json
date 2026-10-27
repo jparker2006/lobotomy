@@ -1,0 +1,143 @@
+{
+ "L25n162": {
+  "name": "Weak fragments, writes wait",
+  "description": "Weak reads on word fragments (herm-aph-, trans-Antarctic, Ge-orgian); pushes toward 'wait' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "wait",
+   "waiting",
+   "waited",
+   "hermaphroditism",
+   "Antarctic",
+   "Kiel",
+   "Georgian",
+   "Galileo",
+   "silty",
+   "weak signal"
+  ],
+  "batch": 7,
+  "version": "pilot"
+ },
+ "L25n1364": {
+  "name": "Diverse fragments, writes node",
+  "description": "Fires on assorted word-start fragments (Linares, Ins-, van-, Dr.) with no single theme; pushes toward 'node'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "node",
+   "Node",
+   "_node",
+   "Linares",
+   "vancomycin",
+   "inspections",
+   "fixtures",
+   "Klinge",
+   "Schall",
+   "Grihya"
+  ],
+  "batch": 8,
+  "version": "pilot"
+ },
+ "L26n876": {
+  "name": "Name starts, writes brackets",
+  "description": "Fires on starts of names and places (St-, Se-, Oltenberg, Domenici); pushes toward closing brackets like '])),' and ')))'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "St-",
+   "Stoltenberg",
+   "Segeberg",
+   "Stibnite",
+   "Domenici",
+   "proper names",
+   "closing brackets",
+   "])),",
+   ")))",
+   "code syntax"
+  ],
+  "batch": 9,
+  "version": "pilot"
+ },
+ "L25n24": {
+  "name": "Prepositions before names, writes brackets",
+  "description": "Fires on prepositions and 'Yes' before an institution or name (at Georgia Tech, in Pasadena); pushes toward code brackets like '()):'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "at",
+   "in",
+   "of",
+   "preposition",
+   "institution",
+   "Georgia Tech",
+   "Pasadena",
+   "Yes",
+   "()):",
+   "code brackets"
+  ],
+  "name_long": true,
+  "batch": 11,
+  "version": "pilot"
+ },
+ "L26n2867": {
+  "name": "Name fragments, writes van",
+  "description": "Fires on mid-word pieces of surnames and places (Bebense, Boddington, Shanidar); pushes toward 'van' and Dutch-name tokens.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "van",
+   "Van",
+   "Dutch",
+   "Netherlands",
+   "surname",
+   "place names",
+   "Bebense",
+   "Boddington",
+   "Shanidar",
+   "Navajo"
+  ],
+  "batch": 14,
+  "version": "pilot"
+ },
+ "L25n2845": {
+  "name": "Name fragments, certainty writes",
+  "description": "Reads mid-word fragments of rare names and words (Be-, Tan-, Q-); pushes toward absolutes: always, guaranteed, definitely.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "always",
+   "guaranteed",
+   "certainty",
+   "absolutes",
+   "definitely",
+   "sure",
+   "word fragments",
+   "proper names",
+   "almost",
+   "siempre"
+  ],
+  "batch": 14,
+  "version": "pilot"
+ },
+ "L25n2781": {
+  "name": "Safety warnings",
+  "description": "Reads safety and emergency-procedure text (active shooter, Emergency Management, escape); pushes toward 'safe' and 'safety'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "safety",
+   "safe",
+   "emergency",
+   "escape",
+   "warnings",
+   "hazards",
+   "security",
+   "precaution",
+   "alerts",
+   "danger"
+  ],
+  "batch": 16,
+  "version": "pilot"
+ }
+}
