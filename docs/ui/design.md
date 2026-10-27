@@ -2,7 +2,7 @@
 
 *From the v0.0.2 UI grill with Jake, 2026-10-26/27. Every decision has a rendered mockup in [mockups/](mockups/). All mockups draw a real recorded CPU stand-in session (Qwen3-0.6B, "Describe the ocean at night in three sentences.") and never made-up data. Prototype code (canvas, not the product) is in [web/mockups/](../../web/mockups/).*
 
-![The default view: Cinema layout, mono amber](mockups/final-cinema.png)
+![The default view: Cinema layout, mono amber, astrophage pass](mockups/final-cinema-astrophage.png)
 
 **In one line:** the 28 layers stand side by side as a deck of dot-matrix sheets, drawn through a character grid in one amber ink. Each neuron is one dot. The dot's size and brightness show how rare this firing is *for that neuron*, and filled vs ring shows the sign. Each word sweeps through the layers in the board's real order and pace, the answer runs as subtitles, and nothing on screen is decoration.
 
@@ -16,6 +16,7 @@
 | Q4 | Trails | **Half-life 2 tokens** (0.33 s at 6 tok/s), in tokens. On a live tuning knob; Jake tunes it once it runs. | [q4-trails.gif](mockups/q4-trails.gif) |
 | Q5 | Layout | **Cinema** by default (full-bleed deck, answer as large subtitles, prompt line, token tape, corner HUD) **plus Console panels on a toggle key** (transcript, top-1% count per layer, rarest neurons now). | [q5-layout-sheet](mockups/q5-layout-sheet.png) |
 | Q6 | Colour, type | **Mono amber**, one ink like every mood-board reference (Jake: "like astrophage in Project Hail Mary"). Sign is shape: **filled dot = positive, ring = negative**. **JetBrains Mono** for text, **Departure Mono** for the big counters. Fonts are OFL and bundled (the board serves the page offline). | [q6b-ink-sheet](mockups/q6b-ink-sheet.png), [q6-type](mockups/q6-type.png) |
+| Q6b | Astrophage pass | **On by default** (Jake: yes). From the Project Hail Mary swarm: a wide, faint haze that comes only from top-1% dots (the bloom channel), so dense real activity glows like a nebula; a view-only depth haze on the lattice (never on data dots, whose size is rarity); a dark scrim behind the subtitles. Haze strength is a knob. | [q6c-astrophage-sheet](mockups/q6c-astrophage-sheet.png) |
 | Q7 | Motion | **Sweep + idle drift.** Each word reaches layer *l* at `t₀ + (l/28)·0.9/tok_s`: the real layer order at the measured pace, one word late. The camera drifts ±9° only when idle and stops on any input. | [q7-motion.gif](mockups/q7-motion.gif) |
 | Q8 | Inspect | **Hover**: a light card (value, rarity, per-word sparkline). **Click**: lock on. The layer turns face-on, other layers hide, a reticle locks, the readout docks (fires-most-on in this answer, plus grey slots for later data). **`/`** jumps (`L8 908`). Clicking a word in the subtitles or tape replays the map at that word. | [q8-inspect-sheet](mockups/q8-inspect-sheet.png) |
 | Q9 | Hero moment | **Storyboard C, "one neuron → 86,016".** Open on one dot; "The ocean…" appears and the ocean neuron (L8 N908) blooms to 5.1×; pull back as layers switch on outward from L8; end card "86,016 neurons · live on the Coralboard NPU". A wattage appears only with a measured R12 number (see Principle 5). | [q9-storyboards](mockups/q9-storyboards.png), [q9-hero-c.gif](mockups/q9-hero-c.gif) |
@@ -44,7 +45,8 @@ Two fixes came out of the grill and are not up for taste:
 | Position within a sheet | neuron index (64 × 48, row-major) | arbitrary until v0.1.0's co-activation layout (R9); the inspector says so |
 | Dot glyph `· ∙ • ● ◉` + brightness | rarity level of \|activation\| for that neuron: top 10 / 3 / 1 / 0.3 / 0.1% | crowding-corrected per cell (below) |
 | Dot shape | sign of the activation: filled +, ring − | invisible on the two smallest levels; the hover card always shows the sign |
-| Bloom | only cells at top 1% or rarer | |
+| Bloom and haze | only cells at top 1% or rarer (tight bloom + a wide, faint haze) | haze strength is a knob |
+| Lattice depth haze | distance from the camera (view only) | on the dim lattice and strokes only, never on data dots |
 | Trail | recency: max-hold that halves every 2 tokens | knob |
 | Sweep timing | layer order; pace `0.9 / tok_s` | a replay of the real order, one word late |
 | Dim lattice `·` | a neuron exists here (geometry) | |
