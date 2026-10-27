@@ -72,9 +72,9 @@ export function put(G, col, row, text, color = STYLE.ui, a = 1, bold = false) {
   }
 }
 // Double-size text (like a VT100 double-height line): each character takes 2 x 2 cells.
-export function putBig(G, col, row, text, color = STYLE.uiHi, a = 1, weight = 300) {
+export function putBig(G, col, row, text, color = STYLE.uiHi, a = 1, weight = 300, font = null) {
   for (let r = row; r < row + 2; r++) put(G, col, r, " ".repeat(text.length * 2), color, 0);
-  G.big.push({ col, row, text, color, a, weight });
+  G.big.push({ col, row, text, color, a, weight, font });
 }
 
 export function draw(g, G, dpr, opts = {}) {
@@ -113,7 +113,7 @@ export function draw(g, G, dpr, opts = {}) {
   }
   g.textAlign = "left";
   for (const t of G.big) {
-    g.font = `${t.weight} ${CH * 1.75}px ${S.font}`; g.fillStyle = rgb(t.color, t.a);
+    g.font = `${t.weight} ${CH * 1.75}px ${t.font || S.font}`; g.fillStyle = rgb(t.color, t.a);
     for (let j = 0; j < t.text.length; j++) g.fillText(t.text[j], (t.col + 2 * j) * CW + CW * 0.1, t.row * CH + 2);
   }
   const blur = document.createElement("canvas"); blur.width = glowC.width; blur.height = glowC.height;

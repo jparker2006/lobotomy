@@ -1,0 +1,119 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q9 hero</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+// Q9: the 10-second hero clip. story=a (chip first), b (fly-through), c (one neuron -> 86,016).
+// renderAt(sec) draws one frame. Real stream at 6 tok/s with the Q7 sweep and Q4 trail.
+import { loadSession, userPrompt, L, N } from "../lib/data.js";
+import { camera } from "../lib/proj.js";
+import { SHAPES } from "../lib/shapes.js";
+import { STYLE, makeGrid, splat, polyline, put, putBig, draw, rarityLadder } from "../lib/ascii.js";
+const q = new URLSearchParams(location.search);
+const S = q.get("s") || "ocean", story = q.get("story") || "c", TOKS = 6, HL = 2, SWEEP = 0.9;
+const W = +(q.get("w") || 1280), H = +(q.get("h") || 720), dpr = devicePixelRatio, CW = 8, CH = 14;
+const c = document.getElementById("c"); c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
+const g = c.getContext("2d");
+for (const f of ["400 14px 'JetBrains Mono'", "700 14px 'JetBrains Mono'", "300 14px 'JetBrains Mono'", "400 28px 'Departure Mono'"]) await document.fonts.load(f);
+const { tokens } = await loadSession(S);
+STYLE.ladder = rarityLadder(tokens);
+const U = STYLE, sh = SHAPES.deck, pos = new Float32Array(3 * L * N);
+for (let l = 0; l < L; l++) for (let n = 0; n < N; n++) { const p = sh.pos(l, n), k = 3 * (l * N + n); pos[k] = p[0]; pos[k + 1] = p[1]; pos[k + 2] = p[2]; }
+const first = tokens.findIndex((x) => x.kind === "gen"), prompt = userPrompt(tokens);
+
+function glowAt(tf) {
+  const out = new Float32Array(L * N);
+  if (tf < 0) return out;
+  const i = Math.floor(tf);
+  for (let l = 0; l < L; l++) {
+    const delay = (l / L) * SWEEP;
+    for (let k = Math.max(0, i - 12); k <= i; k++) {
+      const age = tf - (k + delay); if (age < 0) continue;
+      const w = Math.pow(0.5, age / HL), r = tokens[k].r;
+      for (let n = 0, j = l * N; n < N; n++, j++) { const x = r[j] * w; if (Math.abs(x) > Math.abs(out[j])) out[j] = x; }
+    }
+  }
+  return out;
+}
+const ease = (x) => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
+const lerp = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
+const OVER = { eye: [-22.4, 8.6, 31.2], tgt: [0, -0.5, 0], fov: 21 };
+const x8 = (8 - (L - 1) / 2) * 0.8, p908 = sh.pos(8, 908);
+
+function shot(sec) {
+  // returns { cam params, token time tf, overlays }
+  const drift = (e) => { const az = Math.sin(sec * 0.4) * 0.12, ca = Math.cos(az), sa = Math.sin(az); return [e[0] * ca - e[2] * sa, e[1], e[0] * sa + e[2] * ca]; };
+  if (story === "a") {
+    const tf = first + (sec - 4.2) * TOKS;
+    return { eye: drift(OVER.eye), tgt: OVER.tgt, fov: OVER.fov, tf: sec < 4.2 ? -1 : tf, typing: sec >= 1.8 && sec < 4.2 ? (sec - 1.8) / 2.2 : sec >= 4.2 ? 1 : 0, chip: sec < 1.8, card: sec >= 9 };
+  }
+  if (story === "b") {
+    const u = ease(sec / 8.5), x = -13 + u * 19;
+    const eye = sec < 8.5 ? [x, 0.35, 0.45] : lerp([6, 0.35, 0.45], OVER.eye, ease((sec - 8.5) / 1.2));
+    const tgt = sec < 8.5 ? [x + 10, 0, 0] : lerp([16, 0, 0], OVER.tgt, ease((sec - 8.5) / 1.2));
+    return { eye, tgt, fov: sec < 8.5 ? 62 : 62 - 41 * ease((sec - 8.5) / 1.2), tf: first + sec * TOKS, typing: 1, card: sec >= 9 };
+  }
+  // c: macro on L8 N908, pull back to the whole deck; other layers switch on outward from L8 as it pulls back
+  const u = ease((sec - 1.8) / 4.2);
+  const near = { eye: [p908[0] - 0.55, p908[1] + 0.02, p908[2] + 0.04], tgt: p908, fov: 34 };
+  const eye = lerp(near.eye, drift(OVER.eye), u), tgt = lerp(near.tgt, OVER.tgt, u);
+  return { eye, tgt, fov: near.fov + (OVER.fov - near.fov) * u, tf: first + 1 + (sec - 0.8) * TOKS, typing: 1, lock: sec < 2.6, card: sec >= 9, reveal: Math.max(0, Math.min(27, (sec - 2.2) * 9)) };
+}
+
+window.renderAt = (sec) => {
+  g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const s = shot(sec), cam = camera(s.eye, s.tgt, s.fov, W, H, W * 0.54, H * 0.44);
+  const Gm = makeGrid(W, H, 4, 7), G = makeGrid(W, H, CW, CH);
+  if (!s.chip) {
+    const v = glowAt(s.tf);
+    let usePos = pos;
+    if (s.reveal !== undefined) {
+      usePos = pos.slice();
+      for (let l = 0; l < L; l++) if (Math.abs(l - 8) > s.reveal) for (let n = 0; n < N; n++) usePos[3 * (l * N + n)] = NaN;
+    }
+    splat(Gm, usePos, v, cam);
+    for (let l = L - 1; l >= 0; l--) if (s.reveal === undefined || Math.abs(l - 8) <= s.reveal) for (const line of sh.outline(l)) polyline(Gm, line, cam, 0.16);
+  }
+  // overlays
+  const i = Math.floor(s.tf);
+  let ans = ""; if (s.tf >= 0) for (let k = first; k <= i && k < tokens.length; k++) ans += tokens[k].text;
+  const lines = []; let line = ""; for (const w of ans.split(/(?<=\s)/)) { if ((line + w).length > 60) { lines.push(line); line = w; } else line += w; } lines.push(line);
+  const last = lines[lines.length - 1];
+  if (s.chip) {
+    const msg = "[ REAL FOOTAGE HERE: THE CORALBOARD ON THE DESK, LED BLINKING ]";
+    put(G, Math.floor((G.COLS - msg.length) / 2), Math.floor(G.ROWS / 2), msg, U.ui, 0.6);
+  } else if (!s.card) {
+    if (last.trim()) putBig(G, Math.max(1, Math.floor((G.COLS - last.length * 2) / 2)), G.ROWS - 6, last, U.uiHi, 0.92);
+    if (s.typing < 1) { const shown = "> " + prompt.slice(0, Math.floor(prompt.length * s.typing)); put(G, 2, G.ROWS - 2, shown + "█", U.uiHi, 0.85); }
+    else put(G, 2, G.ROWS - 2, "> " + prompt, U.ui, 0.4);
+    put(G, 2, 1, "LOBOTOMY", U.uiHi, 0.9, true);
+    if (s.lock) {
+      const P = cam(p908), pc = Math.floor(P.x / CW), pr = Math.floor(P.y / CH);
+      put(G, pc - 3, pr - 2, "┌", U.posHi, 0.9); put(G, pc + 3, pr - 2, "┐", U.posHi, 0.9); put(G, pc - 3, pr + 2, "└", U.posHi, 0.9); put(G, pc + 3, pr + 2, "┘", U.posHi, 0.9);
+      // the strongest recent value and its word (sticky while locked)
+      let bk = Math.max(0, i), bv = 0;
+      for (let k = Math.max(first, i - 4); k <= i; k++) { const x = tokens[k].r[8 * N + 908]; if (Math.abs(x) > Math.abs(bv)) { bv = x; bk = k; } }
+      put(G, pc + 6, pr - 1, "L08 · N0908", U.uiHi, 0.95, true);
+      if (i >= first) {
+        put(G, pc + 6, pr, `${bv >= 0 ? "+" : "−"}${Math.abs(bv).toFixed(1)}× ITS USUAL PEAK`, bv >= 0 ? U.posHi : U.negHi, 0.95);
+        put(G, pc + 6, pr + 1, `ON ${JSON.stringify(tokens[bk].text)}`, U.ui, 0.6);
+      }
+    }
+  } else {
+    const a = Math.min(1, (sec - 9) / 0.4);
+    putBig(G, Math.floor((G.COLS - 12) / 2), Math.floor(G.ROWS / 2) - 3, "86,016", U.uiHi, a, 400, "'Departure Mono'");
+    const l1 = "NEURONS · LIVE · ON A 1-WATT CHIP", l2 = "lobotomy";
+    put(G, Math.floor((G.COLS - l1.length) / 2), Math.floor(G.ROWS / 2), l1, U.ui, 0.75 * a);
+    put(G, Math.floor((G.COLS - l2.length) / 2), Math.floor(G.ROWS / 2) + 2, l2, U.posHi, a, true);
+  }
+  put(G, G.COLS - 26, 1, "MOCKUP · CPU STAND-IN DATA", U.ui, 0.35);
+  g.fillStyle = "#000"; g.fillRect(0, 0, W, H);
+  draw(g, Gm, dpr, { fs: 7 * 0.95 });
+  if (s.card) { g.fillStyle = "rgba(0,0,0,0.6)"; g.fillRect(0, 0, W, H); }
+  draw(g, G, dpr, { bg: false });
+};
+window.firstGen = 0;
+window.renderAt(+(q.get("sec") || 0.5));
+window.__ready = true;
+</script></body></html>
