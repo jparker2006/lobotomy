@@ -6,9 +6,9 @@
 | Version | What you get |
 |---|---|
 | **v0.0.1 Talks + Glows** | Qwen3-0.6B runs on the board's NPU. A plain page, served by the board, streams the answer and lights up all 86,016 neurons for each word. Spec: [#1](https://github.com/jparker2006/lobotomy/issues/1). |
-| v0.0.2 Beautiful | A UI grill with rendered mockups, then the real 3D UI (TypeScript + three.js). |
+| v0.0.2 Beautiful | The real UI: an ASCII-render deck of 28 layers in mono amber, Cinema layout, hero clip. Spec: [#18](https://github.com/jparker2006/lobotomy/issues/18) (U1–U7), design in [docs/ui/design.md](docs/ui/design.md). |
 | v0.0.3 Hints | Hover a neuron to see the words it pushes toward (logit lens, computed from the weights with no GPU). |
-| v0.1.0 First post | The atlas, steering sliders, research-grade checks and the beautiful UI. Being mapped with a wayfinder in [docs/v0.1.0-map.md](docs/v0.1.0-map.md). |
+| v0.1.0 First post | The atlas, steering sliders, research-grade checks and the beautiful UI. Map: [docs/v0.1.0-map.md](docs/v0.1.0-map.md). Atlas spec: [#11](https://github.com/jparker2006/lobotomy/issues/11) (R3 done: 21,879 real neurons). |
 
 ## v0.0.1: Talks + Glows
 The spec, done criteria and tickets live in GitHub issues, so their state can't drift from this file. The spec is [#1](https://github.com/jparker2006/lobotomy/issues/1). It closes when all its sub-issues are closed and every done box is checked.

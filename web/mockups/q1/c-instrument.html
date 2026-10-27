@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q1-C instrument</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+// Q1-C "Instrument": flat, precise, mission-control. 28 layers left to right as dot-matrix strips
+// (one dot per neuron, 16 x 192), hairlines, small caps, big real numbers.
+import { loadSession, glow, level, bright, userPrompt, answerText, L, N, rgb } from "../lib/data.js";
+const q = new URLSearchParams(location.search);
+const S = q.get("s") || "ocean", T = +(q.get("t") || 52);
+const W = 1440, H = 900, dpr = devicePixelRatio;
+const c = document.getElementById("c"); c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
+const g = c.getContext("2d"); g.scale(dpr, dpr);
+for (const f of ["300 12px 'Geist Mono'", "400 12px 'Geist Mono'", "600 12px 'Geist Mono'"]) await document.fonts.load(f);
+const { tokens } = await loadSession(S);
+const t = Math.min(T, tokens.length - 1), v = glow(tokens, t);
+const POS = [255, 92, 26], POS_HI = [255, 214, 190], NEG = [120, 170, 255], NEG_HI = [222, 234, 255];
+const INK = "rgba(235,235,230,0.92)", MUTE = "rgba(235,235,230,0.42)", RULE = "rgba(235,235,230,0.14)";
+
+g.fillStyle = "#0b0b0c"; g.fillRect(0, 0, W, H);
+
+// header
+g.font = "600 12px 'Geist Mono'"; g.fillStyle = INK; g.fillText("LOBOTOMY", 40, 44);
+g.font = "400 11px 'Geist Mono'"; g.fillStyle = MUTE;
+g.fillText("QWEN3-0.6B · CPU STAND-IN (BOARD: SL2619 TORQ NPU)", 150, 44);
+g.textAlign = "right"; g.fillText("LIVE  ●", W - 40, 44); g.textAlign = "left";
+g.fillStyle = RULE; g.fillRect(40, 58, W - 80, 1);
+
+// stats row: big numerals, all real
+const stat = (x, big, label) => {
+  g.font = "300 40px 'Geist Mono'"; g.fillStyle = INK; g.fillText(big, x, 112);
+  g.font = "400 10px 'Geist Mono'"; g.fillStyle = MUTE; g.fillText(label, x, 132);
+};
+let peak = 0, pk = 0; tokens[t].r.forEach((x, k) => { if (Math.abs(x) > peak) { peak = Math.abs(x); pk = k; } });
+stat(40, "86,016", "NEURONS · 28 LAYERS × 3,072");
+stat(380, tokens[t].lit.toLocaleString(), "ABOVE P99 THIS TOKEN");
+stat(640, `${String(t).padStart(3, "0")}`, "TOKEN / 256");
+stat(840, "29.0", "TOKENS / S");
+stat(1040, `L${Math.floor(pk / N)}·${pk % N}`, `PEAK NEURON · ${peak.toFixed(1)} × P99`);
+g.fillStyle = RULE; g.fillRect(40, 150, W - 80, 1);
+
+// strips: x = layer, each strip 16 cols x 192 rows, pitch 2.4px
+const P = 2.4, COLS = 16, ROWS = 192, SW = COLS * P, GAPX = (W - 80 - 28 * SW) / 27, Y0 = 186;
+for (let l = 0; l < L; l++) {
+  const x0 = 40 + l * (SW + GAPX);
+  for (let n = 0; n < N; n++) {
+    const x = v[l * N + n], lv = level(x), col = n % COLS, row = Math.floor(n / COLS);
+    const px = x0 + col * P, py = Y0 + row * P;
+    if (lv === 0) { g.fillStyle = "rgba(235,235,230,0.07)"; g.fillRect(px, py, 1.2, 1.2); continue; }
+    const b = bright(x);
+    g.fillStyle = rgb(lv >= 7 ? (x > 0 ? POS_HI : NEG_HI) : (x > 0 ? POS : NEG), 0.25 + 0.75 * b);
+    const s = 1.0 + 1.1 * b; g.fillRect(px + (P - s) / 2 - 0.2, py + (P - s) / 2 - 0.2, s, s);
+  }
+  g.font = "400 10px 'Geist Mono'"; g.fillStyle = l % 3 === 0 ? INK : MUTE;
+  g.fillText(String(l).padStart(2, "0"), x0 + SW / 2 - 6, Y0 + ROWS * P + 18);
+  // per-layer count of neurons above p99 as a tick bar above the strip
+  let lit = 0; for (let n = 0; n < N; n++) if (Math.abs(tokens[t].r[l * N + n]) > 1) lit++;
+  g.fillStyle = "rgba(235,235,230,0.55)"; g.fillRect(x0, Y0 - 8 - lit / 12, SW, 1.5);
+}
+g.font = "400 10px 'Geist Mono'"; g.fillStyle = MUTE;
+g.fillText("LAYER →", 40, Y0 + ROWS * P + 36);
+
+// answer
+g.fillStyle = RULE; g.fillRect(40, 700, W - 80, 1);
+g.font = "400 10px 'Geist Mono'"; g.fillStyle = MUTE; g.fillText("PROMPT", 40, 724); g.fillText("OUTPUT", 40, 760);
+g.font = "400 13px 'Geist Mono'"; g.fillStyle = MUTE; g.fillText(userPrompt(tokens), 130, 724);
+const { answer } = answerText(tokens, t);
+const cur = tokens[t].text, before = answer.slice(0, answer.length - cur.length);
+g.font = "300 20px 'Geist Mono'";
+let x = 130, y = 762; const maxX = W - 60;
+for (const w of before.split(/(?<=\s)/)) { const ww = g.measureText(w).width; if (x + ww > maxX) { x = 130; y += 30; } g.fillStyle = INK; g.fillText(w, x, y); x += ww; }
+const cw = g.measureText(cur).width; if (x + cw > maxX) { x = 130; y += 30; }
+g.fillStyle = rgb(POS); g.fillRect(x - 2, y - 19, cw + 4, 25); g.fillStyle = "#0b0b0c"; g.fillText(cur, x, y);
+window.__ready = true;
+</script></body></html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Q1-B hologram</title>
+<link rel="stylesheet" href="../data/fonts/fonts.css">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+// Q1-B "Hologram": 28 layer sheets floating in 3D. Every neuron is one character:
+// dim ones are faint dots, bright ones become glyphs (half-octave ramp) with bloom.
+import { loadSession, glow, level, bright, RAMP, userPrompt, answerText, L, N, rgb } from "../lib/data.js";
+import { camera, projectAll, sheetCorners } from "../lib/proj.js";
+const q = new URLSearchParams(location.search);
+const S = q.get("s") || "ocean", T = +(q.get("t") || 52);
+const W = 1440, H = 900, dpr = devicePixelRatio;
+const c = document.getElementById("c"); c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
+const g = c.getContext("2d"); g.scale(dpr, dpr);
+for (const f of ["12px 'JetBrains Mono'", "300 12px 'Geist Mono'", "400 12px 'Geist Mono'", "600 12px 'Geist Mono'"]) await document.fonts.load(f);
+const { tokens } = await loadSession(S);
+const t = Math.min(T, tokens.length - 1), v = glow(tokens, t);
+const POS = [255, 70, 160], POS_HI = [255, 215, 236], NEG = [40, 225, 255], NEG_HI = [215, 252, 255], DIM = [70, 110, 170];
+
+const bg = g.createRadialGradient(W * 0.55, H * 0.45, 50, W * 0.55, H * 0.45, W * 0.8);
+bg.addColorStop(0, "#0a1426"); bg.addColorStop(1, "#010205");
+g.fillStyle = bg; g.fillRect(0, 0, W, H);
+
+const GAP = +(q.get('gap') || 0.62), PITCH = 0.05;
+const num = (k, d) => (q.get(k) || d).split(",").map(Number);
+const EYE = num("eye", "-9,4.2,14"), TGT = num("tgt", "0.8,-0.4,0"), FOV = +(q.get("fov") || 30), CXY = num("cxy", "0.52,0.42");
+const cam = camera(EYE, TGT, FOV, W, H, W * CXY[0], H * CXY[1]);
+const P = projectAll(cam, GAP, PITCH);
+
+// faint floor grid (structure only: a reference plane under the layers)
+g.strokeStyle = "rgba(60,120,200,0.10)"; g.lineWidth = 1;
+for (let i = -12; i <= 12; i++) {
+  const a = cam([i * 1.0, -1.7, -6]), b = cam([i * 1.0, -1.7, 6]);
+  g.beginPath(); g.moveTo(a.x, a.y); g.lineTo(b.x, b.y); g.stroke();
+  const d = cam([-12, -1.7, i * 0.5]), e = cam([12, -1.7, i * 0.5]);
+  g.beginPath(); g.moveTo(d.x, d.y); g.lineTo(e.x, e.y); g.stroke();
+}
+
+// draw far layers first
+const glowLayer = document.createElement("canvas"); glowLayer.width = c.width; glowLayer.height = c.height;
+const gl2 = glowLayer.getContext("2d"); gl2.scale(dpr, dpr);
+g.textAlign = "center"; g.textBaseline = "middle"; gl2.textAlign = "center"; gl2.textBaseline = "middle";
+g.globalCompositeOperation = "lighter";
+for (let l = L - 1; l >= 0; l--) {
+  // sheet frame
+  const cs = sheetCorners(l, GAP, PITCH).map(cam);
+  g.strokeStyle = "rgba(90,170,255,0.16)"; g.beginPath();
+  cs.forEach((p, i) => (i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y))); g.closePath(); g.stroke();
+  if (l % 3 === 0 || l === L - 1) {
+    g.fillStyle = "rgba(140,200,255,0.55)"; g.font = "10px 'Geist Mono'";
+    g.fillText(`L${String(l).padStart(2, "0")}`, cs[0].x, cs[0].y - 9);
+  }
+  for (let n = 0; n < N; n++) {
+    const k = l * N + n, x = v[k], lv = level(x), px = P.sx[k], py = P.sy[k];
+    if (lv === 0) { g.fillStyle = rgb(DIM, 0.10); g.fillRect(px - 0.5, py - 0.5, 1, 1); continue; }
+    const b = bright(x), base = x > 0 ? POS : NEG, hi = x > 0 ? POS_HI : NEG_HI;
+    const col = lv >= 7 ? hi : base, size = Math.max(4, PITCH * P.ss[k] * 1.25);
+    g.fillStyle = rgb(col, 0.15 + 0.85 * b);
+    if (size < 6) g.fillRect(px - size / 4, py - size / 4, size / 2, size / 2);
+    else { g.font = `${size.toFixed(1)}px 'JetBrains Mono'`; g.fillText(RAMP[lv], px, py); }
+    if (lv >= 5) { gl2.fillStyle = rgb(col, b); gl2.beginPath(); gl2.arc(px, py, Math.max(1.5, size * 0.45), 0, 7); gl2.fill(); }
+  }
+}
+// bloom: only neurons above p99 contribute
+const blur = document.createElement("canvas"); blur.width = c.width; blur.height = c.height;
+const bb = blur.getContext("2d");
+bb.filter = `blur(${10 * dpr}px)`; bb.drawImage(glowLayer, 0, 0);
+bb.filter = `blur(${3 * dpr}px)`; bb.drawImage(glowLayer, 0, 0);
+g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 0.9; g.drawImage(blur, 0, 0); g.restore();
+g.globalCompositeOperation = "source-over";
+
+// HUD
+g.textAlign = "left"; g.textBaseline = "alphabetic";
+g.font = "600 13px 'Geist Mono'"; g.fillStyle = "rgba(200,235,255,0.92)";
+g.fillText("LOBOTOMY", 36, 46);
+g.font = "11px 'Geist Mono'"; g.fillStyle = "rgba(140,200,255,0.6)";
+g.fillText("QWEN3-0.6B  /  CPU STAND-IN  /  86,016 NEURONS", 36, 66);
+g.textAlign = "right";
+g.font = "300 44px 'Geist Mono'"; g.fillStyle = "rgba(220,245,255,0.95)";
+g.fillText(tokens[t].lit.toLocaleString(), W - 36, 70);
+g.font = "11px 'Geist Mono'"; g.fillStyle = "rgba(140,200,255,0.6)";
+g.fillText("NEURONS ABOVE P99 THIS TOKEN", W - 36, 88);
+g.fillText(`TOKEN ${t} / 256   ·   29.0 TOK/S`, W - 36, 106);
+g.textAlign = "left";
+
+// answer, bottom-left, with the current token lit
+const { answer } = answerText(tokens, t);
+const cur = tokens[t].text, before = answer.slice(0, answer.length - cur.length);
+g.font = "11px 'Geist Mono'"; g.fillStyle = "rgba(140,200,255,0.55)";
+g.fillText("> " + userPrompt(tokens).toUpperCase(), 36, H - 150);
+g.font = "300 21px 'Geist Mono'";
+const words = (before).split(/(?<=\s)/);
+let x = 36, y = H - 112; const maxX = 860;
+for (const w of words) { const ww = g.measureText(w).width; if (x + ww > maxX) { x = 36; y += 30; } g.fillStyle = "rgba(225,240,255,0.88)"; g.fillText(w, x, y); x += ww; }
+const cw = g.measureText(cur).width; if (x + cw > maxX) { x = 36; y += 30; }
+g.shadowColor = rgb(POS, 1); g.shadowBlur = 16; g.fillStyle = rgb(POS_HI); g.fillText(cur, x, y); g.shadowBlur = 0;
+g.fillStyle = rgb(POS_HI); g.fillRect(x + cw + 4, y - 18, 2, 22);
+window.__ready = true;
+</script></body></html>
