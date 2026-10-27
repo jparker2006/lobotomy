@@ -20,7 +20,7 @@
   "version": "pilot"
  },
  "L26n1244": {
-  "name": "Word-start intr- and inter- prefixes",
+  "name": "Word-start intr-/inter- prefixes",
   "description": "Fires on word-start fragments like 'intr-' and 'inter-' (intranet, intersex); pushes toward 'prefix' and 'notation'.",
   "pole": "+",
   "verdict": "likely",
@@ -36,9 +36,9 @@
    "suffix",
    "word start"
   ],
-  "name_long": true,
   "batch": 5,
-  "version": "pilot"
+  "version": "pilot",
+  "name_orig": "Word-start intr- and inter- prefixes"
  },
  "L26n1968": {
   "name": "Mid-word fragments, writes union",

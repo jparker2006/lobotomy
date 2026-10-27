@@ -29,7 +29,7 @@ RETRY_HINT = ("\nNOTE: this is a second labelling pass. Earlier labels for some 
 def sh(args, timeout=120):
     try:
         r = subprocess.run(args, capture_output=True, text=True, timeout=timeout)
-        return r.stdout.strip(), r.returncode
+        return (r.stdout.strip() or r.stderr.strip()), r.returncode    # stderr explains failures
     except subprocess.TimeoutExpired:
         return "", -1
 
