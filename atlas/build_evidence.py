@@ -203,6 +203,29 @@ def cmd_steer(a, W, P):
     print(f"STEER DONE {outf.name}: {len(mine)} poles", flush=True)
 
 
+def cmd_slices(a, W, P):
+    """Six planner slices of ~500 poles, kept within layers so the same-layer shuffle baseline stays
+    inside a slice: L27 three ways, L26+L25 two ways (interleaved by rank), the rest (L0-L24 and the
+    controls) as one. Each slice is in S-rank order, so its batch 0 holds its strongest poles."""
+    by = {}
+    for p in P:
+        by.setdefault(p["layer"], []).append(p)
+    sl = {f"p{i}": [] for i in range(1, 7)}
+    for i, p in enumerate(by.get(27, [])):
+        sl[f"p{1 + i % 3}"].append(p)
+    for L in (26, 25):
+        for i, p in enumerate(by.get(L, [])):
+            sl[f"p{4 + i % 2}"].append(p)
+    sl["p6"] = [p for p in P if p["layer"] < 25]
+    out = Path(a.out) / "slices"
+    out.mkdir(parents=True, exist_ok=True)
+    for name, ps in sl.items():
+        ps.sort(key=lambda p: p["rank"])
+        (out / f"{name}.json").write_text(json.dumps([p["key"] for p in ps]))
+        print(f"{name}: {len(ps)} poles, layers {sorted({p['layer'] for p in ps})}", flush=True)
+    assert sum(len(v) for v in sl.values()) == len(P)
+
+
 def byte_decoder():
     """GPT-2 byte-level BPE alphabet -> bytes (Qwen's tokenizer.json uses it)."""
     bs = list(range(33, 127)) + list(range(161, 173)) + list(range(174, 256))
@@ -318,7 +341,7 @@ def cmd_assemble(a, W, P):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("stage", choices=["corpus", "acts", "steer", "assemble", "all"])
+    ap.add_argument("stage", choices=["corpus", "acts", "steer", "assemble", "slices", "all"])
     ap.add_argument("--top", type=int, default=3000)
     ap.add_argument("--work", default="/code/work/r6")
     ap.add_argument("--batch", type=int, default=8); ap.add_argument("--gen-batch", type=int, default=32)
@@ -338,6 +361,7 @@ if __name__ == "__main__":
             subprocess.run([sys.executable, __file__, st] + sys.argv[2:], check=True)
     else:
         t0 = time.time()
-        {"corpus": cmd_corpus, "acts": cmd_acts, "steer": cmd_steer, "assemble": cmd_assemble}[a.stage](
+        {"corpus": cmd_corpus, "acts": cmd_acts, "steer": cmd_steer, "assemble": cmd_assemble,
+         "slices": cmd_slices}[a.stage](
             *((a, W) if a.stage == "corpus" else (a, W, P)))
         print(f"{a.stage}: done in {time.time() - t0:.0f}s", flush=True)
