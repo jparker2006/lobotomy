@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 LR = importlib.util.spec_from_file_location("label_run", ROOT / "atlas" / "label_run.py")
 lr = importlib.util.module_from_spec(LR); LR.loader.exec_module(lr)
 MAX_ATTEMPTS = 3
-TERMINAL = {"idle", "done", "completed", "failed", "error", "stopped", "archived"}
+TERMINAL = {"idle", "replied", "done", "completed", "failed", "error", "stopped", "archived"}
 RETRY_HINT = ("\nNOTE: this is a second labelling pass. Earlier labels for some of these poles predicted "
               "their firing on new text poorly. Look closely at exactly which tokens carry the high ⟦n⟧ "
               "values and in what context, and describe that pattern.\n\n")

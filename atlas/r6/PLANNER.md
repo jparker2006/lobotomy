@@ -22,9 +22,10 @@ quality control, choosing re-runs, and an honest report.
   the same layer, and a plain word list of the pole's top tokens.
 
 ## Rules
-- Run fan-out commands **in the background** (Bash `run_in_background`) and check them with
-  `tail -5 <log>` and `python3 atlas/label_fanout.py status --planner pX`. At most 2 fan-out commands at
-  once. Never run two copies of the same command.
+- Run fan-out commands **in the background** (Bash `run_in_background` with `timeout` 7200000) and check
+  them with `tail -5 <log>` and `python3 atlas/label_fanout.py status --planner pX`. If one stops early
+  (killed, timed out, sandbox restart), just rerun it: it resumes and re-polls its live sub-agents. At
+  most 2 fan-out commands at once. Never run two copies of the same command.
 - Cloudroom messages you every time a sub-agent finishes. The script collects them, so don't read their
   output yourself; at most glance at the log. Never spawn sub-agents by hand, never use `--shared-sandbox`,
   and don't message other threads.

@@ -100,7 +100,10 @@ def parse_json_reply(text):
         return None
     if not isinstance(d, dict):
         return None
-    return {re.sub(r"\s*\(.*?\)\s*$", "", str(k)).strip(): v for k, v in d.items()}
+    def key(k):                          # workers write "L27n267", "L27n267+", "L27n267 (pole +)", ...
+        m = re.search(r"L\d+n\d+", str(k))
+        return m.group(0) if m else str(k).strip()
+    return {key(k): v for k, v in d.items()}
 
 
 def clean_label(lab, sign):
