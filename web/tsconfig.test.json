@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "rootDir": ".", "outDir": "dist/test-build", "declaration": false, "lib": ["ES2022", "DOM"] },
+  "include": ["test/render.test.ts", "test/node-shim.d.ts"]
+}

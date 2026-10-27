@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lobotomy · render bench (SYNTHETIC)</title>
+<script type="importmap">
+{ "imports": {
+  "three/webgpu": "/vendor/three.webgpu.js",
+  "three/tsl": "/vendor/three.tsl.js",
+  "lobotomy/render": "/render/index.js"
+} }
+</script>
+<style>
+  html, body { margin: 0; height: 100%; background: #030304; overflow: hidden; }
+  body { color: #a5acb2; font: 12px/16px ui-monospace, "JetBrains Mono", Menlo, monospace; letter-spacing: 0.06em; }
+  #deck { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
+  .ui { position: fixed; pointer-events: none; white-space: pre; }
+  #hud { left: 18px; top: 14px; }
+  #hud b { color: #eeeeea; }
+  #synthetic { right: 18px; top: 14px; color: #ffb000; font-weight: 700; }
+  #status { right: 18px; top: 30px; text-align: right; opacity: 0.7; }
+  #sub { left: 0; right: 0; bottom: 64px; text-align: center; font-size: 28px; line-height: 36px; color: #eeeeea; opacity: 0.85; letter-spacing: 0.12em; }
+  #sub span { color: #ffe4a0; }
+  .lab { position: fixed; pointer-events: none; color: #eeeeea; opacity: 0.6; transform: translate(-50%, -100%); }
+  #panel { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); background: rgba(3,3,4,0.92); border: 1px solid #3a3f45;
+    padding: 16px 20px; display: none; white-space: pre; color: #eeeeea; pointer-events: auto; max-width: 96vw; overflow: auto; }
+  #panel button { font: inherit; color: #030304; background: #ffb000; border: 0; padding: 6px 14px; margin-top: 12px; cursor: pointer; }
+  #pick { left: 18px; bottom: 18px; }
+</style>
+</head>
+<body>
+<canvas id="deck"></canvas>
+<div id="hud" class="ui"></div>
+<div id="synthetic" class="ui">SYNTHETIC DATA · RENDER BENCHMARK, NOT THE MODEL</div>
+<div id="status" class="ui"></div>
+<div id="sub" class="ui"></div>
+<div id="pick" class="ui"></div>
+<div id="panel"></div>
+<script type="module" src="bench.js"></script>
+</body>
+</html>
