@@ -334,7 +334,8 @@ def cmd_show(a):
 
 def cmd_merge(a):
     """Orchestrator: combine every planner's final labels and test scores into atlas/r6/labels.json and
-    the global E4 summary (atlas/r6/e4.json). Featured order = verdict (clear, likely, mixed), then S."""
+    the global E4 summary (atlas/r6/e4.json). Featured order = verdict (clear, likely, mixed), then dev r
+    (the QC score, never the test score), then S rank."""
     ev = lr.load_gz("evidence.json.gz")
     dirs = sorted(p for p in (lr.R6 / "out").glob("p*") if p.is_dir())
     per = grade(dirs, "test", "final")
@@ -347,7 +348,8 @@ def cmd_merge(a):
                       "planner": d.name, "version": lab.get("version"), "dev_r": lab.get("dev_r"),
                       "test": {c: round(v, 4) for c, v in per.get(k, {}).items()}}
     order = {v: i for i, v in enumerate(lr.VERDICTS)}
-    for i, k in enumerate(sorted(out, key=lambda k: (order[out[k]["verdict"]], out[k]["rank"]))):
+    key = lambda k: (order[out[k]["verdict"]], -(out[k]["dev_r"] if out[k]["dev_r"] is not None else -1), out[k]["rank"])
+    for i, k in enumerate(sorted(out, key=key)):
         out[k]["feature_rank"] = i
     missing = [k for k in ev["poles"] if k not in out]
     res = {"labelled": len(out), "poles": len(ev["poles"]), "missing": missing,
