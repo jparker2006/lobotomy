@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "../dist/bench",
+    "declaration": false,
+    "paths": { "lobotomy/render": ["../dist/render/index.d.ts"] }
+  },
+  "include": ["*.ts"]
+}

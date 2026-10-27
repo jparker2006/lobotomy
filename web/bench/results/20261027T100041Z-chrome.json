@@ -1,0 +1,155 @@
+{
+ "kind": "lobotomy-render-bench",
+ "version": 1,
+ "synthetic": true,
+ "utc": "2026-10-27T10:00:41.326Z",
+ "browser": "chrome",
+ "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+ "backend": "webgpu",
+ "forcedWebGL": false,
+ "adapter": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": "",
+  "timestampQuery": true
+ },
+ "nativeDpr": 2,
+ "screen": [
+  1710,
+  1107
+ ],
+ "window": [
+  1654,
+  1073
+ ],
+ "scale": 1,
+ "budget": {
+  "p95Ms": 16.67,
+  "jitterAllowanceMs": 0.3,
+  "over33MaxPct": 1
+ },
+ "verdict": "FAIL",
+ "runs": [
+  {
+   "name": "main",
+   "secs": 60,
+   "dpr": 2,
+   "bloomScale": 1,
+   "tokPerSec": 24,
+   "canvasPx": [
+    3308,
+    2146
+   ],
+   "cells": 44685,
+   "frames": 3247,
+   "p50": 16.7,
+   "p95": 17.7,
+   "p99": 17.7,
+   "max": 5867.4,
+   "meanMs": 18.48,
+   "over33Pct": 0.09,
+   "over25Pct": 0.09,
+   "cpuFrameMs": {
+    "p50": 0.7,
+    "p95": 1.5
+   },
+   "synthTokenMs": 2.68,
+   "gpuMs": {
+    "compute": 0.16,
+    "render": 26.58
+   },
+   "tabHiddenDuringRun": true
+  },
+  {
+   "name": "bloom 0.5x",
+   "secs": 15,
+   "dpr": 2,
+   "bloomScale": 0.5,
+   "tokPerSec": 24,
+   "canvasPx": [
+    3308,
+    2146
+   ],
+   "cells": 44685,
+   "frames": 901,
+   "p50": 16.7,
+   "p95": 17.6,
+   "p99": 17.7,
+   "max": 17.7,
+   "meanMs": 16.67,
+   "over33Pct": 0,
+   "over25Pct": 0,
+   "cpuFrameMs": {
+    "p50": 0.7,
+    "p95": 1.4
+   },
+   "synthTokenMs": 2.59,
+   "gpuMs": {
+    "compute": 0.31,
+    "render": 14.72
+   },
+   "tabHiddenDuringRun": false
+  },
+  {
+   "name": "dpr 1",
+   "secs": 15,
+   "dpr": 1,
+   "bloomScale": 1,
+   "tokPerSec": 24,
+   "canvasPx": [
+    1654,
+    1073
+   ],
+   "cells": 44685,
+   "frames": 901,
+   "p50": 16.7,
+   "p95": 17.6,
+   "p99": 17.7,
+   "max": 17.8,
+   "meanMs": 16.67,
+   "over33Pct": 0,
+   "over25Pct": 0,
+   "cpuFrameMs": {
+    "p50": 1.1,
+    "p95": 1.9
+   },
+   "synthTokenMs": 2.85,
+   "gpuMs": {
+    "compute": 0.28,
+    "render": 14.36
+   },
+   "tabHiddenDuringRun": false
+  },
+  {
+   "name": "6 tok/s",
+   "secs": 15,
+   "dpr": 2,
+   "bloomScale": 1,
+   "tokPerSec": 6,
+   "canvasPx": [
+    3308,
+    2146
+   ],
+   "cells": 44685,
+   "frames": 901,
+   "p50": 16.7,
+   "p95": 17.6,
+   "p99": 17.6,
+   "max": 17.7,
+   "meanMs": 16.67,
+   "over33Pct": 0,
+   "over25Pct": 0,
+   "cpuFrameMs": {
+    "p50": 0.6,
+    "p95": 1.7
+   },
+   "synthTokenMs": 2.55,
+   "gpuMs": {
+    "compute": 0.19,
+    "render": 28.62
+   },
+   "tabHiddenDuringRun": false
+  }
+ ]
+}
