@@ -1,0 +1,3215 @@
+{
+ "L24n1389": {
+  "name": "Split-word pieces → missing/NULL",
+  "description": "Fires on a word-internal fragment that continues a split word, e.g. 'im|put|es' in imputes, 'rem|oves' in removes, 'bl|azes', and on 'Click' in web boilerplate; pushes toward NULL/NA and 'missing' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "split-word fragment",
+   "imputes",
+   "removes",
+   "Click",
+   "bl (blazes)",
+   "NULL",
+   "NA",
+   "missing",
+   "null values",
+   "mid-word token"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L22n1354": {
+  "name": "Colon before a URL",
+  "description": "Fires on the colon that introduces a web address ('the link:', 'visit:', 'See:', 'Facebook:') and on the 'https'/'http' token right after it; pushes toward writing 'http://www' addresses.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "colon before URL",
+   "link:",
+   "visit:",
+   "See:",
+   "http",
+   "https",
+   "www",
+   "://",
+   "web address",
+   "Facebook:"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L23n1048": {
+  "name": "Program-spec connectives → print",
+  "description": "Fires on 'and', 'then', 'should' in chat requests that describe a program ('the program should', 'calculates and', 'then sorts'), the word just before the expected action; pushes toward 'print'/'output' tokens.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "should",
+   "then",
+   "and",
+   "program spec",
+   "coding request",
+   "print",
+   "printing",
+   "output",
+   "display",
+   "prints"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L23n694": {
+  "name": "Outcome-display verbs → result",
+  "description": "Fires on the word just before an object describing a measured or shown outcome ('affect [the] result', 'interpreting [these] graphs', 'displays [the] answer', 'outputs [the] determinant'); pushes toward 'result(s)'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "interpreting",
+   "outputs",
+   "displays",
+   "affect",
+   "result",
+   "results",
+   "measurement",
+   "test outcome",
+   "displayed",
+   "CT scan"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L21n842": {
+  "name": "Measurement abbreviations → value",
+  "description": "Fires on the abbreviation or symbol of a scientific or clinical measure ('MIC' in 'above the MIC', 'LD' in 'LD50', 'FR' in 'eGFR', 'K' in 'pKa', 'A1C'), mostly its later pieces; pushes toward 'value(s)'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "MIC",
+   "LD50",
+   "eGFR",
+   "A1C",
+   "pKa",
+   "pH",
+   "PCE",
+   "absorption",
+   "measure",
+   "value"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L22n720": {
+  "name": "Word before 'value(s)'",
+  "description": "Fires on the word that sets up a value or parameter noun in how-to text: 'any' in 'accept any fractional values', 'missing' in 'missing values', 'a' in 'simulate a value', 'column' in 'return column'; pushes toward 'value' tokens.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "any",
+   "missing",
+   "accept",
+   "fractional",
+   "non-negative",
+   "values",
+   "value",
+   "column",
+   "take",
+   "parameter"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L23n597": {
+  "name": "Counting words → counter",
+  "description": "Fires on 'running' in 'a running total', 'loop', 'integer', '(int' in C signatures, and on random word pieces like 'retro' in retroviruses and 'C' in 'Cited'; pushes toward 'count'/'counter' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "running",
+   "loop",
+   "integer",
+   "(int",
+   "retro",
+   "citation",
+   "anch",
+   "Edition",
+   "counter",
+   "count"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L24n2517": {
+  "name": "Tracking identifiers → IP",
+  "description": "Fires on conjunctions and modifiers inside lists of network or personal identifiers ('IP address, or network location', 'device IDs,', 'browsing', 'GPS', 'Internet'), and on sudo/root shell-prompt tokens like ']$' and '#'; pushes toward 'IP'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "or",
+   "IP address",
+   "device ID",
+   "network location",
+   "MAC address",
+   "browsing",
+   "GPS",
+   "Internet",
+   "sudo",
+   "IP"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L22n996": {
+  "name": "'and' before output verb",
+  "description": "Fires on 'and' (also 'as', 'the') in program specs like 'takes X and outputs Y', on the word just before the output verb; pushes toward 'output' tokens.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "and",
+   "takes input and",
+   "outputs",
+   "output",
+   "as input",
+   "desired output",
+   "return",
+   "input",
+   "Generate",
+   "Output"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L22n1973": {
+  "name": "Split-name fragments → brace",
+  "description": "Fires on the second or third piece of a name or word split into tokens ('Hal|le', 'Brig|adier', 'Leib|n|iz', 'Leeu|wen|hoek') and on '<' in '#include <' and '=' in 'x<=0'; pushes toward an opening curly brace '{'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "#include <",
+   "x<=0",
+   "Halle",
+   "Brigadier",
+   "Leibniz",
+   "Leeuwenhoek",
+   "name fragment",
+   "subword piece",
+   "Er",
+   "open brace"
+  ],
+  "batch": 7,
+  "version": "v2",
+  "name_orig": "Split name fragments → brace"
+ },
+ "L24n203": {
+  "name": "Mid-word fragments → underscore",
+  "description": "Fires on a fragment that continues a word or identifier split across tokens ('rev|istas', 'stat|uary', 'Stony|brook', 'mitted', 'concerned-parent'); pushes toward underscore-joined identifiers like '_r' or '_h'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "mid-word fragment",
+   "split word",
+   "istas",
+   "uary",
+   "ony",
+   "mitted",
+   "-parent",
+   "underscore",
+   "identifier",
+   "-report"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L24n989": {
+  "name": "Proper-noun opener → brace",
+  "description": "Fires on the short first fragment of a capitalized proper noun split into tokens ('Al' in Almohad, Alamo, Almazaras; 'Nan' in Nanaimo; 'Cr' in Crataegus; 'Pall' in Pallene; 'Mal'); pushes toward an opening brace '{'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Al",
+   "Nan",
+   "Cr",
+   "Mal",
+   "Pall",
+   "San",
+   "Wol",
+   "vl",
+   "proper noun",
+   "open brace"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L23n1385": {
+  "name": "Hash-table bucket/key terms",
+  "description": "Fires on hash-table and lookup words ('bucket', 'keys', 'stored', 'row', 'hash') and on the word just before the looked-up item ('an identifier', 'the position'); pushes toward 'key'/'Key' tokens.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "bucket",
+   "hash",
+   "keys",
+   "lookup",
+   "stored",
+   "row",
+   "table",
+   "position",
+   "key",
+   "Key"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L22n2374": {
+  "name": "Programming-language names → code",
+  "description": "Fires on programming-language and markup names ('Pascal', 'HTML', 'Java', 'Python', 'Matlab', 'SQL', 'CSS') and on 'pseudo' in 'pseudocode'; also on the 'of' in 'a piece of text' prompts; pushes toward the word 'code'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "Pascal",
+   "HTML",
+   "Java",
+   "Python",
+   "Matlab",
+   "SQL",
+   "CSS",
+   "pseudocode",
+   "code",
+   "-code"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L24n1635": {
+  "name": "Lead-in comma → check",
+  "description": "Fires on the comma, colon or question mark that ends a lead-in like 'To learn more about X,', 'For more details,', 'Want to know more about COVID-19?', right before a 'visit/see/check' pointer; pushes toward 'check'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "To learn more",
+   "For more details",
+   ",",
+   "please",
+   "visit",
+   "see",
+   "check",
+   "more information",
+   "link",
+   "resource"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L24n1513": {
+  "name": "Chris and scattered fragments",
+  "description": "Fires on the first name 'Chris' (Governor Chris Christie, Attorney General Chris Carr) and on scattered word-start fragments ('alt' in altcoins, opening quote marks, 'Windows'); the push toward '+'-prefixed tokens shows no clear effect when steered.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Chris",
+   "alt",
+   "''",
+   "Windows",
+   "mel",
+   "opy",
+   "Inf",
+   "welding",
+   "+A",
+   "+"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L23n2181": {
+  "name": "Addendum markers → edit",
+  "description": "Fires on the word that opens an addendum to a post: 'Follow' (Follow Math Help Forum, follow-up question), 'EDIT', 'UPDATE', 'Latest', 'Below'; pushes toward 'edit' tokens.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "Follow",
+   "follow-up",
+   "EDIT:",
+   "UPDATE",
+   "Latest",
+   "Question",
+   "Below",
+   "Following",
+   "edit",
+   "update"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L22n571": {
+  "name": "Method names before '()'",
+  "description": "Fires on the name of a function or method in prose code references ('seek' in seek(), '.head' in dataset.head(5), 'readline'); pushes toward '()' call parentheses.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "seek",
+   ".head",
+   "readline",
+   "method name",
+   "function call",
+   "()",
+   "():",
+   "(),",
+   "parentheses",
+   "Canvas"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L22n1955": {
+  "name": "Outcome adjectives → result",
+  "description": "Fires on the adjective or verb just before an outcome noun: 'disastrous' (effects), 'reach' (conclusions), 'achieve' (a successful outcome), 'accurate', 'desired', 'fatal', 'definite'; pushes toward 'result(s)'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "disastrous",
+   "achieve",
+   "definite",
+   "fatal",
+   "unexpected",
+   "desired",
+   "optimal",
+   "successful",
+   "accurate",
+   "result"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L24n3029": {
+  "name": "Host names → domain",
+  "description": "Fires on web host and domain names and the words near them ('.com' in example.com, '@example', 'Etsy', 'AWS', 'Amazon', 'Chrome', 'HTTPS certificates'); pushes toward 'domain' tokens.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   ".com",
+   "example.com",
+   "@example",
+   "Amazon",
+   "AWS",
+   "Etsy",
+   "Chrome",
+   "HTTPS",
+   "domain",
+   "website"
+  ],
+  "batch": 7,
+  "version": "v2"
+ },
+ "L24n2673": {
+  "name": "Travel, flight, route words",
+  "description": "Fires on motion and travel words such as 'migration', 'flight', 'fly', 'flying', 'along' (as in 'along the way') and 'tracing' in orbit and route text, mostly on the word itself. Pushes the model to write 'path', 'Path' and '_path' tokens.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "migration",
+   "flight",
+   "fly",
+   "flying",
+   "along",
+   "route",
+   "trajectory",
+   "scan",
+   "tracing",
+   "path"
+  ],
+  "batch": 9,
+  "version": "v2",
+  "name_orig": "Travel, flight and route words"
+ },
+ "L0n38": {
+  "name": "Abstract social-state nouns",
+  "description": "Fires on the head noun of an abstract social or medical condition, right after 'call for', 'the new', 'the problem with' or 'a', e.g. 'equality', 'norm', 'problem', 'epidemic', 'constant', 'migraine'. Also fires on the '</think>' closing tag. Pushing it up writes code closers, but steered output is only newlines.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "equality",
+   "norm",
+   "problem",
+   "epidemic",
+   "constant",
+   "deg-",
+   "migraine",
+   "independence",
+   "arrival",
+   "</think>"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L24n1154": {
+  "name": "Graph/illustration setup words",
+  "description": "Negative on the word that sets up a graph, plot or illustration: 'your' before 'graph', 'a' before 'link graph', 'can' before 'find the parent graph', and 'illustrate' or 'illustrated'. The peak is on the setup word, not on 'graph' itself. Pushing it negative writes 'graph'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "graph",
+   "graphs",
+   "graphical",
+   "illustrated",
+   "illustrate",
+   "tangent",
+   "figure",
+   "plot",
+   "visualize",
+   "x-intercept"
+  ],
+  "batch": 9,
+  "version": "v2",
+  "name_orig": "Graph and illustration setup words"
+ },
+ "L24n1762": {
+  "name": "Rank and level ordinals",
+  "description": "Negative on rank and level words: 'higher', 'highest', 'high' (high school, high-quality), 'first', 'second', 'third', 'sixth'. The peak is on the word itself, e.g. 'second-order', 'higher cognitive', 'first grade'. Pushing it negative writes 'order' repeatedly.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "higher",
+   "highest",
+   "high",
+   "first",
+   "second",
+   "third",
+   "sixth",
+   "ordinal",
+   "level",
+   "order"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L13n3041": {
+  "name": "Task-prompt quality adjectives",
+  "description": "Negative on the quality or criterion word in a writing request, the trait the piece should show: 'practical', 'ease' (of use), 'playful', 'variety', 'reliability', 'persuasive', 'intuitive', 'visuals', 'convenience'. Pushing it negative writes no clear token, only asterisk spam.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "practical",
+   "ease",
+   "reliability",
+   "persuasive",
+   "intuitive",
+   "appealing",
+   "visuals",
+   "convenience",
+   "thorough",
+   "actionable"
+  ],
+  "batch": 9,
+  "version": "v2",
+  "name_orig": "Quality adjectives in task prompts"
+ },
+ "L24n1449": {
+  "name": "Opposite words, name fragments",
+  "description": "Fires on 'opposite' and 'opposing' (opposite polarity). It also fires on odd fragments inside names: the 'ø' in Jørgensen, 'Carl', 'Charles', 'Cart' in Carte du Ciel. Pushes toward 'sign' and 'signs'. The name part is unrelated to the opposition part.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "opposite",
+   "opposing",
+   "polarity",
+   "ø",
+   "Carl",
+   "Charles",
+   "Chern",
+   "Cart",
+   "sign",
+   "signs"
+  ],
+  "batch": 9,
+  "version": "v2",
+  "name_orig": "Opposite words and name fragments"
+ },
+ "L24n654": {
+  "name": "Web boilerplate, catalog labels",
+  "description": "Fires on the label word in web boilerplate and catalog fields: 'PDF', 'Download', 'Copyright', 'https', 'Location', 'Publication Series', 'LC Control Number', and 'Image' in 'Image via'. Pushes toward 'address', 'URL' and 'number', and steered output becomes 'number number' spam. The reading is boilerplate, but the writing does not match it.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "PDF",
+   "Download",
+   "Copyright",
+   "https",
+   "Location",
+   "Publication",
+   "LC",
+   "Image",
+   "School",
+   "Battle"
+  ],
+  "batch": 9,
+  "version": "v2",
+  "name_orig": "Web boilerplate and catalog labels"
+ },
+ "L24n2620": {
+  "name": "Browser/extension software nouns",
+  "description": "Negative on software-app nouns, mainly 'Chrome' (Chrome extension, Chrome page), 'browser', 'Firefox', 'Reader', 'Edge', plus 'install' before a plugin or package. Pushing it negative writes 'extension' over and over.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "Chrome",
+   "browser",
+   "Firefox",
+   "extension",
+   "plugin",
+   "install",
+   "Reader",
+   "Edge",
+   "Adobe",
+   "Safari"
+  ],
+  "batch": 9,
+  "version": "v2",
+  "name_orig": "Browser and extension software nouns"
+ },
+ "L23n1647": {
+  "name": "Mid-word fragments, C types",
+  "description": "Fires on the first or middle piece of a rare word split into several tokens: 'op' in 'leopards', 'app' in 'lappaceum', 'Cr' in 'Crataegus', 'ios' in 'Cardiospermum'. Pushes toward C and C++ type keywords such as 'int', 'bool', 'void', 'uint' and 'char'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "leopards",
+   "lappaceum",
+   "Crataegus",
+   "Cardiospermum",
+   "int",
+   "bool",
+   "void",
+   "uint",
+   "char",
+   "Cercopithecus"
+  ],
+  "batch": 9,
+  "version": "v2",
+  "name_orig": "Mid-word fragments and C types"
+ },
+ "L23n455": {
+  "name": "Quantity qualifier before 'number'",
+  "description": "Negative on the word that sets up a count or quantity, mostly right before 'number of': 'average', 'total', 'actual', 'exact', 'largest', and 'the' in 'the number of'. Pushing it negative writes 'number' repeatedly.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "average",
+   "total",
+   "actual",
+   "exact",
+   "largest",
+   "highest",
+   "estimating",
+   "comparable",
+   "the",
+   "number"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L23n2810": {
+  "name": "Before detect or diagnose",
+  "description": "Fires on the modal, adverb or adjective just before a verb of detection, diagnosis or help: 'early' (early detection), 'reliably' (reliably detect), 'can' and 'be' in 'can help' or 'be diagnosed', 'error' before correction. Pushes toward 'detect', 'detection' and 'catch'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "early",
+   "reliably",
+   "detect",
+   "detection",
+   "diagnosed",
+   "can",
+   "help",
+   "error",
+   "undetectable",
+   "screening"
+  ],
+  "batch": 9,
+  "version": "v2",
+  "name_orig": "Word before detect or diagnose"
+ },
+ "L24n1809": {
+  "name": "Size and life-stage facts",
+  "description": "Negative on the word before a size, weight or life-stage fact in natural-history and product text: 'can' before 'grow up to' or 'live up to', 'females' before 'are smaller', 'the' before 'size', 'weigh', 'which' before a description. Pushing it negative writes 'measure' repeatedly.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "can",
+   "weigh",
+   "measure",
+   "size",
+   "females",
+   "kittens",
+   "which",
+   "imeters",
+   "beads",
+   "jewels"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L24n1261": {
+  "name": "Log/reference book nouns",
+  "description": "Fires on the noun naming a written record or reference book: 'journal' (journal entry), 'diary', 'dictionary', 'routing' (routing table), 'bibliography', 'Cited' in a works-cited list. Pushes toward 'entry' and 'entries'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "journal",
+   "diary",
+   "dictionary",
+   "routing",
+   "table",
+   "entry",
+   "entries",
+   "log",
+   "bibliography",
+   "record"
+  ],
+  "batch": 9,
+  "version": "v2",
+  "name_orig": "Log and reference book nouns"
+ },
+ "L22n2096": {
+  "name": "Property and effect adjectives",
+  "description": "Fires on the adjective that introduces a property or effect of a substance or thing: 'anti-inflammatory', 'antioxidant', 'physical' (physical properties), 'cooling' (cooling effect), 'cleansing', 'beneficial', 'possesses', 'desirable' (traits). Pushes toward 'property' and 'properties'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "antioxidant",
+   "anti-inflammatory",
+   "physical",
+   "properties",
+   "cooling",
+   "possesses",
+   "beneficial",
+   "cleansing",
+   "desirable",
+   "characteristics"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L24n1265": {
+  "name": "Birth-death dates and dashes",
+  "description": "Negative on digits and the dash inside birth-death date ranges and year spans, e.g. the '8' in 'June 1236' and the '–' in '(1260–1279)'. Also fires on IPA symbols such as 'ˈ'. Pushing it negative writes question marks.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "dash",
+   "year",
+   "born",
+   "died",
+   "date",
+   "1836",
+   "ˈ",
+   "ɪ",
+   "pronunciation",
+   "?"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L22n1337": {
+  "name": "Contrast pairs and vs",
+  "description": "Fires on the second party of a contrast or case-name pair: 'Jones' in 'Jones I/II', 'Virginia' in 'West Virginia State Board', and the number or unit that ends a comparison ('57%' vs 36%, '2.5 minutes' compared to Bitcoin's 10). Pushes toward 'vs', 'versus' and 'compared'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "vs",
+   "versus",
+   "compared",
+   "Jones",
+   "Virginia",
+   "Brown",
+   "Bush",
+   "%",
+   "minutes",
+   "rough"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L24n2863": {
+  "name": "Absence and loss words",
+  "description": "Negative on 'Without' and 'lacks', on 'lost' in 'lost wetlands', and on word fragments in chemical or proper names: the 'ral' in sucralose, 'ampo' in shampoos, 'chen' in Schenckenschans. Pushing it negative writes 'loss', 'lose' and 'losing'. The loss reading is coherent, but the fragments are not.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Without",
+   "lacks",
+   "lost",
+   "loss",
+   "wetlands",
+   "lose",
+   "losing",
+   "sucralose",
+   "shampoo",
+   "tobramycin"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L23n1239": {
+  "name": "How-to technique nouns",
+  "description": "Negative on the gerund or noun naming a practice or technique in how-to text: 'folding' (folding techniques), 'farming' (farming practices), 'teaching', 'delivery', 'stitching', 'brushing' and flossing, 'learning' (learning styles). Pushing it negative writes 'method' repeatedly.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "folding",
+   "farming",
+   "teaching",
+   "delivery",
+   "stitching",
+   "brushing",
+   "learning",
+   "cooking",
+   "mixing",
+   "method"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L24n341": {
+  "name": "Data fields and records",
+  "description": "Negative on verbs and determiners that introduce records or fields in data-processing text: 'retrieves', 'extracts', 'the following' before a field list, 'each' before a record, and 'with' in 'a database with three tables'. Pushing it negative writes 'field' and 'fields'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "retrieves",
+   "extracts",
+   "following",
+   "each",
+   "fields",
+   "field",
+   "record",
+   "database",
+   "MySQL",
+   "data"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L23n1007": {
+  "name": "Word-initial subword pieces",
+  "description": "Negative on the first piece of a word split into several tokens, mostly a capitalised name or rare word start: 'Wol' in Wolpertinger, 'Kos' in Kosrae, 'sol' in solstice, 'Det' in Detrick, 'Fol' in Folio, 'Iron' in Iron Lady. Pushing it negative writes 'input' repeatedly.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Wol",
+   "Kos",
+   "sol",
+   "Det",
+   "Fol",
+   "isot",
+   "Arist",
+   "Iron",
+   "the",
+   "input"
+  ],
+  "batch": 9,
+  "version": "v2"
+ },
+ "L24n361": {
+  "name": "Mid-word fragments, mixed",
+  "description": "Fires on a mid-word subword piece of a rare name or word (Bam|ako, Aver|roes, Sand|boxes, Math|ews, Tigr|is), and on 'and' after 'calculates' or 'be' after 'must' in coding and task prompts. Pushes toward 'round' and 'Round' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Bam",
+   "Aver",
+   "Sand",
+   "Math",
+   "igr",
+   "ah",
+   "and (after calculates)",
+   "be (after must)",
+   "round",
+   "Round"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L22n2990": {
+  "name": "Values and ethics words",
+  "description": "Fires on words for values or ethics ('moral', 'principles', 'ideals', 'ethical') and on the possessive 's or 'and' right before 'mission' or 'values' in company and ethics text. Pushes toward 'values'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "moral",
+   "ideals",
+   "principles",
+   "ethical",
+   "values",
+   "mission",
+   "company's",
+   "culture",
+   "Sikh",
+   "Hindu"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L22n203": {
+  "name": "Single-letter math symbols",
+  "description": "Fires on a lone capital letter or Greek or math symbol used as a variable or abbreviation (R in R(t), H in HPC, G in GDP, γ, x′, n in 'is an integer'). Pushes toward prime and apostrophe marks (′, ’).",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "R(t)",
+   "H (HPC)",
+   "G (GDP)",
+   "γ",
+   "x′",
+   "C (CDM)",
+   "n (integer)",
+   "prime ′",
+   "Si",
+   "Tb"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L22n1968": {
+  "name": "Study findings lead-ins",
+  "description": "Goes strongly negative on the determiner or possessive before a research noun in science-news text ('the study's findings', 'these results', 'their findings', 'new study'). Pushes toward 'results' and 'findings'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "study",
+   "findings",
+   "results",
+   "research",
+   "researchers",
+   "survey",
+   "these",
+   "their",
+   "the",
+   "your"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L24n1170": {
+  "name": "Temperature min/max modifiers",
+  "description": "Goes strongly negative on a modifier before a climate or extreme-value statistic ('annual average temperature', 'global temperature', 'monthly' tornado activity, 'lowest'). Pushes toward 'min' and 'minimum'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "annual",
+   "average",
+   "global",
+   "temperature",
+   "lowest",
+   "peak",
+   "extreme",
+   "monthly",
+   "maximum",
+   "min"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L23n1746": {
+  "name": "Web page and frontend",
+  "description": "Goes negative on words in web-page, layout and frontend text ('page', 'Scroll', 'Canvas Can be', 'slow' performance, 'React' and 'Vue' names). Few shared points beyond web/UI context. Pushes toward 'load' and 'loaded'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "page",
+   "web",
+   "Scroll",
+   "React",
+   "Vue",
+   "trouble",
+   "slow",
+   "frontend",
+   "Canvas",
+   "load"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L24n2010": {
+  "name": "Standard style and conventions",
+  "description": "Fires on the word right before 'style', 'schemes', 'conventions' or 'system' in standards and how-to text ('citation [style]', 'consistent [color] schemes', 'astronomical [naming] conventions'). Pushes toward 'uniform' and 'consistent'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "style",
+   "citation",
+   "naming",
+   "conventions",
+   "schemes",
+   "consistent",
+   "uniform",
+   "standard",
+   "color",
+   "branding"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L24n2816": {
+  "name": "Modifier before system",
+  "description": "Fires on the modifier right before 'system', mainly 'solar' in 'solar system' and 'solar wind', also 'root', 'ring', 'school' and 'star'. Pushes toward 'system' and 'systems'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "solar",
+   "root",
+   "school",
+   "star",
+   "ring",
+   "system",
+   "Solar",
+   "planetary",
+   "olar",
+   "cluster"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L23n3068": {
+  "name": "Modifier before facility nouns",
+  "description": "Fires on the word just before a facility or office noun ('recycling [transfer] station', 'sewage [treatment] plant', 'Visitor [Center]', 'Recreation [Department]'). Pushes toward 'center' and 'centre'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "transfer",
+   "station",
+   "treatment",
+   "visitor",
+   "booking",
+   "command",
+   "rehabilitation",
+   "service",
+   "admissions",
+   "recreation"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L24n2008": {
+  "name": "Sort order and reversal",
+  "description": "Fires on 'in' before 'ascending' or 'descending order' and on 'ASC|DESC', plus reversal words ('backwards', 'inverse', 'vice versa', 'inversely'). Pushes toward 'reverse', 'inverse' and 'reversed'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "ascending",
+   "descending",
+   "order",
+   "in",
+   "sort",
+   "inverse",
+   "reverse",
+   "backwards",
+   "vice versa",
+   "proportional"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L24n2438": {
+  "name": "Efficiency and cost words",
+  "description": "Goes strongly negative on the word just before an efficiency word ('energy-[use] efficiency', 'cost [effective]', 'more [efficient]') and on 'fuel' in 'fuel consumption'. Pushes toward 'efficient' and 'efficiency' forms.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "efficiency",
+   "efficient",
+   "effective",
+   "use",
+   "cost",
+   "fuel",
+   "consumption",
+   "more",
+   "economically",
+   "run"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L23n1946": {
+  "name": "'Look' and lookup verbs",
+  "description": "Goes strongly negative on 'look', 'looking', 'looked' and 'lookup' ('2D lookups', 'look up', 'look at', 'look for'), including non-table uses. Pushes toward 'table' and 'tables'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "look",
+   "looking",
+   "looked",
+   "lookup",
+   "Look",
+   "dictionary",
+   "hash",
+   "routing",
+   "ups",
+   "table"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L22n3055": {
+  "name": "'Have' in AI disclaimers",
+  "description": "Goes strongly negative on 'have' right after 'I do not' or 'I don't' in AI-limitation answers ('I do not [have] access to', 'I don't [have] any live'). Pushes toward 'access'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "have",
+   "access",
+   "do not have",
+   "don't have",
+   "information",
+   "capability",
+   "real-time",
+   "live",
+   "anytime",
+   "easy"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L22n783": {
+  "name": "Form input validation words",
+  "description": "Goes strongly negative on form and input words in web-form and validation prompts ('input [fields]', 'HTML [form]', 'validate' in validateEmail, 'input validation'). Pushes toward 'validate' and 'validation'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "input",
+   "form",
+   "validate",
+   "validation",
+   "fields",
+   "registration",
+   "valid",
+   "validateEmail",
+   "Vue",
+   "dialog"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L24n2038": {
+  "name": "Official issuing verbs",
+  "description": "Goes strongly negative on the verb after an official actor: 'issued' (proclamation, apology, guidelines), 'signed', 'passes', 'ordered', 'given'. Pushes toward 'order' and 'orders'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "issued",
+   "issue",
+   "signed",
+   "passes",
+   "ordered",
+   "given",
+   "gave",
+   "proclamation",
+   "edict",
+   "order"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L24n1518": {
+  "name": "Spending effort and resources",
+  "description": "Goes strongly negative on 'of' after 'amount', 'lot' or 'a little bit', and on spend, focus or devote words before a resource or effort noun ('amount of resources', 'devote their energies', 'spend a lot of time'). Pushes toward 'energy' and 'resource'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "amount",
+   "lot",
+   "spend",
+   "invest",
+   "focus",
+   "devote",
+   "energy",
+   "resources",
+   "concentrate",
+   "time"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L2n695": {
+  "name": "Diffuse ogenic and unknown",
+  "description": "Diffuse: goes negative on the suffix 'ogenic' (anthrop|ogenic, path|ogenic), on 'unknown' in target or contact contexts, and on 'of' after 'goal' or 'aim'. Steering gives 'virus', 'V' and 'Vm', so the write side is unclear.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "ogenic",
+   "unknown",
+   "goal",
+   "of",
+   "anthropogenic",
+   "pathogenic",
+   "anniversary",
+   "commemor",
+   "persecution",
+   "uterus"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L23n1499": {
+  "name": "Software library name context",
+  "description": "Goes strongly negative on the word just before, or on, a software library or framework name ('Core [Location] framework', 'Apache [Commons] Lang', 'Python [standard] library', 'WiringPi is [a] library'). Pushes toward 'library' and 'libraries'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "library",
+   "libraries",
+   "standard",
+   "Commons",
+   "Core",
+   "framework",
+   "Apache",
+   "Location",
+   "ing",
+   "Lang"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L23n978": {
+  "name": "Indefinite a/an before nouns",
+  "description": "Fires on indefinite 'a' or 'an' before a countable noun in technical how-to text ('stored in [a] number of buckets', 'creates [an] array', 'a sorting algorithm'), and on 'memory'. Pushes toward 'temp' and 'temporary'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "a",
+   "an",
+   "number",
+   "array",
+   "memory",
+   "language",
+   "anom",
+   "inter",
+   "temp",
+   "temporary"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L23n1909": {
+  "name": "Split names, indefinite a",
+  "description": "Fires on the second word-piece of a split name (Eun|ice, Har|vard, Hux|leyi, Ion|escu, Ep|s) and on 'a' before 'definite', 'common' or 'second' nouns. Pushes toward 'unique' and 'Unique'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Har",
+   "un",
+   "ones",
+   "ux",
+   "ps",
+   "a",
+   "definite",
+   "solved",
+   "unique",
+   "Unique"
+  ],
+  "batch": 15,
+  "version": "v2"
+ },
+ "L24n2608": {
+  "name": "file-noun and 'sar' pieces",
+  "description": "Fires on the noun 'file' or 'filename' where a file name or format is being named (e.g. 'upload a file', 'filenames'), and on word pieces like 'sar' inside 'sarcoma'; pushes toward 'extension(s)' next, and steered text spams 'extension'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "file",
+   "filename",
+   "filenames",
+   "sar",
+   "Sar",
+   "formats",
+   "extension",
+   "upload",
+   "PDF",
+   "firstname"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L22n1856": {
+  "name": "'basic'/'small' before 'unit'",
+  "description": "Fires on size or basis modifiers ('basic', 'small', 'smaller', 'smallest', 'structural', 'molecular') right before a noun for a unit or piece ('basic unit', 'smaller increments'); pushes toward 'unit(s)' next, and steered text spams 'unit'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "basic",
+   "smallest",
+   "small",
+   "smaller",
+   "structural",
+   "molecular",
+   "unit",
+   "pieces",
+   "learning",
+   "-year"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L22n2217": {
+  "name": "SQL clause → SELECT",
+  "description": "Fires in SQL syntax text on tokens just before a clause keyword or inside a clause list: '[' before HAVING, a line break before ORDER BY, and 'of', 'in', 'to' in SQL docs; pushes toward 'select' next, and steered text drifts to 'select' words.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "[",
+   "SQL",
+   "HAVING",
+   "ORDER BY",
+   "joins",
+   "restrict",
+   "rows",
+   "of",
+   "in",
+   "select"
+  ],
+  "batch": 20,
+  "version": "v2",
+  "name_orig": "SQL clause boundary to SELECT"
+ },
+ "L20n1691": {
+  "name": "contrast/hedge slot to often",
+  "description": "Fires on contrast or qualifier words ('but', 'Yet', 'Conversely', 'Indeed') and on the noun just before a hedged claim ('screen time', 'fresh water', 'new activities'); pushes toward frequency or hedge adverbs ('often', 'sometimes', 'usually', 'maybe'), and steered text spams 'often' and 'sometimes'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "but",
+   "Yet",
+   "Conversely",
+   "Indeed",
+   "keys",
+   "Meditation",
+   "Exercise",
+   "Luckily",
+   "often",
+   "sometimes"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L24n373": {
+  "name": "slot before bare verb",
+  "description": "Fires on the word right before a bare main verb: infinitive 'to' ('to identify', 'to fully understand') and adverbs or negation between an auxiliary and its verb ('do not want', 'also suggested', 'should be'); pushes toward 'capture/capturing', and steered text spams 'capturing'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "to",
+   "really",
+   "fully",
+   "rarely",
+   "not",
+   "also",
+   "be",
+   "briefly",
+   "explicitly",
+   "motifs"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L23n643": {
+  "name": "slot before 'elements/features'",
+  "description": "Fires on adjectives and verbs like 'essential', 'key', 'structural', 'distinctive', 'incorporating', and on 'these' or 'certain', right before a noun for parts or features ('essential element', 'key aspects'); pushes toward 'element(s)', and steered text spams 'elements'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "essential",
+   "key",
+   "structural",
+   "distinctive",
+   "incorporating",
+   "these",
+   "certain",
+   "important",
+   "combines",
+   "plot"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L23n1384": {
+  "name": "copula/'the' before 'key'",
+  "description": "Fires on 'is', the 's' of 'what's', or a sentence-opening 'The' right after a subject ('Knowing is', 'What is more', 'Understanding the cause is'), where a predicate like 'the key' or 'the first step' follows; pushes toward 'key', and steered text spams 'key'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "is",
+   "'s",
+   "The",
+   "the",
+   "key",
+   "Based",
+   "most",
+   "important",
+   "first",
+   "font"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L24n777": {
+  "name": "punctuation before closing quote",
+  "description": "Fires on sentence or clause punctuation ('.', ',', '?', '...') that sits inside or right before a closing quote or parenthesis (e.g. 'now.”' or 'sentences.' inside parentheses); pushes toward closing-quote and close-paren tokens such as '.”' and ').'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   ".",
+   ",",
+   "?",
+   "…",
+   "...",
+   "”",
+   ".”",
+   ")",
+   "(",
+   "?”"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L24n2037": {
+  "name": "relative time modifiers",
+  "description": "Fires on relative-time words 'last', 'next', 'every', 'yesterday', 'tomorrow' at the start of a time phrase ('last year', 'next October', 'every year'); pushes toward a time-unit noun next ('year', 'month', 'week', 'night'), and steered text spams 'night'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "Last",
+   "last",
+   "Next",
+   "next",
+   "every",
+   "yesterday",
+   "tomorrow",
+   "over",
+   "year",
+   "month"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L24n2971": {
+  "name": "Digits in ratios/percents",
+  "description": "Fires on digits inside ratios and percents ('1:1', '70%', '25%', '3/4', '1,380,000' scales), strongest on the digit that completes the value; pushes toward a colon, as in ratios, and steered text spams ':'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "0",
+   "1",
+   "5",
+   "3",
+   "4",
+   "2",
+   "%",
+   "ratio",
+   "percent",
+   "colon"
+  ],
+  "batch": 20,
+  "version": "v2",
+  "name_orig": "digits in ratios and percents"
+ },
+ "L23n821": {
+  "name": "leading digit of numbers",
+  "description": "Fires on the first digit of multi-digit numbers (the '2' in '20', '2,000', '29 million', '2 BCE') and on commas after a word; pushes toward '&', so steered text drifts into HTML entities like '&amp;', a mismatch with what it reads.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "2",
+   "9",
+   "6",
+   "1",
+   "5",
+   "digits",
+   "20",
+   "2,000",
+   "&",
+   "&amp;"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L20n1620": {
+  "name": "question end to blank",
+  "description": "Fires on the '?' that ends a question or instruction ('Why is blue light bad for the eyes?'), and on ':' or '.' ending a prompt line before an answer; pushes toward '_' blank tokens, and steered text spams underscores.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "?",
+   ":",
+   ".",
+   "is",
+   "called",
+   "instruction",
+   "Teacher",
+   "blank",
+   "answer",
+   "_"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L23n724": {
+  "name": "word before 'method(s)'",
+  "description": "Fires on the first word of a compound noun or 'X options' phrase, such as 'payment' in 'payment methods', 'login' in 'loginname', 'access' in 'access code', 'birth' in 'birth control'; pushes toward 'method(s)' next, and steered text spams 'method'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "payment",
+   "Payment",
+   "Treatment",
+   "Delivery",
+   "delivery",
+   "login",
+   "access",
+   "birth",
+   "Funding",
+   "transportation"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L24n2059": {
+  "name": "operation verbs before 'element'",
+  "description": "Fires on arithmetic or operation verbs and word starts ('multiply', 'subtract', 'outputs', 'mul-', 'eigen-vectors', 'concatenates them') where an array or vector element is about to come; pushes toward 'element', and steered text spams 'element'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "mul",
+   "subtract",
+   "multiply",
+   "outputs",
+   "ectors",
+   "eros",
+   "child",
+   "them",
+   "according",
+   "array"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L21n1480": {
+  "name": "slot before failure/error",
+  "description": "Fires on 'from', 'of', or 'to' right after a verb or adjective of learning, fearing, or overcoming ('learn from', 'fear of', 'afraid to'), and on 'overcoming' or 'afraid' themselves, before a noun about mistakes or obstacles; pushes toward 'error' and 'failure', and steered text spams 'failure'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "from",
+   "of",
+   "to",
+   "overcoming",
+   "afraid",
+   "acknowledge",
+   "courage",
+   "embrace",
+   "confront",
+   "perseverance"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L24n2179": {
+  "name": "digits in years, credentials",
+  "description": "Fires on digits inside historical years and dates (the '0' or '4' in '270 AD', '640 BC', '1143') and on the comma or 'MD'/'DO' after a person's name; pushes toward capital era or credential tokens like 'AD', 'CB', 'CS', and steered text stays mostly normal.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "0",
+   "4",
+   "5",
+   "6",
+   "3",
+   "AD",
+   "BC",
+   "MD",
+   "DO",
+   ","
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L22n1188": {
+  "name": "genre or format label",
+  "description": "Fires on the word just before a genre, style, or format noun ('op-ed', 'ballad', 'noir' in 'noir style', 'thriller', 'social media post', 'scientific paper'); pushes toward 'type' or 'kind', and steered text spams 'type of'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "thriller",
+   "suspense",
+   "noir",
+   "ballad",
+   "op-ed",
+   "media",
+   "paper",
+   "style",
+   "apple",
+   "-fi"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L24n2749": {
+  "name": "article before shape noun",
+  "description": "Fires on 'a', 'right', or 'is' and word pieces right before a geometric shape noun ('a triangle', 'right triangle', 'isosceles', 'trapezoid', 'frustum') in math or code prompts; pushes toward 'triangle(s)', and steered text mentions triangles.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "a",
+   "right",
+   "is",
+   "triangle",
+   "isosceles",
+   "trapezoid",
+   "frustum",
+   "polygon",
+   "Pascal",
+   "tr"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L23n221": {
+  "name": "comma closing intro clause",
+  "description": "Fires on commas, most on a comma that closes an introductory or conditional clause ('IF YOU CHECKED MORE THAN HALF OF THE ABOVE,'), and on thousands separators ('1,900', '100,000'); pushes toward 'then', 'thus', 'therefore', and steered text spams 'then'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   ",",
+   "then",
+   "thus",
+   "hence",
+   "therefore",
+   "’,",
+   "‚",
+   "1,900",
+   "100,000",
+   "$100,000"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L24n1186": {
+  "name": "placement verb before 'where'",
+  "description": "Fires on verbs and adverbs of placing, going, or occurring ('starts', 'placed', 'found', 'go', 'going', 'every', 'all') just before a location or time complement ('placed before', 'found anywhere', 'going on'); pushes toward 'where', and steered text spams 'where'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Every",
+   "every",
+   "starts",
+   "placed",
+   "found",
+   "go",
+   "goes",
+   "going",
+   "all",
+   "Stay"
+  ],
+  "batch": 20,
+  "version": "v2"
+ },
+ "L14n92": {
+  "name": "Post-verb complement word",
+  "description": "Diffuse, low-level: fires on the word right after a verb or preposition that opens an object or complement, e.g. 'to' in 'link to', 'just' in 'skip just', 'up' in 'looked up', 'us' in 'for us', plus the piece of a split word such as 'ate' in oxygenate. Pushes toward mid-word fragments like 'lectic' and 'reshold'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "to",
+   "just",
+   "up",
+   "us",
+   "it",
+   "else",
+   "eat",
+   "ate",
+   "my",
+   "were"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L14n2251": {
+  "name": "Topic adjective before noun",
+  "description": "Fires (negative) on the adjective or topic modifier right before a noun in a request or generated title: 'Smart' in 'Smart Home', 'renewable' in 'renewable energy', 'classic' in 'classic chicken', 'wireless' in 'wireless touch screen', 'new' in 'new software'. Pushes toward adjective-ending fragments like 'ancial', 'oretical', 'ificant'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "reliability",
+   "Smart",
+   "renewable",
+   "classic",
+   "sunset",
+   "baked",
+   "smart",
+   "covered",
+   "retail",
+   "wireless"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L14n1811": {
+  "name": "Referent word in answers",
+  "description": "Fires (negative) on the noun or header word that names the thing being asked about or written: 'song' in 'which specific song', 'film' in 'which film', 'Best' in 'Best Actor', 'Subject' as an email header, 'Ingredients' as a recipe header. Pushes toward word fragments like 'apore' and 'reshold'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Ingredients",
+   "personally",
+   "Subject",
+   "ascending",
+   "Graph",
+   "song",
+   "film",
+   "Best",
+   "script",
+   "graphic"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L0n9": {
+  "name": "Closing think-tag delimiter",
+  "description": "Fires on the '</think>' token that closes the empty reasoning block at the start of a chat-format assistant reply, peaking on that tag with little elsewhere. Pushes toward closing parentheses such as the fullwidth one and ')', and spams them.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "</think>",
+   "think",
+   "closing tag",
+   "end of reasoning",
+   "assistant turn start",
+   "empty think block",
+   "closing bracket",
+   "end of block",
+   ")",
+   "fullwidth closing paren"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L24n2097": {
+  "name": "Last digit before percent",
+  "description": "Fires (negative) on the final digit of a number that is about to take '%' or 'percent', peaking on the '0' in '100%' or '50 per cent' and on the '9' in '99%', not on the % sign itself. Pushes toward the '%' token, and spams it.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "%",
+   "percent",
+   "per cent",
+   "100%",
+   "50%",
+   "fifty",
+   "-five",
+   "share",
+   "rate",
+   "digit before %"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L14n2233": {
+  "name": "Opening of explanatory gloss",
+  "description": "Fires (negative) on the '(' or 'means' or 'change' that opens an explanation of the term just before it: 'VSDs (' before 'also commonly referred to', 'TPR (' before 'temperature', 'arribadas (' before 'arrival', 'which means' before 'strike'. Pushes toward noisy word fragments like 'sai', 'gibi', 'errors'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "(",
+   "means",
+   "Specifically",
+   "(b",
+   "[ch",
+   "**",
+   "change",
+   "than",
+   "represent",
+   "Buffalo"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L24n248": {
+  "name": "Capital letter starting name",
+  "description": "Fires on the capital letter that begins a proper name mid-sentence, peaking on that single initial before the rest of the name is written: the 'M' in 'Macclesfield', 'N' in 'Natan', 'S' in 'Saphari', 'D' in 'D J Garland'. Pushes toward a name, e.g. steering produced 'Emma'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "N",
+   "T",
+   "S",
+   "M",
+   "P",
+   "D",
+   "H",
+   "F",
+   "G",
+   "E"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L11n9": {
+  "name": "Split-word final piece",
+  "description": "Fires (negative) on the last subword piece that completes a word or name split across tokens, mostly surnames and acronyms: 'man' in Schiff|man, 'oks' in Estabr|ooks, 'ik' in Høiv|ik, 'I' in RGG|I, 'en' in Nordhaus|en. Whole words get little. Pushes toward word-continuation fragments.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "man",
+   "oks",
+   "ik",
+   "I",
+   "en",
+   "surname piece",
+   "acronym end",
+   "split word",
+   "Jones",
+   "uki"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L14n3017": {
+  "name": "Pre-head noun slot word",
+  "description": "Fires (negative) on the word filling the slot right before the noun it modifies or names: 'official' in 'official pip website', 'settlement' in 'settlement of Jamestown', 'water' in 'provide water', 'health' in 'skin health', 'package' in 'install package-name'. Pushes toward adjective-ending fragments like 'ellij', 'ancial', 'ique'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "official",
+   "settlement",
+   "package",
+   "water",
+   "health",
+   "growth",
+   "diverse",
+   "website",
+   "functions",
+   "well-being"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L12n623": {
+  "name": "Diffuse web-prose word",
+  "description": "Diffuse and mild: fires on content words mid-sentence in web prose that are followed by an elaboration or list, e.g. 'is' in 'the body is part way out', 'Cultural' in 'Prairie Acadian Cultural Center', 'language' in 'open-source programming language'. Pushes toward dashes, ellipses and asterisks.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Cultural",
+   "Psychology",
+   "Generally",
+   "Typically",
+   "tangent",
+   "essay",
+   "language",
+   "is",
+   "…",
+   "—"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L24n1478": {
+  "name": "mis- word-start",
+  "description": "Fires on 'mis' that opens a word (mischievous, misinformed, misfortune, misfits, misperceptions), peaking on that 'mis' piece and on the 'per' after it in misperceptions; weaker on 'to' after 'ability'. Pushes toward 'recognition' and 'recognize', and steering spams 'recognition'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "mis",
+   "fret",
+   "drum",
+   "Sound",
+   "eye",
+   "Os",
+   "Pr",
+   "misperceptions",
+   "mischievous",
+   "recognition"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L24n2382": {
+  "name": "Problem and conflict words",
+  "description": "Fires on words for a problem or conflict, peaking on 'problem' before 'solving' and on 'conflict' in 'conflict management', with weaker firing on puzzles, mystery, complaints and confusion. Pushes toward 'resolution', 'resolve' and 'resolved', and steering spams 'resolution'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "complaints",
+   "conflict",
+   "detective",
+   "puzzles",
+   "problem",
+   "scenarios",
+   "Problems",
+   "suspense",
+   "confusion",
+   "mystery"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L14n2258": {
+  "name": "Grammar-example clause word",
+  "description": "Diffuse: fires on an auxiliary, modal, possessive or verb-slot word inside example sentences and grammar exercises, e.g. 's' in 'Jessica's failure', 'must' in 'a robot must', 'you' in 'as you requested', 'to' in 'you (to do)'. Pushes toward unrelated word fragments like 'carbonate' and 'qualia'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "quiz",
+   ">",
+   "chaotic",
+   "Future",
+   "evil",
+   "originated",
+   "Jessica",
+   "system",
+   "infinit",
+   "Question"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L22n492": {
+  "name": "Table field label cells",
+  "description": "Fires (negative) on the label cell of a table header or field name, e.g. 'Address' in '|Address|:', 'Rank', 'Owner', 'Presenter', 'Location' in wiki-style tables, and on the ';' that ends a code statement. Its output weights promote nothing legible, so only the reading is clear.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "View",
+   "Location",
+   "Type",
+   "(",
+   ".;",
+   "homepage",
+   "]",
+   "//",
+   "MAT",
+   "Web"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L24n2416": {
+  "name": "Job and hiring nouns",
+  "description": "Fires (negative) on the word 'job' and related hiring nouns such as intern, admissions, immigration and asylum, peaking on 'job' in phrases like 'job application', 'job market', 'job posting' and 'job interview'. Pushes toward 'candidate' and 'applicant', and steering spams 'candidates'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "Job",
+   "job",
+   "pat",
+   "PhD",
+   "immigration",
+   "intern",
+   "licensing",
+   "graduate",
+   "admissions",
+   "Equal"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L24n114": {
+  "name": "Token before closing paren",
+  "description": "Fires on the final word, unit or abbreviation just before a closing parenthesis, peaking on 'm' in '(1.2 m)', 'oz' in '(14.5 oz)', 'months' in '(4 months)', 'ol' in '(alpha-tocopherol)' and 'ce' in '(... BCE)', and near zero on the parenthesis itself. Pushes toward closing parentheses and closing quotes, and steering spams them.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "m",
+   "oz",
+   "months",
+   "ol",
+   "ine",
+   "gen",
+   "k",
+   "otes",
+   "ce",
+   "closing paren"
+  ],
+  "batch": 0,
+  "version": "v2",
+  "name_orig": "Last token before closing paren"
+ },
+ "L24n2887": {
+  "name": "Inside URLs and filenames",
+  "description": "Fires on a mid-word piece of a URL, filename or hyphenated slug, peaking on 'ip' in get-pip.py, 'afety' in cyber-safety, 'fund' in superfund and 'aspx' or 'html' in page names, and on ']' in shell prompts; weak on plain prose. Pushes toward '#' and steering spams it.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   ".py",
+   "box",
+   "Share",
+   "afety",
+   "canvas",
+   "Bal",
+   "ip",
+   "nite",
+   "Event",
+   "Dol"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L24n2406": {
+  "name": "Hex zero and word-starts",
+  "description": "Mixed: fires (negative) on the '0' of a hex literal right before its 'x' ('P0 = 0xA4', peak on the 0), and on short word-opening pieces such as 'Hum' in humane, 'Rad' in Radley, 'ac' in racism and 'Rob'. Pushes toward 'x', the hex prefix, and steering spams it.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Hum",
+   "Rob",
+   "hum",
+   "Wol",
+   "Rad",
+   "rad",
+   "Haz",
+   "rob",
+   "Sm",
+   "Henry"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L0n1967": {
+  "name": "Specific word-piece tokens",
+  "description": "Early-layer, token-identity neuron, negative on specific word pieces with no shared context: 'actors' in tractors, 'ite' in Amorite, 'oth' in tooth, 'itt' in Howitt, 'rail' in railroads, 'ons' in axons, and 'Lord' after 'the'. Pushes toward names like 'Charles' and 'Richard' and toward 'List'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "introductory",
+   "oli",
+   "actor",
+   "hid",
+   "mit",
+   "rough",
+   "Lord",
+   "itt",
+   "rail",
+   "ysts"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L20n1662": {
+  "name": "German compound word pieces",
+  "description": "Fires (negative) on inner subword pieces of German compound words and German place or person names: 'und' in Innbund, 'ere' in Osterei, 'Ost' in Osterbaum, 'ung' and 'zug' in Sommertagszug, 'tt' in Brunsbüttel. Pushes toward short 'ss' and 'sh' fragments.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "und",
+   "ere",
+   "aus",
+   "itz",
+   "ck",
+   "bing",
+   "Hamburg",
+   "ung",
+   "uh",
+   "rg"
+  ],
+  "batch": 0,
+  "version": "v2"
+ },
+ "L23n1079": {
+  "name": "Digit before percent sign",
+  "description": "Fires on the last digit of a number directly before '%' or 'percent' (the '0' in '10%', the '5' in '26.5%'), with weaker firing on the '%' itself; pushes the model toward writing '%'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "%",
+   "percent",
+   "percentage",
+   "cent",
+   "hundred",
+   "%,",
+   "pro-",
+   "-five",
+   "%.",
+   "last digit"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L24n1867": {
+  "name": "Determiner after work verb",
+  "description": "Fires on a possessive or article right after a verb of doing (carry out their, perform the, finish their, doing their), where a task or job noun comes next; pushes toward 'responsibility', 'job' and 'task'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "their",
+   "the",
+   "its",
+   "same",
+   "perform",
+   "finish",
+   "carry out",
+   "doing",
+   "task",
+   "responsibility"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L24n1767": {
+  "name": "Advice verb expecting frequency",
+  "description": "Fires on the main verb of an advice or how-to sentence after 'should' or a subject (should receive, conducts, perform, sends out, reviewed), where a frequency word like 'annually' or 'monthly' usually follows; pushes toward 'regular', 'monthly' and 'annual'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "receive",
+   "should",
+   "conducts",
+   "perform",
+   "recommends",
+   "sends",
+   "reviewed",
+   "having",
+   "undergoing",
+   "check"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L24n1088": {
+  "name": "Word before domain",
+  "description": "Fires on 'its' or 'the' and on word-start pieces (cot-, Co-, orig-) inside cotangent and tangent text about domain, range and asymptotes, e.g. 'based on its vertical asymptotes'; pushes toward 'domain'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "its",
+   "the",
+   "cotangent",
+   "tangent",
+   "asymptotes",
+   "domain",
+   "range",
+   "-co",
+   "Find",
+   "parent graph"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L24n2355": {
+  "name": "Word after UI action",
+  "description": "Fires on the word right after a software UI action or button name in step-by-step instructions ('click', 'Change button to', 'Auto' in AutoCAD, 'double-click', a bullet dash before a menu action); pushes toward 'save'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "click",
+   "button",
+   "Auto",
+   "AutoCAD",
+   "to",
+   "double",
+   "Change",
+   "Ignore",
+   "bullet dash",
+   "save"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L23n1848": {
+  "name": "Template slot, year digits",
+  "description": "Fires on the token that opens a fill-in slot in letters, emails and press releases ('Dear' before '[Name]', ':' after 'Mission Statement'), and on digits inside years such as 1961 or 2002; pushes toward the placeholder 'X'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Dear",
+   "[",
+   ":",
+   "Name",
+   "Subject",
+   "year digits",
+   "1961",
+   "2002",
+   "X",
+   "placeholder"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L20n736": {
+  "name": "Code opener, data nouns",
+  "description": "Fires on 'Here' opening a code answer ('Here is a Java program') and on data-structure nouns in coding requests (array, list, Set, stack, node), weakly elsewhere; pushes toward '<' type or tag starts (<T, <N), with little visible effect.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Here",
+   "array",
+   "list",
+   "Set",
+   "stack",
+   "node",
+   "Series",
+   "log",
+   "if",
+   "Template"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L24n2044": {
+  "name": "Word before page",
+  "description": "Fires on 'HTML' or 'web' right before an expected 'page' in web and HTML text ('one HTML page', 'web page'), with noisier firing on capitalised word-starts like 'Bo' and 'Pl'; pushes toward 'page'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "HTML",
+   "web",
+   "page",
+   "Page",
+   "canvas",
+   "Bo",
+   "Pl",
+   "PHP",
+   "Sand",
+   "the"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L22n1813": {
+  "name": "Word after takes/accepts",
+  "description": "Fires on the word right after 'takes' or 'accepts' in function specs ('takes one parameter', 'takes as input', 'accepts a list'), and on 'optional' and 'chars'; pushes toward 'parameter' (or 'param').",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "takes",
+   "accepts",
+   "one",
+   "as",
+   "parameter",
+   "input",
+   "optional",
+   "chars",
+   "argument",
+   "param"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L23n2276": {
+  "name": "Later subword piece",
+  "description": "Fires on a second or later subword piece of a word split into tokens, e.g. 'ECC' in ECC-000, 'oste' in osteoporosis, 'athy' in hypoparathyroidism, 'ry' in Phrynosoma; pushes toward '::' scope tokens and C++-like junk.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "oste",
+   "athy",
+   "ECC",
+   "Att",
+   "DB",
+   "ry",
+   "Posted",
+   "Ruby",
+   "at",
+   "iostream"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L24n1469": {
+  "name": "Adjective before trait noun",
+  "description": "Fires on the word right before an expected trait noun (desirable, categorical, same, physical, 'of' in 'set of') and on some mid-word fragments (Car-th-age, carp-els); pushes toward 'attributes' and 'characteristic' with a weak effect.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "attributes",
+   "characteristic",
+   "traits",
+   "desirable",
+   "categorical",
+   "same",
+   "physical",
+   "of",
+   "carp",
+   "tooth"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L24n693": {
+  "name": "Time span before earlier/later",
+  "description": "Fires on a time-span word (year, decades, minutes, month, millennium, quarter) that sets up a comparison, e.g. 'one year later', 'ten years earlier', 'a month before'; pushes toward 'early', 'late' and 'later'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "year",
+   "years",
+   "decades",
+   "minutes",
+   "month",
+   "millennium",
+   "quarter",
+   "later",
+   "earlier",
+   "early"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L22n1826": {
+  "name": "'file' as file input",
+  "description": "Fires on the word 'file' when it names something read, uploaded or saved in code and how-to text ('CSV file', 'text file', 'upload a file', 'JSON file'); pushes toward 'path' and 'paths'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "file",
+   "PDF",
+   "CSV",
+   "dataset",
+   "upload",
+   "read",
+   "absolute",
+   "accepts",
+   "path",
+   "://"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L19n2261": {
+  "name": "Middle piece of name",
+  "description": "Fires on a middle subword piece of a proper noun or foreign name split into tokens (on in Sa|on|dar, ur in Dv|ur Kralove, am in Ya|am|azaki, ri in M|ri|ya); pushes toward short syllable fragments, giving gibberish.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "Sa|on",
+   "Dv|ur",
+   "Ya|am",
+   "Cl|ain",
+   "M|ri|ya",
+   "Th|ih",
+   "E|rim",
+   "ana",
+   "AD",
+   "Vis"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L23n626": {
+  "name": "Word before data type",
+  "description": "Fires on 'of', 'a', ':' and 'as' right before an expected data-type word in code specs ('list of integers', 'data type: String', 'such as character strings'); pushes toward 'string' and 'strings'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "of",
+   "data type",
+   ":",
+   "array of",
+   "list of",
+   "a",
+   "such as",
+   "string",
+   "integers",
+   "chars"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L24n2670": {
+  "name": "Hardware binary, register",
+  "description": "Fires on hardware-coding words (binary, Receive, Transmit, bus, decimal) and on port writes like 'P0 = 0xFF', plus some mid-name fragments (Rom|mel, Char|alambos); pushes toward 'register' and 'registers' with a strong 'register' effect.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "binary",
+   "two",
+   "input",
+   "Receive",
+   "Transmit",
+   "bus",
+   "P0",
+   "0xFF",
+   "register",
+   "decimal"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L22n3049": {
+  "name": "Word before copy",
+  "description": "Fires on the word just before an expected 'copy' or 'copies' in text about getting or printing copies ('hard copy', 'print your own copies', 'bought an old copy', 'extra copies'); pushes toward 'copy'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "copy",
+   "copies",
+   "print",
+   "hard",
+   "own",
+   "extra",
+   "bought",
+   "reproduced",
+   "identical",
+   "free"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L23n2507": {
+  "name": "Word before range",
+  "description": "Fires on the word right before an expected 'range' in measurement or spread text ('wide wavelength range', 'within the target range', 'can range from', 'visible range'), also on 'temperature' and '%' in value contexts; pushes toward 'range'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "wavelength",
+   "range",
+   "wide",
+   "target",
+   "particular",
+   "visible",
+   "ranging",
+   "varies",
+   "temperature",
+   "typically"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L24n1015": {
+  "name": "Word before supply/demand",
+  "description": "Fires on market and economics words right before an expected 'supply' or 'demand' ('housing', 'market', 'lack of', 'under-', 'over-', 'store of', 'economies of'); pushes toward 'supply' and 'demand'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "housing",
+   "market",
+   "lack of",
+   "under-",
+   "over-",
+   "store of",
+   "economies of",
+   "supply",
+   "demand",
+   "-con"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L23n1026": {
+  "name": "Mid-word subword fragment",
+  "description": "Fires on a subword fragment in the middle of a longer word split into tokens (ak in Yogy|ak|arta, akh in Nak|hon, gl in glaze, Fl in Flank, re in Kre|mer), and on some year and section digits; pushes toward 'get' with little visible effect.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "akh",
+   "gl",
+   "Fl",
+   "re",
+   "ak",
+   "Ju",
+   "gre",
+   "mac",
+   "Labor",
+   "vap"
+  ],
+  "batch": 6,
+  "version": "v2"
+ },
+ "L23n364": {
+  "name": "Code-spec return predictor",
+  "description": "Fires on the 'and' or 'should' in coding-task prompts that sets up the output clause ('takes two strings [and] concatenates', 'function [should] return'), and on 'returns' itself; pushes the model toward writing 'return'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "and",
+   "should",
+   "returns",
+   "return",
+   "takes",
+   "function",
+   "returning",
+   "Return",
+   "strings",
+   "input"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L21n741": {
+  "name": "Month after date preposition",
+  "description": "Fires on the temporal word just before a date: 'until' in 'until July', 'by' in 'by 2025', 'since', 'from', 'on October 26', 'in' before a year, and 'Born'/'posted'/'published'; pushes the model to write a month name.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "until",
+   "since",
+   "by",
+   "from",
+   "on",
+   "Born",
+   "posted",
+   "published",
+   "Between",
+   "Starting"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L23n1237": {
+  "name": "Metric unit before squared",
+  "description": "Fires on a metric length unit right before a superscript ² ('km' in 'km²', 'cm' in 'calories/cm²', 'mm' in 'mm²', 'kilometres') and on 'perfect' in 'perfect square'; pushes toward 'square'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "km",
+   "cm",
+   "mm",
+   "kilometres",
+   "²",
+   "square",
+   "perfect",
+   "squared",
+   "squares",
+   "Square"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L24n1550": {
+  "name": "Proper-name first fragments",
+  "description": "Fires on the first piece of a capitalized name split across tokens ('Am' in Amherst, 'Vas' in Vasilis, 'Gav' in Gavin, 'Chem' in Chemical Society, 'National' in National Science Foundation); pushes toward 'System'/'system'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Am",
+   "Chris",
+   "Zach",
+   "Nan",
+   "Cass",
+   "Vas",
+   "Hum",
+   "Cal",
+   "Chem",
+   "National"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L22n1222": {
+  "name": "Grid-arrangement words; writes 'row'",
+  "description": "Fires on words that describe how items sit in a line or grid ('along' and 'the' before 'diagonal', 'horizontal', 'adjacent', 'each' before 'side', 'in' before 'lines'); pushes toward 'row'/'rows'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "horizontal",
+   "diagonal",
+   "along",
+   "adjacent",
+   "each",
+   "side",
+   "lines",
+   "row",
+   "rows",
+   "Row"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L22n1913": {
+  "name": "Field-name tokens; writes 'id'",
+  "description": "Fires on the name of a data field, key or URL parameter where 'ID' is likely to follow ('News' in '?NewsID=', 'employee' in 'employee_id', 'category', 'manager', the '(' before 'ID'); pushes toward 'id'/'ID' tokens.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "ID",
+   "_id",
+   "News",
+   "category",
+   "employee",
+   "manager",
+   "zip",
+   "GROUP",
+   "Author",
+   "directory"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L22n2615": {
+  "name": "Mid-word fragments and 'check'",
+  "description": "Fires on the middle piece of a word split into tokens ('ark' in Kh|ark|iv, 'ak' in Ch|ak|ma) and on 'check', 'worth', 'without' in phrases like 'go check it out', 'worth it', 'Rebel without'; pushes toward 'return'/'back'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "ak",
+   "ark",
+   "Check",
+   "worth",
+   "without",
+   "uc",
+   "refer",
+   "repeat",
+   "continually",
+   "circle"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L18n569": {
+  "name": "Scattered mid-word fragments",
+  "description": "Fires on arbitrary inner pieces of brand names, foreign names and codes split into tokens (Alka|-S|eltzer, Hotam|is|ligil, Mail|Ch|imp, ECC-2|00, E. coli 0157|:H|7) with no shared meaning; pushes toward junk fragments and whitespace.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "-S",
+   "Seltzer",
+   "Ch",
+   "is",
+   "ligil",
+   "ASS",
+   "ICE",
+   "ahoo",
+   "pter",
+   "NF"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L20n747": {
+  "name": "Variable names before '='",
+  "description": "Fires on a single-letter or short variable or field name in math and code ('t' in 'from t', 'n' in 'n = 128', 'y' in 'given y', 'x' in 'f(x)', 'Name', 'Type', 'offset' in offset_value); pushes toward '=' followed by a capital variable letter.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "t",
+   "y",
+   "n",
+   "x",
+   "rhs",
+   "Type",
+   "Name",
+   "name",
+   "offset",
+   "fp"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L0n1301": {
+  "name": "Rare-word middle pieces",
+  "description": "Fires on the later pieces of long or rare words split into several tokens (Blu|-ray, per|ished, Gen|ocide, in|quiring, Em|phas|ize, In|uit); pushes toward generic connectives and newlines.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "ray",
+   "ished",
+   "igor",
+   "ocide",
+   "quis",
+   "frared",
+   "rit",
+   "uit",
+   "phas",
+   "quiring"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L24n2560": {
+  "name": "Breakage context; writes 'failure'",
+  "description": "Goes negative on the word just before a damage or failure term in engineering text ('susceptible [to]' breakage, 'cause them [to] trip', 'safeguard them [against]', 'without [breaking]', 'when they [fail]', 'the [fuse]'); pushes toward 'failure'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "to",
+   "against",
+   "breaking",
+   "fail",
+   "fuse",
+   "fracture",
+   "corrosion",
+   "flash",
+   "insulation",
+   "transformer"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L24n2579": {
+  "name": "Head nouns; writes 'handle'",
+  "description": "Fires on the noun right after 'a', 'your' or an adjective ('a [feel]', 'your [love]', 'sorted seekable [file]', 'Diffraction [Gr]ating', 'the [function]' in MATLAB code); pushes toward 'handle' or 'hound'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "love",
+   "file",
+   "function",
+   "language",
+   "Gr",
+   "program",
+   "feel",
+   "handle",
+   "closer",
+   "URL"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L24n926": {
+  "name": "Trig names; writes sin/cos",
+  "description": "Fires in trigonometry text on the 'cot' and 'angent' pieces, 'tangent', 'cosine', and on 'of' in 'quotient of cosine'; pushes toward sin, cos and tan.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "cot",
+   "angent",
+   "tangent",
+   "cosine",
+   "quotient",
+   "sine",
+   "cos",
+   "sin",
+   "tan",
+   "Cos"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L23n2602": {
+  "name": "Office-title 'of'; colons",
+  "description": "Fires on 'of' after an office or organization title ('Department [of]', 'Secretary [of]', 'Minister [of]', 'Dictionary [of]') and on section headers like 'Related'; pushes toward colon tokens such as ':' and ':c'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "of",
+   "Department",
+   "Secretary",
+   "Minister",
+   "Related",
+   "Physical",
+   "Chemical",
+   "Industrial",
+   "(",
+   "://"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L24n808": {
+  "name": "Code-spec 'use'; writes DOM",
+  "description": "Fires on 'use' or 'using' right after 'should' or 'with' in coding instructions ('should [use] regular expressions', 'valid URL [using]'), and on name fragments inside Scandinavian and Indian names (Hø|iv|ik, Vas|udeva); pushes toward 'document', 'window', 'location'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "use",
+   "using",
+   "should",
+   "regular",
+   "expressions",
+   "ø",
+   "Vas",
+   "eh",
+   "Kas",
+   "document"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L23n2341": {
+  "name": "Split-name middles; writes '()'",
+  "description": "Fires on a middle or late piece of a split proper name or word (Woz|ni|ak, Zeld|ovich, Prze|wal|ski, Mű|h|ely, kri|ya); pushes toward '()' function-call parentheses.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "ci",
+   "zew",
+   "ri",
+   "Zam",
+   "alm",
+   "utz",
+   "ni",
+   "eld",
+   "ou",
+   "Vul"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L24n535": {
+  "name": "Input 'and'; writes 'split'",
+  "description": "Fires on the 'and' or comma that closes an input description in coding tasks ('takes a string as an argument [and]', 'separated by spaces[,]', 'reads a text file[,]'), just before the action verb; pushes toward 'split'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "and",
+   ",",
+   "strings",
+   "split",
+   "splitting",
+   "separated",
+   "string",
+   "Split",
+   "file",
+   "argument"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L23n1084": {
+  "name": "IT/software terms; writes 'log'",
+  "description": "Fires on software and IT-admin words (error in 'error cases', Access in 'Restrict server access', console, read, Chrome, Apache, VPN, alerts) and on 'should' or 'also' in such specs; pushes toward 'log' and 'logging'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "error",
+   "console",
+   "Access",
+   "Chrome",
+   "Apache",
+   "Read",
+   "VPN",
+   "alerts",
+   "reads",
+   "logging"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L24n256": {
+  "name": "Latin-name middles; writes '{'",
+  "description": "Fires on middle pieces of Latin and scientific names split into tokens (Di|apt|om|us, X|yle|borus, Ps|oph|odes, Sticher|us bre|vitomentosus), and on digits inside dollar amounts; pushes toward '{' brace tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "om",
+   "yle",
+   "bre",
+   "oph",
+   "oxid",
+   "ph",
+   "LOS",
+   "dot",
+   "Hos",
+   "intr"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L24n1298": {
+  "name": "Post-noun 'that'; writes 'value'",
+  "description": "Fires on the word right after a system, belief or society noun in argument prose ('value system [that]', 'international system [that]', 'creation myth [that]', 'cultures', 'society', 'continues [to]'); pushes toward 'value' or 'values'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "that",
+   "system",
+   "value",
+   "values",
+   "cultures",
+   "society",
+   "style",
+   "generally",
+   "always",
+   "traditionally"
+  ],
+  "batch": 4,
+  "version": "v2"
+ },
+ "L23n353": {
+  "name": "Closing punctuation before newline",
+  "description": "Closing or sentence-final punctuation (. , : ] ) and closing quotes) right before a line break, e.g. 'lizard.⏎', 'said,⏎', 'Ltd.⏎'; also the '[' opening a bracketed tag. Pushes toward closing code delimiters such as '))' and \"')\".",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   ".⏎",
+   ",⏎",
+   ".\"",
+   "):",
+   "”",
+   ".[",
+   ":[",
+   "…",
+   "]",
+   "))"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L22n1760": {
+  "name": "Relational nouns before 'between'",
+  "description": "The noun 'relationship' itself (also 'correlation', 'link', 'connection', 'tensions') when it heads a phrase that will take 'between X and Y' next. Pushes the model to write 'between'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "relationship",
+   "correlation",
+   "connections",
+   "link",
+   "distinction",
+   "tensions",
+   "dialogue",
+   "cooperation",
+   "romance",
+   "relationships"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L24n2667": {
+  "name": "Closed-form solution vocabulary",
+  "description": "Words that name an exact or closed-form answer in math, on the word itself: 'found' in 'can be found by quadrature', 'solved', 'explicit', 'definite', 'exact', 'Find'. Pushes toward 'closed' and 'analytical'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "found",
+   "solved",
+   "explicit",
+   "definite",
+   "exact",
+   "Find",
+   "simplified",
+   "closed",
+   "analytical",
+   "general"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L21n1335": {
+  "name": "Passive 'by', 'by default'",
+  "description": "The preposition 'by' right after a passive participle or adjective ('available by default', 'stored by Google', 'swapped by crossing', 'named by'), strongest in 'by default'. Pushes toward 'by' and 'default'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "by",
+   "By default",
+   "default",
+   "included",
+   "stored by",
+   "identified by",
+   "swapped by",
+   "named by",
+   "restrict",
+   "widget"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L23n1463": {
+  "name": "Verb before 'true/false'",
+  "description": "The verb or copula just before a truth-value word: 'come' in 'come true', 'return', 'is' or 'be' before 'true', 'and' in 'true and false', 'is' before 'accurate'. Pushes toward 'true' and 'false'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "come",
+   "return",
+   "is",
+   "be",
+   "and",
+   "true",
+   "false",
+   "telling",
+   "tales",
+   "Fact"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L22n904": {
+  "name": "Estimates and rough figures",
+  "description": "The word just before an estimate or rough figure: 'rough' in 'rough calculation', 'to' in 'difficult to calibrate', 'Hard to say' or 'According to', 'approximately', and cost or $ figures. Pushes toward 'estimate', 'estimation' and 'calculate'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "rough",
+   "roughly",
+   "approximately",
+   "estimated",
+   "to say",
+   "according to",
+   "cost",
+   "$",
+   "budget",
+   "calculation"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L24n2714": {
+  "name": "'rec' fragments, 'receive'",
+  "description": "Word-start fragments 'rec', 'Rec' and 're-' split off a longer word (recaptured, re-leasing, recollections), and the 'and' in 'send and' just before 'receive'. Pushes toward 'receive', 'received' and 'receiving'.",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "rec",
+   "Rec",
+   "-re",
+   "send and",
+   "receive",
+   "receiving",
+   "received",
+   "receipt",
+   "recibir",
+   "receber"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L21n110": {
+  "name": "Leading digit of years",
+  "description": "The first digit of a year or century: the '2' in 'the 20th century' or '2012', the '1' in '1980s', the '9' in '1990s'. Strongest on the first digit after 'in', 'during the' or 'the'; later digits are weak. Pushes toward digit tokens (0, 4, 9, 7).",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "2",
+   "1",
+   "9",
+   "5",
+   "0",
+   "century",
+   "years",
+   "during the",
+   "in the",
+   "decade"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L19n2973": {
+  "name": "Line break after title",
+  "description": "The newline, or the '?', ')' or '.' just before it, that ends a short title, heading or metadata line: 'Written by⏎', 'Vol: 21, No: 21⏎', 'Article number: 645 (2019)⏎', 'Marketing?⏎'. No clear output vocabulary; the dose pushes it into whitespace runs.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "⏎",
+   "Written by",
+   "?⏎",
+   ")⏎",
+   ".⏎",
+   "%",
+   "?\"",
+   "],",
+   ">",
+   "…"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L22n2178": {
+  "name": "Formal proof vocabulary",
+  "description": "Words in a formal-proof or rigorous-argument context: 'formally', 'logical' argument, 'to prove a point', 'the proof,', 'demonstration'. Peak is usually the word right before or after 'proof'. Pushes toward 'proof' and 'prove'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "formally",
+   "logical",
+   "proof",
+   "prove",
+   "proven",
+   "mathematical",
+   "demonstration",
+   "proving",
+   "equality",
+   "formulate"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L22n2106": {
+  "name": "Dictionary and definition contexts",
+  "description": "Dictionary names ('Dictionary', 'OED') and the copula or 'and' right before a definition ('A safe working load is the maximum...', 'Define and explain'). Pushes toward 'definition', 'define' and 'defined'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "Dictionary",
+   "dictionary",
+   "OED",
+   "define",
+   "definition",
+   "defined",
+   "Definition",
+   "is",
+   "and",
+   "definitions"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L22n1834": {
+  "name": "Start-point words",
+  "description": "Words that open a start point in time or a process: the last digit of 'From 1890 onwards', 'now' in 'From now on', 'starting in', 'Start harvesting'. Pushes toward 'start', 'starts' and 'begin'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "from",
+   "from now on",
+   "onwards",
+   "starting",
+   "start",
+   "begin",
+   "beginning",
+   "harvesting",
+   "since",
+   "at this point"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L21n2321": {
+  "name": "Mid-word 'ur' syllables",
+  "description": "The 'ur' syllable (or 'Hur', 'Sur', 'mur', 'aur') in the middle of a name or word split into tokens: Hurrians, murals, Surat, Asturias. Pushes toward 'sqrt' and 'square'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Hur",
+   "Sur",
+   "mur",
+   "aur",
+   "ur",
+   "Bur",
+   "Jur",
+   "cur",
+   "pur",
+   "sqrt"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L22n1300": {
+  "name": "Copula 'is' before 'empty'",
+  "description": "The copula 'is' right after a subject noun in code or spec text: 'the stack is empty', 'if it is a valid URL'. Peak is on 'is' when 'empty' is the likely next word. Pushes toward 'empty'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "is",
+   "stack",
+   "empty",
+   "isEmpty",
+   "returns",
+   "valid",
+   "true if",
+   "an",
+   "chars",
+   "list is"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L24n683": {
+  "name": "Tech names and fragments",
+  "description": "Tech names and script openers in prompts: 'React' (in 'React Native'), 'Strava' API, 'FADE IN' screenplay openers, and name fragments ('Palm', 'mang'). Pushes toward underscore-led identifiers ('_js', '_axis').",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "React",
+   "Vue",
+   "FADE IN",
+   "Strava",
+   "plagiarism",
+   "flora",
+   "Palm",
+   "_js",
+   "_axis",
+   "_key"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L23n1622": {
+  "name": "Leading '1' of years",
+  "description": "The leading '1' of a 4-digit year from the 1300s to 1900s ('in 1348', '1580', 'in 1806'), plus a few capitalized name fragments (Pro-culus, Rad-chuk). Pushes toward 'get' and 'getting'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "1",
+   "1348",
+   "1580",
+   "1806",
+   "century",
+   "Pro",
+   "Rad",
+   "Nad",
+   "get",
+   "getting"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L24n875": {
+  "name": "Year '1' and 'le/ge'",
+  "description": "The leading '1' of a year from the 1600s to 1900s ('in 1754', 'during the 1600s', 'in 1968'), and word-start 'le', 'ge', 'Le', 'Ge' fragments (lethal, geothermal, Levy, Gary). Pushes toward 'q'-initial tokens (quad, qh, qq).",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "1",
+   "1754",
+   "1968",
+   "1600s",
+   "le",
+   "ge",
+   "Le",
+   "Ge",
+   "lethal",
+   "q"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L23n584": {
+  "name": "Comparison pivot word",
+  "description": "The word that opens the second term of a comparison: 'like' (just like), 'similar to', 'than a', 'as' in 'the same ... as', 'unlike', 'compared to', and the 'a' right after 'than' or 'to'. Pushes toward 'regular' and 'normal'.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "like",
+   "similar to",
+   "than",
+   "compared to",
+   "unlike",
+   "as",
+   "beyond",
+   "alongside",
+   "regular",
+   "normal"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L24n1728": {
+  "name": "Design-pattern list joiners",
+  "description": "Software-design terms in lists: the comma or 'or' inside a list of patterns or types ('Factory, Builder,', 'Class or Type'), plus 'Data Mapper' and 'Consumer/Event' terms, and name fragments (Mag-, sar-). Pushes toward 'interface'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "Factory",
+   "Builder",
+   "or",
+   "Class or Type",
+   "Mapper",
+   "Service",
+   "Consumer",
+   "interface",
+   "Mag",
+   "implements"
+  ],
+  "batch": 21,
+  "version": "v2"
+ },
+ "L22n397": {
+  "name": "Word before possessive 's",
+  "description": "The noun, adverb or name right before an apostrophe-s possessive: 'today' ('today's wars'), 'country's', 'nation's', 'world's', 'Gym's', 'here's'. Pushes toward the 's' token.",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "today",
+   "country",
+   "nation",
+   "world",
+   "Gym",
+   "here",
+   "season",
+   "Tübingen",
+   "Maxwell",
+   "Jupiter"
+  ],
+  "batch": 21,
+  "version": "v2"
+ }
+}
