@@ -1,5 +1,7 @@
 # lobotomy UI design (v0.0.2)
 
+*Spec and tickets: [#18](https://github.com/jparker2006/lobotomy/issues/18) (U1–U7 = #19–#25).*
+
 *From the v0.0.2 UI grill with Jake, 2026-10-26/27. Every decision has a rendered mockup in [mockups/](mockups/). All mockups draw a real recorded CPU stand-in session (Qwen3-0.6B, "Describe the ocean at night in three sentences.") and never made-up data. Prototype code (canvas, not the product) is in [web/mockups/](../../web/mockups/).*
 
 ![The default view: Cinema layout, mono amber, astrophage pass](mockups/final-cinema-astrophage.png)
