@@ -37,7 +37,8 @@ def pole_block(key, e, n_snip=12):
         L.append(f'  [{s["act"]:+.1f}] {s["text"]}')
     L.append(" LOGIT-LENS (writes): " + ", ".join(w for w in e["logit_lens"] if w)[:400])
     L.append(" STEER-LENS (writes): " + ", ".join(w for w in e["steer_lens"] if w)[:400])
-    L.append(" STEERED SAMPLE: " + e["steered_sample"][:300].replace("\n", " "))
+    if e.get("steered_sample"):
+        L.append(" STEERED SAMPLE: " + e["steered_sample"][:300].replace("\n", " "))
     return "\n".join(L)
 
 
