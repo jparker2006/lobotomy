@@ -5,8 +5,9 @@
 - Dev v1: real 0.273, word list 0.154 (n=300), lookup 0.450; real−wordlist +0.114 [0.080, 0.150].
 - Final labels = best dev r of v1/v2/pilot per pole: v1 374, v2 84, pilot 3. Final dev r 0.311 (optimistic: the
   pick used dev). On test the v2-picked poles drop from 0.388 (dev) to 0.345, so the dev pick is partly noise.
-- TEST (scored once, labels frozen): real 0.320, shuffled 0.068, word list WL, lookup 0.483.
-  real−shuffled +0.252 [0.215, 0.289]; real−wordlist GAPWL; real−lookup −0.162 [−0.192, −0.133].
+- TEST (scored once, labels frozen): real 0.320, shuffled 0.068, word list pending, lookup 0.483.
+  real−shuffled +0.252 [0.215, 0.289]; real−wordlist pending; real−lookup −0.162 [−0.192, −0.133].
+  The word-list test is run by the orchestrator: this thread's spawns failed (rc 1, no message) after 143 sub-agents.
   By verdict (test): clear 0.384 (n=11), likely 0.349 (n=80), mixed 0.312 (n=370).
 
 ## Re-runs (v2) and why
