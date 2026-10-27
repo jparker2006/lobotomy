@@ -1,0 +1,852 @@
+{
+ "L8n908": {
+  "name": "Sea and shipping",
+  "description": "Fires on sea, port and ship words; pushes toward sea, ocean and shore words.",
+  "verdict": "likely",
+  "concepts": [
+   "sea",
+   "ocean",
+   "port",
+   "ship",
+   "shore",
+   "maritime",
+   "coast",
+   "waves",
+   "reef",
+   "Baltic"
+  ]
+ },
+ "L19n834": {
+  "name": "Ships and marine water",
+  "description": "Negative pole fires on ship, dock and port words; writes marine and sailor words, but steering gives generic fiction.",
+  "verdict": "likely",
+  "concepts": [
+   "ship",
+   "sea",
+   "marine",
+   "sailor",
+   "dock",
+   "port",
+   "shores",
+   "maritime",
+   "water",
+   "naval"
+  ]
+ },
+ "L27n267": {
+  "name": "Mid-word piece to LaTeX",
+  "description": "Fires on the middle piece of a split word or name; pushes toward $-delimited math variables such as $a and $b.",
+  "verdict": "mixed",
+  "concepts": [
+   "word fragment",
+   "mid-word",
+   "names",
+   "split token",
+   "LaTeX",
+   "$ variables",
+   "math",
+   "subword",
+   "proper nouns",
+   "syllable"
+  ]
+ },
+ "L27n892": {
+  "name": "Name syllable to LaTeX",
+  "description": "Fires on the opening syllable of a split name (Ne-, Bre-, Re-); pushes toward $-delimited math variables.",
+  "verdict": "mixed",
+  "concepts": [
+   "name syllable",
+   "Ne",
+   "Bre",
+   "Re",
+   "proper nouns",
+   "subword",
+   "LaTeX",
+   "$ variables",
+   "math",
+   "syllable"
+  ]
+ },
+ "L14n92": {
+  "name": "Scattered words to closers",
+  "description": "Fires on assorted content words and commas with no shared theme; pushes toward closing quote and bracket punctuation.",
+  "verdict": "mixed",
+  "concepts": [
+   "punctuation",
+   "closing quotes",
+   "commas",
+   "miscellaneous",
+   "noun ends",
+   "polysemantic",
+   "brackets",
+   "no theme",
+   "word stems",
+   "gibberish"
+  ]
+ },
+ "L27n832": {
+  "name": "Word piece to brackets",
+  "description": "Fires on word fragments, Georgian script and names; pushes toward closing brackets and quotes such as ) and ].",
+  "verdict": "mixed",
+  "concepts": [
+   "closing brackets",
+   "quotes",
+   "subwords",
+   "Georgian script",
+   "names",
+   "punctuation",
+   "code syntax",
+   "),",
+   "],",
+   "}"
+  ]
+ },
+ "L14n2251": {
+  "name": "Weak diffuse noise",
+  "description": "Barely fires on academic and technical nouns; writes scattered word fragments with no shared concept.",
+  "verdict": "mixed",
+  "concepts": [
+   "weak",
+   "diffuse",
+   "noise",
+   "fragments",
+   "academic",
+   "technical",
+   "no theme",
+   "low activation",
+   "polysemantic",
+   "unclear"
+  ]
+ },
+ "L27n1332": {
+  "name": "Capital initial to plus",
+  "description": "Negative pole fires on capitals and acronyms (N, U.S., NY); pushes toward plus-prefixed tokens such as +a and +N.",
+  "verdict": "mixed",
+  "concepts": [
+   "capital letters",
+   "acronyms",
+   "U.S.",
+   "initials",
+   "plus sign",
+   "+",
+   "concatenation",
+   "abbreviations",
+   "NY",
+   "string joins"
+  ]
+ },
+ "L27n390": {
+  "name": "Word piece to equals",
+  "description": "Fires on mid-word pieces and Georgian fragments; pushes toward equals-sign tokens such as =A and =B.",
+  "verdict": "mixed",
+  "concepts": [
+   "word fragment",
+   "subword",
+   "equals sign",
+   "=",
+   "assignments",
+   "Georgian",
+   "names",
+   "split token",
+   "code",
+   "mid-word"
+  ]
+ },
+ "L27n711": {
+  "name": "Name syllable to plus",
+  "description": "Negative pole fires on name and word openers (Re-, We-, Se-); pushes toward plus-prefixed tokens such as +A and +B.",
+  "verdict": "mixed",
+  "concepts": [
+   "name fragment",
+   "first syllable",
+   "place names",
+   "subword",
+   "plus sign",
+   "+",
+   "leaching",
+   "mining",
+   "mid-word",
+   "split token"
+  ]
+ },
+ "L27n1266": {
+  "name": "Word start to colon",
+  "description": "Fires on word openers (Be-, Bre-, Car-); pushes toward colon-closer tokens such as ': and ):.",
+  "verdict": "mixed",
+  "concepts": [
+   "word start",
+   "Be",
+   "Bre",
+   "Car",
+   "names",
+   "colon",
+   "closing parens",
+   "subword",
+   "mid-word",
+   "code syntax"
+  ]
+ },
+ "L27n1672": {
+  "name": "Name start to quotes",
+  "description": "Negative pole fires on name openers and prepositions (of, for); pushes toward closing-quote and paren tokens.",
+  "verdict": "mixed",
+  "concepts": [
+   "names",
+   "word start",
+   "of",
+   "for",
+   "closing quotes",
+   "Georgian",
+   "fragments",
+   "cathedral",
+   "Dec",
+   "D.C."
+  ]
+ },
+ "L27n587": {
+  "name": "Name start to parens",
+  "description": "Negative pole fires on name openers (Domenici, Iberian, Bre-); pushes toward closing paren and semicolon tokens.",
+  "verdict": "mixed",
+  "concepts": [
+   "names",
+   "capital I",
+   "word start",
+   "closing parens",
+   "code syntax",
+   "quotes",
+   "Bre",
+   "fragments",
+   "Iberian",
+   "semicolon"
+  ]
+ },
+ "L27n1654": {
+  "name": "Stem piece to ur",
+  "description": "Fires on stems that split a longer technical word (conj-, metall-, cyan-); pushes toward 'ur' and 'URL' tokens.",
+  "verdict": "mixed",
+  "concepts": [
+   "mid-word",
+   "word stem",
+   "verb stems",
+   "technical words",
+   "split token",
+   "ur",
+   "url",
+   "URL",
+   "cyanide",
+   "metallurgy"
+  ]
+ },
+ "L27n2479": {
+  "name": "Compound piece to sn",
+  "description": "Negative pole fires on compound-word pieces (supers-, outs-, odd-); pushes toward 'sn' tokens.",
+  "verdict": "mixed",
+  "concepts": [
+   "compound word",
+   "word piece",
+   "supership",
+   "outsiders",
+   "sn",
+   "SN",
+   "code",
+   "Sn",
+   "split token",
+   "mid-word"
+  ]
+ },
+ "L27n276": {
+  "name": "Sentence opener to nouns",
+  "description": "Negative pole fires on sentence openers (Under, By, In, After); pushes toward nouns such as book, board and box.",
+  "verdict": "mixed",
+  "concepts": [
+   "sentence openers",
+   "prepositions",
+   "Under",
+   "By",
+   "In",
+   "box",
+   "book",
+   "board",
+   "piles",
+   "waterfall"
+  ]
+ },
+ "L26n1211": {
+  "name": "Miles unit to ap",
+  "description": "Negative pole fires on 'miles' after a number and on word stems; pushes toward 'ap' tokens.",
+  "verdict": "mixed",
+  "concepts": [
+   "miles",
+   "distance units",
+   "after numbers",
+   "Neanderthal",
+   "ap",
+   "AP",
+   "word stems",
+   "Georgian",
+   "sutras",
+   "distance"
+  ]
+ },
+ "L27n863": {
+  "name": "Mid-word fragment completer",
+  "description": "Reads scattered mid-word fragments and nouns (Beorht w-, Car-, uta, ari) with no shared theme; pushes toward 'min' tokens.",
+  "verdict": "mixed",
+  "concepts": [
+   "min",
+   "Min",
+   "MIN",
+   "fragment",
+   "subword",
+   "continuation",
+   "Carthaginians",
+   "shrauta",
+   "landers",
+   "code talkers"
+  ]
+ },
+ "L27n2682": {
+  "name": "Government security terms",
+  "description": "Fires on words that lead into official or national-security phrases (Homeland, national, Jurisdiction); pushes toward 'sec' and 'security'.",
+  "verdict": "likely",
+  "concepts": [
+   "security",
+   "sec",
+   "homeland",
+   "national",
+   "government",
+   "safety",
+   "secure",
+   "jurisdiction",
+   "defense",
+   "authority"
+  ]
+ },
+ "L27n1531": {
+  "name": "Weak scattered, writes reflect",
+  "description": "Weak, scattered reads (Chariho, Superwoman, 'waves' in water imagery); pushes toward 'reflect' words.",
+  "verdict": "mixed",
+  "concepts": [
+   "reflect",
+   "reflection",
+   "reflective",
+   "reflected",
+   "Superwoman",
+   "waves",
+   "streams",
+   "Chariho",
+   "negation",
+   "weak signal"
+  ]
+ },
+ "L27n2247": {
+  "name": "Physics terms, writes return",
+  "description": "Reads quantity 'of' and physics terms (light emission, scintillator, radioactive, Ehrfurt); pushes toward 'return'.",
+  "verdict": "mixed",
+  "concepts": [
+   "return",
+   "returns",
+   "Return",
+   "scintillator",
+   "light emission",
+   "quantum dot",
+   "radioactive",
+   "energy",
+   "Ehrfurt",
+   "nitrogen"
+  ]
+ },
+ "L26n1244": {
+  "name": "Word-start intr- and inter- prefixes",
+  "description": "Fires on word-start fragments like 'intr-' and 'inter-' (intranet, intersex); pushes toward 'prefix' and 'notation'.",
+  "verdict": "likely",
+  "concepts": [
+   "prefix",
+   "notation",
+   "denote",
+   "symbol",
+   "intranet",
+   "intersex",
+   "intravenous",
+   "Sanskrit",
+   "suffix",
+   "word start"
+  ]
+ },
+ "L27n622": {
+  "name": "Proper-name starts, mojibake writer",
+  "description": "Fires on first letters of proper names (Linares, Bruchac, Reher); pushes toward mojibake bytes like '\u00c2' and '\u00e2'.",
+  "verdict": "mixed",
+  "concepts": [
+   "proper names",
+   "Linares",
+   "Bruchac",
+   "Reher",
+   "place names",
+   "mojibake",
+   "\u00c2",
+   "\u00c3",
+   "encoding",
+   "Georgian"
+  ]
+ },
+ "L27n1161": {
+  "name": "Name stem before fixed phrase",
+  "description": "Fires on the stem before a fixed name or phrase (Cooperative, Par-, Rio de, Granada); pushes toward 'extension'.",
+  "verdict": "mixed",
+  "concepts": [
+   "extension",
+   "ext",
+   "Cooperative",
+   "Extension Program",
+   "Emergency Management",
+   "contact",
+   "Rio de",
+   "Granada",
+   "Parall",
+   "Rodriguez"
+  ]
+ },
+ "L25n162": {
+  "name": "Weak fragments, writes wait",
+  "description": "Weak reads on word fragments (herm-aph-, trans-Antarctic, Ge-orgian); pushes toward 'wait' tokens.",
+  "verdict": "mixed",
+  "concepts": [
+   "wait",
+   "waiting",
+   "waited",
+   "hermaphroditism",
+   "Antarctic",
+   "Kiel",
+   "Georgian",
+   "Galileo",
+   "silty",
+   "weak signal"
+  ]
+ },
+ "L25n1364": {
+  "name": "Diverse fragments, writes node",
+  "description": "Fires on assorted word-start fragments (Linares, Ins-, van-, Dr.) with no single theme; pushes toward 'node'.",
+  "verdict": "mixed",
+  "concepts": [
+   "node",
+   "Node",
+   "_node",
+   "Linares",
+   "vancomycin",
+   "inspections",
+   "fixtures",
+   "Klinge",
+   "Schall",
+   "Grihya"
+  ]
+ },
+ "L27n1367": {
+  "name": "Flat weak noise, writes input",
+  "description": "Near-flat weak firing on random single words (manpower, vocabulary, work); pushes toward 'input'.",
+  "verdict": "mixed",
+  "concepts": [
+   "input",
+   "Input",
+   "inputs",
+   "_input",
+   "INPUT",
+   "manpower",
+   "vocabulary",
+   "communication",
+   "work",
+   "sexuality"
+  ]
+ },
+ "L26n876": {
+  "name": "Name starts, writes brackets",
+  "description": "Fires on starts of names and places (St-, Se-, Oltenberg, Domenici); pushes toward closing brackets like '])),' and ')))'.",
+  "verdict": "mixed",
+  "concepts": [
+   "St-",
+   "Stoltenberg",
+   "Segeberg",
+   "Stibnite",
+   "Domenici",
+   "proper names",
+   "closing brackets",
+   "])),",
+   ")))",
+   "code syntax"
+  ]
+ },
+ "L27n961": {
+  "name": "Diffuse reads, writes Pro",
+  "description": "Diffuse weak reads (Nile, Roman, Ellsworth, '10' in percentages); pushes toward 'Pro' tokens.",
+  "verdict": "mixed",
+  "concepts": [
+   "Pro",
+   "pro",
+   "PRO",
+   "Nile",
+   "Roman",
+   "Ellsworth",
+   "hay",
+   "percent",
+   "renewable",
+   "States"
+  ]
+ },
+ "L25n24": {
+  "name": "Prepositions before names, writes brackets",
+  "description": "Fires on prepositions and 'Yes' before an institution or name (at Georgia Tech, in Pasadena); pushes toward code brackets like '()):'.",
+  "verdict": "mixed",
+  "concepts": [
+   "at",
+   "in",
+   "of",
+   "preposition",
+   "institution",
+   "Georgia Tech",
+   "Pasadena",
+   "Yes",
+   "()):",
+   "code brackets"
+  ]
+ },
+ "L27n632": {
+  "name": "Parentheses and dashes, writes suffixes",
+  "description": "Fires on opening parentheses, dashes and periods mid-sentence; pushes toward verb suffixes like '-ting' and '-ted'.",
+  "verdict": "mixed",
+  "concepts": [
+   "(",
+   "\u2014",
+   "punctuation",
+   "ting",
+   "ted",
+   "ter",
+   "ta",
+   "ten",
+   "suffix",
+   "clause break"
+  ]
+ },
+ "L26n1968": {
+  "name": "Mid-word fragments, writes union",
+  "description": "Fires on mid-word fragments (inc-, chron-, Franc-, morph-); pushes toward 'union' tokens.",
+  "verdict": "mixed",
+  "concepts": [
+   "union",
+   "unions",
+   "Union",
+   "fragment",
+   "incandescent",
+   "chronically",
+   "Franciscan",
+   "morphine",
+   "mid-word",
+   "looted"
+  ]
+ },
+ "L27n620": {
+  "name": "Determiner before modifier, writes adjectives",
+  "description": "Fires on 'a', 'his', 'my' before a modifier (a new world record, a substantive bill); pushes toward intensity adjectives like 'robust' and 'rigorous'.",
+  "verdict": "likely",
+  "concepts": [
+   "determiner",
+   "article",
+   "a",
+   "adjective",
+   "robust",
+   "dense",
+   "intense",
+   "rigorous",
+   "vigorous",
+   "brave"
+  ]
+ },
+ "L26n2867": {
+  "name": "Name fragments, writes van",
+  "description": "Fires on mid-word pieces of surnames and places (Bebense, Boddington, Shanidar); pushes toward 'van' and Dutch-name tokens.",
+  "verdict": "likely",
+  "concepts": [
+   "van",
+   "Van",
+   "Dutch",
+   "Netherlands",
+   "surname",
+   "place names",
+   "Bebense",
+   "Boddington",
+   "Shanidar",
+   "Navajo"
+  ]
+ },
+ "L25n2845": {
+  "name": "Name fragments, certainty writes",
+  "description": "Reads mid-word fragments of rare names and words (Be-, Tan-, Q-); pushes toward absolutes: always, guaranteed, definitely.",
+  "verdict": "mixed",
+  "concepts": [
+   "always",
+   "guaranteed",
+   "certainty",
+   "absolutes",
+   "definitely",
+   "sure",
+   "word fragments",
+   "proper names",
+   "almost",
+   "siempre"
+  ]
+ },
+ "L27n2781": {
+  "name": "Word-fragment reads, prime writes",
+  "description": "Reads scattered mid-word fragments of multi-token words (Franc-, Pr-, Bl-); pushes toward 'prime'.",
+  "verdict": "mixed",
+  "concepts": [
+   "prime",
+   "primes",
+   "prim",
+   "word fragments",
+   "multi-token words",
+   "names",
+   "agriculture",
+   "livestock",
+   "fluorescence",
+   "turkey"
+  ]
+ },
+ "L25n2781": {
+  "name": "Safety warnings",
+  "description": "Reads safety and emergency-procedure text (active shooter, Emergency Management, escape); pushes toward 'safe' and 'safety'.",
+  "verdict": "likely",
+  "concepts": [
+   "safety",
+   "safe",
+   "emergency",
+   "escape",
+   "warnings",
+   "hazards",
+   "security",
+   "precaution",
+   "alerts",
+   "danger"
+  ]
+ },
+ "L23n2405": {
+  "name": "Than comparison predictor",
+  "description": "Reads comparatives right before 'than' (more, rather, less, most); pushes toward 'than'.",
+  "verdict": "clear",
+  "concepts": [
+   "than",
+   "comparison",
+   "comparatives",
+   "more",
+   "rather",
+   "less",
+   "most",
+   "versus",
+   "instead",
+   "greater"
+  ]
+ },
+ "L25n1019": {
+  "name": "Options after setup words",
+  "description": "Reads verbs and prepositions that set up an object (prevent, Request, into, of); pushes toward 'options'.",
+  "verdict": "mixed",
+  "concepts": [
+   "options",
+   "choices",
+   "alternatives",
+   "verbs",
+   "prepositions",
+   "objects",
+   "instructions",
+   "setup words",
+   "requests",
+   "prevent"
+  ]
+ },
+ "L25n409": {
+  "name": "Mojibake reads, code closers",
+  "description": "Reads mojibake and accented-letter fragments in garbled text; pushes toward closing quotes and parentheses.",
+  "verdict": "mixed",
+  "concepts": [
+   "mojibake",
+   "encoding errors",
+   "accented letters",
+   "Georgian script",
+   "Spanish names",
+   "closing quotes",
+   "parentheses",
+   "semicolons",
+   "code syntax",
+   "punctuation"
+  ]
+ },
+ "L23n2299": {
+  "name": "Weak reads, vector writes",
+  "description": "Weak, scattered reads on technical nouns and word fragments (acceleration, Jet, Feature); pushes toward 'vector'.",
+  "verdict": "mixed",
+  "concepts": [
+   "vector",
+   "vectors",
+   "acceleration",
+   "physics",
+   "technical nouns",
+   "word fragments",
+   "low activation",
+   "NASA",
+   "Galileo",
+   "feature"
+  ]
+ },
+ "L22n2377": {
+  "name": "Consequence phrases, effect writes",
+  "description": "Reads loosely on consequence and outcome phrases (cumulative effects, withdrawal, fluorescence energy); pushes toward 'effect' and 'effects'.",
+  "verdict": "likely",
+  "concepts": [
+   "effect",
+   "effects",
+   "consequences",
+   "outcomes",
+   "cumulative",
+   "withdrawal",
+   "suppression",
+   "fluorescence",
+   "results",
+   "impact"
+  ]
+ },
+ "L26n2666": {
+  "name": "Name fragments, DNA writes",
+  "description": "Reads word-start fragments of names and technical terms (beta-arr-, nanop-, Beg-); pushes toward 'DNA' and 'password'.",
+  "verdict": "mixed",
+  "concepts": [
+   "DNA",
+   "password",
+   "biology",
+   "proteins",
+   "nanoparticles",
+   "names",
+   "word fragments",
+   "credentials",
+   "genetics",
+   "secrets"
+  ]
+ },
+ "L24n2899": {
+  "name": "Connectives read, port writes",
+  "description": "Reads connective function words mid-phrase (and, for, in, has); pushes toward 'port'.",
+  "verdict": "mixed",
+  "concepts": [
+   "port",
+   "harbors",
+   "connectives",
+   "function words",
+   "and",
+   "for",
+   "in",
+   "comparisons",
+   "ports",
+   "shipping"
+  ]
+ },
+ "L27n1642": {
+  "name": "Section-heading reads, clause writes",
+  "description": "Reads capitalized section and heading starts (TEACHING, PLANNING, RESOURCES); pushes toward clause openers From, If, For, And.",
+  "verdict": "mixed",
+  "concepts": [
+   "headings",
+   "section titles",
+   "capitals",
+   "clause openers",
+   "conjunctions",
+   "From",
+   "If",
+   "For",
+   "And",
+   "teaching"
+  ]
+ },
+ "L26n240": {
+  "name": "Opening brackets, scattered nouns",
+  "description": "Reads opening brackets and quotes before a gloss or list item; pushes toward scattered nouns (board, top, width).",
+  "verdict": "mixed",
+  "concepts": [
+   "brackets",
+   "quotes",
+   "parentheses",
+   "glosses",
+   "list markers",
+   "board",
+   "top",
+   "width",
+   "meal",
+   "nouns"
+  ]
+ },
+ "L22n2178": {
+  "name": "Weak question reads, proof writes",
+  "description": "Weak reads on problem-set punctuation and pronouns ('problem 3:', 'Is it a curve?'); pushes toward 'proof' and 'prove'.",
+  "verdict": "mixed",
+  "concepts": [
+   "proof",
+   "prove",
+   "proofs",
+   "problem sets",
+   "math questions",
+   "punctuation",
+   "pronouns",
+   "low activation",
+   "theorems",
+   "reasoning"
+  ]
+ },
+ "L21n1228": {
+  "name": "Weak function-word reads, zero",
+  "description": "Very weak reads on function words after verbs (because, with, of, to); pushes toward 'zero'.",
+  "verdict": "mixed",
+  "concepts": [
+   "zero",
+   "zeros",
+   "null",
+   "nothing",
+   "function words",
+   "because",
+   "with",
+   "weak signal",
+   "prepositions",
+   "empty"
+  ]
+ },
+ "L24n948": {
+  "name": "Intersex reads, opposite writes",
+  "description": "Reads 'inter-' in intersex and 'at/in the same' phrases; pushes toward 'opposite' and 'adjacent'.",
+  "verdict": "mixed",
+  "concepts": [
+   "opposite",
+   "opposing",
+   "adjacent",
+   "intersex",
+   "inter-",
+   "same time",
+   "contrast",
+   "dissonance",
+   "sexuality",
+   "reverse"
+  ]
+ },
+ "L21n1442": {
+  "name": "Superlatives read, choice writes",
+  "description": "Reads superlatives and best-pick words (top, best, leading, ideal, first); pushes toward 'choice' and 'choices'.",
+  "verdict": "likely",
+  "concepts": [
+   "choice",
+   "choices",
+   "choosing",
+   "best",
+   "top",
+   "leading",
+   "ideal",
+   "superlatives",
+   "selection",
+   "preference"
+  ]
+ }
+}
