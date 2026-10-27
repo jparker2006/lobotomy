@@ -1,0 +1,402 @@
+{
+ "L26n1564": {
+  "name": "Digits inside numbers",
+  "description": "Digit tokens inside multi-digit numbers and years (the 0 in 14,000, the 2 in 2,000, the 0 in 0 AD), strongest on the 2nd and later digits. Pushes the model toward more digit tokens. Pushed hard, it outputs garbled word fragments, not digits.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "0",
+   "1",
+   "2",
+   ".",
+   "digits",
+   "numbers",
+   "years",
+   "counts",
+   "amounts",
+   "decimal"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n1059": {
+  "name": "Split-word first fragment",
+  "description": "The first fragment of a word or name split into several tokens, such as 'Pr' in Prisc-ius, 'Ram' in Ramkham, 'Prom' in Prompts, 'alm' in Talmud. Fires before the word is complete. Pushes toward code-style '(_' and '{_' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Prom",
+   "Ram",
+   "Pr",
+   "alm",
+   "sab",
+   "Im",
+   "ang",
+   "Nar",
+   "aster",
+   "Sal"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n1379": {
+  "name": "Taxon name middles",
+  "description": "The middle fragment of a split proper or taxonomic name, mostly 'ter' in Pteridaceae and Pteridophyta, 'uth' in Buthidae, and 'en' in Cenozoic. Also fires on 'San' and 'Sam' starting place names. Pushes toward '+'-prefixed tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "ter",
+   "uth",
+   "en",
+   "Pter",
+   "Sen",
+   "Sam",
+   "San",
+   "Sur",
+   "Hy",
+   "Aj"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n2172": {
+  "name": "sp- word onsets",
+  "description": "The opening 'sp' or 'spr' fragment of a word split into tokens, such as Sp in Spence and Sparta, and spr in sprouts and sprang. Pushes toward 'template' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "sp",
+   "spr",
+   "Sp",
+   "sprouts",
+   "Sparta",
+   "Spence",
+   "spines",
+   "spilling",
+   "stare",
+   "template"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n1014": {
+  "name": "sl/wh word onsets",
+  "description": "The opening fragment of a split word, mostly 'sl' (slant, slides, slotted), 'wh' (whiff, whizz, whistling), and 'ot' (otoscope). Pushes toward 'Java' and 'java' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "sl",
+   "wh",
+   "ot",
+   "Sl",
+   "lim",
+   "overhe",
+   "omat",
+   "Maps",
+   "Enh",
+   "Live"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n2109": {
+  "name": "br/tort word fragments",
+  "description": "Short opening or middle fragments of split words: 'br' in bruxism, 'cort' in corticotropin, 'Vit' in vitiligo, 'tort' in tortillas, 'Att' in Attalea. Pushes toward 'html' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "br",
+   "tort",
+   "Vit",
+   "Att",
+   "Tor",
+   "cort",
+   "pent",
+   "amb",
+   "bro",
+   "Ang"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n2128": {
+  "name": "Period in numbers",
+  "description": "The decimal point or sentence-final period right after a number or clause (14.5 oz, 41.5 per, 'Thursday.'). Pushes toward ellipsis and bracket tokens such as '[…]' and ');'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   ".",
+   "’.",
+   "%.",
+   ").",
+   "'.",
+   "...",
+   "…",
+   "\".",
+   "**",
+   "decimal"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n589": {
+  "name": "cr/cor word onsets",
+  "description": "The 'cr', 'cor', or 'co' opening fragment of a word split into tokens, such as Crème, crabs, crumbled, coracoid, coriander. Pushes toward quote-and-comma separator tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "cr",
+   "cor",
+   "Cr",
+   "cl",
+   "co",
+   "Co",
+   "crabs",
+   "coriander",
+   "crisps",
+   "coracoid"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n1697": {
+  "name": "Vehicle and transport nouns",
+  "description": "Transport and space nouns such as boat, car, ferry, truck, bike, plane, and 'space' (boat-building, car ferry, space telescope). Pushes toward 'ticket(s)' and 'guest' tokens.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "boat",
+   "car",
+   "truck",
+   "bike",
+   "plane",
+   "ferry",
+   "space",
+   "ticket",
+   "tickets",
+   "guests"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n2794": {
+  "name": "Word onsets, submit",
+  "description": "The opening fragment of split words and names: Pan in Panzer, Bro in Broccoli, Bre in Breasted, Syn in Synod, stro in stroopkoek. Pushes toward 'submit' and 'submission' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "Pan",
+   "Bro",
+   "Bre",
+   "Syn",
+   "ste",
+   "stro",
+   "bre",
+   "Bry",
+   "submit",
+   "submission"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n2357": {
+  "name": "Tech brand names",
+  "description": "Brand or product names in tech and consumer goods, such as Google, Adobe, Android, BlackBerry, Chrome, and iPod, on the name token. Pushes toward 'camera' tokens.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "Google",
+   "Adobe",
+   "Android",
+   "Maps",
+   "Chrome",
+   "BlackBerry",
+   "iPod",
+   "Kindle",
+   "camera",
+   "electronic"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n1991": {
+  "name": "in-/re- word onsets",
+  "description": "The opening 'ins', 'inc', 'inn', 'res', or 'resc' fragment of words with in- or re- prefixes (inscriptions, incidence, rescinded). Pushes toward 'ind' and 'Ind' tokens.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "ins",
+   "inc",
+   "inn",
+   "res",
+   "resc",
+   "inst",
+   "inv",
+   "imm",
+   "ind",
+   "Ind"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n747": {
+  "name": "Long-name middle fragments",
+  "description": "The middle piece of a long split name: 'ace' in Ophioglossaceae, 'bip' in biphenyl, 'dich' in dichromate, 'Grü' in Grünewald. Pushes toward dash and dot filler tokens and whitespace.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "ace",
+   "bip",
+   "dich",
+   "ü",
+   "Grü",
+   "Lak",
+   "kus",
+   "ik",
+   "om",
+   "se"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n1977": {
+  "name": "B/b word onsets",
+  "description": "A capital or lowercase 'B' or 'b' opening a split word or name (Babylon, Babbage, B2B, Bahá), plus 'Cong' and 'Cal'. Pushes toward 'conversion' and 'convert' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "B",
+   "b",
+   "Cong",
+   "Cal",
+   "ro",
+   "recon",
+   "conversion",
+   "convert",
+   "Babbage",
+   "Babylon"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n2451": {
+  "name": "pro/app/apr word onsets",
+  "description": "The opening fragment of words starting pro-, app-, or apr- (APPRO, appalled, apricots, proportional, propellant). Pushes toward 'prop' and 'Prop' tokens.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "APPRO",
+   "app",
+   "apr",
+   "pro",
+   "prop",
+   "impr",
+   "Prom",
+   "pr",
+   "spr",
+   "ap"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n1087": {
+  "name": "Ram/Est name onsets",
+  "description": "The opening fragment of a split name, mostly 'Ram' (Ramayana, Ramkham, Ramnians), plus 'Est', 'Pret', 'Lib', and 'Cham'. Pushes toward C++ tokens such as '.cpp' and 'cout'.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "Ram",
+   "Est",
+   "Pret",
+   "Lib",
+   "Cham",
+   "fer",
+   "mult",
+   "que",
+   "st",
+   "cout"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n0": {
+  "name": "Diffuse word completions",
+  "description": "Heterogeneous: the word-completing token of a phrase in mixed text (high-end, pessimistic assumptions, April, Python, injuries). No single pattern. Pushes toward quote-and-punctuation tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "end",
+   "April",
+   "post",
+   "problem",
+   "assumptions",
+   "Python",
+   "injuries",
+   "instruction",
+   "Example",
+   "好き"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L25n2952": {
+  "name": "Mid-word compound fragments",
+  "description": "Fragments inside compound or long words: dif- in diffracting, sub- in sub-processor, Dub- in Dubbert, roph- in claustrophobia, iph- in biphobia. Pushes toward 'frequency' tokens.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "dif",
+   "sub",
+   "Dub",
+   "multi",
+   "roph",
+   "iph",
+   "wide",
+   "single",
+   "visible",
+   "frequency"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n1002": {
+  "name": "nond/und/d word fragments",
+  "description": "Short opening or inner fragments such as 'nond' (nondiscriminatory), 'und' (undies), 'd' (Datasheet, dwellings), and '-d' (anti-drying). Pushes toward 'crypt' and 'encrypt' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "nond",
+   "und",
+   "d",
+   "-d",
+   "D",
+   "Mer",
+   "Switch",
+   "Crypt",
+   "encrypt",
+   "encrypted"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L26n2677": {
+  "name": "oc/c word onsets",
+  "description": "The opening 'oc', 'c', 'suc', 'Prec', or 'Rec' fragment of a split word (occur, occlusal, cations, sucralose, Precision). Pushes toward 'kernel' and 'shell' tokens.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "oc",
+   "c",
+   "suc",
+   "Prec",
+   "Rec",
+   "Wak",
+   "ob",
+   "ac",
+   "kernel",
+   "shell"
+  ],
+  "batch": 0,
+  "version": "v1"
+ }
+}

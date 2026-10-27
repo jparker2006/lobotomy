@@ -1,0 +1,402 @@
+{
+ "L14n92": {
+  "name": "Mid-phrase function word",
+  "description": "Weak, diffuse firing on mid-phrase words in web prose, peaking on a pronoun or particle that ends a verb phrase (e.g. 'it' in 'food in it's most natural form', 'us' in 'care for us', 'just' in 'skip just this instance', 'up' in 'looked up'). Steered, it pushes word fragments like 'threshold', 'electro' and 'apore'; the logit lens points at closing quote-and-punctuation.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "it",
+   "us",
+   "just",
+   "else",
+   "up",
+   "to",
+   "ate",
+   "ars",
+   "argument",
+   "country"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L14n2251": {
+  "name": "Product-topic adjective before noun",
+  "description": "Strongly negative on the topic adjective in a writing request, right before its noun: 'smart' in 'smart home hubs', 'renewable' in 'renewable energy', 'classic' in 'classic chicken noodle soup', 'new' in 'new software program', 'wireless' in 'wireless touch screen'. Mostly silent elsewhere. Steered negative pushes word fragments ('ancial', 'oretical', 'ionale') rather than a clear word.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "smart",
+   "renewable",
+   "classic",
+   "wireless",
+   "new",
+   "reliability",
+   "sunset",
+   "retail",
+   "covered",
+   "baked"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L14n1811": {
+  "name": "Answer-topic head noun",
+  "description": "Strongly negative on the noun or heading word that a reply is about, right where the answer starts: 'song' in 'which specific song', 'film' in 'which film', 'Best' in 'Oscar for Best Actor', 'Subject' opening a drafted email, 'graphic' in 'eye-catching image or graphic', 'Chart' in 'using Chart.js'. Steered, it pushes fragments like 'apore' and 'reshold'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "song",
+   "film",
+   "Subject",
+   "Best",
+   "graphic",
+   "Chart",
+   "script",
+   "Ingredients",
+   "ascending",
+   "overcoming"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L0n9": {
+  "name": "Closing </think> tag",
+  "description": "Fires on the '</think>' token that closes the empty think block at the start of a chat assistant reply (peak 10; the opening '<think>' about 5). Weak on other closing delimiters. Steered, it pushes closing brackets: full-width '）' and '）。' and ')'.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "</think>",
+   "<think>",
+   "closing tag",
+   "think block",
+   "assistant turn",
+   "）",
+   "）。",
+   ")",
+   "closing bracket",
+   "reply start"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L24n2097": {
+  "name": "Digit before percent sign",
+  "description": "Strongly negative on the last digit of a number followed by a percent sign or the word 'percent': the '0' in '100%', the '0' in '50 percent', the '9' in '59%'. The '%' right after gets a smaller hit. Steered negative pushes the model to write '%' (steered output is all '%').",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "%",
+   "percent",
+   "0",
+   "50%",
+   "100%",
+   "digit",
+   "percent sign",
+   "9%",
+   "3 percent",
+   "70%"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L14n2233": {
+  "name": "Opening parenthesis of aside",
+  "description": "Strongly negative on the '(' or comma that opens an explanatory aside, gloss, or citation: '(' in 'arribadas (arrival of nesting sea turtles)', '(temperature, pulse, respirations)', '(also commonly referred to as VFDs)', and the comma in 'Flickr, CC BY'. Also on 'means' or 'change' right before a definition. Steered, it gives noise such as 'errors' and 'gibi'.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "(",
+   "parenthesis",
+   "aside",
+   "gloss",
+   "means",
+   "also known as",
+   "definition",
+   "comma",
+   "appositive",
+   "citation"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L24n248": {
+  "name": "Capital letter for names",
+  "description": "Fires on the capital letter that starts a proper name or surname, most often a lone initial or the first piece of a name split into tokens: 'N' in 'N. Atzagioli', 'M' in 'Macclesfield', 'S' in 'Saphari', 'T' in 'Haft-T-alar'. Peaks on the letter itself, not the rest of the name. Steering does not produce names; it gives garbled fragments.",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "capital letter",
+   "initial",
+   "surname",
+   "proper noun",
+   "N.",
+   "S",
+   "M",
+   "T",
+   "D",
+   "name start"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L11n9": {
+  "name": "Name-ending piece before citation",
+  "description": "Strongly negative on the last piece of a name or word just before a citation, parenthesis or comma: 'man' in 'Schiffman et al.', 'oks' in 'Estabrooks', 'ik' in 'Høivik', 'en' in 'Nordhausen', 'I' in 'RGGI states'. Also on the '(' in 'infrastructure (dwellings' and a few clause-final words ('well', 'above', 'those'). Steered, it gives asterisks.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "surname",
+   "name ending",
+   "citation",
+   "(",
+   "clause end",
+   "well",
+   "above",
+   "those",
+   "standard",
+   "RGGI"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L14n3017": {
+  "name": "Content word before complement",
+  "description": "Diffusely negative on the content word that opens a purpose or complement phrase in instructions and descriptions: 'explore' in 'to explore', 'water' in 'provide water', 'health' in 'skin health', 'official' in 'official pip website', 'package' in 'pip3 install <package>', 'diverse' in 'its diverse'. Steered, it gives word fragments ('ellij', 'loit', 'ionale'), not a word.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "to explore",
+   "provide water",
+   "skin health",
+   "your website",
+   "official",
+   "package",
+   "interacting",
+   "diverse",
+   "sales growth",
+   "settlement"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L12n623": {
+  "name": "Mid-phrase word, keyword list",
+  "description": "Diffuse, weak positive on a word in the middle of a phrase where the text keeps going, e.g. 'is' in 'the body is part way out', 'to' in 'hash to', 'his' in 'until his death', 'tools' in 'study tools', and the keyword strings of essay-spam lists. Steered, it pushes em dashes and ellipses ('—', '…') and the steered output is asterisks.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "is",
+   "to",
+   "his",
+   "tools",
+   "essay",
+   "Typically",
+   "Generally",
+   "Psychology",
+   "Cultural",
+   "—"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L24n1478": {
+  "name": "'mis-' word prefix",
+  "description": "Fires on the 'mis' piece that opens words like 'misperceptions', 'mischance', 'misinformed', 'mischievous', 'misfortune', 'misfits', with the next piece ('per' in 'mis|per|ceptions') sometimes peaking. Weak on 'eye' and on 'to' after 'ability'. Steered, it pushes 'recognition' and 'recognize' (steered output is 'recognition' repeated).",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "mis",
+   "misperception",
+   "mischance",
+   "misinformed",
+   "mischievous",
+   "misfortune",
+   "misfits",
+   "prefix",
+   "recognition",
+   "recognize"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L24n2382": {
+  "name": "Problem and conflict words",
+  "description": "Fires on words for a problem or conflict that head a phrase: mostly 'problem' in 'problem-solving' or 'problem solving', and 'conflict' in 'conflict management', plus 'puzzles', 'mystery', 'complaints', 'scenarios', 'suspense'. Steered, it pushes 'resolution' and 'resolve' (steered output is 'resolution' repeated).",
+  "pole": "+",
+  "verdict": "clear",
+  "concepts": [
+   "problem",
+   "problem-solving",
+   "conflict",
+   "puzzles",
+   "complaints",
+   "mystery",
+   "scenarios",
+   "confusion",
+   "suspense",
+   "resolve"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L14n2258": {
+  "name": "Predicate word in examples",
+  "description": "Diffuse, positive on the word right after a subject or quiz cue in example sentences and exercise items: 's' in 'Jessica's failure', 'must' in 'A robot must respond', 'was' in 'which was recorded', 'you' in 'as you requested', 'to do' in exercise prompts. Top tokens include 'quiz', 'Question' and 'Jessica'. Steered, it pushes 'arbonate' and 'uali' fragments.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   "quiz",
+   "Question",
+   "Jessica",
+   "must",
+   "was",
+   "you",
+   "Future",
+   "evil",
+   "chaotic",
+   "originated"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L22n492": {
+  "name": "Table field label",
+  "description": "Strongly negative on the label word that heads a field or column in a pipe-delimited table, just before the '||' or '|' separator: 'Rank' in '|Rank||', 'Address', 'Owner', 'Presenter', 'Location', 'View', 'Atomic Weight', 'Type'. Weaker on the ';' and '.' that end a code line or sentence. Steered, it writes blank spaces, nothing decodable.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "Address",
+   "Rank",
+   "Owner",
+   "Presenter",
+   "Location",
+   "View",
+   "Type",
+   "||",
+   "table header",
+   "field label"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L24n2416": {
+  "name": "'Job' and hiring words",
+  "description": "Strongly negative on 'job' and related hiring words, mostly 'job' before a noun such as application, description, posting, interview or market ('a job application'), with weaker hits on 'intern', 'admissions', 'licensing' and 'graduate'. Steered, it pushes 'candidate' or 'applicant' (steered output: 'candidates candidates...').",
+  "pole": "-",
+  "verdict": "clear",
+  "concepts": [
+   "job",
+   "Job",
+   "intern",
+   "admissions",
+   "licensing",
+   "graduate",
+   "hiring",
+   "applicant",
+   "candidate",
+   "employment"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L24n114": {
+  "name": "Letter inside parentheses",
+  "description": "Fires on the content token inside a parenthesis, especially a single unit letter or abbreviation: 'K' in '(K)' kelvin, 'm' in '(m)' meter, 'd' in '(d)', 's' and 't' in '(s)' and '(t)', 'ce' in 'b ce', plus unit tokens like 'months' and 'oz'. Peaks on the token just before the closing ')'. Steered, it pushes ')' followed by a quote or period (steered output: ').\"').",
+  "pole": "+",
+  "verdict": "likely",
+  "concepts": [
+   "(s)",
+   "(t)",
+   "(k)",
+   "(m)",
+   "(d)",
+   "unit",
+   "abbreviation",
+   "kelvin",
+   "meter",
+   ")."
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L24n2887": {
+  "name": "URL or path fragment",
+  "description": "Fires on a piece inside a URL, filename or code path: 'ip' in 'get-pip.py', 'aspx' and 'html' in web addresses, 'fund' in 'superfund', 'tips' in a us-cert URL, 'whats-new' in an MLA link, 'Share' in 'Share-Alike', 'afety' in 'cyber-safety', and ']' in '[root@chris ~]#'. Steered, it pushes '#' (steered output is a run of '#'). Read and write do not match well.",
+  "pole": "+",
+  "verdict": "mixed",
+  "concepts": [
+   ".py",
+   "-pip",
+   "superfund",
+   "tips",
+   "whats-new",
+   "Share",
+   "afety",
+   "URL",
+   "path",
+   "#"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L24n2406": {
+  "name": "Zero before hex 'x'",
+  "description": "Strongly negative on the '0' of a hex literal before 'x' ('P0 = 0xA4': the '0' peaks at 10, other digits in hex lines 8 to 9), with weaker hits on name syllables like 'Hum' in 'humane' and 'Rad' in 'Radley'. Steered, it pushes 'x' (logit lens: 'x', 'xc', 'xC'); steered output is a repeated 'x'.",
+  "pole": "-",
+  "verdict": "likely",
+  "concepts": [
+   "0x",
+   "hex",
+   "0",
+   "x",
+   "xA4",
+   "xFF",
+   "Hum",
+   "Rad",
+   "Rob",
+   "constant"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L0n1967": {
+  "name": "Mid-word subword piece",
+  "description": "Strongly negative on a subword piece in the middle or end of a long word split across tokens: 'actors' in 'tr|actors' (Ferguson tractors), 'ite' in 'Amor|ite', 'oli' in 'Atzagi|oli', 'oth' in 'To|oth', 'rail' in 'rail|roads', 'ons' in 'axons'. Steered, it pushes person names ('Charles', 'Born', 'Leaders'), but that write is weak.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "introductory",
+   "oli",
+   "actor",
+   "mit",
+   "rough",
+   "Lord",
+   "itt",
+   "rail",
+   "ysts",
+   "hid"
+  ],
+  "batch": 0,
+  "version": "v1"
+ },
+ "L20n1662": {
+  "name": "German word fragments",
+  "description": "Strongly negative on a middle or final piece of a German (or other non-English) word split into tokens: 'itung' in 'Zeitung', 'und' in 'Inbund', 'st' in 'Ostermarkt', 'tt' in 'Brunsbüttel', 'zug' in 'Sommertagszug', 'rik' in 'Hendrik', 'in' in 'Schwerin'. Mostly silent on English. Steered, it gives 's' tokens ('sssss'), so the write is weak.",
+  "pole": "-",
+  "verdict": "mixed",
+  "concepts": [
+   "und",
+   "ere",
+   "aus",
+   "itz",
+   "ck",
+   "bing",
+   "Hamburg",
+   "ung",
+   "uh",
+   "rg"
+  ],
+  "batch": 0,
+  "version": "v1"
+ }
+}

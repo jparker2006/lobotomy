@@ -78,7 +78,7 @@ class Fleet:
         return True
 
     def finish(self, jid, job, reply):
-        good, bad = self.accept(job["keys"], reply)
+        good, bad = self.accept(job["keys"], reply, job["attempt"])
         sh(["room-cli", "thread", "archive", job["thread"]])
         job["status"] = "done"; job["got"] = len(good)
         if good:
@@ -174,7 +174,7 @@ def cmd_label(a):
         p = lr.worker_prompt(ks, ev)
         return p.replace("\n\n=== ", RETRY_HINT + "=== ", 1) if a.version != "v1" else p
 
-    def accept(ks, reply):
+    def accept(ks, reply, attempt):
         d = lr.parse_json_reply(reply) or {}
         good, bad = {}, []
         for k in ks:
@@ -222,12 +222,16 @@ def cmd_score(a):
     def make_prompt(ks, attempt):
         return lr.scorer_prompt([(k, lab(k)) for k in ks], ho, a.split)
 
-    def accept(ks, reply):
+    def accept(ks, reply, attempt):
         d = lr.parse_json_reply(reply) or {}
         good, bad = {}, []
         for k in ks:
             p = lr.clean_preds(d.get(k), m)
             (good.__setitem__(k, p) if p else bad.append(k))
+        # a lazy reply (nearly every pole flat, e.g. all 0) is rescored, but the last attempt is kept as
+        # it is, so no pole silently drops out of a condition
+        if attempt < MAX_ATTEMPTS and good and sum(len(set(p)) == 1 for p in good.values()) >= 0.8 * len(good):
+            return {}, list(ks)
         scores.update(good); save_json(out_p, scores)
         return good, bad
 
@@ -377,7 +381,7 @@ if __name__ == "__main__":
         s = sub.add_parser(name)
         s.add_argument("--planner", required=name != "merge", default="all",
                        help="slice name, e.g. p1 (atlas/r6/slices/p1.json)")
-        s.add_argument("--batch", type=int, default=20 if name in ("label", "grade") else 25)
+        s.add_argument("--batch", type=int, default=20 if name in ("label", "grade") else 15)
         s.add_argument("--model", default="claude-haiku-5-5"); s.add_argument("--reasoning", default="high")
         s.add_argument("--max-live", type=int, default=8); s.add_argument("--ramp-to", type=int, default=25)
         s.add_argument("--ramp-after", type=int, default=8); s.add_argument("--poll", type=int, default=30)

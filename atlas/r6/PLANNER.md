@@ -20,6 +20,9 @@ quality control, choosing re-runs, and an honest report.
   exactly 10 concepts. Scoring: a Haiku scorer sees only the label and predicts each excerpt's peak
   activation 0–10; we take Pearson r against the truth. Baselines: a label shuffled from another pole of
   the same layer, and a plain word list of the pole's top tokens.
+- What normal looks like (wave 1, 200 poles, dev): real labels r 0.34, word list 0.17, the free token-lookup
+  predictor 0.47 (it beats every label; that's a known result, not your problem). `clear` 0.58, `likely`
+  0.43, `mixed` 0.31. Your dev word-list scores are partly filled in already; `grade` shows them.
 
 ## Rules
 - Run fan-out commands **in the background** (Bash `run_in_background` with `timeout` 7200000) and check
