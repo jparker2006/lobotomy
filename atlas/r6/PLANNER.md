@@ -61,7 +61,9 @@ quality control, choosing re-runs, and an honest report.
    scorer (for example the label reads right on the evidence), get a second opinion from a fresh Opus
    scorer: `score --planner pX --split dev --mode real --version v1 --keys K1,K2 --suffix opus --model claude-opus-5-5`.
    Use it only to decide re-runs; it never enters the final score. Record each decision in `qc.md`.
-6. **Test score (final, once):** run these three one after another (each in the background):
+6. **Test score (final, once):** score each condition exactly once and keep what the script returns; no
+   hand rescoring on test (a flat prediction is r = 0 in every condition; on dev, rescoring is fine).
+   Run these three one after another (each in the background):
    `score --planner pX --split test --mode real --version final`, then `--mode shuffled`, then
    `--mode wordlist`. Then `python3 atlas/label_fanout.py grade --planner pX --split test --version final`.
 7. **Report:** finish `qc.md` (≤ 40 lines): poles labelled and any that failed, verdict counts, dev r for
