@@ -2,9 +2,9 @@
 
 *From the v0.0.2 UI grill with Jake, 2026-10-26/27. Every decision has a rendered mockup in [mockups/](mockups/). All mockups draw a real recorded CPU stand-in session (Qwen3-0.6B, "Describe the ocean at night in three sentences.") and never made-up data. Prototype code (canvas, not the product) is in [web/mockups/](../../web/mockups/).*
 
-![The default view: Cinema layout](mockups/q5-cinema.png)
+![The default view: Cinema layout, mono amber](mockups/final-cinema.png)
 
-**In one line:** the 28 layers stand side by side as a deck of dot-matrix sheets, drawn through a character grid. Each neuron is one dot. The dot's size and brightness show how rare this firing is *for that neuron*, and its colour shows the sign. Each word sweeps through the layers in the board's real order and pace, the answer runs as subtitles, and nothing on screen is decoration.
+**In one line:** the 28 layers stand side by side as a deck of dot-matrix sheets, drawn through a character grid in one amber ink. Each neuron is one dot. The dot's size and brightness show how rare this firing is *for that neuron*, and filled vs ring shows the sign. Each word sweeps through the layers in the board's real order and pace, the answer runs as subtitles, and nothing on screen is decoration.
 
 ## Decisions
 
@@ -15,7 +15,7 @@
 | Q3 | Glyphs | **Dots** `· ∙ • ● ◉`. Jake: ASCII symbols look like they mean something; dots read as "bigger = stronger" with no legend. The ASCII feel stays in the grid, edge strokes and text UI. | [q3-glyph-sheet](mockups/q3-glyph-sheet.png) |
 | Q4 | Trails | **Half-life 2 tokens** (0.33 s at 6 tok/s), in tokens. On a live tuning knob; Jake tunes it once it runs. | [q4-trails.gif](mockups/q4-trails.gif) |
 | Q5 | Layout | **Cinema** by default (full-bleed deck, answer as large subtitles, prompt line, token tape, corner HUD) **plus Console panels on a toggle key** (transcript, top-1% count per layer, rarest neurons now). | [q5-layout-sheet](mockups/q5-layout-sheet.png) |
-| Q6 | Colour, type | **Amber (+) / cyan (−)** on near-black (colourblind-safe). **JetBrains Mono** for text, **Departure Mono** for the big counters. Fonts are OFL and bundled (the board serves the page offline). | [q6-palette-sheet](mockups/q6-palette-sheet.png), [q6-type](mockups/q6-type.png) |
+| Q6 | Colour, type | **Mono amber**, one ink like every mood-board reference (Jake: "like astrophage in Project Hail Mary"). Sign is shape: **filled dot = positive, ring = negative**. **JetBrains Mono** for text, **Departure Mono** for the big counters. Fonts are OFL and bundled (the board serves the page offline). | [q6b-ink-sheet](mockups/q6b-ink-sheet.png), [q6-type](mockups/q6-type.png) |
 | Q7 | Motion | **Sweep + idle drift.** Each word reaches layer *l* at `t₀ + (l/28)·0.9/tok_s`: the real layer order at the measured pace, one word late. The camera drifts ±9° only when idle and stops on any input. | [q7-motion.gif](mockups/q7-motion.gif) |
 | Q8 | Inspect | **Hover**: a light card (value, rarity, per-word sparkline). **Click**: lock on. The layer turns face-on, other layers hide, a reticle locks, the readout docks (fires-most-on in this answer, plus grey slots for later data). **`/`** jumps (`L8 908`). Clicking a word in the subtitles or tape replays the map at that word. | [q8-inspect-sheet](mockups/q8-inspect-sheet.png) |
 | Q9 | Hero moment | **Storyboard C, "one neuron → 86,016".** Open on one dot; "The ocean…" appears and the ocean neuron (L8 N908) blooms to 5.1×; pull back as layers switch on outward from L8; card "86,016 neurons · live · on a 1-watt chip". | [q9-storyboards](mockups/q9-storyboards.png), [q9-hero-c.gif](mockups/q9-hero-c.gif) |
@@ -43,7 +43,7 @@ Two fixes came out of the grill and are not up for taste:
 | Sheet (x) | layer 0–27 | L0 left, L27 right |
 | Position within a sheet | neuron index (64 × 48, row-major) | arbitrary until v0.1.0's co-activation layout (R9); the inspector says so |
 | Dot glyph `· ∙ • ● ◉` + brightness | rarity level of \|activation\| for that neuron: top 10 / 3 / 1 / 0.3 / 0.1% | crowding-corrected per cell (below) |
-| Hue | sign of the activation: amber +, cyan − | |
+| Dot shape | sign of the activation: filled +, ring − | invisible on the two smallest levels; the hover card always shows the sign |
 | Bloom | only cells at top 1% or rarer | |
 | Trail | recency: max-hold that halves every 2 tokens | knob |
 | Sweep timing | layer order; pace `0.9 / tok_s` | a replay of the real order, one word late |
@@ -62,21 +62,22 @@ Two fixes came out of the grill and are not up for taste:
 
 For neuron *j*, `r = a / p99_j` (T2's calibration). **F** is the distribution of `|r|` pooled over all neurons and positions ≥ 1 (position 0 is the attention sink). The page seeds F from a table baked in from the CPU calibration, then updates it with a running histogram of everything this backend has streamed. A cell holding *k* neurons takes its strongest one, `m = max |r|`, and uses `u = F(m)^k` (the chance a cell of *k* ordinary neurons stays below `m`). Levels:
 
-| Glyph | Level | `u ≥` | Meaning |
+| Glyph + / − | Level | `u ≥` | Meaning |
 |---|---|---|---|
 | `·` dim | 0 | — | lattice (geometry only) |
-| `·` | 1 | 0.90 | top 10% for that neuron |
-| `∙` | 2 | 0.97 | top 3% |
-| `•` | 3 | 0.99 | top 1%, blooms |
-| `●` | 4 | 0.997 | top 0.3% |
-| `◉` | 5 | 0.999 | top 0.1% |
+| `·` / `·` | 1 | 0.90 | top 10% for that neuron |
+| `∙` / `∘` | 2 | 0.97 | top 3% |
+| `•` / `○` | 3 | 0.99 | top 1%, blooms |
+| `●` / `◯` | 4 | 0.997 | top 0.3% |
+| `◉` / `◎` | 5 | 0.999 | top 0.1% |
 
 With one neuron per cell, `u` is just that neuron's percentile. Hovering a dot picks the neuron that set `m`, so the dot you see is the neuron you get. Check: on synthetic i.i.d. data, the share of cells at each level matches the single-neuron share (±10%) at 1, 4, 16 and 64 neurons per cell.
 
 ## Visual system
 
+- **Mood board** ([moodboard/](moodboard/README.md)): one ink, small marks make form, black space with tiny exact captions, thinking shown as it happens.
 - **Grids.** Map: 5 × 8 CSS px dot cells. UI: 9 × 16 CSS px text cells. Both at native device pixels.
-- **Palette.** Background `#030304`. Positive `#FFAA28`, hot `#FFEABA`. Negative `#28CDFF`, hot `#D4F8FF`. Lattice and strokes `#788491` at 14–22%. UI `#A5ACB2`, UI bright `#EEEEEA`. Levels 4–5 use the hot colour and bold.
+- **Palette.** One ink. Background `#030304`. Ink amber `#FFB000`, hot `#FFE4A0` (levels 4–5, bold). Negative values use rings `∘ ○ ◯ ◎` instead of `∙ • ● ◉`. Lattice and strokes `#788491` at 14–22%. UI `#A5ACB2`, UI bright `#EEEEEA`. The tuning console has an ink-hue knob (preset: "astrophage red").
 - **Type.** JetBrains Mono (UI, subtitles at 2× cell size, legend). Departure Mono for big counters. Both OFL, served from `web/dist`.
 - **Sweep and trails.** Each layer keeps `glow = max(glow · 0.5^(dt/HL), new)` once the sweep has reached it. HL = 2 tokens (knob).
 - **Camera.** The default overview looks down the deck from the front left (as in the mockups). Orbit, zoom and pan with the mouse. Idle drift starts after 8 s without input and stops on the first input.
@@ -85,7 +86,7 @@ With one neuron per cell, `u` is just that neuron's percentile. Hovering a dot p
 - **Inspector.** Hover card: `L08 · N0908`, now `+4.7× its p99 · top 0.1%`, word, per-word sparkline. Lock-on readout adds "fires most on (this answer)" and slots. `Esc` unlocks. `/` opens a command line (`L8 908`, later label search). Clicking a word in the subtitles or tape pins the map to that token (`space` resumes live).
 - **Tuning console (key `~`).** Trail half-life, bloom strength and resolution, map cell size, sweep on/off, drift on/off, ladder thresholds, plus a live fps / p95 readout. Saved in `localStorage`.
 - **Record / replay.** Save a session (T2 frames + meta + calibration) to a file; drop a file to replay it. The HUD says `REPLAY · <backend> · <date>`. Replay is deterministic, so a clip renders frame by frame.
-- **Hero mode C.** `?hero=c&neuron=8:908`: start macro on the neuron face-on, lock-on readout with the strongest recent value and its word, pull back over ~4 s while layers switch on outward from the neuron's layer, then the end card. The card's claim comes from the recorded backend ("live on a 1-watt chip" only for `npu`).
+- **Hero mode C.** `?hero=c&neuron=8:908`: start macro on the neuron face-on, lock-on readout with the strongest recent value and its word, pull back over ~4 s while layers switch on outward from the neuron's layer, then the end card, with a small Voyager-style caption under it: model · backend · the real recording time (UTC). The card's claim comes from the recorded backend ("live on a 1-watt chip" only for `npu`).
 
 ## Slots for later data
 

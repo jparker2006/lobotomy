@@ -18,8 +18,9 @@ Jake's references for the v0.0.2 UI (pasted 2026-10-27), fetched with `api.fxtwi
 4. **Show the thinking as it happens.** Text accumulates with an elapsed timer; our subtitles, tape and `n/256 · tok/s` play that role.
 5. **Calm around the hero.** One dense object, quiet type around it: the Cinema layout.
 
-## Also in the air (no images; our own references)
+## Also in the air (no images)
 
+- *Project Hail Mary* (2026 film): the astrophage swarm, a dark field of tiny glowing amber-red sparks. Jake's reference for the mono amber ink (stills not stored: film copyright).
 - Lyra's neuron-explorer: the deck, additive glow, layers left to right (docs/lyra-reports).
 - Eames, *Powers of Ten* (1977): storyboard C's pull-back from one neuron.
 - Demoscene ASCII tunnels: storyboard B's fly-through.
