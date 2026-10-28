@@ -89,7 +89,7 @@ Events: `store.on(name, fn)` returns an unsubscribe function.
 
 **Camera rig** (`app/camera.ts`; U4 may change everything inside, not these signatures):
 `pose` (current `{eye, target, fov, center}`), `overview(ms?)`, `faceLayer(l, ms?)`, `flyTo(pose, ms)` (promises resolve on
-arrival or interruption), `onUserInput()` (stop tweens and drift now), plus `update(t)` which the app loop calls each frame
+arrival or interruption), `onUserInput()` (stop tweens and drift now), `setFrame({l, r}, ms?)` (side panels' share of the width: `overview()` / `faceLayer()` then frame the deck between them; U3's Console sets it), plus `update(t)` which the app loop calls each frame
 before `deck.setView(pose)`. U5 calls `faceLayer` / `overview` on lock / unlock; U4 calls `onUserInput` from its input handlers
 and reads `store.settings.driftOn`.
 

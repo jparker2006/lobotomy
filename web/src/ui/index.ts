@@ -214,19 +214,11 @@ export function initUI(app: App) {
       : s.pinnedIndex !== null && s.session ? `PINNED AT TOKEN ${pad(s.session.tokens[s.pinnedIndex].i + 1, 3)}` : "";
   }
 
-  // The Console frames the deck between its panels: same eye and target, principal point moved to the middle and the
-  // field of view widened by the share of the width the panels take (undone on close). Uses the camera's public flyTo.
-  let framed: { center: [number, number]; k: number } | null = null;
+  // The Console frames the deck between its panels: the camera rig keeps the deck in the free band, so overview(),
+  // faceLayer() and double-click stay framed while the Console is open (camera.setFrame; undone on close).
   function frameDeck(open: boolean) {
-    const p = app.camera.pose, fov = (f: number, k: number) => (2 * Math.atan(Math.tan((f * Math.PI) / 360) * k) * 180) / Math.PI;
-    if (open && !framed) {
-      const W = innerWidth, l = left.offsetWidth, r = right.offsetWidth, k = W / Math.max(200, W - l - r);
-      framed = { center: [p.center[0], p.center[1]], k };
-      app.camera.flyTo({ center: [(l + p.center[0] * (W - l - r)) / W, p.center[1]], fov: fov(p.fov, k) }, 500);
-    } else if (!open && framed) {
-      app.camera.flyTo({ center: framed.center, fov: fov(p.fov, 1 / framed.k) }, 500);
-      framed = null;
-    }
+    const W = Math.max(1, innerWidth);
+    void app.camera.setFrame(open ? { l: left.offsetWidth / W, r: right.offsetWidth / W } : { l: 0, r: 0 }, 500);
   }
   function renderConsole() {
     root.classList.toggle("ui-console", store.state.consoleOpen);
