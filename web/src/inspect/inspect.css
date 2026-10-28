@@ -1,0 +1,63 @@
+/* Inspect (U5): hover card, lock-on reticle + leader + docked readout, `/` command line (mockups q8-hover, q8-lock).
+   On the 9 x 16 CSS px text grid like the Cinema UI; mono amber (--insp-ink / --insp-hot follow the ink-hue knob). */
+#ui .insp-root { --cw: 9px; --ch: 16px; --insp-ink: var(--ink); --insp-hot: var(--hot); position: absolute; inset: 0;
+  font: 400 13px/16px var(--font); letter-spacing: calc(var(--cw) - 0.6em); color: var(--ui); }
+#ui .insp-root > * { position: absolute; left: 0; top: 0; white-space: pre; }
+
+/* reticles: four bracket corners centred on the neuron (UI state, not data) */
+#ui .insp-ret { width: 0; height: 0; will-change: transform; }
+#ui .insp-c { position: absolute; width: 6px; height: 6px; border: 0 solid var(--insp-hot); opacity: 0.95; }
+#ui .insp-ret-hover { --rx: 13px; --ry: 11px; }
+#ui .insp-ret-lock { --rx: 22px; --ry: 24px; }
+#ui .insp-tl { left: calc(-1 * var(--rx)); top: calc(-1 * var(--ry)); border-left-width: 1px; border-top-width: 1px; }
+#ui .insp-tr { left: calc(var(--rx) - 6px); top: calc(-1 * var(--ry)); border-right-width: 1px; border-top-width: 1px; }
+#ui .insp-bl { left: calc(-1 * var(--rx)); top: calc(var(--ry) - 6px); border-left-width: 1px; border-bottom-width: 1px; }
+#ui .insp-br { left: calc(var(--rx) - 6px); top: calc(var(--ry) - 6px); border-right-width: 1px; border-bottom-width: 1px; }
+#ui .insp-leader { height: 0; border-top: 1px solid var(--ui); opacity: 0.35; will-change: transform; }
+#ui .insp-leader::after { content: ""; position: absolute; right: 0; top: -6px; height: 12px; border-right: 1px solid var(--ui); }
+
+/* the hover card and the readout */
+#ui .insp-card, #ui .insp-readout { white-space: normal; background: rgba(3,3,4,0.96); }
+#ui .insp-card { width: calc(46 * var(--cw)); padding: calc(0.5 * var(--ch)) calc(2 * var(--cw)) var(--ch);
+  border: 1px solid rgba(165,172,178,0.35); will-change: transform; }
+#ui .insp-readout { left: auto; right: calc(2 * var(--cw)); width: calc(48 * var(--cw)); padding: var(--ch) 0; }
+#ui .insp-console .insp-readout { top: calc(3 * var(--ch)); bottom: calc(9.25 * var(--ch)); right: 0; padding: var(--ch) calc(2 * var(--cw));
+  border-left: 1px solid rgba(165,172,178,0.15); background: rgb(3,3,4); overflow: hidden; }
+#ui .insp-head { display: flex; justify-content: space-between; margin-bottom: var(--ch); }
+#ui .insp-title { color: var(--ui-bright); font-weight: 700; }
+#ui .insp-esc { opacity: 0.4; }
+#ui .insp-row { display: flex; }
+#ui .insp-k { flex: none; width: calc(12 * var(--cw)); opacity: 0.45; }
+#ui .insp-v { flex: 1; color: var(--ui-bright); opacity: 0.9; }
+#ui .insp-now { color: var(--insp-hot); opacity: 1; }
+#ui .insp-sub { margin-top: var(--ch); opacity: 0.45; }
+#ui .insp-spark { display: block; width: 100%; height: var(--ch); margin-top: 2px; }
+#ui .insp-foot { margin-top: calc(0.5 * var(--ch)); opacity: 0.5; }
+#ui .insp-fires { display: grid; grid-template-columns: 1fr 1fr; column-gap: calc(2 * var(--cw)); }
+#ui .insp-fire { display: flex; color: var(--ui-bright); opacity: 0.85; cursor: pointer; }
+#ui .insp-fire:hover { color: var(--insp-hot); opacity: 1; }
+#ui .insp-fw { flex: 1; overflow: hidden; white-space: pre; text-overflow: ellipsis; }
+#ui .insp-fv { flex: none; margin-left: var(--cw); }
+#ui .insp-dim { opacity: 0.4; }
+#ui .insp-pos { margin-top: var(--ch); }
+#ui .insp-pos .insp-v { color: var(--ui); opacity: 0.55; }
+#ui .insp-slots { margin-top: var(--ch); }
+#ui .insp-slots .insp-k { width: calc(17 * var(--cw)); }
+#ui .insp-slot .insp-k { opacity: 0.3; }
+#ui .insp-slot .insp-v { color: var(--ui); opacity: 0.25; }
+
+/* clickable words (U3's subtitles, transcript, tape): a pointer, nothing else */
+#ui [data-token] { cursor: pointer; }
+
+/* top left, under U3's legend + status: the lock caption and the `/` command line */
+#ui .insp-caption { left: calc(2 * var(--cw)); top: calc(7 * var(--ch)); opacity: 0.45; }
+#ui .insp-cmd { left: calc(2 * var(--cw)); top: calc(8 * var(--ch)); display: flex; opacity: 0.4; }
+#ui .insp-cmd-mark { margin-right: var(--cw); }
+#ui .insp-cmd-input { display: none; width: calc(14 * var(--cw)); background: transparent; border: 0; outline: 0; padding: 0;
+  color: var(--ui-bright); font: inherit; letter-spacing: inherit; caret-color: var(--ink); }
+#ui .insp-cmd.insp-open { opacity: 1; }
+#ui .insp-cmd.insp-open .insp-cmd-input { display: block; }
+#ui .insp-cmd-msg { opacity: 1; }
+#ui .insp-cmd.insp-open .insp-cmd-msg { opacity: 0.6; }
+#ui .insp-cmd-msg.insp-err { color: var(--insp-ink); opacity: 1; }
+#ui .insp-console .insp-caption, #ui .insp-console .insp-cmd { left: calc(42 * var(--cw)); }

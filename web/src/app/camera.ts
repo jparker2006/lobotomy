@@ -41,9 +41,10 @@ export interface CameraRig {
   zoomAt(factor: number, fx: number, fy: number, aspect: number): void;
 
   // ---- orchestrator addition (integration of U3 + U4) ----
-  /** Screen share covered by side panels (fractions of the width, e.g. the Console). overview() and faceLayer() then frame
-   *  the deck between them, and the current view is re-framed over ms. {l: 0, r: 0} = full width. */
-  setFrame(f: { l: number; r: number }, ms?: number): Promise<void>;
+  /** Screen share covered by side panels (fractions of the width), per owner ("console", "inspect", …). The rig combines
+   *  all owners (widest on each side); overview() and faceLayer() then frame the deck between them, and the current view
+   *  is re-framed over ms. {l: 0, r: 0} removes that owner's panels. */
+  setFrame(f: { l: number; r: number }, ms?: number, owner?: string): Promise<void>;
 }
 
 export const OVERVIEW: Pose = { ...DEFAULT_VIEW };
@@ -138,6 +139,7 @@ export function createCameraRig(clock: Clock, start: Pose = OVERVIEW): CameraRig
   let tween: { from: Pose; to: Pose; t0: number; dur: number; done: () => void } | null = null;
   let idleSince: number | null = null; // clock time of the last input or tween arrival (null: the first update sets it)
   let angle = 0, driftEnabled = false, frame = { l: 0, r: 0 };
+  const frames = new Map<string, { l: number; r: number }>();
 
   function finish() { const d = tween?.done; tween = null; d?.(); }
   /** Keep the drifted view as the new resting pose, so stopping the drift never snaps the camera back. */
@@ -159,9 +161,11 @@ export function createCameraRig(clock: Clock, start: Pose = OVERVIEW): CameraRig
     pose,
     overview: (ms = 900) => rig.flyTo(framePose(OVERVIEW, frame), ms),
     faceLayer: (l, ms = 900) => rig.flyTo(framePose(facePose(l), frame), ms),
-    setFrame(f, ms = 500) {
+    setFrame(f, ms = 500, owner = "default") {
       const target = tween ? tween.to : base, unframed = unframePose(target, frame);
-      frame = { l: f.l, r: f.r };
+      frames.set(owner, { l: f.l, r: f.r });
+      frame = { l: 0, r: 0 };
+      for (const v of frames.values()) { frame.l = Math.max(frame.l, v.l); frame.r = Math.max(frame.r, v.r); }
       return rig.flyTo(framePose(unframed, frame), ms);
     },
     flyTo(p, ms) {

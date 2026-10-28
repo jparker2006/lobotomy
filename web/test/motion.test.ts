@@ -249,3 +249,17 @@ test("setFrame: framePose/unframePose round-trip, and overview() stays framed wh
   void rig.setFrame({ l: 0, r: 0 }, 0);
   assert.ok(Math.abs(rig.pose.center[0] - OVERVIEW.center[0]) < 1e-9 && Math.abs(rig.pose.fov - OVERVIEW.fov) < 1e-9);
 });
+
+test("setFrame owners combine widest-per-side (Console + lock-on readout) and clear independently", async () => {
+  const { framePose, createCameraRig, OVERVIEW } = await import("../src/app/camera.js");
+  let t = 0;
+  const rig = createCameraRig({ now: () => t } as any);
+  void rig.setFrame({ l: 0.3, r: 0.2 }, 0, "console");
+  void rig.setFrame({ l: 0, r: 0.35 }, 0, "inspect");
+  void rig.overview(0);
+  let want = framePose(OVERVIEW, { l: 0.3, r: 0.35 });
+  assert.ok(Math.abs(rig.pose.center[0] - want.center[0]) < 1e-9 && Math.abs(rig.pose.fov - want.fov) < 1e-9);
+  void rig.setFrame({ l: 0, r: 0 }, 0, "inspect");
+  want = framePose(OVERVIEW, { l: 0.3, r: 0.2 });
+  assert.ok(Math.abs(rig.pose.center[0] - want.center[0]) < 1e-9 && Math.abs(rig.pose.fov - want.fov) < 1e-9);
+});
