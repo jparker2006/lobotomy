@@ -310,6 +310,18 @@ def cmd_fit(a):
                                 "logp_coherent": float(lp[br == 0].mean()), "logp_broken": float(lp[br == 1].mean()),
                                 "distinct2_coherent": float(d2[br == 0].mean()),
                                 "distinct2_broken": float(d2[br == 1].mean())}}
+    # honesty checks: a doubling ladder lets a constant guess score well on "within one step", and a range
+    # is only safe if 80% of the KL cliff stays below the first dose judges called broken
+    res["baselines"] = {"best_constant_within_one": float(max(np.mean(np.abs(c - judged) <= 1) for c in range(len(DOSES) + 1))),
+                        "best_constant_exact": float(max(np.mean(c == judged) for c in range(len(DOSES) + 1)))}
+    edges = np.array(DOSES + [np.inf])
+    cd = np.array([cliff_dose(kl[i], kappa) or DOSES[-1] for i in range(len(keys))])
+    from scipy.stats import spearmanr
+    rho = float(spearmanr(cd, judged).correlation)
+    res["safety"] = {"kl_cliff_earlier_than_judged": float(np.mean(pred[best] < judged)),
+                     "kl_cliff_later_than_judged": float(np.mean(pred[best] > judged)),
+                     "slider_max_reaches_judged_broken_dose": float(np.mean(0.8 * cd >= edges[judged])),
+                     "spearman_kl_cliff_vs_judged": rho}
     (OUT / "calib_results.json").write_text(json.dumps(res, indent=1))
     print(json.dumps(res, indent=1))
 

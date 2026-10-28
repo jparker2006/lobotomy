@@ -25,15 +25,18 @@ BOOT = ("set -e; apt-get update -qq; DEBIAN_FRONTEND=noninteractive apt-get inst
 def key():
     for line in Path(os.environ.get("RUNPOD_ENV", "/code/work/.env.runpod")).read_text().splitlines():
         if line.startswith("RUNPOD_API_KEY="):
-            return line.split("=", 1)[1].strip().strip('"')
+            return line.split("=", 1)[1].strip().strip('\'"')
     raise SystemExit("RUNPOD_API_KEY not found")
 
 
 def api(method, path, body=None):
     req = urllib.request.Request(API + path, method=method, data=json.dumps(body).encode() if body else None,
                                  headers={"Authorization": f"Bearer {key()}", "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        t = r.read()
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            t = r.read()
+    except urllib.error.HTTPError as e:
+        raise SystemExit(f"RunPod {method} {path}: {e.code} {e.read().decode()[:800]}")
     return json.loads(t) if t else {}
 
 
@@ -51,7 +54,7 @@ def pod():
 def cmd_gpus(a):
     for g in sorted(api("GET", "/catalog/gpus")["gpus"], key=lambda g: g["price"].get("community") or 99):
         if g.get("community") and g["memory"] >= 16:
-            print(f'{g["price"]["community"]:5.2f} $/h  {g["memory"]:3d} GB  {g["availability"]:7s} {g["id"]}')
+            print(f'{g["price"]["community"]:5.2f} $/h  {g["memory"]:3d} GB  {str(g.get("availability", "?")):7s} {g["id"]}')
 
 
 def cmd_up(a):
