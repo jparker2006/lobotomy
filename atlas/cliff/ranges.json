@@ -1,0 +1,93 @@
+{
+ "format": "raw little-endian float16 [28, 3072, 2] = (layer, neuron, (+ pole, - pole)): the largest safe |dose| per sign, in units of the layer's median residual norm; NaN = not a BH survivor",
+ "rule": "80% of the dose where teacher-forced KL(steered || base) crosses kappa (linear interpolation along the ladder, KL(0) = 0); capped at 80% of 4 when KL stays under kappa",
+ "kappa": 1.4107364416122437,
+ "ladder": [
+  0.25,
+  0.5,
+  1.0,
+  2.0,
+  4.0
+ ],
+ "median_resid_norm": [
+  7.8416666984558105,
+  10.257071495056152,
+  12.375682830810547,
+  15.790956497192383,
+  17.65420150756836,
+  21.102760314941406,
+  22.844858169555664,
+  25.6575984954834,
+  27.619131088256836,
+  31.33111572265625,
+  38.20637893676758,
+  45.7160758972168,
+  48.704803466796875,
+  51.1803092956543,
+  52.847145080566406,
+  59.091331481933594,
+  74.26234436035156,
+  94.91385650634766,
+  117.7287368774414,
+  145.689208984375,
+  187.06060791015625,
+  234.89906311035156,
+  289.29730224609375,
+  341.81475830078125,
+  421.5818176269531,
+  513.2377319335938,
+  578.1065673828125,
+  534.7318725585938
+ ],
+ "survivors": 21879,
+ "signs_without_cliff_in_ladder": 0,
+ "calibration": {
+  "n_neuron_signs": 202,
+  "kappa": 1.4107364416122437,
+  "in_sample": 0.995049504950495,
+  "leave_one_out": 0.9851485148514851,
+  "pass": true,
+  "exact_step": 0.5099009900990099,
+  "judge_agreement_on_repeats": 0.9785478547854786,
+  "n_repeats": 606,
+  "judged_cliff_hist": [
+   6,
+   28,
+   93,
+   74,
+   1,
+   0
+  ],
+  "kl_cliff_hist": [
+   8,
+   42,
+   150,
+   2,
+   0,
+   0
+  ],
+  "unsteered_broken_rate": 0.0,
+  "metrics_vs_judge": {
+   "broken_rate": 0.5441444426039423,
+   "logp_coherent": -1.986160084130448,
+   "logp_broken": -4.4427784505023595,
+   "distinct2_coherent": 0.9621285699286375,
+   "distinct2_broken": 0.4144823327588798
+  },
+  "baselines": {
+   "best_constant_within_one": 0.9653465346534653,
+   "best_constant_exact": 0.4603960396039604
+  },
+  "safety": {
+   "kl_cliff_earlier_than_judged": 0.47029702970297027,
+   "kl_cliff_later_than_judged": 0.019801980198019802,
+   "slider_max_reaches_judged_broken_dose": 0.0,
+   "spearman_kl_cliff_vs_judged": 0.7236104593931678
+  }
+ },
+ "gpu": {
+  "pod": "RunPod RTX 3090 (community, $0.22/h)",
+  "hours": 1.63,
+  "cost_usd": 0.36
+ }
+}
