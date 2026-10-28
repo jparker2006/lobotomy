@@ -14,7 +14,7 @@ Qwen3-0.6B runs offline on the Coralboard's 1-watt NPU, and the board also serve
 - **Where things run:** the board runs the model and the web server. The Mac's browser draws the map at `localhost:8000` via `adb forward`. Later, a rented GPU builds the neuron atlas once. Physical knobs are dropped. Steering will use on-screen sliders.
 - **Languages:** Python on the board, because Synaptics' runtime and examples are Python. TypeScript + three.js in the browser. Export and compile are Python too (the Torq toolchain). No Rust for now: it has no natural place, and whether it can drive the Torq runtime is unproven. Revisit only if Python becomes the bottleneck.
 - **Compute:** a RunPod x86 CPU pod for export and compile, with a $10 cap for v0.0.x (prepaid, auto-pay off). The agent drives it with `runpodctl` and Jake's API key, requested through a Cloudroom secret and never pasted in chat. No GPU before the atlas. The atlas budget gets decided later (Lyra's numbers suggest $10–50). jake-desktop is the free fallback.
-- **UI:** plain in v0.0.1. v0.0.2 starts with a separate UI grill and rendered mockups.
+- **UI:** plain in v0.0.1. v0.0.2's design is in [docs/ui/design.md](ui/design.md) (spec #18). The target browser is **Chrome only** (Jake doesn't use Safari, 2026-10-28). The U1 benchmark measured 60.0 fps on his M4 Air in Chrome at 3308×2146 with glow on.
 - **Process:** v0.0.1 goes grill → spec → tickets, published as GitHub issues (spec #1, tickets #2–#10 as sub-issues). v0.1.0 is mapped with a wayfinder, because its path has real unknowns.
 - **License:** MIT, public repo.
 
