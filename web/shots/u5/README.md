@@ -4,16 +4,18 @@ Cloud sandbox (no GPU): Chromium, SwiftShader WebGPU, 1440 × 900 CSS px at DPR 
 "Describe the ocean at night in three sentences." (91 tokens). The deck is composited from `deck.snapshot()` (this sandbox
 never composites WebGPU canvases); the UI is the real DOM.
 
-- `hover-overview.png`: word replay pinned at " sea" (tape click), hover on L8 N0908: `+4.7× ITS P99 · TOP 0.1%` (q8-hover).
-- `lock-slash-cmd.png`: `/L8 908` + Enter, then " sea" pinned: face-on L8, reticle, leader, docked readout (q8-lock).
-- `lock-click.png`: the same lock reached by clicking the hovered dot. `lock-console.png`: `c` while locked.
+- `lock-words.png`: `/L8 908` while pinned at " sea": the readout prints the answer, each word lit by N908's value on it
+  (amber fill = +, outline = −, current word underlined); `+ FIRES MOST ON` / `− FIRES AGAINST` (top 3% only, (Q) = in the question).
+- `prompt-subtitle-no-markup.png`: pinned at `<think>` (token 18): the subtitles show only the question; template tape bars dimmed.
+- `hover-overview.png`: pinned at " sea", hover on L8 N0908 (q8-hover). `lock-console.png`: click to lock, then `c`.
 
 **The check** (`check.mjs` + `expect.py`; sandbox tooling, `playwright-core` installed outside the repo): records nothing
 itself; it loads a recording made with `web/mockups/tools/record.py` against `server.py --backend cpu`, feeds it through
 `app.beginSession` / `app.ingest`, and compares the readout with values `expect.py` computes from the same file with numpy
-(f16 activation / p99): NOW, WORD, FIRES MOST ON (token, ×p99) at the live end and pinned at " sea"; tape and subtitle
-clicks pin their token, `space` resumes, invalid `/` input says so, `Esc` cancels / unlocks, hover picks L8 N908, click
-locks on. Also passes on `?backend=webgl2`.
+(f16 activation / p99). It checks: no template markup in the UI text or tooltips at any of the 91 tokens (Cinema + Console);
+`/L8 908` locks while pinned at `<think>` (also typed as `/L8 908`); Esc order (command line, lock, pin); NOW, WORD, the
+lit words and both fires lists equal the session's values, with " ocean", " sea", " water" under `+ FIRES MOST ON`;
+readout, tape and subtitle clicks pin their token, `space` resumes; bad input says so; hover picks L8 N908; click locks on. Also passes on `?backend=webgl2`.
 
 ```sh
 python server/server.py --backend cpu            # venv with torch + transformers

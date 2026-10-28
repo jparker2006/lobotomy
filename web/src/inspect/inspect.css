@@ -32,13 +32,20 @@
 #ui .insp-now { color: var(--insp-hot); opacity: 1; }
 #ui .insp-sub { margin-top: var(--ch); opacity: 0.45; }
 #ui .insp-spark { display: block; width: 100%; height: var(--ch); margin-top: 2px; }
+#ui .insp-words { position: relative; max-height: calc(7 * var(--ch)); overflow-y: auto; margin-top: 2px; white-space: pre-wrap;
+  color: var(--ui-bright); opacity: 0.9; scrollbar-width: thin; scrollbar-color: rgba(165,172,178,0.3) transparent; }
+#ui .insp-w { cursor: pointer; border-radius: 1px; }
+#ui .insp-w-dark { color: var(--bg); }
+#ui .insp-w-now { text-decoration: underline; text-decoration-color: var(--insp-hot); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+#ui .insp-w-future { opacity: 0.35; }
 #ui .insp-foot { margin-top: calc(0.5 * var(--ch)); opacity: 0.5; }
 #ui .insp-fires { display: grid; grid-template-columns: 1fr 1fr; column-gap: calc(2 * var(--cw)); }
 #ui .insp-fire { display: flex; color: var(--ui-bright); opacity: 0.85; cursor: pointer; }
 #ui .insp-fire:hover { color: var(--insp-hot); opacity: 1; }
 #ui .insp-fw { flex: 1; overflow: hidden; white-space: pre; text-overflow: ellipsis; }
 #ui .insp-fv { flex: none; margin-left: var(--cw); }
-#ui .insp-dim { opacity: 0.4; }
+#ui .insp-dim { opacity: 0.4; grid-column: 1 / -1; }
+#ui .insp-peak { margin-top: var(--ch); color: var(--insp-hot); cursor: pointer; }
 #ui .insp-pos { margin-top: var(--ch); }
 #ui .insp-pos .insp-v { color: var(--ui); opacity: 0.55; }
 #ui .insp-slots { margin-top: var(--ch); }
