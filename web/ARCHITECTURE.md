@@ -24,8 +24,8 @@ If you need something from another module, read the store or call the app; if th
 | `src/proto/` | `frames.ts` (T2 parser), `client.ts` (HTTP + long-poll), `session.ts` (frames of the current answer) | U2 |
 | `src/data/` | `f16.ts`, `rarity.ts` (baked table, live F, `levelOf`) | U2; **U3 adds `data/stats.ts`** |
 | `src/render/` | the WebGPU deck ([README](src/render/README.md)) | U1 built, U2 extended; **frozen**, U3–U6 only call it |
-| `src/ui/` | Cinema UI: HUD, subtitles, prompt line, tape, console (`c`), tuning console (`~`) | U3 (U2 left a minimal HUD there) |
-| `src/motion/` | orbit / zoom / pan, idle drift | U4 |
+| `src/ui/` | Cinema UI: HUD, legend, subtitles, prompt line, tape, Console panels (`c`) | U3 (U2 left a minimal HUD there) |
+| `src/motion/` | orbit / zoom / pan, idle drift, sweep pace, the tuning console (`~`) with the live fps / p95 readout, settings persistence (`localStorage`) | U4 |
 | `src/inspect/` | hover card, lock-on, `/` jump, word replay clicks | U5 |
 | `src/replay/` | record / replay files, deterministic clips | U6 |
 | `src/plain/` + `plain.html` | T2's plain grid, kept as a debug view at `/plain.html` | U2 |
@@ -63,7 +63,7 @@ Every module exports `init<Module>(app: App)`. `App` (`src/app/app.ts`):
 | `hover` | `{layer, neuron}` under the pointer or null | U5 |
 | `locked` | lock-on `{layer, neuron}` or null; while set only that layer is drawn | U5 |
 | `consoleOpen` | Console panels shown | U3 |
-| `settings` | every knob: `halfLifeTokens`, `bloomStrength`, `bloomScale`, `hazeStrength`, `cellW`, `cellH`, `sweepOn`, `driftOn`, `thresholds`, `inkHue` (use `store.setSettings(patch)`; U3 persists to localStorage) | U3 (console), anyone may read |
+| `settings` | every knob: `halfLifeTokens`, `bloomStrength`, `bloomScale`, `hazeStrength`, `cellW`, `cellH`, `sweepOn`, `driftOn`, `thresholds`, `inkHue` (use `store.setSettings(patch)`; U4 persists to localStorage) | U4 (tuning console), anyone may read |
 | `tokS` | measured tokens/s (arrivals; the server's figure after done) | app |
 | `elapsedSec` | seconds since the question | app |
 | `replay` | null, or `{backend, recordedAt, power?}` while replaying; `power` = measured R12 record only | U6 |
@@ -73,6 +73,17 @@ Events: `store.on(name, fn)` returns an unsubscribe function.
 - `change:<field>` (new value) for every field, and `change` (list of changed fields) once per `set()`.
 - `session` (a new session began), `arrive` `{index}` (a frame is in the session), `token` `{index}` (a token reached the deck),
   `done` (done header), `rarity` (F changed), `frame` `{t, dt}` (after every drawn frame: move DOM overlays that track the deck here).
+
+## Shared rules for parallel tickets (set by the orchestrator)
+
+- **Keys.** `c` = Console (U3), `~` = tuning console (U4), `/`, `Esc`, `space` = inspect (U5). Every key handler ignores events
+  whose target (or `document.activeElement`) is an `input`, `textarea` or `[contenteditable]`, so typing a question never toggles
+  panels. Register handlers in your own module only.
+- **Clickable words.** U3 renders every word of the subtitles, the transcript and every tape bar with `data-token="<k>"` (the
+  session token index) and the class `interactive`. U5 owns what a click does (pin that token, `space` back to live) by event
+  delegation on `app.ui`; U3 adds no click behaviour to those elements.
+- **Overlays.** Each module adds its own elements inside `app.ui` with its class prefix (`.ui-`, `.mot-`, `.insp-`, `.rep-`) and
+  moves deck-tracking overlays on the `frame` event.
 
 ## Frozen APIs
 
