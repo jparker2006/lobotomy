@@ -1,0 +1,124 @@
+{
+ "files": {
+  "coact_yz.f16": "the layout: co-activation embedding, shared across layers",
+  "wdown_yz.f16": "baseline: per-layer UMAP of W_down columns (axes not shared across layers)"
+ },
+ "format": "raw little-endian float16, shape [28, 3072, 2] = (layer, neuron, (y, z)), each axis in [-1, 1]; x = layer",
+ "method": {
+  "positions": 16384,
+  "source": "R6 dev+test windows (FineWeb-Edu, UltraChat), positions >= 1",
+  "pole_aligned": true,
+  "pca_dims": 64,
+  "pca_explained": 0.2658,
+  "umap": {
+   "n_components": 2,
+   "n_neighbors": 15,
+   "min_dist": 0.1,
+   "random_state": 0,
+   "metric": "cosine"
+  }
+ },
+ "score": {
+  "k": 10,
+  "min_labelled": 20,
+  "layers": {
+   "L21": {
+    "n": 29,
+    "coact": 0.002496665809303522,
+    "wdown": 0.0004500417853705585,
+    "diff": 0.0020466241985559464
+   },
+   "L22": {
+    "n": 91,
+    "coact": -0.0015309839509427547,
+    "wdown": 0.0029476266354322433,
+    "diff": -0.004478610586374998
+   },
+   "L23": {
+    "n": 137,
+    "coact": 0.0009436864056624472,
+    "wdown": 0.008967215195298195,
+    "diff": -0.008023528382182121
+   },
+   "L24": {
+    "n": 221,
+    "coact": 0.002358970930799842,
+    "wdown": 0.003942987881600857,
+    "diff": -0.001584016950801015
+   },
+   "L25": {
+    "n": 356,
+    "coact": 0.0051620518788695335,
+    "wdown": 0.006749053951352835,
+    "diff": -0.0015870020724833012
+   },
+   "L26": {
+    "n": 728,
+    "coact": 0.002461498137563467,
+    "wdown": 0.00543789891526103,
+    "diff": -0.0029764012433588505
+   },
+   "L27": {
+    "n": 1383,
+    "coact": 0.003288247622549534,
+    "wdown": 0.007590437773615122,
+    "diff": -0.004302190616726875
+   }
+  },
+  "label_agreement": {
+   "n": 2945,
+   "coact": 0.002974875673575798,
+   "wdown": 0.006533183043598117,
+   "diff": {
+    "mean": -0.003558307370022319,
+    "ci95": [
+     -0.004586198679558895,
+     -0.002536443918690415
+    ]
+   },
+   "pass": false
+  },
+  "cross_layer_coact": {
+   "mean": 0.006222802192368446,
+   "lo": 0.005356787510505322,
+   "hi": 0.007068981132149766
+  },
+  "neighbour_coactivation": {
+   "coact": 0.010784223687184683,
+   "wdown": 0.001953818388040227,
+   "random_same_layer": 0.0002236859253536586,
+   "diff": {
+    "mean": 0.008830405299144455,
+    "lo": 0.008606527327698314,
+    "hi": 0.009050244046306437
+   }
+  }
+ },
+ "exploratory_not_preregistered": {
+  "coact_joint (pre-registered)": {
+   "agree": 0.0029748757369816303,
+   "minus_wdown": [
+    -0.003558307370022319,
+    -0.004586198679558895,
+    -0.002536443918690415
+   ]
+  },
+  "coact_per_layer": {
+   "agree": 0.0037979844491928816,
+   "minus_wdown": [
+    -0.0027351985560613093,
+    -0.0037480135497293975,
+    -0.0017289391352284347
+   ]
+  },
+  "hybrid_reads_writes": {
+   "agree": 0.0035235206596553326,
+   "minus_wdown": [
+    -0.0030096621586228065,
+    -0.004029117041917324,
+    -0.0019750381522955843
+   ]
+  },
+  "wdown": 0.006533183157444
+ }
+}
