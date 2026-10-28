@@ -188,27 +188,21 @@ export function initInspect(app: App): void {
     } else readout.box.style.top = "";
   }
 
-  // ---- camera framing: the readout is a side panel (camera.setFrame), next to U3's Console panels ----
+  // ---- camera framing: the readout is a side panel; the rig combines it with other owners' panels (U3's Console) ----
   function frameShare() {
-    const s = store.state, W = Math.max(1, innerWidth);
-    let l = 0, r = 0;
-    if (s.consoleOpen) { // U3's Console framing (ui/index.ts frameDeck): its panel widths
-      l = ((app.ui.querySelector(".ui-left") as HTMLElement | null)?.offsetWidth ?? 0) / W;
-      r = ((app.ui.querySelector(".ui-right") as HTMLElement | null)?.offsetWidth ?? 0) / W;
-    }
-    if (s.locked) r = Math.max(r, ((READOUT_COLS + 6) * CW) / W);
-    return { l, r };
+    const W = Math.max(1, innerWidth);
+    return { l: 0, r: store.state.locked ? ((READOUT_COLS + 6) * CW) / W : 0 };
   }
 
   function lock(ref: NeuronRef) {
     const was = store.state.locked;
     store.set({ locked: ref });
-    if (!was || was.layer !== ref.layer) { void camera.setFrame(frameShare(), 0); void camera.faceLayer(ref.layer); }
+    if (!was || was.layer !== ref.layer) { void camera.setFrame(frameShare(), 0, "inspect"); void camera.faceLayer(ref.layer); }
   }
   function unlock() {
     if (!store.state.locked) return;
     store.set({ locked: null });
-    void camera.setFrame(frameShare(), 0);
+    void camera.setFrame(frameShare(), 0, "inspect");
     void camera.overview();
   }
 
@@ -291,7 +285,6 @@ export function initInspect(app: App): void {
   };
   store.on("change", (keys) => {
     if (keys.includes("settings")) syncInk();
-    if (keys.includes("consoleOpen") && store.state.locked) void camera.setFrame(frameShare(), 500); // after U3's own setFrame
     if (keys.some((k) => ["hover", "locked", "liveIndex", "pinnedIndex", "session", "consoleOpen", "settings", "meta"].includes(k))) render();
   });
   store.on("rarity", render);

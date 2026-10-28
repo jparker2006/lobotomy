@@ -218,7 +218,7 @@ export function initUI(app: App) {
   // faceLayer() and double-click stay framed while the Console is open (camera.setFrame; undone on close).
   function frameDeck(open: boolean) {
     const W = Math.max(1, innerWidth);
-    void app.camera.setFrame(open ? { l: left.offsetWidth / W, r: right.offsetWidth / W } : { l: 0, r: 0 }, 500);
+    void app.camera.setFrame(open ? { l: left.offsetWidth / W, r: right.offsetWidth / W } : { l: 0, r: 0 }, 500, "console");
   }
   function renderConsole() {
     root.classList.toggle("ui-console", store.state.consoleOpen);
