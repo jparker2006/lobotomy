@@ -106,7 +106,7 @@ The page reads an optional per-neuron record and shows grey slots until the data
 
 ## Performance budget (E6)
 
-Target: p95 frame time ≤ 16.7 ms and ≤ 1% of frames over 33 ms on Jake's MacBook Air (Mac16,13), Safari 26 and Chrome, full window, native resolution, bloom and trails on, 60 s of live stream.
+Target: p95 frame time ≤ 16.7 ms (frame intervals snapped to whole vsync periods) and ≤ 1% of frames over 33 ms on Jake's MacBook Air (Mac16,13) in **Chrome**, full window, native resolution, bloom and trails on, 60 s of live stream. Chrome is Jake's browser; Safari is untested and not a target. U1 measured the pipeline at 60.0 fps in every run (Chrome 156, Apple M4 WebGPU, 3308 × 2146 px, DPR 2; [#19](https://github.com/jparker2006/lobotomy/issues/19)).
 
 | Work per frame | Estimate on the Air's GPU |
 |---|---|
