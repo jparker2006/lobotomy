@@ -7,6 +7,7 @@ import type { Token } from "../proto/session.js";
 import { loadCSS } from "../app/css.js";
 import { provenance } from "../app/provenance.js";
 import { rarest, tape } from "../data/stats.js";
+import { cleanText, displayText, isTemplate } from "../data/display.js";
 
 const LABELLED = [0, 9, 18, 27], CW = 9, SUB_CW = 18, BAR_MAX = 9, TAPE_H = 16, LAYER_DOTS = 22;
 const pad = (n: number, w: number) => String(n).padStart(w, "0");
@@ -144,8 +145,9 @@ export function initUI(app: App) {
     const s = store.state, sess = s.session, { k, tok } = current();
     if (!sess || !tok) return;
     const kind = tok.kind, chars: { c: string; k: number }[] = [];
-    for (let j = 0; j <= k; j++) if (sess.tokens[j].kind === kind) for (const c of sess.tokens[j].text) chars.push({ c, k: j });
-    if (kind === "gen" && ended(k)) for (const c of sess.done!.text) chars.push({ c, k });
+    // the chat template is never printed (data/display.ts): only the question and the answer
+    for (let j = 0; j <= k; j++) if (sess.tokens[j].kind === kind) for (const c of displayText(sess, j)) chars.push({ c, k: j });
+    if (kind === "gen" && ended(k)) for (const c of cleanText(sess.done!.text)) chars.push({ c, k });
     const lines = wrapChars(chars, subWidth).slice(-2);
     lines.forEach((line, li) => {
       const row = el(li === lines.length - 1 ? "ui-subline ui-last" : "ui-subline", sub);
@@ -168,7 +170,8 @@ export function initUI(app: App) {
     const ans = el("ui-tanswer", transcript), { k } = current();
     for (let j = 0; j <= k; j++) {
       const t = sess.tokens[j];
-      if (t.kind === "gen") wordSpan(ans, t.text + (j === k && ended(k) ? sess.done!.text : ""), j, j === k);
+      const text = t.kind === "gen" ? displayText(sess, j) + (j === k && ended(k) ? cleanText(sess.done!.text) : "") : "";
+      if (text) wordSpan(ans, text, j, j === k);
     }
     if (!ended(k)) cursor(ans);
     transcript.scrollTop = transcript.scrollHeight;
@@ -204,7 +207,8 @@ export function initUI(app: App) {
     toks.forEach((t, j) => {
       const b = barEls[j], h = Math.max(1, Math.round(TAPE_H * Math.min(1, heights[j] / scale)));
       b.style.setProperty("--h", `${h}px`);
-      b.className = `ui-bar interactive${j === k ? " ui-cur" : j > live ? " ui-future" : t.kind === "prompt" ? " ui-p" : ""}`;
+      // template tokens keep their bar (real data), dimmed, with no text
+      b.className = `ui-bar interactive${j === k ? " ui-cur" : j > live ? " ui-future" : isTemplate(sess!, j) ? " ui-tmpl" : t.kind === "prompt" ? " ui-p" : ""}`;
     });
   }
 

@@ -35,6 +35,7 @@
 #ui .ui-bar { flex: none; width: var(--w, 9px); margin-right: var(--gap, 1px); color: var(--ui); opacity: 0.6;
   background: linear-gradient(to top, currentColor var(--h, 1px), transparent var(--h, 1px)); }
 #ui .ui-bar.ui-p { opacity: 0.28; }
+#ui .ui-bar.ui-tmpl { opacity: 0.14; }
 #ui .ui-bar.ui-future { opacity: 0.12; }
 #ui .ui-bar.ui-cur { color: var(--hot); opacity: 1; }
 #ui .ui-label { left: 0; top: 0; color: var(--ui-bright); opacity: 0.6; will-change: transform; }

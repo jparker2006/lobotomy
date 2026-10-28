@@ -9,9 +9,10 @@ import { loadCSS } from "../app/css.js";
 import { inkOf, hotOf } from "../app/params.js";
 import { typing } from "../ui/index.js";
 import { neuronPos } from "../render/geometry.js";
-import { PER_LAYER } from "../render/rarity.js";
+import { PER_LAYER, rarityF } from "../render/rarity.js";
+import { displayText, isTemplate } from "../data/display.js";
 import {
-  type NeuronInfo, type Spark, firesMostOn, fmtR, nowText, parseCommand, quoteWord, refName, slotRows, sparkValues,
+  type NeuronInfo, type Spark, type Fire, firesSplit, fmtR, nowText, parseCommand, quoteWord, refName, slotRows, sparkValues,
 } from "./model.js";
 
 export type { NeuronInfo } from "./model.js";
@@ -52,11 +53,12 @@ export function initInspect(app: App): void {
     const now = row("NOW"), word = row("WORD");
     now.classList.add("insp-now");
     el("insp-sub", box, "div", "THIS ANSWER, WORD BY WORD");
-    const spark = el("insp-spark", box, "canvas");
-    const p = { box, title, now, word, spark, fires: null as HTMLElement | null, slots: null as HTMLElement | null };
+    // the card draws a sparkline; the readout prints the answer itself, each word lit by this neuron's value on it
+    const spark = full ? null : el("insp-spark", box, "canvas");
+    const words = full ? el("insp-words interactive", box) : null;
+    const p = { box, title, now, word, spark, words, lastNow: -2, fires: null as HTMLElement | null, slots: null as HTMLElement | null };
     if (full) {
-      el("insp-sub", box, "div", "FIRES MOST ON (THIS ANSWER)");
-      p.fires = el("insp-fires", box);
+      p.fires = el("insp-firebox", box);
       const pos = el("insp-row insp-pos", box);
       el("insp-k", pos, "span", "POSITION");
       el("insp-v", pos, "span", "INDEX ORDER (ARBITRARY UNTIL THE v0.1.0 LAYOUT)");
@@ -99,6 +101,33 @@ export function initInspect(app: App): void {
     });
   }
 
+  /** The answer's words, each lit by |r| on it: amber fill for +, amber outline for −; the current word underlined. */
+  function drawWords(p: ReturnType<typeof panel>, sparks: Spark[], now: number) {
+    const box = p.words!, sess = store.state.session!, ink = inkOf(store.state.settings.inkHue).map((x) => Math.round(255 * x)).join(",");
+    box.textContent = "";
+    let cur: HTMLElement | null = null, prevSpace = true;
+    for (const sp of sparks) {
+      const m = /^(\s*)([\s\S]*?)(\s*)$/.exec(displayText(sess, sp.k))!;
+      if (m[1] && !prevSpace) box.append(" ");
+      if (!m[2]) { prevSpace = prevSpace || !!m[1]; continue; }
+      const e = el(`insp-w${sp.state === "now" ? " insp-w-now" : sp.state === "future" ? " insp-w-future" : ""}`, box, "span", m[2]);
+      e.dataset.token = String(sp.k); // click = pin that word
+      e.dataset.r = String(sp.v);
+      e.title = `${fmtR(sp.v)}× p99`;
+      const a = sp.h < 0.08 ? 0 : 0.06 + 0.84 * sp.h ** 1.5; // steep: the few strong words stand out
+      if (a && sp.v > 0) { e.style.background = `rgba(${ink},${a.toFixed(3)})`; if (a > 0.45) e.classList.add("insp-w-dark"); }
+      else if (a) e.style.boxShadow = `inset 0 0 0 1px rgba(${ink},${Math.min(1, a + 0.15).toFixed(3)})`;
+      if (sp.state === "now") cur = e;
+      prevSpace = !!m[3];
+      if (m[3]) box.append(" ");
+    }
+    if (!box.childElementCount) el("insp-dim", box, "span", "NO WORDS YET");
+    if (cur && p.lastNow !== now) { // keep the current word in view when it changes; otherwise leave the user's scroll alone
+      if (cur.offsetTop < box.scrollTop || cur.offsetTop + cur.offsetHeight > box.scrollTop + box.clientHeight) box.scrollTop = cur.offsetTop - box.clientHeight / 2;
+    }
+    p.lastNow = now;
+  }
+
   function fill(p: ReturnType<typeof panel>, ref: NeuronRef) {
     const s = store.state, sess = s.session, k = nowIndex(), K = globalIndex(ref), info = infoSource?.(ref) ?? null;
     const tok = sess && k >= 0 ? sess.tokens[k] : null;
@@ -107,21 +136,43 @@ export function initInspect(app: App): void {
       const v = tok.r[K];
       p.now.textContent = nowText(v, app.rarity.table());
       p.now.dataset.r = String(v);
-      p.word.textContent = quoteWord(tok.text);
+      const w = displayText(sess!, k); // the chat template is never printed (data/display.ts)
+      p.word.textContent = w ? quoteWord(w) : "— (CHAT TEMPLATE)";
     } else { p.now.textContent = "—"; delete p.now.dataset.r; p.word.textContent = "—"; }
-    const toks = sess ? sess.tokens : [], upTo = Math.max(s.liveIndex, k);
-    drawSpark(p.spark, sparkValues(toks, K, k, upTo));
-    if (p.fires) {
-      p.fires.textContent = "";
-      for (const f of firesMostOn(toks, K, 5, upTo)) {
-        const e = el("insp-fire interactive", p.fires, "span");
-        e.dataset.token = String(f.k); // click = pin that word (word replay)
-        e.dataset.r = String(f.v);
-        el("insp-fw", e, "span", quoteWord(f.text));
-        el("insp-fv", e, "span", `${fmtR(f.v)}×`);
+    const toks = sess ? sess.tokens : [], upTo = Math.max(s.liveIndex, k), skip = (j: number) => !!sess && isTemplate(sess, j);
+    const sparks = sparkValues(toks, K, k, upTo, skip);
+    if (p.spark) drawSpark(p.spark, sparks);
+    if (p.words && sess) drawWords(p, sparks, k);
+    else if (p.words) p.words.textContent = "";
+    if (p.fires && sess) {
+      // split by sign, visible words only, and only where the neuron is in its top 3% (ladder level >= 2 under the live F)
+      const th = s.settings.thresholds[1] ?? 0.97, F = app.rarity.table(), topTxt = `TOP ${+((1 - th) * 100).toFixed(1)}%`;
+      const fr = firesSplit(toks, K, { passes: (v) => rarityF(F, Math.abs(v)) >= th, hidden: skip, display: (j) => displayText(sess, j), upTo });
+      const box = p.fires;
+      box.textContent = "";
+      if (fr.hiddenPeak) {
+        const e = el("insp-peak interactive", box, "div", `PEAK ${fmtR(fr.hiddenPeak.v)}× ON A HIDDEN SETUP TOKEN (CHAT TEMPLATE)`);
+        e.dataset.token = String(fr.hiddenPeak.k);
+        e.dataset.r = String(fr.hiddenPeak.v);
       }
-      if (!p.fires.childElementCount) el("insp-dim", p.fires, "span", "NO WORDS YET");
-    }
+      const list = (title: string, cls: string, items: Fire[]) => {
+        el("insp-sub", box, "div", title);
+        const g = el(`insp-fires ${cls}`, box);
+        for (const f of items) {
+          const e = el("insp-fire interactive", g, "span");
+          e.dataset.token = String(f.k); // click = pin that word (word replay)
+          e.dataset.r = String(f.v);
+          if (f.kind === "prompt") e.title = "in the question";
+          el("insp-fw", e, "span", quoteWord(f.text) + (f.kind === "prompt" ? " (Q)" : ""));
+          el("insp-fv", e, "span", `${fmtR(f.v)}×`);
+        }
+        if (!items.length) el("insp-dim", g, "span", `NONE ABOVE THE ${topTxt}`);
+      };
+      if (fr.pos.length || fr.neg.length || !fr.hiddenPeak) {
+        list("+ FIRES MOST ON", "insp-fires-pos", fr.pos);
+        list("− FIRES AGAINST", "insp-fires-neg", fr.neg);
+      }
+    } else if (p.fires) p.fires.textContent = "";
     if (p.slots) {
       p.slots.textContent = "";
       for (const r of slotRows(info)) {
@@ -273,7 +324,9 @@ export function initInspect(app: App): void {
   addEventListener("keydown", (e) => {
     if (e.ctrlKey || e.metaKey || e.altKey || typing(e)) return;
     if (e.key === "/") { e.preventDefault(); openCmd(); }
+    // Esc: the command line closes itself (its own handler); then unlock; then unpin
     else if (e.key === "Escape" && store.state.locked) { e.preventDefault(); unlock(); }
+    else if (e.key === "Escape" && store.state.pinnedIndex !== null) { e.preventDefault(); app.unpin(); }
     else if (e.key === " " && store.state.pinnedIndex !== null) { e.preventDefault(); app.unpin(); }
   });
 

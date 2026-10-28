@@ -32,9 +32,9 @@ export function fmtR(r: number): string {
 /** A token's text as the readout shows it: quoted, with whitespace made visible (JSON escapes). */
 export const quoteWord = (text: string) => JSON.stringify(text);
 
-/** `/` command: "L8 908", "8 908", "l8n908", "L08 N0908", "8:908". */
+/** `/` command: "L8 908", "8 908", "l8n908", "L08 N0908", "8:908" (a typed leading "/" is fine). */
 export function parseCommand(s: string, layers = 28, neurons = 3072): { ref: NeuronRef } | { error: string } {
-  const m = /^\s*l?\s*(\d{1,3})\s*(?:[\s:,.·/]+\s*n?|n)\s*(\d{1,5})\s*$/i.exec(s);
+  const m = /^\s*\/?\s*l?\s*(\d{1,3})\s*(?:[\s:,.·/]+\s*n?|n)\s*(\d{1,5})\s*$/i.exec(s);
   if (!m) return { error: `NOT A NEURON: TYPE L<LAYER> <NEURON>, E.G. L8 908` };
   const layer = Number(m[1]), neuron = Number(m[2]);
   if (layer >= layers) return { error: `NO LAYER ${layer}: LAYERS ARE 0–${layers - 1}` };
@@ -59,14 +59,15 @@ interface Tok { kind: "prompt" | "gen"; text: string; r: Float32Array }
 export interface Spark { k: number; v: number; h: number; state: "past" | "now" | "future" }
 
 /**
- * The per-word sparkline over this answer (generated tokens up to `upTo`): one bar per word, h = |v| / max |v| (0..1), sign
- * in v. Words after `now` (a pinned word) are "future".
+ * The per-word values over this answer (generated tokens up to `upTo`, minus `skip`ped template tokens): one entry per word,
+ * h = |v| / max |v| (0..1), sign in v. Words after `now` (a pinned word) are "future". Feeds the hover card's sparkline and
+ * the readout's highlighted words.
  */
-export function sparkValues(tokens: readonly Tok[], index: number, now: number, upTo = tokens.length - 1): Spark[] {
+export function sparkValues(tokens: readonly Tok[], index: number, now: number, upTo = tokens.length - 1, skip: (k: number) => boolean = () => false): Spark[] {
   const out: Spark[] = [];
   let mx = 0;
   for (let k = 0; k <= upTo && k < tokens.length; k++) {
-    if (tokens[k].kind !== "gen") continue;
+    if (tokens[k].kind !== "gen" || skip(k)) continue;
     const v = tokens[k].r[index];
     mx = Math.max(mx, Math.abs(v));
     out.push({ k, v, h: 0, state: k === now ? "now" : k > now ? "future" : "past" });
@@ -75,11 +76,30 @@ export function sparkValues(tokens: readonly Tok[], index: number, now: number, 
   return out;
 }
 
-/** The n words of this answer (generated tokens up to `upTo`) with the largest |r| for this neuron. Ties: earlier first. */
-export function firesMostOn(tokens: readonly Tok[], index: number, n = 5, upTo = tokens.length - 1): { k: number; text: string; v: number }[] {
-  const all: { k: number; text: string; v: number }[] = [];
-  for (let k = 0; k <= upTo && k < tokens.length; k++) if (tokens[k].kind === "gen") all.push({ k, text: tokens[k].text, v: tokens[k].r[index] });
-  return all.sort((a, b) => Math.abs(b.v) - Math.abs(a.v) || a.k - b.k).slice(0, n);
+export interface Fire { k: number; text: string; v: number; kind: "prompt" | "gen" }
+export interface Fires { pos: Fire[]; neg: Fire[]; hiddenPeak: Fire | null }
+
+/**
+ * What the neuron fires on in this session, split by sign (design.md Q8): up to n visible words (question + answer, by the
+ * shared display rule) where it is positive / negative, strongest first, and only where `passes(v)` (the caller: top 3%
+ * under the live F, ladder level >= 2). hiddenPeak: the session's strongest |v| when it sits on a hidden template token and
+ * passes too. Position 0 (the attention sink) is left out, as it is from F. Ties keep token order.
+ */
+export function firesSplit(tokens: readonly Tok[], index: number, opts: {
+  passes: (v: number) => boolean; hidden: (k: number) => boolean; display: (k: number) => string; n?: number; upTo?: number;
+}): Fires {
+  const n = opts.n ?? 5, upTo = Math.min(opts.upTo ?? tokens.length - 1, tokens.length - 1);
+  const pos: Fire[] = [], neg: Fire[] = [];
+  let peak: Fire | null = null, peakHidden = false;
+  for (let k = 1; k <= upTo; k++) {
+    const v = tokens[k].r[index], hidden = opts.hidden(k);
+    const f: Fire = { k, text: hidden ? "" : opts.display(k), v, kind: tokens[k].kind };
+    if (!peak || Math.abs(v) > Math.abs(peak.v)) { peak = f; peakHidden = hidden; }
+    if (hidden || !f.text.trim() || !opts.passes(v)) continue;
+    (v > 0 ? pos : neg).push(f);
+  }
+  const order = (a: Fire, b: Fire) => Math.abs(b.v) - Math.abs(a.v) || a.k - b.k;
+  return { pos: pos.sort(order).slice(0, n), neg: neg.sort(order).slice(0, n), hiddenPeak: peak && peakHidden && opts.passes(peak.v) ? peak : null };
 }
 
 /** The readout's slot rows: real values where the record has them, else grey "COMING vX" (filled = false). */
