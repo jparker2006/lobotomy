@@ -1,18 +1,70 @@
-/* Minimal Cinema UI (U2; U3 replaces it). Text grid 9 x 16 CSS px. */
-#ui .u2-hud, #ui .u2-legend, #ui .u2-stats, #ui .u2-status { position: absolute; white-space: pre; font-size: 12px; line-height: 16px; letter-spacing: 0.12em; }
-#ui .u2-hud { left: 18px; top: 14px; }
-#ui .u2-hud b { color: var(--ui-bright); font-weight: 700; }
-#ui .u2-legend { left: 18px; top: 46px; opacity: 0.75; }
-#ui .u2-counter { position: absolute; right: 18px; top: 8px; font: 32px/36px var(--font-counter); color: var(--ui-bright); letter-spacing: 0.04em; }
-#ui .u2-stats { right: 18px; top: 46px; opacity: 0.75; }
-#ui .u2-status { left: 18px; top: 78px; color: var(--ink); }
-#ui .u2-label { position: absolute; left: 0; top: 0; color: var(--ui-bright); opacity: 0.6; font-size: 12px; letter-spacing: 0.08em; will-change: transform; }
-#ui .u2-sub { position: absolute; left: 6vw; right: 6vw; bottom: 104px; height: 88px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;
-  text-align: center; font: 300 28px/44px var(--font); letter-spacing: 0.14em; color: var(--ui-bright); opacity: 0.88;
-  background: radial-gradient(ellipse at center, rgba(3,3,4,0.75), rgba(3,3,4,0) 70%); }
-#ui .u2-sub .hot { color: var(--hot); font-weight: 400; }
-#ui .u2-sub .cursor { display: inline-block; width: 0.62em; height: 1.05em; vertical-align: -0.15em; background: var(--ink); opacity: 0.85; margin-left: 2px; }
-#ui .u2-prompt { position: absolute; left: 18px; right: 18px; bottom: 44px; display: flex; gap: 9px; font-size: 13px; line-height: 16px; letter-spacing: 0.12em; }
-#ui .u2-prompt input { flex: 1; background: transparent; border: 0; outline: 0; color: var(--ui-bright); font: inherit; letter-spacing: inherit; padding: 0; caret-color: var(--ink); }
-#ui .u2-prompt input::placeholder { color: var(--ui); opacity: 0.5; }
-@media (max-width: 1320px) { #ui .u2-legend { display: none; } }
+/* Cinema UI + Console (U3). Everything sits on the 9 x 16 CSS px text grid (rows/cols as in q5-cinema / q5-console at
+   1440 x 900); the subtitles use double cells (18 x 32). Text is 13 px JetBrains Mono with letter-spacing to a 9 px advance. */
+#ui .ui-root { --cw: 9px; --ch: 16px; position: absolute; inset: 0; font: 400 13px/16px var(--font); letter-spacing: calc(var(--cw) - 0.6em); color: var(--ui); }
+#ui .ui-root > * { position: absolute; white-space: pre; }
+
+/* top left: title + provenance, legend, status */
+#ui .ui-head { left: calc(2 * var(--cw)); top: var(--ch); }
+#ui .ui-title { color: var(--ui-bright); font-weight: 700; margin-right: calc(2 * var(--cw)); }
+#ui .ui-meta { opacity: 0.5; }
+#ui .ui-legend { left: calc(2 * var(--cw)); top: calc(3 * var(--ch)); opacity: 0.42; }
+#ui .ui-status { left: calc(2 * var(--cw)); top: calc(5 * var(--ch)); color: var(--ink); }
+
+/* top right: the big counter (Departure Mono, double cells) and its caption */
+#ui .ui-counter { right: calc(2 * var(--cw)); top: var(--ch); font: 32px/32px var(--font-counter); letter-spacing: 0; color: var(--ui-bright); opacity: 0.95; }
+#ui .ui-stats { right: calc(2 * var(--cw)); top: calc(3 * var(--ch)); opacity: 0.5; }
+
+/* bottom: scrim, subtitles (last two lines, double size), prompt line, tape */
+#ui .ui-scrim { left: 0; right: 0; bottom: calc(5.25 * var(--ch)); height: calc(7 * var(--ch));
+  background: linear-gradient(rgba(3,3,4,0), rgba(3,3,4,0.82) 35%, rgba(3,3,4,0.9)); }
+#ui .ui-sub { left: 0; right: 0; bottom: calc(6.25 * var(--ch)); height: calc(4 * var(--ch)); display: flex; flex-direction: column; justify-content: flex-end;
+  text-align: center; font: 300 28px/32px var(--font); letter-spacing: calc(2 * var(--cw) - 0.6em); color: var(--ui-bright); }
+#ui .ui-subline { opacity: 0.6; }
+#ui .ui-subline.ui-last { opacity: 0.9; }
+#ui .ui-sub .ui-hot { color: var(--hot); font-weight: 400; }
+#ui .ui-cursor { display: inline-block; width: 0.8em; height: 1.15em; vertical-align: -0.24em; background: var(--ink); opacity: 0.85; }
+#ui .ui-sub .ui-cursor { margin-left: 1px; }
+#ui .ui-prompt { left: calc(2 * var(--cw)); right: calc(2 * var(--cw)); bottom: calc(3.25 * var(--ch)); display: flex; opacity: 0.5; }
+#ui .ui-prompt-mark { margin-right: var(--cw); }
+#ui .ui-input { flex: 1; background: transparent; border: 0; outline: 0; padding: 0; color: var(--ui); font: inherit; letter-spacing: inherit; caret-color: var(--ink); }
+#ui .ui-input:focus { color: var(--ui-bright); }
+#ui .ui-input::placeholder { color: var(--ui); opacity: 0.6; }
+#ui .ui-tape { left: calc(2 * var(--cw)); right: calc(2 * var(--cw)); bottom: calc(1.25 * var(--ch)); height: var(--ch); display: flex; }
+#ui .ui-tape-label { width: calc(5 * var(--cw)); opacity: 0.45; }
+#ui .ui-bars { flex: 1; display: flex; height: var(--ch); overflow: hidden; }
+#ui .ui-bar { flex: none; width: var(--w, 9px); margin-right: var(--gap, 1px); color: var(--ui); opacity: 0.6;
+  background: linear-gradient(to top, currentColor var(--h, 1px), transparent var(--h, 1px)); }
+#ui .ui-bar.ui-p { opacity: 0.28; }
+#ui .ui-bar.ui-future { opacity: 0.12; }
+#ui .ui-bar.ui-cur { color: var(--hot); opacity: 1; }
+#ui .ui-label { left: 0; top: 0; color: var(--ui-bright); opacity: 0.6; will-change: transform; }
+
+/* Console (key c): transcript left, top 1% by layer + rarest right, legend under the map, numbers under the tape */
+#ui .ui-panel, #ui .ui-cstats { display: none; }
+#ui .ui-console .ui-panel { display: block; top: calc(3 * var(--ch)); bottom: calc(9.25 * var(--ch)); background: rgba(3,3,4,0.88); }
+#ui .ui-console .ui-left { left: 0; width: calc(40.5 * var(--cw)); border-right: 1px solid rgba(165,172,178,0.15); }
+#ui .ui-console .ui-right { right: 0; width: calc(36.5 * var(--cw)); border-left: 1px solid rgba(165,172,178,0.15); padding-top: var(--ch); }
+#ui .ui-transcript { position: absolute; left: calc(2 * var(--cw)); top: var(--ch); width: calc(37 * var(--cw)); bottom: 0; overflow: hidden;
+  white-space: pre-wrap; overflow-wrap: anywhere; }
+#ui .ui-tprompt { opacity: 0.5; margin-bottom: var(--ch); }
+#ui .ui-tanswer { color: var(--ui-bright); opacity: 0.88; }
+#ui .ui-tanswer .ui-hot { color: var(--hot); font-weight: 700; }
+#ui .ui-tanswer .ui-cursor { height: var(--ch); width: var(--cw); vertical-align: -0.25em; }
+#ui .ui-h { margin-left: calc(1.5 * var(--cw)); margin-bottom: var(--ch); color: var(--ui-bright); font-weight: 700; opacity: 0.8; }
+#ui .ui-h2 { margin-top: calc(2 * var(--ch)); }
+#ui .ui-lrow { display: flex; margin-left: calc(1.5 * var(--cw)); }
+#ui .ui-lname { width: calc(4 * var(--cw)); opacity: 0.5; }
+#ui .ui-ldots { width: calc(24 * var(--cw)); overflow: hidden; color: var(--ink); opacity: 0.75; }
+#ui .ui-ldots.ui-hot { color: var(--hot); opacity: 1; }
+#ui .ui-ln { width: calc(4 * var(--cw)); text-align: right; opacity: 0.55; }
+#ui .ui-rrow { margin-left: calc(1.5 * var(--cw)); color: var(--ink); opacity: 0.85; }
+#ui .ui-console .ui-counter, #ui .ui-console .ui-stats, #ui .ui-console .ui-sub, #ui .ui-console .ui-scrim { display: none; }
+#ui .ui-console .ui-legend { left: calc(42 * var(--cw)); top: auto; bottom: calc(10.25 * var(--ch)); }
+#ui .ui-console .ui-legend-sign { display: none; }
+#ui .ui-console .ui-tape { bottom: calc(5.25 * var(--ch)); }
+#ui .ui-console .ui-status { left: auto; right: calc(2 * var(--cw)); top: var(--ch); }
+#ui .ui-console .ui-cstats { display: block; left: calc(2 * var(--cw)); bottom: calc(1.25 * var(--ch)); opacity: 0.5; }
+
+/* narrow windows: drop the sign half of the legend, then the legend (the counter caption keeps its row) */
+@media (max-width: 1409px) { #ui .ui-legend-sign { display: none; } }
+@media (max-width: 1069px) { #ui .ui-legend { display: none; } }
