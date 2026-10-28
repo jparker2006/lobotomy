@@ -15,13 +15,17 @@ export function neuronPos(i: number, out: number[] | Float32Array = [0, 0, 0], o
 
 export const layerX = (l: number) => (l - (LAYERS - 1) / 2) * GAP;
 
-/** Line segments (pairs of xyz): a full frame for L0 and L27, a top rule for the rest. */
-export function outlineSegments(): Float32Array {
-  const s: number[] = [];
+/**
+ * Line segments (pairs of xyz): a full frame for L0 and L27, a top rule for the rest.
+ * With some layers hidden (visible[l] false), only the visible ones draw, each with a full frame.
+ */
+export function outlineSegments(visible: readonly boolean[] | null = null): Float32Array {
+  const s: number[] = [], some = !!visible && visible.some((v) => !v);
   for (let l = 0; l < LAYERS; l++) {
+    if (some && !visible![l]) continue;
     const x = layerX(l), a = [x, HALF_Y, -HALF_Z], b = [x, HALF_Y, HALF_Z], c = [x, -HALF_Y, HALF_Z], d = [x, -HALF_Y, -HALF_Z];
     s.push(...a, ...b);
-    if (l === 0 || l === LAYERS - 1) s.push(...b, ...c, ...c, ...d, ...d, ...a);
+    if (some || l === 0 || l === LAYERS - 1) s.push(...b, ...c, ...c, ...d, ...d, ...a);
   }
   return new Float32Array(s);
 }

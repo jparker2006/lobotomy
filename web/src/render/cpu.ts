@@ -9,6 +9,7 @@ export interface StageInputs {
   t: number; tPrev: number; hlSec: number; sweepSec: number; t0: Float64Array; // per slot: when the token starts sweeping
   vp: ArrayLike<number>; // view-projection, column-major (three.js Matrix4.elements)
   cssW: number; cssH: number; cellW: number; cellH: number; cols: number; rows: number;
+  mask?: ArrayLike<number>; // per layer: 0 = hidden (no cells); absent = all shown
 }
 
 /** Signed max-hold: keep v if |v| >= |g|. */
@@ -18,6 +19,8 @@ export class CpuStages {
   readonly glow = new Float32Array(NEURONS);
   readonly tok = new Float32Array(SLOTS * NEURONS);
   readonly pos = new Float32Array(3 * NEURONS);
+  /** A fixed glow state to draw instead of the live trail (Deck.setGlow); the trail keeps running. */
+  shown: Float32Array | null = null;
   keys = new Uint32Array(0);
   cnt = new Uint32Array(0);
   constructor() { for (let i = 0; i < NEURONS; i++) neuronPos(i, this.pos, 3 * i); }
@@ -41,8 +44,9 @@ export class CpuStages {
   splat(u: StageInputs) {
     const n = u.cols * u.rows;
     if (this.keys.length !== n) { this.keys = new Uint32Array(n); this.cnt = new Uint32Array(n); }
-    const m = u.vp, P = this.pos, keys = this.keys, cnt = this.cnt;
+    const m = u.vp, P = this.pos, keys = this.keys, cnt = this.cnt, g = this.shown ?? this.glow, mask = u.mask;
     for (let i = 0; i < NEURONS; i++) {
+      if (mask && !(mask[Math.floor(i / PER_LAYER)] > 0.5)) { i += PER_LAYER - 1 - (i % PER_LAYER); continue; }
       const x = P[3 * i], y = P[3 * i + 1], z = P[3 * i + 2];
       const cw = m[3] * x + m[7] * y + m[11] * z + m[15];
       if (cw <= 0.1) continue;
@@ -50,7 +54,7 @@ export class CpuStages {
       const sy = (0.5 - (m[1] * x + m[5] * y + m[9] * z + m[13]) / cw * 0.5) * u.cssH;
       const cx = Math.floor(sx / u.cellW), cy = Math.floor(sy / u.cellH);
       if (cx < 0 || cy < 0 || cx >= u.cols || cy >= u.rows) continue;
-      const c = cy * u.cols + cx, k = packKey(this.glow[i], i);
+      const c = cy * u.cols + cx, k = packKey(g[i], i);
       if (k > keys[c]) keys[c] = k;
       cnt[c]++;
     }
@@ -58,11 +62,11 @@ export class CpuStages {
 
   /** Per cell: (level or -1 if empty, sign, view depth of the winner, winner index). Clears the cell. */
   resolve(u: StageInputs, table: RarityTable, out: Float32Array, th: readonly number[] = THRESHOLDS) {
-    const m = u.vp, P = this.pos;
+    const m = u.vp, P = this.pos, glow = this.shown ?? this.glow;
     for (let c = 0; c < this.keys.length; c++) {
       const k = this.cnt[c], o = 4 * c;
       if (!k) { out[o] = -1; out[o + 1] = 0; out[o + 2] = 0; out[o + 3] = 0; continue; }
-      const w = this.keys[c] & INDEX_MASK, g = this.glow[w];
+      const w = this.keys[c] & INDEX_MASK, g = glow[w];
       out[o] = cellLevel(table, g, k, th);
       out[o + 1] = g < 0 ? -1 : 1;
       out[o + 2] = m[3] * P[3 * w] + m[7] * P[3 * w + 1] + m[11] * P[3 * w + 2] + m[15];
@@ -70,4 +74,19 @@ export class CpuStages {
       this.keys[c] = 0; this.cnt[c] = 0;
     }
   }
+}
+
+/**
+ * The trail state right after token k, for showing a past token (Deck.setGlow): the signed max-hold over tokens j <= k of
+ * r_j * 0.5^((k - j) / halfLifeTokens), the stage-1 trail with every sweep complete and an even pace. Tokens older than
+ * 12 half-lives (below 1/4096) are skipped.
+ */
+export function glowAt(tokens: ArrayLike<Float32Array>, k: number, halfLifeTokens: number, out = new Float32Array(NEURONS)): Float32Array {
+  out.fill(0);
+  const hl = Math.max(1e-3, halfLifeTokens), first = Math.max(0, k - Math.ceil(12 * hl));
+  for (let j = first; j <= k && j < tokens.length; j++) {
+    const r = tokens[j], w = Math.pow(0.5, (k - j) / hl);
+    for (let i = 0; i < NEURONS; i++) out[i] = maxHold(out[i], r[i] * w);
+  }
+  return out;
 }

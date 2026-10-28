@@ -3,6 +3,7 @@ export { createDeck, DEFAULT_PARAMS } from "./deck.js";
 export type { Deck, DeckParams, Pick, RGB } from "./deck.js";
 export { NEURONS, LAYERS, PER_LAYER, THRESHOLDS, rarityTableFromSamples, rarityF, levelOf, cellLevel } from "./rarity.js";
 export type { RarityTable } from "./rarity.js";
-export { DEFAULT_VIEW, neuronPos, labelPos } from "./geometry.js";
+export { DEFAULT_VIEW, neuronPos, labelPos, layerX, GAP, PITCH, HALF_Y, HALF_Z, SHEET_COLS, SHEET_ROWS } from "./geometry.js";
 export type { View } from "./geometry.js";
+export { glowAt, maxHold } from "./cpu.js";
 export { makeSynth, recordedRarityTable, recordedQuantile, RECORDED_QUANTILES } from "./synth.js";

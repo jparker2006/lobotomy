@@ -1,7 +1,7 @@
 # web/src/render: the deck renderer
 
 Draws all 86,016 MLP neurons (28 layers × 3,072) every frame, as specified in [docs/ui/design.md](../../../docs/ui/design.md).
-three.js r186 `WebGPURenderer` + TSL. Built by U1 (#19); U2 wires live data into it, U3–U6 call the API.
+three.js r186 `WebGPURenderer` + TSL. Built by U1 (#19), extended by U2 (#20: `setGlow`, `getView`, `visibleLayers`, `glowAt`). **Frozen after U2**: U3–U6 only call the API.
 
 ## API
 
@@ -17,11 +17,12 @@ requestAnimationFrame(function tick(ts) { deck.frame(ts / 1000); requestAnimatio
 | Member | What it does |
 |---|---|
 | `backend` | `"webgpu"` or `"webgl2"` (three's fallback; the compute stages then run on the CPU, same math) |
-| `params` | live knobs, read every frame: `tokPerSec`, `halfLifeTokens` (2), `sweepSec` (`null` = 0.9 / tok_s, `0` = off), `bloomScale` (bloom target size / canvas, default 0.5), `bloomStrength`, `hazeStrength`, `cellW` × `cellH` (5 × 8 CSS px), `dpr` (`null` = devicePixelRatio), `ink`, `hot`, `lattice`, `background`, `thresholds` ([.90, .97, .99, .997, .999]), `lattFade`, `lattFadeAmount`, `outlineAlpha` |
+| `params` | live knobs, read every frame: `tokPerSec`, `halfLifeTokens` (2), `sweepSec` (`null` = 0.9 / tok_s, `0` = off), `bloomScale` (bloom target size / canvas, default 0.5), `bloomStrength`, `hazeStrength`, `cellW` × `cellH` (5 × 8 CSS px), `dpr` (`null` = devicePixelRatio), `ink`, `hot`, `lattice`, `background`, `thresholds` ([.90, .97, .99, .997, .999]), `lattFade`, `lattFadeAmount`, `outlineAlpha`, `visibleLayers` (`null` = all; lock-on shows one layer: hidden layers take no cells, so crowding stays honest, and draw no outline). The page maps app state onto these in `app/params.ts` only |
 | `pushToken(r, tSec)` | queues a token; it starts sweeping L0 → L27 at `tSec` (same clock as `frame`; times in the past start now) |
 | `setRarityTable(F)` | the ladder's F. Default: `recordedRarityTable()` (the recorded CPU quantiles). U2 seeds it from the calibration and updates it with a running histogram |
 | `frame(tSec)` | runs every stage and draws; call once per animation frame with a monotonic clock in seconds |
-| `camera`, `setView({eye, target, fov, center})` | the overview of `final-cinema-astrophage.png` by default; `center` is the principal point as a fraction of the canvas. U4's rig can drive `camera` directly |
+| `setGlow(state \| null)` | draws a fixed glow state (86,016 signed values) instead of the live trail; `null` = live again. The trail keeps running underneath. Word replay uses `glowAt(tokens, k, halfLifeTokens)` from `cpu.ts` (the trail at token k, computed on the CPU) |
+| `camera`, `setView({eye, target, fov, center})`, `getView()` | the overview of `final-cinema-astrophage.png` by default; `center` is the principal point as a fraction of the canvas. U4's rig can drive `camera` directly |
 | `project(xyz)`, `layerLabel(l)` | CSS px of a world point / a layer's label anchor (for DOM labels) |
 | `pick(x, y)` | `{ neuron, layer, index, level, sign }` of the neuron that set the dot under a CSS-px point (one GPU readback) |
 | `snapshot(tSec)` | draws one frame offscreen, returns RGBA pixels (stills, clips, headless checks) |
