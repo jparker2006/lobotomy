@@ -36,6 +36,8 @@ export interface DeckParams {
   lattFade: [number, number];
   lattFadeAmount: number;
   outlineAlpha: number;
+  /** Per-layer visibility (lock-on shows one layer); null = all. Hidden layers take no cells and draw no outline. */
+  visibleLayers: boolean[] | null;
 }
 
 export const DEFAULT_PARAMS: DeckParams = {
@@ -44,6 +46,7 @@ export const DEFAULT_PARAMS: DeckParams = {
   cellW: 5, cellH: 8, dpr: null,
   ink: [1, 0xb0 / 255, 0], hot: [1, 0xe4 / 255, 0xa0 / 255], lattice: [0x78 / 255, 0x84 / 255, 0x91 / 255], background: [3 / 255, 3 / 255, 4 / 255],
   thresholds: [...THRESHOLDS], lattFade: [0, 0.9], lattFadeAmount: 0.8, outlineAlpha: 0.18,
+  visibleLayers: null,
 };
 
 /** Dot shapes in CSS px per level and sign: [r1, w1, r2, w2] (w = 0 draws a filled disk, r = 0 nothing). Mirrors the glyphs · ∙ • ● ◉ / · ∘ ○ ◯ ◎. */
@@ -73,6 +76,13 @@ export interface Deck {
   pushToken(r: Float32Array, tSec: number): void;
   setRarityTable(F: RarityTable): void;
   setView(v: Partial<View>): void;
+  /** The view the camera follows (a copy). */
+  getView(): View;
+  /**
+   * Shows a fixed glow state (86,016 signed values, e.g. render/cpu.ts glowAt() for a past token) instead of the live trail;
+   * null goes back to live. The live trail keeps running underneath, so going back shows the present.
+   */
+  setGlow(state: Float32Array | null): void;
   /** Runs every stage and draws. Call once per animation frame with a monotonic clock in seconds. */
   frame(tSec: number): void;
   /** CSS-px position of a world point (for labels), or null behind the camera. */
@@ -110,6 +120,7 @@ export async function createDeck(canvas: HTMLCanvasElement, params: Partial<Deck
     logLo: uniform(0), logHi: uniform(1), bins: uniform(1), th: uniform(new THREE.Vector4()), th5: uniform(1),
     near: uniform(0), far: uniform(1), fade: uniform(new THREE.Vector3()),
     ink: uniform(new THREE.Vector3(...P.ink)), hot: uniform(new THREE.Vector3(...P.hot)), latt: uniform(new THREE.Vector3(...P.lattice)),
+    pin: uniform(0),
     bloom: uniform(P.bloomStrength), haze: uniform(P.hazeStrength), outlineA: uniform(P.outlineAlpha),
   };
   // small constant tables, indexed with selects (plain and the same on both backends)
@@ -120,6 +131,12 @@ export async function createDeck(canvas: HTMLCanvasElement, params: Partial<Deck
   const cpu = gpu ? null : new CpuStages();
   const tokAttr = new THREE.StorageBufferAttribute(new Float32Array(SLOTS * NEURONS), 1);
   const glowBuf = instancedArray(NEURONS, "float");
+  const pinAttr = new THREE.StorageBufferAttribute(new Float32Array(NEURONS), 1);
+  const pinBuf = storage(pinAttr, "float", NEURONS).toReadOnly();
+  const maskAttr = new THREE.StorageBufferAttribute(new Float32Array(LAYERS).fill(1), 1);
+  const maskBuf = storage(maskAttr, "float", LAYERS).toReadOnly();
+  let pinned = false, maskKey = "";
+  const shown = (i: any) => select(u.pin.greaterThan(0.5), pinBuf.element(i), glowBuf.element(i)); // the glow being drawn
   const tokBuf = storage(tokAttr, "float", SLOTS * NEURONS).toReadOnly();
   const slotT0 = new Float64Array(SLOTS).fill(-1e9);
   let nextSlot = 0, lastT = -1e9, started = false;
@@ -166,13 +183,13 @@ export async function createDeck(canvas: HTMLCanvasElement, params: Partial<Deck
     const splat = Fn(() => {
       const i = instanceIndex;
       const c = u.vp.mul(worldOf(i));
-      If(c.w.greaterThan(0.1), () => {
+      If(c.w.greaterThan(0.1).and(maskBuf.element(i.div(PER_LAYER)).greaterThan(0.5)), () => {
         const sx = c.x.div(c.w).mul(0.5).add(0.5).mul(u.css.x);
         const sy = float(0.5).sub(c.y.div(c.w).mul(0.5)).mul(u.css.y);
         const cx = floor(sx.div(u.cell.x)), cy = floor(sy.div(u.cell.y));
         If(cx.greaterThanEqual(0).and(cy.greaterThanEqual(0)).and(cx.lessThan(u.cols)).and(cy.mul(u.cols).add(cx).lessThan(cells)), () => {
           const cell = uint(cy.mul(u.cols).add(cx));
-          const a = max(abs(glowBuf.element(i)), 1e-20);
+          const a = max(abs(shown(i)), 1e-20);
           const q = uint(clamp(floor(log(a).sub(KEY_LOG_LO).mul(KEY_SCALE)), 0, MAG_MAX));
           atomicMax(keyBuf.element(cell), q.shiftLeft(uint(INDEX_BITS)).bitOr(i));
           atomicAdd(cntBuf.element(cell), uint(1));
@@ -188,7 +205,7 @@ export async function createDeck(canvas: HTMLCanvasElement, params: Partial<Deck
       const out = vec4(-1, 0, 0, 0).toVar();
       If(k.greaterThan(uint(0)), () => {
         const w = key.bitAnd(uint(INDEX_MASK));
-        const g = glowBuf.element(w);
+        const g = shown(w).toVar();
         // F(|g|): linear inside a log-spaced bin, as rarity.ts rarityF
         const x = log(max(abs(g), 1e-20)).sub(u.logLo).div(u.logHi.sub(u.logLo)).mul(u.bins).toVar();
         const b = int(clamp(floor(x), 0, u.bins.sub(1)));
@@ -252,6 +269,18 @@ export async function createDeck(canvas: HTMLCanvasElement, params: Partial<Deck
   // ---- sheet outlines ----
   const lineGeom = new THREE.BufferGeometry();
   lineGeom.setAttribute("position", new THREE.BufferAttribute(outlineSegments(), 3));
+  function applyMask() {
+    const vis = P.visibleLayers, key = vis ? vis.map((v) => (v ? 1 : 0)).join("") : "";
+    if (key === maskKey) return;
+    maskKey = key;
+    const m = maskAttr.array as Float32Array;
+    for (let l = 0; l < LAYERS; l++) m[l] = !vis || vis[l] ? 1 : 0;
+    maskAttr.needsUpdate = true;
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(outlineSegments(vis), 3));
+    lines.geometry.dispose();
+    lines.geometry = g;
+  }
   const lineMat = new THREE.LineBasicNodeMaterial({ transparent: true, depthTest: false, depthWrite: false });
   lineMat.colorNode = u.latt; lineMat.opacityNode = u.outlineA;
   const lines = new THREE.LineSegments(lineGeom, lineMat);
@@ -372,6 +401,7 @@ export async function createDeck(canvas: HTMLCanvasElement, params: Partial<Deck
   function frame(t: number) {
     fit();
     updateCamera();
+    applyMask();
     if (!started) { lastT = t; started = true; }
     const hlSec = Math.max(1e-4, P.halfLifeTokens / P.tokPerSec), sweepSec = P.sweepSec ?? 0.9 / P.tokPerSec;
     vpM.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
@@ -386,12 +416,13 @@ export async function createDeck(canvas: HTMLCanvasElement, params: Partial<Deck
     u.th.value.set(th[0], th[1], th[2], th[3]); u.th5.value = th[4];
     u.logLo.value = table.logLo; u.logHi.value = table.logHi; u.bins.value = table.cdf.length;
 
-    Object.assign(stage, { t, tPrev: lastT, hlSec, sweepSec, cssW: size.cssW, cssH: size.cssH, cellW: P.cellW, cellH: P.cellH, cols, rows });
+    Object.assign(stage, { t, tPrev: lastT, hlSec, sweepSec, cssW: size.cssW, cssH: size.cssH, cellW: P.cellW, cellH: P.cellH, cols, rows, mask: maskAttr.array });
     if (cpu) {
       cpu.trail(stage); cpu.splat(stage); cpu.resolve(stage, table, cellAttr!.array as Float32Array, th);
       cellAttr!.needsUpdate = true;
     } else {
       u.vp.value.copy(vpM);
+      u.pin.value = pinned ? 1 : 0;
       u.dtPrev.value = lastT - t; u.hl.value = hlSec; u.sweep.value = sweepSec; u.decay.value = Math.pow(0.5, (t - lastT) / hlSec);
       u.slots.value.set(slotT0[0] - t, slotT0[1] - t, slotT0[2] - t, slotT0[3] - t);
       renderer.compute(kernels);
@@ -473,13 +504,20 @@ export async function createDeck(canvas: HTMLCanvasElement, params: Partial<Deck
     backend: gpu ? "webgpu" : "webgl2", params: P, renderer, camera, size,
     pushToken, setRarityTable,
     setView(v) { Object.assign(view, v); },
+    getView: () => ({ ...view, eye: [...view.eye], target: [...view.target], center: [...view.center] }),
+    setGlow(state) {
+      if (state && state.length !== NEURONS) throw new Error(`setGlow: expected ${NEURONS} values, got ${state.length}`);
+      pinned = !!state;
+      if (cpu) cpu.shown = state ? new Float32Array(state) : null;
+      else if (state) { (pinAttr.array as Float32Array).set(state); pinAttr.needsUpdate = true; }
+    },
     frame(t) { frame(t); pollTimestamps(); },
     project, layerLabel: (l) => project(labelPos(l)), pick, gpuTimes, snapshot,
     dispose() { renderer.dispose(); },
     /** Internal, for checks: raw cell (level, sign, depth, winner) and glow arrays as of the last frame. */
     async debugRead() {
-      if (cpu) return { cells: cellAttr!.array as Float32Array, glow: cpu.glow };
-      const [c, g] = await Promise.all([renderer.getArrayBufferAsync(cellAttr as any), renderer.getArrayBufferAsync(glowBuf.value)]);
+      if (cpu) return { cells: cellAttr!.array as Float32Array, glow: cpu.shown ?? cpu.glow };
+      const [c, g] = await Promise.all([renderer.getArrayBufferAsync(cellAttr as any), pinned ? Promise.resolve((pinAttr.array as Float32Array).slice().buffer) : renderer.getArrayBufferAsync(glowBuf.value)]);
       return { cells: new Float32Array(c), glow: new Float32Array(g) };
     },
   };

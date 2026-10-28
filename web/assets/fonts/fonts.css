@@ -1,0 +1,5 @@
+/* Bundled OFL fonts (licenses next to the files). JetBrains Mono for text, Departure Mono for big counters (design.md Q6). */
+@font-face { font-family: "JetBrains Mono"; font-weight: 300; font-style: normal; font-display: block; src: url("jetbrains-mono/JetBrainsMono-Light.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 400; font-style: normal; font-display: block; src: url("jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 700; font-style: normal; font-display: block; src: url("jetbrains-mono/JetBrainsMono-Bold.woff2") format("woff2"); }
+@font-face { font-family: "Departure Mono"; font-weight: 400; font-style: normal; font-display: block; src: url("departure-mono/DepartureMono-Regular.woff2") format("woff2"); }

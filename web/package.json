@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && tsc -p bench && cp index.html dist/ && mkdir -p dist/vendor && cp node_modules/three/build/three.webgpu.js node_modules/three/build/three.tsl.js node_modules/three/build/three.core.js dist/vendor/ && cp bench/index.html dist/bench/",
+    "build": "node tools/build.mjs",
     "bench": "npm run build && python3 bench/serve.py",
     "test": "tsc -p tsconfig.test.json && node --test 'dist/test-build/test/*.test.js'"
   },

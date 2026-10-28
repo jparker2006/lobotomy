@@ -1,0 +1,18 @@
+/* Minimal Cinema UI (U2; U3 replaces it). Text grid 9 x 16 CSS px. */
+#ui .u2-hud, #ui .u2-legend, #ui .u2-stats, #ui .u2-status { position: absolute; white-space: pre; font-size: 12px; line-height: 16px; letter-spacing: 0.12em; }
+#ui .u2-hud { left: 18px; top: 14px; }
+#ui .u2-hud b { color: var(--ui-bright); font-weight: 700; }
+#ui .u2-legend { left: 18px; top: 46px; opacity: 0.75; }
+#ui .u2-counter { position: absolute; right: 18px; top: 8px; font: 32px/36px var(--font-counter); color: var(--ui-bright); letter-spacing: 0.04em; }
+#ui .u2-stats { right: 18px; top: 46px; opacity: 0.75; }
+#ui .u2-status { left: 18px; top: 78px; color: var(--ink); }
+#ui .u2-label { position: absolute; left: 0; top: 0; color: var(--ui-bright); opacity: 0.6; font-size: 12px; letter-spacing: 0.08em; will-change: transform; }
+#ui .u2-sub { position: absolute; left: 6vw; right: 6vw; bottom: 104px; height: 88px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;
+  text-align: center; font: 300 28px/44px var(--font); letter-spacing: 0.14em; color: var(--ui-bright); opacity: 0.88;
+  background: radial-gradient(ellipse at center, rgba(3,3,4,0.75), rgba(3,3,4,0) 70%); }
+#ui .u2-sub .hot { color: var(--hot); font-weight: 400; }
+#ui .u2-sub .cursor { display: inline-block; width: 0.62em; height: 1.05em; vertical-align: -0.15em; background: var(--ink); opacity: 0.85; margin-left: 2px; }
+#ui .u2-prompt { position: absolute; left: 18px; right: 18px; bottom: 44px; display: flex; gap: 9px; font-size: 13px; line-height: 16px; letter-spacing: 0.12em; }
+#ui .u2-prompt input { flex: 1; background: transparent; border: 0; outline: 0; color: var(--ui-bright); font: inherit; letter-spacing: inherit; padding: 0; caret-color: var(--ink); }
+#ui .u2-prompt input::placeholder { color: var(--ui); opacity: 0.5; }
+@media (max-width: 1320px) { #ui .u2-legend { display: none; } }
